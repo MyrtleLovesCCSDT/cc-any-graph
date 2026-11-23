@@ -1,0 +1,189 @@
+{
+  "name": "and_5node",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "I1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "I2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q3",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "Q4",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "I1",
+      "v": "Q4",
+      "pkd_min": 7.8,
+      "pkd_max": 11.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "I2",
+      "v": "Q3",
+      "pkd_min": 7.8,
+      "pkd_max": 11.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q4",
+      "v": "S",
+      "pkd_min": 6.0,
+      "pkd_max": 7.4,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q3",
+      "v": "S",
+      "pkd_min": 6.0,
+      "pkd_max": 7.4,
+      "require_par": true,
+      "require_shift0": true
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "I1",
+        "Q4"
+      ],
+      "weak": [
+        "Q4",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I2",
+        "Q3"
+      ],
+      "weak": [
+        "Q3",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "Q4",
+        "S"
+      ],
+      "weak": [
+        "I1",
+        "Q3"
+      ],
+      "min_dpkd": 1.2,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "Q3",
+        "S"
+      ],
+      "weak": [
+        "I2",
+        "Q4"
+      ],
+      "min_dpkd": 1.2,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "I1": 0.0,
+      "I2": 0.0,
+      "Q3": 3.0,
+      "Q4": 3.0,
+      "S": 0.5
+    },
+    {
+      "I1": 10.0,
+      "I2": 0.0,
+      "Q3": 3.0,
+      "Q4": 3.0,
+      "S": 0.5
+    },
+    {
+      "I1": 0.0,
+      "I2": 10.0,
+      "Q3": 3.0,
+      "Q4": 3.0,
+      "S": 0.5
+    },
+    {
+      "I1": 10.0,
+      "I2": 10.0,
+      "Q3": 3.0,
+      "Q4": 3.0,
+      "S": 0.5
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        0,
+        0,
+        0,
+        1
+      ],
+      "min_delta": 0.65,
+      "min_fold": 8.0
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q3",
+      "min_uM": 1.5,
+      "max_uM": 6.0
+    },
+    {
+      "node": "Q4",
+      "min_uM": 1.5,
+      "max_uM": 6.0
+    }
+  ]
+}

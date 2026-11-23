@@ -1,0 +1,178 @@
+{
+  "name": "nor_5node",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "I1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "I2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "M5",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "I1",
+      "v": "M5",
+      "pkd_min": 8.6,
+      "pkd_max": 12.0,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "I2",
+      "v": "M5",
+      "pkd_min": 8.6,
+      "pkd_max": 12.0,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "M5",
+      "v": "Q1",
+      "pkd_min": 7.3,
+      "pkd_max": 8.8,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q1",
+      "v": "S",
+      "pkd_min": 5.9,
+      "pkd_max": 7.2,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "I1",
+        "M5"
+      ],
+      "weak": [
+        "M5",
+        "Q1"
+      ],
+      "min_dpkd": 1.1,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I2",
+        "M5"
+      ],
+      "weak": [
+        "M5",
+        "Q1"
+      ],
+      "min_dpkd": 1.1,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "M5",
+        "Q1"
+      ],
+      "weak": [
+        "Q1",
+        "S"
+      ],
+      "min_dpkd": 1.1,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "I1": 0.0,
+      "I2": 0.0,
+      "M5": 4.5,
+      "Q1": 2.0,
+      "S": 0.4
+    },
+    {
+      "I1": 12.0,
+      "I2": 0.0,
+      "M5": 4.5,
+      "Q1": 2.0,
+      "S": 0.4
+    },
+    {
+      "I1": 0.0,
+      "I2": 12.0,
+      "M5": 4.5,
+      "Q1": 2.0,
+      "S": 0.4
+    },
+    {
+      "I1": 12.0,
+      "I2": 12.0,
+      "M5": 4.5,
+      "Q1": 2.0,
+      "S": 0.4
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        1,
+        0,
+        0,
+        0
+      ],
+      "min_delta": 0.5,
+      "min_fold": 4.5
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q1",
+      "min_uM": 1.0,
+      "max_uM": 4.0
+    },
+    {
+      "node": "M5",
+      "min_uM": 2.5,
+      "max_uM": 7.5
+    }
+  ]
+}

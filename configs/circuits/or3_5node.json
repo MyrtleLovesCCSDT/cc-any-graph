@@ -1,0 +1,202 @@
+{
+  "name": "or3_5node",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "I1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "I2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "I3",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "Q",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "I1",
+      "v": "Q",
+      "pkd_min": 7.5,
+      "pkd_max": 11.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "I2",
+      "v": "Q",
+      "pkd_min": 7.5,
+      "pkd_max": 11.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "I3",
+      "v": "Q",
+      "pkd_min": 7.5,
+      "pkd_max": 11.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q",
+      "v": "S",
+      "pkd_min": 5.8,
+      "pkd_max": 7.0,
+      "require_par": true,
+      "require_shift0": true
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "I1",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I2",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I3",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "I1": 0.0,
+      "I2": 0.0,
+      "I3": 0.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 0.0,
+      "I2": 0.0,
+      "I3": 8.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 0.0,
+      "I2": 8.0,
+      "I3": 0.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 0.0,
+      "I2": 8.0,
+      "I3": 8.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 8.0,
+      "I2": 0.0,
+      "I3": 0.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 8.0,
+      "I2": 0.0,
+      "I3": 8.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 8.0,
+      "I2": 8.0,
+      "I3": 0.0,
+      "Q": 2.5,
+      "S": 0.5
+    },
+    {
+      "I1": 8.0,
+      "I2": 8.0,
+      "I3": 8.0,
+      "Q": 2.5,
+      "S": 0.5
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "min_delta": 0.6,
+      "min_fold": 6.0
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q",
+      "min_uM": 1.2,
+      "max_uM": 4.5
+    }
+  ]
+}

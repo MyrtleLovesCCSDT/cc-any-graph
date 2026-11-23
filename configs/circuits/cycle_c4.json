@@ -1,0 +1,71 @@
+{
+  "name": "cycle_c4",
+  "mode": "graph",
+  "nodes": [
+    {
+      "name": "A",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "B",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "C",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "D",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "A",
+      "v": "B",
+      "pkd_min": 7.0,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "B",
+      "v": "C",
+      "pkd_min": 7.0,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "C",
+      "v": "D",
+      "pkd_min": 7.0,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "D",
+      "v": "A",
+      "pkd_min": 7.0,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    }
+  ],
+  "hierarchies": [],
+  "off_target_max_pkd": 4.3,
+  "homodimer_max_pkd": 4.3
+}

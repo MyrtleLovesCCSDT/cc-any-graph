@@ -1,0 +1,24 @@
+{
+  "name": "custom_graph_xor_topo",
+  "mode": "graph",
+  "nodes": [
+    {"name": "A", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": true},
+    {"name": "B", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": true},
+    {"name": "Q", "charge_mode": "mixed", "lengths": ["4mer"]},
+    {"name": "S", "charge_mode": "mixed", "lengths": ["4mer", "35mer", "3mer"]}
+  ],
+  "edges": [
+    {"u": "A", "v": "B", "pkd_min": 9.2, "pkd_max": 12.5, "require_par": true, "require_shift0": true},
+    {"u": "A", "v": "Q", "pkd_min": 6.8, "pkd_max": 7.6, "require_par": true, "require_shift0": true},
+    {"u": "B", "v": "Q", "pkd_min": 6.8, "pkd_max": 7.6, "require_par": true, "require_shift0": true},
+    {"u": "Q", "v": "S", "pkd_min": 5.6, "pkd_max": 6.4, "require_par": true, "require_shift0": false}
+  ],
+  "hierarchies": [
+    {"strong": ["A", "B"], "weak": ["A", "Q"], "min_dpkd": 1.8, "min_agree": 3},
+    {"strong": ["A", "B"], "weak": ["B", "Q"], "min_dpkd": 1.8, "min_agree": 3},
+    {"strong": ["A", "Q"], "weak": ["Q", "S"], "min_dpkd": 0.8, "min_agree": 3},
+    {"strong": ["B", "Q"], "weak": ["Q", "S"], "min_dpkd": 0.8, "min_agree": 3}
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.5
+}

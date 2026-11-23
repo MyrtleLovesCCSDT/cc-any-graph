@@ -1,0 +1,117 @@
+{
+  "name": "cascade_5node",
+  "mode": "graph",
+  "nodes": [
+    {
+      "name": "A",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "B",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "C",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "D",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "E",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "A",
+      "v": "B",
+      "pkd_min": 9.2,
+      "pkd_max": 12.2,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "B",
+      "v": "C",
+      "pkd_min": 7.8,
+      "pkd_max": 9.0,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "C",
+      "v": "D",
+      "pkd_min": 6.6,
+      "pkd_max": 7.6,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "D",
+      "v": "E",
+      "pkd_min": 5.5,
+      "pkd_max": 6.4,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "A",
+        "B"
+      ],
+      "weak": [
+        "B",
+        "C"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "B",
+        "C"
+      ],
+      "weak": [
+        "C",
+        "D"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "C",
+        "D"
+      ],
+      "weak": [
+        "D",
+        "E"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.4,
+  "homodimer_max_pkd": 4.3
+}

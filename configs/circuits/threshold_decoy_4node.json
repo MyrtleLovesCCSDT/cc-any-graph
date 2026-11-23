@@ -1,0 +1,239 @@
+{
+  "name": "threshold_decoy_4node",
+  "mode": "curve",
+  "log_x": true,
+  "nodes": [
+    {
+      "name": "D",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "I",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "D",
+      "v": "I",
+      "pkd_min": 8.8,
+      "pkd_max": 12.2,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "I",
+      "v": "Q",
+      "pkd_min": 7.3,
+      "pkd_max": 8.8,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q",
+      "v": "S",
+      "pkd_min": 5.8,
+      "pkd_max": 7.0,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "D",
+        "I"
+      ],
+      "weak": [
+        "I",
+        "Q"
+      ],
+      "min_dpkd": 1.1,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 1.1,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "D": 3.0,
+      "I": 0.1,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.1368,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.1871,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.2559,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.35,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.4787,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.6547,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 0.8954,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 1.2247,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 1.6751,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 2.2912,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 3.1337,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 4.2862,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 5.8624,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 8.0183,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 10.9669,
+      "Q": 3.0,
+      "S": 0.4
+    },
+    {
+      "D": 3.0,
+      "I": 15.0,
+      "Q": 3.0,
+      "S": 0.4
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.06,
+        0.0601,
+        0.0604,
+        0.0628,
+        0.0783,
+        0.1679,
+        0.488,
+        0.8426,
+        0.956,
+        0.9762
+      ],
+      "affine_fit": false,
+      "min_span": 0.65,
+      "max_rmse": 0.12
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "D",
+      "min_uM": 1.5,
+      "max_uM": 5.0
+    },
+    {
+      "node": "Q",
+      "min_uM": 1.5,
+      "max_uM": 5.0
+    }
+  ]
+}

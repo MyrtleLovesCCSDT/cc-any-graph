@@ -1,0 +1,109 @@
+{
+  "name": "barbell_6node",
+  "mode": "graph",
+  "nodes": [
+    {
+      "name": "A1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "B1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "C1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "A2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "B2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "C2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "A1",
+      "v": "B1",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "B1",
+      "v": "C1",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "A1",
+      "v": "C1",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "C1",
+      "v": "C2",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "A2",
+      "v": "B2",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "B2",
+      "v": "C2",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "A2",
+      "v": "C2",
+      "pkd_min": 6.8,
+      "pkd_max": 10.5,
+      "require_par": true,
+      "require_shift0": true
+    }
+  ],
+  "hierarchies": [],
+  "off_target_max_pkd": 4.4,
+  "homodimer_max_pkd": 4.3
+}

@@ -1,0 +1,210 @@
+{
+  "name": "xnor_5node",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "A",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "B",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "M",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "A",
+      "v": "B",
+      "pkd_min": 9.4,
+      "pkd_max": 12.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "A",
+      "v": "M",
+      "pkd_min": 7.8,
+      "pkd_max": 8.8,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "B",
+      "v": "M",
+      "pkd_min": 7.8,
+      "pkd_max": 8.8,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "M",
+      "v": "Q",
+      "pkd_min": 6.6,
+      "pkd_max": 7.5,
+      "require_par": true,
+      "require_shift0": true
+    },
+    {
+      "u": "Q",
+      "v": "S",
+      "pkd_min": 5.5,
+      "pkd_max": 6.4,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "A",
+        "B"
+      ],
+      "weak": [
+        "A",
+        "M"
+      ],
+      "min_dpkd": 1.2,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "A",
+        "B"
+      ],
+      "weak": [
+        "B",
+        "M"
+      ],
+      "min_dpkd": 1.2,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "A",
+        "M"
+      ],
+      "weak": [
+        "M",
+        "Q"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "B",
+        "M"
+      ],
+      "weak": [
+        "M",
+        "Q"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "M",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 0.9,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "A": 0.0,
+      "B": 0.0,
+      "M": 3.5,
+      "Q": 1.5,
+      "S": 0.3
+    },
+    {
+      "A": 10.0,
+      "B": 0.0,
+      "M": 3.5,
+      "Q": 1.5,
+      "S": 0.3
+    },
+    {
+      "A": 0.0,
+      "B": 10.0,
+      "M": 3.5,
+      "Q": 1.5,
+      "S": 0.3
+    },
+    {
+      "A": 10.0,
+      "B": 10.0,
+      "M": 3.5,
+      "Q": 1.5,
+      "S": 0.3
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        1,
+        0,
+        0,
+        1
+      ],
+      "min_delta": 0.45,
+      "min_fold": 3.5
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q",
+      "min_uM": 0.8,
+      "max_uM": 3.0
+    },
+    {
+      "node": "M",
+      "min_uM": 2.0,
+      "max_uM": 5.5
+    }
+  ]
+}
