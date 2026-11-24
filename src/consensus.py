@@ -24,8 +24,10 @@ _AN4_PAD = "-EIAALEQEIAALEKENAALEWEIAALEQ"
 _BN4_PAD = "-KIAALKQKIAALKYKNAALKKKIAALKQ"
 _AN3_PAD = "-EIAALEKENAALEWEIAALEQ"
 
+_MAX_LEN_SEEN_BY_FN: Dict[int, int] = {}
 
-def _call_scorer(fn, p1_pad: str, p2_pad: str, shifts, orient) -> Tuple[float, int]:
+
+def _call_scorer_raw(fn, p1_pad: str, p2_pad: str, shifts, orient) -> Tuple[float, int]:
     try:
         res = fn(p1_pad, p2_pad, shifts, False, orient)
     except Exception:
@@ -33,6 +35,19 @@ def _call_scorer(fn, p1_pad: str, p2_pad: str, shifts, orient) -> Tuple[float, i
     if isinstance(res, (tuple, list)):
         return float(res[0]), int(res[1]) if len(res) > 1 else 0
     return float(res), 0
+
+
+def _call_scorer(fn, p1_pad: str, p2_pad: str, shifts, orient) -> Tuple[float, int]:
+    fid = id(fn)
+    prev_max = _MAX_LEN_SEEN_BY_FN.get(fid, 0)
+    cur_max = max(len(p1_pad), len(p2_pad))
+    if prev_max > 0 and (len(p1_pad) < prev_max or len(p2_pad) < prev_max):
+        flush = "-" * max(prev_max, cur_max)
+        _call_scorer_raw(fn, flush, flush, [0], cc.Orientation.PARALLEL)
+        _call_scorer_raw(fn, flush, flush, [0], cc.Orientation.ANTIPARALLEL)
+    if cur_max > prev_max:
+        _MAX_LEN_SEEN_BY_FN[fid] = cur_max
+    return _call_scorer_raw(fn, p1_pad, p2_pad, shifts, orient)
 
 
 def detect_score_polarity() -> Dict[str, bool]:
@@ -82,14 +97,13 @@ def ensure_padded(seq: str, start_reg: Optional[str] = None) -> str:
     return infer_register_and_pad(s)
 
 
-def score_raw_models(
+def _score_raw_directed(
     p1_pad: str,
     p2_pad: str,
     lower_is_stronger: Dict[str, bool],
     scan_shifts: bool = True,
     models: Optional[list] = None,
 ) -> Dict[str, float]:
-    """Compute sign-normalized stability scores (higher = stronger)."""
     shifts = list(range(-7, 8)) if scan_shifts else [0]
     out: Dict[str, float] = {}
     for name in (models or list(MODELS.keys())):
@@ -110,6 +124,25 @@ def score_raw_models(
         else:
             s0, _ = _call_scorer(fn, p1_pad, p2_pad, [0], cc.Orientation.PARALLEL)
             out[name] = sign * s0
+    return out
+
+
+def score_raw_models(
+    p1_pad: str,
+    p2_pad: str,
+    lower_is_stronger: Dict[str, bool],
+    scan_shifts: bool = True,
+    models: Optional[list] = None,
+) -> Dict[str, float]:
+    """Compute symmetric sign-normalized stability scores (higher = stronger)."""
+    a, b = (p1_pad, p2_pad) if p1_pad <= p2_pad else (p2_pad, p1_pad)
+    r1 = _score_raw_directed(a, b, lower_is_stronger, scan_shifts=scan_shifts, models=models)
+    if a == b:
+        return r1
+    r2 = _score_raw_directed(b, a, lower_is_stronger, scan_shifts=scan_shifts, models=models)
+    out = dict(r1)
+    for name in (models or list(MODELS.keys())):
+        out[name] = 0.5 * (r1[name] + r2[name])
     return out
 
 
@@ -136,11 +169,12 @@ class ConsensusModel:
     ) -> dict:
         p1 = ensure_padded(seq1, reg1)
         p2 = ensure_padded(seq2, reg2)
-        key = (p1, p2) if p1 <= p2 else (p2, p1)
+        a, b = (p1, p2) if p1 <= p2 else (p2, p1)
+        key = (a, b)
         if key in self._cache:
             return dict(self._cache[key])
 
-        res = score_raw_models(p1, p2, self.lower_is_stronger, scan_shifts=True, models=self.models)
+        res = score_raw_models(a, b, self.lower_is_stronger, scan_shifts=True, models=self.models)
         feats = np.array([res[m] for m in self.models], dtype=float)
         x_std = (feats - self.mean) / self.scale
         log10_kd = float(np.dot(x_std, self.coef) + self.intercept)
@@ -150,16 +184,7 @@ class ConsensusModel:
         self._cache[key] = res
         return dict(res)
 
-    def slippage_margin(
-        self,
-        seq1: str,
-        seq2: str,
-        reg1: Optional[str] = None,
-        reg2: Optional[str] = None,
-    ) -> Tuple[float, str]:
-        """Gap in iCipa_nter between canonical (shift=0, PAR) and best off-target pose."""
-        p1 = ensure_padded(seq1, reg1)
-        p2 = ensure_padded(seq2, reg2)
+    def _slippage_directed(self, p1: str, p2: str) -> Tuple[float, str]:
         fn = MODELS["iCipa_nter"]
         sign = -1.0 if self.lower_is_stronger["iCipa_nter"] else 1.0
         s0 = sign * _call_scorer(fn, p1, p2, [0], cc.Orientation.PARALLEL)[0]
@@ -168,3 +193,20 @@ class ConsensusModel:
         s_anti = sign * _call_scorer(fn, p1, p2, list(range(-7, 8)), cc.Orientation.ANTIPARALLEL)[0]
         best_wrong = max(s_par_nz, s_anti)
         return float(s0 - best_wrong), ("PAR_SLIP" if s_par_nz >= s_anti else "ANTI")
+
+    def slippage_margin(
+        self,
+        seq1: str,
+        seq2: str,
+        reg1: Optional[str] = None,
+        reg2: Optional[str] = None,
+    ) -> Tuple[float, str]:
+        """Symmetric gap in iCipa_nter between canonical (shift=0, PAR) and best off-target pose."""
+        p1 = ensure_padded(seq1, reg1)
+        p2 = ensure_padded(seq2, reg2)
+        a, b = (p1, p2) if p1 <= p2 else (p2, p1)
+        m1, t1 = self._slippage_directed(a, b)
+        if a == b:
+            return m1, t1
+        m2, t2 = self._slippage_directed(b, a)
+        return (m1, t1) if m1 <= m2 else (m2, t2)

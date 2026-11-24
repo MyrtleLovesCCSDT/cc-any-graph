@@ -516,7 +516,7 @@ def run_graph_design(
             tuned = _polish_scaffold_concentrations(log10_kd_mat, parsed)
             if tuned is not None:
                 c0_m = tuned
-                loss, base_metrics = _score_matrix(mat, parsed, model.models, c0_override_m=c0_m)
+        loss, base_metrics = _score_matrix(mat, parsed, model.models, c0_override_m=c0_m)
 
         # Edge slippage check
         edge_details = {}
