@@ -1,4 +1,10 @@
-results/
+results/*
+!results/graph_designs/
+results/graph_designs/*
+!results/graph_designs/*/
+results/graph_designs/*/*
+!results/graph_designs/*/*_full.json
+!results/graph_designs/*/*.csv
 __pycache__/
 *.py[cod]
 *.bak

@@ -1,0 +1,5458 @@
+{
+  "config": {
+    "name": "bipartite_k23",
+    "mode": "graph",
+    "nodes": [
+      {
+        "name": "A1",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "A2",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "B1",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "B2",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "B3",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "u": "A1",
+        "v": "B1",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A1",
+        "v": "B2",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A1",
+        "v": "B3",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A2",
+        "v": "B1",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A2",
+        "v": "B2",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A2",
+        "v": "B3",
+        "pkd_min": 6.8,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      }
+    ],
+    "hierarchies": [],
+    "off_target_max_pkd": 4.3,
+    "homodimer_max_pkd": 4.3
+  },
+  "designs": [
+    {
+      "seqs": {
+        "A1": "EIASLEEKISALKSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KIASLKKEVSALEKENASLEWKVSALKS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLEEKISALKSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KIASLKKEVSALEKENASLEWKVSALKS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5801830706712083,
+          2.1249150046488587,
+          7.190871527180422,
+          7.055319947893696,
+          7.271849940137488
+        ],
+        [
+          2.1249150046488587,
+          1.919735013074364,
+          7.186290809889418,
+          7.067637852038273,
+          7.65989595023702
+        ],
+        [
+          7.190871527180422,
+          7.186290809889418,
+          0.7050149702385271,
+          1.0044753028898645,
+          2.0375663021739907
+        ],
+        [
+          7.055319947893696,
+          7.067637852038273,
+          1.0044753028898645,
+          2.6452698727345707,
+          2.4434952773720227
+        ],
+        [
+          7.271849940137488,
+          7.65989595023702,
+          2.0375663021739907,
+          2.4434952773720227,
+          2.499938527722641
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.190871527180422,
+          "Kd_nM": 64.43598515972874,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.449810028076172,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.055319947893696,
+          "Kd_nM": 88.04000369456337,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.271849940137488,
+          "Kd_nM": 53.47490969832595,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169355392456055,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.186290809889418,
+          "Kd_nM": 65.11922002861063,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.067637852038273,
+          "Kd_nM": 85.57800302888671,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.65989595023702,
+          "Kd_nM": 21.882858381843842,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4434952773720227,
+        "worst_homo_pKd": 2.6452698727345707,
+        "min_slip_margin": 4.951976776123047,
+        "pKd_A1:B1": 7.190871527180422,
+        "pKd_A1:B2": 7.055319947893696,
+        "pKd_A1:B3": 7.271849940137488,
+        "pKd_A2:B1": 7.186290809889418,
+        "pKd_A2:B2": 7.067637852038273,
+        "pKd_A2:B3": 7.65989595023702,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D01"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLESKISALQSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KVASLKKEISALESQNASLQWKISALAS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLESKISALQSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KVASLKKEISALESQNASLQWKISALAS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.6237546780735412,
+          2.0084785483845886,
+          6.880348957234303,
+          7.426195082321387,
+          6.993026545322563
+        ],
+        [
+          2.0084785483845886,
+          1.919735013074364,
+          7.025049861479716,
+          7.067637852038273,
+          7.65989595023702
+        ],
+        [
+          6.880348957234303,
+          7.025049861479716,
+          2.394458423885771,
+          2.172116726735526,
+          2.32411270040771
+        ],
+        [
+          7.426195082321387,
+          7.067637852038273,
+          2.172116726735526,
+          2.6452698727345707,
+          2.4434952773720227
+        ],
+        [
+          6.993026545322563,
+          7.65989595023702,
+          2.32411270040771,
+          2.4434952773720227,
+          2.499938527722641
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.880348957234303,
+          "Kd_nM": 131.71979397867608,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.426195082321387,
+          "Kd_nM": 37.48046045801908,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.993026545322563,
+          "Kd_nM": 101.61865787383455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.025049861479716,
+          "Kd_nM": 94.3952494595371,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.067637852038273,
+          "Kd_nM": 85.57800302888671,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.65989595023702,
+          "Kd_nM": 21.882858381843842,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4434952773720227,
+        "worst_homo_pKd": 2.6452698727345707,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A1:B1": 6.880348957234303,
+        "pKd_A1:B2": 7.426195082321387,
+        "pKd_A1:B3": 6.993026545322563,
+        "pKd_A2:B1": 7.025049861479716,
+        "pKd_A2:B2": 7.067637852038273,
+        "pKd_A2:B3": 7.65989595023702,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D02"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLESKISALQSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KVASLKKEISALESQNASLQWKISALAS",
+        "B2": "KVASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLESKISALQSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KVASLKKEISALESQNASLQWKISALAS",
+        "B2": "-KVASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALASKNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.6237546780735412,
+          2.0084785483845886,
+          6.880348957234303,
+          7.037716639327429,
+          6.993026545322563
+        ],
+        [
+          2.0084785483845886,
+          1.919735013074364,
+          7.025049861479716,
+          7.095901459000725,
+          7.65989595023702
+        ],
+        [
+          6.880348957234303,
+          7.025049861479716,
+          2.394458423885771,
+          2.2269362357432456,
+          2.32411270040771
+        ],
+        [
+          7.037716639327429,
+          7.095901459000725,
+          2.2269362357432456,
+          2.3381665717632956,
+          2.3040986149705818
+        ],
+        [
+          6.993026545322563,
+          7.65989595023702,
+          2.32411270040771,
+          2.3040986149705818,
+          2.499938527722641
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.880348957234303,
+          "Kd_nM": 131.71979397867608,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.037716639327429,
+          "Kd_nM": 91.68184842939921,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.993026545322563,
+          "Kd_nM": 101.61865787383455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.025049861479716,
+          "Kd_nM": 94.3952494595371,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.095901459000725,
+          "Kd_nM": 80.18599840054534,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.65989595023702,
+          "Kd_nM": 21.882858381843842,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.32411270040771,
+        "worst_homo_pKd": 2.6237546780735412,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A1:B1": 6.880348957234303,
+        "pKd_A1:B2": 7.037716639327429,
+        "pKd_A1:B3": 6.993026545322563,
+        "pKd_A2:B1": 7.025049861479716,
+        "pKd_A2:B2": 7.095901459000725,
+        "pKd_A2:B3": 7.65989595023702,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D03"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESAISALESENASLEWEISALES",
+        "A2": "EIASLESAISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLESAISALESENASLEWEISALES",
+        "A2": "-EIASLESAISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7684598414072044,
+          1.7576605009553132,
+          7.083397888544366,
+          7.260851876611585,
+          6.89583320274764
+        ],
+        [
+          1.7576605009553132,
+          1.746862945223378,
+          7.584612826057443,
+          8.05101486746872,
+          6.957028572948378
+        ],
+        [
+          7.083397888544366,
+          7.584612826057443,
+          2.2250077253405527,
+          2.223011781199851,
+          2.385026649979989
+        ],
+        [
+          7.260851876611585,
+          8.05101486746872,
+          2.223011781199851,
+          2.6407742777878136,
+          2.0634348703657315
+        ],
+        [
+          6.89583320274764,
+          6.957028572948378,
+          2.385026649979989,
+          2.0634348703657315,
+          1.8871277144871277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.083397888544366,
+          "Kd_nM": 82.52815031166142,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.260851876611585,
+          "Kd_nM": 54.8463995832499,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 6.89583320274764,
+          "Kd_nM": 127.10621818036023,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.584612826057443,
+          "Kd_nM": 26.024786414588114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.05101486746872,
+          "Kd_nM": 8.89170677813068,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.056915283203125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 6.957028572948378,
+          "Kd_nM": 110.40059831429352,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.385026649979989,
+        "worst_homo_pKd": 2.6407742777878136,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.083397888544366,
+        "pKd_A1:B2": 7.260851876611585,
+        "pKd_A1:B3": 6.89583320274764,
+        "pKd_A2:B1": 7.584612826057443,
+        "pKd_A2:B2": 8.05101486746872,
+        "pKd_A2:B3": 6.957028572948378,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D04"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESAISALESENASLEWEISALES",
+        "A2": "EIASLESAISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLESAISALESENASLEWEISALES",
+        "A2": "-EIASLESAISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7684598414072044,
+          1.7576605009553132,
+          7.083397888544366,
+          6.924531304356732,
+          6.89583320274764
+        ],
+        [
+          1.7576605009553132,
+          1.746862945223378,
+          7.584612826057443,
+          7.425747134229788,
+          6.957028572948378
+        ],
+        [
+          7.083397888544366,
+          7.584612826057443,
+          2.2250077253405527,
+          2.083615172441556,
+          2.385026649979989
+        ],
+        [
+          6.924531304356732,
+          7.425747134229788,
+          2.083615172441556,
+          1.8099734074392675,
+          1.856405352883371
+        ],
+        [
+          6.89583320274764,
+          6.957028572948378,
+          2.385026649979989,
+          1.856405352883371,
+          1.8871277144871277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.083397888544366,
+          "Kd_nM": 82.52815031166142,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 6.924531304356732,
+          "Kd_nM": 118.97855652010308,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 6.89583320274764,
+          "Kd_nM": 127.10621818036023,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.584612826057443,
+          "Kd_nM": 26.024786414588114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.425747134229788,
+          "Kd_nM": 37.5191391955543,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 6.957028572948378,
+          "Kd_nM": 110.40059831429352,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.385026649979989,
+        "worst_homo_pKd": 2.2250077253405527,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.083397888544366,
+        "pKd_A1:B2": 6.924531304356732,
+        "pKd_A1:B3": 6.89583320274764,
+        "pKd_A2:B1": 7.584612826057443,
+        "pKd_A2:B2": 7.425747134229788,
+        "pKd_A2:B3": 6.957028572948378,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D05"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESAISALESENASLEWEISALES",
+        "A2": "EIASLEKEISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLESAISALESENASLEWEISALES",
+        "A2": "-EIASLEKEISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7684598414072044,
+          1.613476048185201,
+          7.083397888544366,
+          6.924531304356732,
+          6.89583320274764
+        ],
+        [
+          1.613476048185201,
+          1.6900810858536781,
+          7.85801965466929,
+          7.699152178121678,
+          7.230433616840268
+        ],
+        [
+          7.083397888544366,
+          7.85801965466929,
+          2.2250077253405527,
+          2.083615172441556,
+          2.385026649979989
+        ],
+        [
+          6.924531304356732,
+          7.699152178121678,
+          2.083615172441556,
+          1.8099734074392675,
+          1.856405352883371
+        ],
+        [
+          6.89583320274764,
+          7.230433616840268,
+          2.385026649979989,
+          1.856405352883371,
+          1.8871277144871277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.083397888544366,
+          "Kd_nM": 82.52815031166142,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 6.924531304356732,
+          "Kd_nM": 118.97855652010308,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 6.89583320274764,
+          "Kd_nM": 127.10621818036023,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.85801965466929,
+          "Kd_nM": 13.86693070509565,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.699152178121678,
+          "Kd_nM": 19.991612346446338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.230433616840268,
+          "Kd_nM": 58.82560238952959,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.385026649979989,
+        "worst_homo_pKd": 2.2250077253405527,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.083397888544366,
+        "pKd_A1:B2": 6.924531304356732,
+        "pKd_A1:B3": 6.89583320274764,
+        "pKd_A2:B1": 7.85801965466929,
+        "pKd_A2:B2": 7.699152178121678,
+        "pKd_A2:B3": 7.230433616840268,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D06"
+    },
+    {
+      "seqs": {
+        "A1": "QVASLESKISALESENASLEWEISALES",
+        "A2": "EIASLEKEISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QVASLESKISALESENASLEWEISALES",
+        "A2": "-EIASLEKEISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.9542128161791288,
+          1.4205941422800619,
+          7.463141766752358,
+          7.304275859817004,
+          7.259867711955425
+        ],
+        [
+          1.4205941422800619,
+          1.6900810858536781,
+          7.85801965466929,
+          7.699152178121678,
+          7.230433616840268
+        ],
+        [
+          7.463141766752358,
+          7.85801965466929,
+          2.2250077253405527,
+          2.083615172441556,
+          2.385026649979989
+        ],
+        [
+          7.304275859817004,
+          7.699152178121678,
+          2.083615172441556,
+          1.8099734074392675,
+          1.856405352883371
+        ],
+        [
+          7.259867711955425,
+          7.230433616840268,
+          2.385026649979989,
+          1.856405352883371,
+          1.8871277144871277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.463141766752358,
+          "Kd_nM": 34.423754295614266,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.304275859817004,
+          "Kd_nM": 49.62769907830291,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.00204086303711,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.259867711955425,
+          "Kd_nM": 54.97082919662841,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.780332565307617,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.85801965466929,
+          "Kd_nM": 13.86693070509565,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.699152178121678,
+          "Kd_nM": 19.991612346446338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.230433616840268,
+          "Kd_nM": 58.82560238952959,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.385026649979989,
+        "worst_homo_pKd": 2.2250077253405527,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.463141766752358,
+        "pKd_A1:B2": 7.304275859817004,
+        "pKd_A1:B3": 7.259867711955425,
+        "pKd_A2:B1": 7.85801965466929,
+        "pKd_A2:B2": 7.699152178121678,
+        "pKd_A2:B3": 7.230433616840268,
+        "A1_len": 28,
+        "A1_chg": -5,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D07"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLESENSALASKNASLKWEISALES",
+        "A2": "EIASLEKKNSALQKKNASLKWQISALES",
+        "B1": "QIASLKSKNSALKSENASLEWKISALKS",
+        "B2": "KIASLKKANSALESENASLEWKISALKS",
+        "B3": "KIASLKSQNSALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLESENSALASKNASLKWEISALES",
+        "A2": "-EIASLEKKNSALQKKNASLKWQISALES",
+        "B1": "-QIASLKSKNSALKSENASLEWKISALKS",
+        "B2": "-KIASLKKANSALESENASLEWKISALKS",
+        "B3": "-KIASLKSQNSALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.126105715916336,
+          2.4796587769249703,
+          8.164762885227018,
+          7.228099857355386,
+          7.910486198343868
+        ],
+        [
+          2.4796587769249703,
+          1.9054846011772408,
+          7.112745669238871,
+          8.010811481946984,
+          6.817598144234566
+        ],
+        [
+          8.164762885227018,
+          7.112745669238871,
+          2.6781980793537805,
+          2.7150972961078645,
+          2.524917400960774
+        ],
+        [
+          7.228099857355386,
+          8.010811481946984,
+          2.7150972961078645,
+          1.916314168833603,
+          2.4602274587751234
+        ],
+        [
+          7.910486198343868,
+          6.817598144234566,
+          2.524917400960774,
+          2.4602274587751234,
+          1.7972743133044675
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 8.164762885227018,
+          "Kd_nM": 6.842851492233797,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.228099857355386,
+          "Kd_nM": 59.14256320107462,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.64808464050293,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.910486198343868,
+          "Kd_nM": 12.288922395237325,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.68975257873535,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.112745669238871,
+          "Kd_nM": 77.13550563971883,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.9241943359375,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.010811481946984,
+          "Kd_nM": 9.754129519757463,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 6.817598144234566,
+          "Kd_nM": 152.19551542921386,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.869794845581055,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.7150972961078645,
+        "worst_homo_pKd": 2.6781980793537805,
+        "min_slip_margin": 22.9241943359375,
+        "pKd_A1:B1": 8.164762885227018,
+        "pKd_A1:B2": 7.228099857355386,
+        "pKd_A1:B3": 7.910486198343868,
+        "pKd_A2:B1": 7.112745669238871,
+        "pKd_A2:B2": 8.010811481946984,
+        "pKd_A2:B3": 6.817598144234566,
+        "A1_len": 28,
+        "A1_chg": -3,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 3,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D08"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EIASLQSEISALESENASLQWEISALES",
+        "B1": "KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "KVASLKEKISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EIASLQSEISALESENASLQWEISALES",
+        "B1": "-KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-KVASLKEKISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.0522138078989975,
+          7.1540084188963755,
+          7.917329007399288,
+          8.765134930194979
+        ],
+        [
+          2.0522138078989975,
+          1.8190663729896723,
+          7.577604181791341,
+          7.309866308881866,
+          7.740929397158766
+        ],
+        [
+          7.1540084188963755,
+          7.577604181791341,
+          2.5402597256792507,
+          2.3934601563807334,
+          2.533511782162045
+        ],
+        [
+          7.917329007399288,
+          7.309866308881866,
+          2.3934601563807334,
+          2.2425610853439917,
+          2.0936916428011996
+        ],
+        [
+          8.765134930194979,
+          7.740929397158766,
+          2.533511782162045,
+          2.0936916428011996,
+          2.7086050303885605
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.1540084188963755,
+          "Kd_nM": 70.1441700682776,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.765134930194979,
+          "Kd_nM": 1.7173747361014338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.577604181791341,
+          "Kd_nM": 26.448181599617584,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.309866308881866,
+          "Kd_nM": 48.9929613726064,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 26.722042083740234,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.740929397158766,
+          "Kd_nM": 18.158108334213928,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.533511782162045,
+        "worst_homo_pKd": 2.7086050303885605,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.1540084188963755,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 8.765134930194979,
+        "pKd_A2:B1": 7.577604181791341,
+        "pKd_A2:B2": 7.309866308881866,
+        "pKd_A2:B3": 7.740929397158766,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D09"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EIASLQSEISALESENASLQWEISALQS",
+        "B1": "KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "KVASLKEKISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EIASLQSEISALESENASLQWEISALQS",
+        "B1": "-KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-KVASLKEKISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.3868867787364723,
+          7.1540084188963755,
+          7.917329007399288,
+          8.765134930194979
+        ],
+        [
+          2.3868867787364723,
+          2.4727017309104475,
+          7.069882470615912,
+          7.242165057378755,
+          7.6575185615715595
+        ],
+        [
+          7.1540084188963755,
+          7.069882470615912,
+          2.5402597256792507,
+          2.3934601563807334,
+          2.533511782162045
+        ],
+        [
+          7.917329007399288,
+          7.242165057378755,
+          2.3934601563807334,
+          2.2425610853439917,
+          2.0936916428011996
+        ],
+        [
+          8.765134930194979,
+          7.6575185615715595,
+          2.533511782162045,
+          2.0936916428011996,
+          2.7086050303885605
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.1540084188963755,
+          "Kd_nM": 70.1441700682776,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.765134930194979,
+          "Kd_nM": 1.7173747361014338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.069882470615912,
+          "Kd_nM": 85.13684055462593,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.500333786010742,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.242165057378755,
+          "Kd_nM": 57.257837625735036,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.500333786010742,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.6575185615715595,
+          "Kd_nM": 22.002976677900097,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.533511782162045,
+        "worst_homo_pKd": 2.7086050303885605,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.1540084188963755,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 8.765134930194979,
+        "pKd_A2:B1": 7.069882470615912,
+        "pKd_A2:B2": 7.242165057378755,
+        "pKd_A2:B3": 7.6575185615715595,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -5,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D10"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EIASLQSEISALESENASLQWEISALQS",
+        "B1": "KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "AVASLKSKISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EIASLQSEISALESENASLQWEISALQS",
+        "B1": "-KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-AVASLKSKISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.3868867787364723,
+          7.1540084188963755,
+          7.917329007399288,
+          8.285467230366873
+        ],
+        [
+          2.3868867787364723,
+          2.4727017309104475,
+          7.069882470615912,
+          7.242165057378755,
+          7.323298399252514
+        ],
+        [
+          7.1540084188963755,
+          7.069882470615912,
+          2.5402597256792507,
+          2.3934601563807334,
+          2.4456372993354316
+        ],
+        [
+          7.917329007399288,
+          7.242165057378755,
+          2.3934601563807334,
+          2.2425610853439917,
+          2.005817159974586
+        ],
+        [
+          8.285467230366873,
+          7.323298399252514,
+          2.4456372993354316,
+          2.005817159974586,
+          2.307088528451388
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.1540084188963755,
+          "Kd_nM": 70.1441700682776,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.285467230366873,
+          "Kd_nM": 5.182421944287315,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50421714782715,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.069882470615912,
+          "Kd_nM": 85.13684055462593,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.500333786010742,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.242165057378755,
+          "Kd_nM": 57.257837625735036,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.500333786010742,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.323298399252514,
+          "Kd_nM": 47.500874019432494,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4456372993354316,
+        "worst_homo_pKd": 2.7021018041523073,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.1540084188963755,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 8.285467230366873,
+        "pKd_A2:B1": 7.069882470615912,
+        "pKd_A2:B2": 7.242165057378755,
+        "pKd_A2:B3": 7.323298399252514,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -5,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D11"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EVASLQSEISALESENASLEWEISALQS",
+        "B1": "KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "AVASLKSKISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EVASLQSEISALESENASLEWEISALQS",
+        "B1": "-KIASLKSQISALQSANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-AVASLKSKISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.6193690632179845,
+          7.1540084188963755,
+          7.917329007399288,
+          8.285467230366873
+        ],
+        [
+          2.6193690632179845,
+          2.5366365373913586,
+          7.360495901986432,
+          8.199523525072834,
+          8.567661532932723
+        ],
+        [
+          7.1540084188963755,
+          7.360495901986432,
+          2.5402597256792507,
+          2.3934601563807334,
+          2.4456372993354316
+        ],
+        [
+          7.917329007399288,
+          8.199523525072834,
+          2.3934601563807334,
+          2.2425610853439917,
+          2.005817159974586
+        ],
+        [
+          8.285467230366873,
+          8.567661532932723,
+          2.4456372993354316,
+          2.005817159974586,
+          2.307088528451388
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.1540084188963755,
+          "Kd_nM": 70.1441700682776,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.285467230366873,
+          "Kd_nM": 5.182421944287315,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50421714782715,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.360495901986432,
+          "Kd_nM": 43.60176782546792,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 8.199523525072834,
+          "Kd_nM": 6.316499628411425,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 8.567661532932723,
+          "Kd_nM": 2.706066513346039,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50421714782715,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.6193690632179845,
+        "worst_homo_pKd": 2.7021018041523073,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.1540084188963755,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 8.285467230366873,
+        "pKd_A2:B1": 7.360495901986432,
+        "pKd_A2:B2": 8.199523525072834,
+        "pKd_A2:B3": 8.567661532932723,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D12"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EVASLQSEISALESENASLEWEISALQS",
+        "B1": "KIASLKSQISALASANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "AVASLKSQISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EVASLQSEISALESENASLEWEISALQS",
+        "B1": "-KIASLKSQISALASANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-AVASLKSQISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.6193690632179845,
+          7.016437790472337,
+          7.917329007399288,
+          7.79679112737239
+        ],
+        [
+          2.6193690632179845,
+          2.5366365373913586,
+          7.222925273562394,
+          8.199523525072834,
+          8.078985429938239
+        ],
+        [
+          7.016437790472337,
+          7.222925273562394,
+          2.425033161408769,
+          2.1296627471181546,
+          1.2830556140324916
+        ],
+        [
+          7.917329007399288,
+          8.199523525072834,
+          2.1296627471181546,
+          2.2425610853439917,
+          1.3181767489492575
+        ],
+        [
+          7.79679112737239,
+          8.078985429938239,
+          1.2830556140324916,
+          1.3181767489492575,
+          1.2093526612525247
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.016437790472337,
+          "Kd_nM": 96.2857925494451,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.79679112737239,
+          "Kd_nM": 15.966468651238442,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.222925273562394,
+          "Kd_nM": 59.85145690006112,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 8.199523525072834,
+          "Kd_nM": 6.316499628411425,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 8.078985429938239,
+          "Kd_nM": 8.337091540979776,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.6193690632179845,
+        "worst_homo_pKd": 2.7021018041523073,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.016437790472337,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 7.79679112737239,
+        "pKd_A2:B1": 7.222925273562394,
+        "pKd_A2:B2": 8.199523525072834,
+        "pKd_A2:B3": 8.078985429938239,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D13"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EVASLQSEISALESENASLEWEISALQS",
+        "B1": "KIASLKSQISALASANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "AVASLKSQISALASKNASLKWKISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EVASLQSEISALESENASLEWEISALQS",
+        "B1": "-KIASLKSQISALASANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-AVASLKSQISALASKNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.6193690632179845,
+          7.016437790472337,
+          7.917329007399288,
+          7.072449762622341
+        ],
+        [
+          2.6193690632179845,
+          2.5366365373913586,
+          7.222925273562394,
+          8.199523525072834,
+          7.278938138072376
+        ],
+        [
+          7.016437790472337,
+          7.222925273562394,
+          2.425033161408769,
+          2.1296627471181546,
+          1.3719775483324668
+        ],
+        [
+          7.917329007399288,
+          8.199523525072834,
+          2.1296627471181546,
+          2.2425610853439917,
+          1.9227874830342344
+        ],
+        [
+          7.072449762622341,
+          7.278938138072376,
+          1.3719775483324668,
+          1.9227874830342344,
+          1.5087831463600638
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.016437790472337,
+          "Kd_nM": 96.2857925494451,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.072449762622341,
+          "Kd_nM": 84.63504654434306,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.222925273562394,
+          "Kd_nM": 59.85145690006112,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 8.199523525072834,
+          "Kd_nM": 6.316499628411425,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.278938138072376,
+          "Kd_nM": 52.609219886417094,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.6193690632179845,
+        "worst_homo_pKd": 2.7021018041523073,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.016437790472337,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 7.072449762622341,
+        "pKd_A2:B1": 7.222925273562394,
+        "pKd_A2:B2": 8.199523525072834,
+        "pKd_A2:B3": 7.278938138072376,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D14"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLQSEISALESENASLEWEISALAS",
+        "A2": "EVASLQSEISALESENASLEWEISALQS",
+        "B1": "KIASLKSQISALASANASLKWKISALKS",
+        "B2": "KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "QVASLKSQISALASKNASLKWKISALKS"
+      },
+      "pads": {
+        "A1": "-EVASLQSEISALESENASLEWEISALAS",
+        "A2": "-EVASLQSEISALESENASLEWEISALQS",
+        "B1": "-KIASLKSQISALASANASLKWKISALKS",
+        "B2": "-KIASLKSQISALASKNASLKWQISALKS",
+        "B3": "-QVASLKSQISALASKNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.7021018041523073,
+          2.6193690632179845,
+          7.016437790472337,
+          7.917329007399288,
+          7.652142819150067
+        ],
+        [
+          2.6193690632179845,
+          2.5366365373913586,
+          7.222925273562394,
+          8.199523525072834,
+          7.858630087132427
+        ],
+        [
+          7.016437790472337,
+          7.222925273562394,
+          2.425033161408769,
+          2.1296627471181546,
+          1.6428425573042613
+        ],
+        [
+          7.917329007399288,
+          8.199523525072834,
+          2.1296627471181546,
+          2.2425610853439917,
+          1.5755047042847146
+        ],
+        [
+          7.652142819150067,
+          7.858630087132427,
+          1.6428425573042613,
+          1.5755047042847146,
+          2.6227346458513
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.016437790472337,
+          "Kd_nM": 96.2857925494451,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.917329007399288,
+          "Kd_nM": 12.09681371007505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.652142819150067,
+          "Kd_nM": 22.277024416213486,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.222925273562394,
+          "Kd_nM": 59.85145690006112,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 8.199523525072834,
+          "Kd_nM": 6.316499628411425,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.858630087132427,
+          "Kd_nM": 13.847453417582205,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.6193690632179845,
+        "worst_homo_pKd": 2.7021018041523073,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A1:B1": 7.016437790472337,
+        "pKd_A1:B2": 7.917329007399288,
+        "pKd_A1:B3": 7.652142819150067,
+        "pKd_A2:B1": 7.222925273562394,
+        "pKd_A2:B2": 8.199523525072834,
+        "pKd_A2:B3": 7.858630087132427,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 5,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D15"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLESKISALQSKNASLKWAISALKS",
+        "A2": "EIASLESAISALKSKNASLKWQISALKS",
+        "B1": "KVASLKEAISALQSENASLEWEISALQS",
+        "B2": "KVASLKEQISALQSENASLEWEISALQS",
+        "B3": "AVASLQSEISALESENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-EVASLESKISALQSKNASLKWAISALKS",
+        "A2": "-EIASLESAISALKSKNASLKWQISALKS",
+        "B1": "-KVASLKEAISALQSENASLEWEISALQS",
+        "B2": "-KVASLKEQISALQSENASLEWEISALQS",
+        "B3": "-AVASLQSEISALESENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.120865001434309,
+          1.9454416338032896,
+          7.290649935879265,
+          7.832708602701318,
+          6.845175065615193
+        ],
+        [
+          1.9454416338032896,
+          2.679450729389882,
+          6.980689021899664,
+          7.540425233459824,
+          7.377232427268279
+        ],
+        [
+          7.290649935879265,
+          6.980689021899664,
+          2.463051071676512,
+          2.1979674614570097,
+          2.3042820353226983
+        ],
+        [
+          7.832708602701318,
+          7.540425233459824,
+          2.1979674614570097,
+          1.9633142188420294,
+          2.5059843604191716
+        ],
+        [
+          6.845175065615193,
+          7.377232427268279,
+          2.3042820353226983,
+          2.5059843604191716,
+          0.9236171094871937
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.290649935879265,
+          "Kd_nM": 51.209444419494695,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.5042200088501,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.832708602701318,
+          "Kd_nM": 14.699122095402911,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.5042200088501,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.845175065615193,
+          "Kd_nM": 142.83180824664382,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 6.980689021899664,
+          "Kd_nM": 104.54685627251095,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.33736801147461,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.540425233459824,
+          "Kd_nM": 28.812090254266042,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.33736801147461,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.377232427268279,
+          "Kd_nM": 41.95343959855585,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.19874382019043,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.025,
+        "graph_loss": -2.025,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.5059843604191716,
+        "worst_homo_pKd": 2.679450729389882,
+        "min_slip_margin": 27.19874382019043,
+        "pKd_A1:B1": 7.290649935879265,
+        "pKd_A1:B2": 7.832708602701318,
+        "pKd_A1:B3": 6.845175065615193,
+        "pKd_A2:B1": 6.980689021899664,
+        "pKd_A2:B2": 7.540425233459824,
+        "pKd_A2:B3": 7.377232427268279,
+        "A1_len": 28,
+        "A1_chg": 2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D16"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLEEKISALKSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALQSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLEEKISALKSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALQSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5801830706712083,
+          2.1249150046488587,
+          7.39031346869688,
+          7.055319947893696,
+          7.50228046491241
+        ],
+        [
+          2.1249150046488587,
+          1.919735013074364,
+          6.943561026934671,
+          7.067637852038273,
+          7.283755355465839
+        ],
+        [
+          7.39031346869688,
+          6.943561026934671,
+          2.0574767658087687,
+          2.3678820558088276,
+          2.2571809020740803
+        ],
+        [
+          7.055319947893696,
+          7.067637852038273,
+          2.3678820558088276,
+          2.6452698727345707,
+          2.801720855174737
+        ],
+        [
+          7.50228046491241,
+          7.283755355465839,
+          2.2571809020740803,
+          2.801720855174737,
+          2.1855582588759637
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.39031346869688,
+          "Kd_nM": 40.70863415588016,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.228099822998047,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.055319947893696,
+          "Kd_nM": 88.04000369456337,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.50228046491241,
+          "Kd_nM": 31.457161723424974,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 6.943561026934671,
+          "Kd_nM": 113.87777499129244,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.067637852038273,
+          "Kd_nM": 85.57800302888671,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.283755355465839,
+          "Kd_nM": 52.028900052317546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0247418717237893,
+        "graph_loss": -2.0247418717237893,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.801720855174737,
+        "worst_homo_pKd": 2.6452698727345707,
+        "min_slip_margin": 4.951976776123047,
+        "pKd_A1:B1": 7.39031346869688,
+        "pKd_A1:B2": 7.055319947893696,
+        "pKd_A1:B3": 7.50228046491241,
+        "pKd_A2:B1": 6.943561026934671,
+        "pKd_A2:B2": 7.067637852038273,
+        "pKd_A2:B3": 7.283755355465839,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D17"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLEEKISALKSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLEEKISALKSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5801830706712083,
+          2.1249150046488587,
+          7.39031346869688,
+          7.055319947893696,
+          7.38952633386017
+        ],
+        [
+          2.1249150046488587,
+          1.919735013074364,
+          6.943561026934671,
+          7.067637852038273,
+          7.246254240096697
+        ],
+        [
+          7.39031346869688,
+          6.943561026934671,
+          2.0574767658087687,
+          2.3678820558088276,
+          2.457444479216054
+        ],
+        [
+          7.055319947893696,
+          7.067637852038273,
+          2.3678820558088276,
+          2.6452698727345707,
+          2.8161944624858375
+        ],
+        [
+          7.38952633386017,
+          7.246254240096697,
+          2.457444479216054,
+          2.8161944624858375,
+          1.8992241691822915
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.39031346869688,
+          "Kd_nM": 40.70863415588016,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.228099822998047,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.055319947893696,
+          "Kd_nM": 88.04000369456337,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.38952633386017,
+          "Kd_nM": 40.782483217381625,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 6.943561026934671,
+          "Kd_nM": 113.87777499129244,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.067637852038273,
+          "Kd_nM": 85.57800302888671,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.246254240096697,
+          "Kd_nM": 56.72124566604394,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.022570830627124,
+        "graph_loss": -2.022570830627124,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.8161944624858375,
+        "worst_homo_pKd": 2.6452698727345707,
+        "min_slip_margin": 4.951976776123047,
+        "pKd_A1:B1": 7.39031346869688,
+        "pKd_A1:B2": 7.055319947893696,
+        "pKd_A1:B3": 7.38952633386017,
+        "pKd_A2:B1": 6.943561026934671,
+        "pKd_A2:B2": 7.067637852038273,
+        "pKd_A2:B3": 7.246254240096697,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D18"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLEEKISALKSANASLKWEISALES",
+        "A2": "EVASLEEQISALKSKNASLKWEISALES",
+        "B1": "KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLEEKISALKSANASLKWEISALES",
+        "A2": "-EVASLEEQISALKSKNASLKWEISALES",
+        "B1": "-KIASLKSEVSALQSENASLQWKVSALKS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5801830706712083,
+          2.1587087323379137,
+          7.39031346869688,
+          7.055319947893696,
+          7.38952633386017
+        ],
+        [
+          2.1587087323379137,
+          2.8049727588496136,
+          7.0011275512525,
+          7.0789620671964295,
+          6.981870260208659
+        ],
+        [
+          7.39031346869688,
+          7.0011275512525,
+          2.0574767658087687,
+          2.3678820558088276,
+          2.457444479216054
+        ],
+        [
+          7.055319947893696,
+          7.0789620671964295,
+          2.3678820558088276,
+          2.6452698727345707,
+          2.8161944624858375
+        ],
+        [
+          7.38952633386017,
+          6.981870260208659,
+          2.457444479216054,
+          2.8161944624858375,
+          1.8992241691822915
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.39031346869688,
+          "Kd_nM": 40.70863415588016,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.228099822998047,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.055319947893696,
+          "Kd_nM": 88.04000369456337,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.38952633386017,
+          "Kd_nM": 40.782483217381625,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.0011275512525,
+          "Kd_nM": 99.74070847214558,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.730266571044922,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.0789620671964295,
+          "Kd_nM": 83.37540044390063,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 6.981870260208659,
+          "Kd_nM": 104.2628854595675,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.021824916799682,
+        "graph_loss": -2.021824916799682,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.8161944624858375,
+        "worst_homo_pKd": 2.8049727588496136,
+        "min_slip_margin": 9.730266571044922,
+        "pKd_A1:B1": 7.39031346869688,
+        "pKd_A1:B2": 7.055319947893696,
+        "pKd_A1:B3": 7.38952633386017,
+        "pKd_A2:B1": 7.0011275512525,
+        "pKd_A2:B2": 7.0789620671964295,
+        "pKd_A2:B3": 6.981870260208659,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 6,
+        "B3_eps280": 5500
+      },
+      "design_id": "D19"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLEEKISALKSANASLKWEISALES",
+        "A2": "EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "KIASLKKEVSALQSENASLEWKVSALKS",
+        "B2": "KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "KVASLKSQISALQSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A1": "-EIASLEEKISALKSANASLKWEISALES",
+        "A2": "-EVASLEKKISALKKKNASLKWEISALES",
+        "B1": "-KIASLKKEVSALQSENASLEWKVSALKS",
+        "B2": "-KIASLAKQISALQSENASLEWKISALKS",
+        "B3": "-KVASLKSQISALQSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5801830706712083,
+          2.1249150046488587,
+          7.311648854317676,
+          7.055319947893696,
+          7.50228046491241
+        ],
+        [
+          2.1249150046488587,
+          1.919735013074364,
+          7.323966757927139,
+          7.067637852038273,
+          7.283755355465839
+        ],
+        [
+          7.311648854317676,
+          7.323966757927139,
+          1.7268310832715033,
+          2.246523803673888,
+          2.8449014879674923
+        ],
+        [
+          7.055319947893696,
+          7.067637852038273,
+          2.246523803673888,
+          2.6452698727345707,
+          2.801720855174737
+        ],
+        [
+          7.50228046491241,
+          7.283755355465839,
+          2.8449014879674923,
+          2.801720855174737,
+          2.1855582588759637
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.311648854317676,
+          "Kd_nM": 48.79228371622358,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.449810028076172,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.055319947893696,
+          "Kd_nM": 88.04000369456337,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.50228046491241,
+          "Kd_nM": 31.457161723424974,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.323966757927139,
+          "Kd_nM": 47.42782864122041,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.067637852038273,
+          "Kd_nM": 85.57800302888671,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.283755355465839,
+          "Kd_nM": 52.028900052317546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.018006648528665,
+        "graph_loss": -2.018006648528665,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.8449014879674923,
+        "worst_homo_pKd": 2.6452698727345707,
+        "min_slip_margin": 4.951976776123047,
+        "pKd_A1:B1": 7.311648854317676,
+        "pKd_A1:B2": 7.055319947893696,
+        "pKd_A1:B3": 7.50228046491241,
+        "pKd_A2:B1": 7.323966757927139,
+        "pKd_A2:B2": 7.067637852038273,
+        "pKd_A2:B3": 7.283755355465839,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D20"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLEKEISALESENASLEWEISALES",
+        "A2": "EIASLESAISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KIASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLEKEISALESENASLEWEISALES",
+        "A2": "-EIASLESAISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KIASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.4800891511470233,
+          1.613476048185201,
+          7.356803824796234,
+          7.534258027971151,
+          7.50556003364835
+        ],
+        [
+          1.613476048185201,
+          1.746862945223378,
+          7.584612826057443,
+          8.05101486746872,
+          7.582295628423726
+        ],
+        [
+          7.356803824796234,
+          7.584612826057443,
+          2.2250077253405527,
+          2.223011781199851,
+          2.5920568447146293
+        ],
+        [
+          7.534258027971151,
+          8.05101486746872,
+          2.223011781199851,
+          2.6407742777878136,
+          2.687205599622782
+        ],
+        [
+          7.50556003364835,
+          7.582295628423726,
+          2.5920568447146293,
+          2.687205599622782,
+          2.851752563934858
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.356803824796234,
+          "Kd_nM": 43.97402056740339,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.534258027971151,
+          "Kd_nM": 29.224155632135016,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.50033187866211,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.50556003364835,
+          "Kd_nM": 31.220508072436953,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.584612826057443,
+          "Kd_nM": 26.024786414588114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.05101486746872,
+          "Kd_nM": 8.89170677813068,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.056915283203125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.582295628423726,
+          "Kd_nM": 26.164013923570185,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0172371154097712,
+        "graph_loss": -2.0172371154097712,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.687205599622782,
+        "worst_homo_pKd": 2.851752563934858,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.356803824796234,
+        "pKd_A1:B2": 7.534258027971151,
+        "pKd_A1:B3": 7.50556003364835,
+        "pKd_A2:B1": 7.584612826057443,
+        "pKd_A2:B2": 8.05101486746872,
+        "pKd_A2:B3": 7.582295628423726,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D21"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESAISALESENASLEWEISALES",
+        "A2": "EIASLESAISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KIASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLESAISALESENASLEWEISALES",
+        "A2": "-EIASLESAISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KIASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KIASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7684598414072044,
+          1.7576605009553132,
+          7.083397888544366,
+          7.260851876611585,
+          7.232154989756459
+        ],
+        [
+          1.7576605009553132,
+          1.746862945223378,
+          7.584612826057443,
+          8.05101486746872,
+          7.582295628423726
+        ],
+        [
+          7.083397888544366,
+          7.584612826057443,
+          2.2250077253405527,
+          2.223011781199851,
+          2.5920568447146293
+        ],
+        [
+          7.260851876611585,
+          8.05101486746872,
+          2.223011781199851,
+          2.6407742777878136,
+          2.687205599622782
+        ],
+        [
+          7.232154989756459,
+          7.582295628423726,
+          2.5920568447146293,
+          2.687205599622782,
+          2.851752563934858
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.083397888544366,
+          "Kd_nM": 82.52815031166142,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.260851876611585,
+          "Kd_nM": 54.8463995832499,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.232154989756459,
+          "Kd_nM": 58.592902254525185,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.584612826057443,
+          "Kd_nM": 26.024786414588114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.05101486746872,
+          "Kd_nM": 8.89170677813068,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.056915283203125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.582295628423726,
+          "Kd_nM": 26.164013923570185,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0172371154097712,
+        "graph_loss": -2.0172371154097712,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.687205599622782,
+        "worst_homo_pKd": 2.851752563934858,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.083397888544366,
+        "pKd_A1:B2": 7.260851876611585,
+        "pKd_A1:B3": 7.232154989756459,
+        "pKd_A2:B1": 7.584612826057443,
+        "pKd_A2:B2": 8.05101486746872,
+        "pKd_A2:B3": 7.582295628423726,
+        "A1_len": 28,
+        "A1_chg": -6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D22"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKEEISALESENASLEWKISALQS",
+        "A2": "KVASLKKEISALEKENASLEWKISALKS",
+        "B1": "EIASLEKKISALASKNASLKWQISALQS",
+        "B2": "EIASLQKKISALAKKNASLKWEISALES",
+        "B3": "QIASLQSKISALKSANASLKWQISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKEEISALESENASLEWKISALQS",
+        "A2": "-KVASLKKEISALEKENASLEWKISALKS",
+        "B1": "-EIASLEKKISALASKNASLKWQISALQS",
+        "B2": "-EIASLQKKISALAKKNASLKWEISALES",
+        "B3": "-QIASLQSKISALKSANASLKWQISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.418053232661406,
+          2.586875375913136,
+          8.564726710256416,
+          8.306366674778403,
+          7.561307152583439
+        ],
+        [
+          2.586875375913136,
+          2.31285149545311,
+          8.06424332249614,
+          8.606842618341924,
+          7.3497681409297115
+        ],
+        [
+          8.564726710256416,
+          8.06424332249614,
+          2.5262103121303916,
+          3.0051543447124613,
+          2.870829090645411
+        ],
+        [
+          8.306366674778403,
+          8.606842618341924,
+          3.0051543447124613,
+          2.7620064870643874,
+          2.5964851127104156
+        ],
+        [
+          7.561307152583439,
+          7.3497681409297115,
+          2.870829090645411,
+          2.5964851127104156,
+          2.096298514246387
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 8.564726710256416,
+          "Kd_nM": 2.724415169384361,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376251220703,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 8.306366674778403,
+          "Kd_nM": 4.938935166669657,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.561307152583439,
+          "Kd_nM": 27.45951405892336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 8.06424332249614,
+          "Kd_nM": 8.624951815473292,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.606842618341924,
+          "Kd_nM": 2.4726200222458123,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.3497681409297115,
+          "Kd_nM": 44.69221291292725,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.014375636403188,
+        "graph_loss": -2.014375636403188,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.870829090645411,
+        "worst_homo_pKd": 2.7620064870643874,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A1:B1": 8.564726710256416,
+        "pKd_A1:B2": 8.306366674778403,
+        "pKd_A1:B3": 7.561307152583439,
+        "pKd_A2:B1": 8.06424332249614,
+        "pKd_A2:B2": 8.606842618341924,
+        "pKd_A2:B3": 7.3497681409297115,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D23"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKEEISALESENASLEWKISALQS",
+        "A2": "KVASLKKEISALEKENASLEWKISALKS",
+        "B1": "EIASLEKKISALASKNASLKWQISALQS",
+        "B2": "EIASLQKKISALASKNASLKWQISALES",
+        "B3": "QIASLQSKISALKSANASLKWQISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKEEISALESENASLEWKISALQS",
+        "A2": "-KVASLKKEISALEKENASLEWKISALKS",
+        "B1": "-EIASLEKKISALASKNASLKWQISALQS",
+        "B2": "-EIASLQKKISALASKNASLKWQISALES",
+        "B3": "-QIASLQSKISALKSANASLKWQISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.418053232661406,
+          2.586875375913136,
+          8.564726710256416,
+          8.530686746541505,
+          7.561307152583439
+        ],
+        [
+          2.586875375913136,
+          2.31285149545311,
+          8.06424332249614,
+          8.030201574061273,
+          7.3497681409297115
+        ],
+        [
+          8.564726710256416,
+          8.06424332249614,
+          2.5262103121303916,
+          2.633164677239794,
+          2.870829090645411
+        ],
+        [
+          8.530686746541505,
+          8.030201574061273,
+          2.633164677239794,
+          2.4067638026866174,
+          2.521641492434485
+        ],
+        [
+          7.561307152583439,
+          7.3497681409297115,
+          2.870829090645411,
+          2.521641492434485,
+          2.096298514246387
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 8.564726710256416,
+          "Kd_nM": 2.724415169384361,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376251220703,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 8.530686746541505,
+          "Kd_nM": 2.9465461898794127,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.561307152583439,
+          "Kd_nM": 27.45951405892336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 8.06424332249614,
+          "Kd_nM": 8.624951815473292,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.030201574061273,
+          "Kd_nM": 9.328212393212121,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.3497681409297115,
+          "Kd_nM": 44.69221291292725,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.014375636403188,
+        "graph_loss": -2.014375636403188,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.870829090645411,
+        "worst_homo_pKd": 2.5262103121303916,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A1:B1": 8.564726710256416,
+        "pKd_A1:B2": 8.530686746541505,
+        "pKd_A1:B3": 7.561307152583439,
+        "pKd_A2:B1": 8.06424332249614,
+        "pKd_A2:B2": 8.030201574061273,
+        "pKd_A2:B3": 7.3497681409297115,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D24"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLEKEVSALQKKNASLKWQVSALKS",
+        "A2": "EIASLEKKISALQSKNASLKWQISALQS",
+        "B1": "KIASLKEQISALQSENASLEWEISALQS",
+        "B2": "KVASLKKQISALKKENASLEWQISALES",
+        "B3": "KVASLKEQISALKSENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-EIASLEKEVSALQKKNASLKWQVSALKS",
+        "A2": "-EIASLEKKISALQSKNASLKWQISALQS",
+        "B1": "-KIASLKEQISALQSENASLEWEISALQS",
+        "B2": "-KVASLKKQISALKKENASLEWQISALES",
+        "B3": "-KVASLKEQISALKSENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4283085503901605,
+          2.250376712821848,
+          7.239288979277654,
+          7.1905659370620825,
+          7.6620790458193335
+        ],
+        [
+          2.250376712821848,
+          2.675110759678825,
+          8.159896212682394,
+          6.873187788333574,
+          7.517700294491724
+        ],
+        [
+          7.239288979277654,
+          8.159896212682394,
+          2.8782906747497004,
+          2.3207084482677427,
+          2.114005643373596
+        ],
+        [
+          7.1905659370620825,
+          6.873187788333574,
+          2.3207084482677427,
+          1.6156211490145678,
+          1.392329064899001
+        ],
+        [
+          7.6620790458193335,
+          7.517700294491724,
+          2.114005643373596,
+          1.392329064899001,
+          1.7652712065078555
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.239288979277654,
+          "Kd_nM": 57.63828110020731,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.664276123046875,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.1905659370620825,
+          "Kd_nM": 64.48134131905248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 7.388151168823242,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.6620790458193335,
+          "Kd_nM": 21.773134440646903,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 7.388151168823242,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 8.159896212682394,
+          "Kd_nM": 6.919963238398852,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.05691146850586,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 6.873187788333574,
+          "Kd_nM": 133.90975382990246,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.726388931274414,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.517700294491724,
+          "Kd_nM": 30.359855873084978,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.948101043701172,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.013256398787545,
+        "graph_loss": -2.013256398787545,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.3207084482677427,
+        "worst_homo_pKd": 2.8782906747497004,
+        "min_slip_margin": 7.388151168823242,
+        "pKd_A1:B1": 7.239288979277654,
+        "pKd_A1:B2": 7.1905659370620825,
+        "pKd_A1:B3": 7.6620790458193335,
+        "pKd_A2:B1": 8.159896212682394,
+        "pKd_A2:B2": 6.873187788333574,
+        "pKd_A2:B3": 7.517700294491724,
+        "A1_len": 28,
+        "A1_chg": 2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D25"
+    },
+    {
+      "seqs": {
+        "A1": "EVASLEEEISALQSKNASLQWQISALKS",
+        "A2": "EIASLEKKISALQSKNASLKWQISALQS",
+        "B1": "KIASLKEQISALQSENASLEWEISALQS",
+        "B2": "QVASLKEQISALKSENASLEWEISALQS",
+        "B3": "KVASLKKKISALKSENASLEWEISALQS"
+      },
+      "pads": {
+        "A1": "-EVASLEEEISALQSKNASLQWQISALKS",
+        "A2": "-EIASLEKKISALQSKNASLKWQISALQS",
+        "B1": "-KIASLKEQISALQSENASLEWEISALQS",
+        "B2": "-QVASLKEQISALKSENASLEWEISALQS",
+        "B3": "-KVASLKKKISALKSENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          2.820880189713378,
+          2.7052640764950118,
+          7.215391224112847,
+          7.47561666843652,
+          7.930800605345603
+        ],
+        [
+          2.7052640764950118,
+          2.675110759678825,
+          8.159896212682394,
+          7.028372493283746,
+          7.142226471518557
+        ],
+        [
+          7.215391224112847,
+          8.159896212682394,
+          2.8782906747497004,
+          2.1083666054729004,
+          2.765756257660003
+        ],
+        [
+          7.47561666843652,
+          7.028372493283746,
+          2.1083666054729004,
+          2.132012196495496,
+          2.3942666346237447
+        ],
+        [
+          7.930800605345603,
+          7.142226471518557,
+          2.765756257660003,
+          2.3942666346237447,
+          2.6878880280679356
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.215391224112847,
+          "Kd_nM": 60.89880573032716,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.5590763092041,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B2": {
+          "pKd": 7.47561666843652,
+          "Kd_nM": 33.44901486826861,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.11131143569946,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.930800605345603,
+          "Kd_nM": 11.727336711519651,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 43.49148654937744,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 8.159896212682394,
+          "Kd_nM": 6.919963238398852,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.05691146850586,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.028372493283746,
+          "Kd_nM": 93.67582071107658,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.948101043701172,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.142226471518557,
+          "Kd_nM": 72.07315413357729,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.94809913635254,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.010124370330538,
+        "graph_loss": -2.010124370330538,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.765756257660003,
+        "worst_homo_pKd": 2.8782906747497004,
+        "min_slip_margin": 20.94809913635254,
+        "pKd_A1:B1": 7.215391224112847,
+        "pKd_A1:B2": 7.47561666843652,
+        "pKd_A1:B3": 7.930800605345603,
+        "pKd_A2:B1": 8.159896212682394,
+        "pKd_A2:B2": 7.028372493283746,
+        "pKd_A2:B3": 7.142226471518557,
+        "A1_len": 28,
+        "A1_chg": -2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D26"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "EIASLQSKNSALESENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "-EIASLQSKNSALESENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.357851224077066,
+          8.165286842996053
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          6.985543077039054,
+          7.611918641345408
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.830083246453344,
+          2.2826497606734586
+        ],
+        [
+          7.357851224077066,
+          6.985543077039054,
+          1.830083246453344,
+          1.2933573185798863,
+          1.4786300059096087
+        ],
+        [
+          8.165286842996053,
+          7.611918641345408,
+          2.2826497606734586,
+          1.4786300059096087,
+          2.4195952296365943
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.357851224077066,
+          "Kd_nM": 43.86809506296286,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.706819534301758,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 8.165286842996053,
+          "Kd_nM": 6.83460086178503,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.702486038208008,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 6.985543077039054,
+          "Kd_nM": 103.38485499600141,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.611918641345408,
+          "Kd_nM": 24.438883361850902,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.49058532714844,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 4.706819534301758,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.357851224077066,
+        "pKd_A1:B3": 8.165286842996053,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 6.985543077039054,
+        "pKd_A2:B3": 7.611918641345408,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D27"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "EIASLQSKNSALQSENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "-EIASLQSKNSALQSENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.357851224077066,
+          8.29042488820992
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          6.985543077039054,
+          7.849932727816904
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.830083246453344,
+          2.187446277981433
+        ],
+        [
+          7.357851224077066,
+          6.985543077039054,
+          1.830083246453344,
+          1.2933573185798863,
+          1.629201880380828
+        ],
+        [
+          8.29042488820992,
+          7.849932727816904,
+          2.187446277981433,
+          1.629201880380828,
+          2.3077349158122162
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.357851224077066,
+          "Kd_nM": 43.86809506296286,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.706819534301758,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 8.29042488820992,
+          "Kd_nM": 5.123598759026206,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.48077583312988,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 6.985543077039054,
+          "Kd_nM": 103.38485499600141,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.849932727816904,
+          "Kd_nM": 14.127563635309237,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.69956398010254,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 4.706819534301758,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.357851224077066,
+        "pKd_A1:B3": 8.29042488820992,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 6.985543077039054,
+        "pKd_A2:B3": 7.849932727816904,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D28"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "QIASLQSKNSALQSENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "-QIASLQSKNSALQSENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.357851224077066,
+          7.41685227703085
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          6.985543077039054,
+          7.023488330900936
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.830083246453344,
+          2.2405087836417925
+        ],
+        [
+          7.357851224077066,
+          6.985543077039054,
+          1.830083246453344,
+          1.2933573185798863,
+          1.6941019558730455
+        ],
+        [
+          7.41685227703085,
+          7.023488330900936,
+          2.2405087836417925,
+          1.6941019558730455,
+          2.460989222042139
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.357851224077066,
+          "Kd_nM": 43.86809506296286,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.706819534301758,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.41685227703085,
+          "Kd_nM": 38.29549812754596,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 6.985543077039054,
+          "Kd_nM": 103.38485499600141,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.023488330900936,
+          "Kd_nM": 94.73526386689585,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.9212703704834,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 4.706819534301758,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.357851224077066,
+        "pKd_A1:B3": 7.41685227703085,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 6.985543077039054,
+        "pKd_A2:B3": 7.023488330900936,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -3,
+        "B3_eps280": 5500
+      },
+      "design_id": "D29"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "QIASLQSKNSALASENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALESENASLEWEVSALES",
+        "B3": "-QIASLQSKNSALASENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.357851224077066,
+          7.060607943675694
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          6.985543077039054,
+          7.200839569898519
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.830083246453344,
+          2.080507008877662
+        ],
+        [
+          7.357851224077066,
+          6.985543077039054,
+          1.830083246453344,
+          1.2933573185798863,
+          1.5341012885765908
+        ],
+        [
+          7.060607943675694,
+          7.200839569898519,
+          2.080507008877662,
+          1.5341012885765908,
+          2.140985887621576
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.357851224077066,
+          "Kd_nM": 43.86809506296286,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.706819534301758,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.060607943675694,
+          "Kd_nM": 86.97452314568471,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 6.985543077039054,
+          "Kd_nM": 103.38485499600141,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.200839569898519,
+          "Kd_nM": 62.97387678903477,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.9212703704834,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 4.706819534301758,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.357851224077066,
+        "pKd_A1:B3": 7.060607943675694,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 6.985543077039054,
+        "pKd_A2:B3": 7.200839569898519,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -5,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -3,
+        "B3_eps280": 5500
+      },
+      "design_id": "D30"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "QIASLQSKNSALASENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "-QIASLQSKNSALASENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.438144599906259,
+          7.060607943675694
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          8.119061976283444,
+          7.200839569898519
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.7351894284820109,
+          2.080507008877662
+        ],
+        [
+          7.438144599906259,
+          8.119061976283444,
+          1.7351894284820109,
+          0.6977601074205619,
+          1.2703323867244398
+        ],
+        [
+          7.060607943675694,
+          7.200839569898519,
+          2.080507008877662,
+          1.2703323867244398,
+          2.140985887621576
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.438144599906259,
+          "Kd_nM": 36.46325210057422,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 8.539512634277344,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.060607943675694,
+          "Kd_nM": 86.97452314568471,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.119061976283444,
+          "Kd_nM": 7.602177818137862,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.200839569898519,
+          "Kd_nM": 62.97387678903477,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.9212703704834,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 8.539512634277344,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.438144599906259,
+        "pKd_A1:B3": 7.060607943675694,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 8.119061976283444,
+        "pKd_A2:B3": 7.200839569898519,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -3,
+        "B3_eps280": 5500
+      },
+      "design_id": "D31"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "QIASLQSKNSALKSENASLEWEISALES"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "-QIASLQSKNSALKSENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.438144599906259,
+          7.372005769003613
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          8.119061976283444,
+          7.918991681859169
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.7351894284820109,
+          1.998121626149823
+        ],
+        [
+          7.438144599906259,
+          8.119061976283444,
+          1.7351894284820109,
+          0.6977601074205619,
+          1.6457922316868876
+        ],
+        [
+          7.372005769003613,
+          7.918991681859169,
+          1.998121626149823,
+          1.6457922316868876,
+          1.5485300377007976
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.438144599906259,
+          "Kd_nM": 36.46325210057422,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 8.539512634277344,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 7.372005769003613,
+          "Kd_nM": 42.46139234981127,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.119061976283444,
+          "Kd_nM": 7.602177818137862,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.918991681859169,
+          "Kd_nM": 12.050590209198338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.699562072753906,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 8.539512634277344,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.438144599906259,
+        "pKd_A1:B3": 7.372005769003613,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 8.119061976283444,
+        "pKd_A2:B3": 7.918991681859169,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D32"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "QIASLQEKNSALKSENASLEWEISALQS"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EVASLQSKNSALKSENASLEWEVSALES",
+        "B3": "-QIASLQEKNSALKSENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          7.438144599906259,
+          6.963713558068625
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          8.119061976283444,
+          7.510698363456505
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          1.7351894284820109,
+          2.1787588767502752
+        ],
+        [
+          7.438144599906259,
+          8.119061976283444,
+          1.7351894284820109,
+          0.6977601074205619,
+          1.9379331105592064
+        ],
+        [
+          6.963713558068625,
+          7.510698363456505,
+          2.1787588767502752,
+          1.9379331105592064,
+          2.010192295729455
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.438144599906259,
+          "Kd_nM": 36.46325210057422,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 8.539512634277344,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.963713558068625,
+          "Kd_nM": 108.71424195143449,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 8.119061976283444,
+          "Kd_nM": 7.602177818137862,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 15.208995819091797,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.510698363456505,
+          "Kd_nM": 30.853301031742173,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.92127227783203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 8.539512634277344,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 7.438144599906259,
+        "pKd_A1:B3": 6.963713558068625,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 8.119061976283444,
+        "pKd_A2:B3": 7.510698363456505,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D33"
+    },
+    {
+      "seqs": {
+        "A1": "KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "EIASLQSKISALKSENASLEWEISALES",
+        "B3": "QIASLQEKNSALKSENASLEWEISALQS"
+      },
+      "pads": {
+        "A1": "-KIASLKSQNSALQSKNASLKWKISALKS",
+        "A2": "-QIASLKSENSALESKNASLKWKISALKS",
+        "B1": "-EIASLQSKNSALKSENASLEWQISALES",
+        "B2": "-EIASLQSKISALKSENASLEWEISALES",
+        "B3": "-QIASLQEKNSALKSENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          2.4162491578794008,
+          2.9077174588983308,
+          6.825384418054258,
+          6.853378381681398,
+          6.963713558068625
+        ],
+        [
+          2.9077174588983308,
+          2.5415928106109655,
+          7.372369438549836,
+          7.660821748496196,
+          7.510698363456505
+        ],
+        [
+          6.825384418054258,
+          7.372369438549836,
+          2.1335593908566395,
+          2.4716198560514853,
+          2.1787588767502752
+        ],
+        [
+          6.853378381681398,
+          7.660821748496196,
+          2.4716198560514853,
+          2.293893654693141,
+          1.9576462402298977
+        ],
+        [
+          6.963713558068625,
+          7.510698363456505,
+          2.1787588767502752,
+          1.9576462402298977,
+          2.010192295729455
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 6.825384418054258,
+          "Kd_nM": 149.4911841178818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.14298439025879,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 6.853378381681398,
+          "Kd_nM": 140.159202695252,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 26.198959350585938,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 6.963713558068625,
+          "Kd_nM": 108.71424195143449,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 7.372369438549836,
+          "Kd_nM": 42.425850908786295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.426374435424805,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.660821748496196,
+          "Kd_nM": 21.836259737598084,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.11997985839844,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.510698363456505,
+          "Kd_nM": 30.853301031742173,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.92127227783203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.00884238116525,
+        "graph_loss": -2.00884238116525,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.9077174588983308,
+        "worst_homo_pKd": 2.5415928106109655,
+        "min_slip_margin": 23.364694595336914,
+        "pKd_A1:B1": 6.825384418054258,
+        "pKd_A1:B2": 6.853378381681398,
+        "pKd_A1:B3": 6.963713558068625,
+        "pKd_A2:B1": 7.372369438549836,
+        "pKd_A2:B2": 7.660821748496196,
+        "pKd_A2:B3": 7.510698363456505,
+        "A1_len": 28,
+        "A1_chg": 6,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -2,
+        "B3_eps280": 5500
+      },
+      "design_id": "D34"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "QIASLEKKISALKKANASLKWEISALES",
+        "B1": "KIASLQSEISALESENASLEWKISALAS",
+        "B2": "EIASLESEISALESENASLEWKISALKS",
+        "B3": "QIASLESEISALESENASLEWKISALAS"
+      },
+      "pads": {
+        "A1": "-QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "-QIASLEKKISALKKANASLKWEISALES",
+        "B1": "-KIASLQSEISALESENASLEWKISALAS",
+        "B2": "-EIASLESEISALESENASLEWKISALKS",
+        "B3": "-QIASLESEISALESENASLEWKISALAS"
+      },
+      "pkd_matrix": [
+        [
+          2.522346549015464,
+          2.909011083092036,
+          7.135110892261065,
+          7.139241932942018,
+          6.863944572397555
+        ],
+        [
+          2.909011083092036,
+          2.548459390205995,
+          7.170152045022296,
+          7.578897312826361,
+          6.867566664276889
+        ],
+        [
+          7.135110892261065,
+          7.170152045022296,
+          2.1184725803501774,
+          2.5720164467291973,
+          2.4376637841814963
+        ],
+        [
+          7.139241932942018,
+          7.578897312826361,
+          2.5720164467291973,
+          2.100920398227669,
+          2.160112735365745
+        ],
+        [
+          6.863944572397555,
+          6.867566664276889,
+          2.4376637841814963,
+          2.160112735365745,
+          1.9382005948579346
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.135110892261065,
+          "Kd_nM": 73.26374384400052,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.2237606048584,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.139241932942018,
+          "Kd_nM": 72.57015773731315,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.291357040405273,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 6.863944572397555,
+          "Kd_nM": 136.7903395549304,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862358093262,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.170152045022296,
+          "Kd_nM": 67.58463224678698,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376251220703,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.578897312826361,
+          "Kd_nM": 26.36954809418381,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 42.26588821411133,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 6.867566664276889,
+          "Kd_nM": 135.6542284845808,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.32029151916504,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0086483375361945,
+        "graph_loss": -2.0086483375361945,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.909011083092036,
+        "worst_homo_pKd": 2.548459390205995,
+        "min_slip_margin": 30.291357040405273,
+        "pKd_A1:B1": 7.135110892261065,
+        "pKd_A1:B2": 7.139241932942018,
+        "pKd_A1:B3": 6.863944572397555,
+        "pKd_A2:B1": 7.170152045022296,
+        "pKd_A2:B2": 7.578897312826361,
+        "pKd_A2:B3": 6.867566664276889,
+        "A1_len": 28,
+        "A1_chg": 3,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D35"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "QIASLEKKISALKKANASLKWEISALES",
+        "B1": "KIASLQSEISALESENASLEWKISALAS",
+        "B2": "AIASLESEISALESENASLEWKISALKS",
+        "B3": "QIASLESEISALESENASLEWKISALAS"
+      },
+      "pads": {
+        "A1": "-QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "-QIASLEKKISALKKANASLKWEISALES",
+        "B1": "-KIASLQSEISALESENASLEWKISALAS",
+        "B2": "-AIASLESEISALESENASLEWKISALKS",
+        "B3": "-QIASLESEISALESENASLEWKISALAS"
+      },
+      "pkd_matrix": [
+        [
+          2.522346549015464,
+          2.909011083092036,
+          7.135110892261065,
+          7.3224961818496865,
+          6.863944572397555
+        ],
+        [
+          2.909011083092036,
+          2.548459390205995,
+          7.170152045022296,
+          7.7778618225591,
+          6.867566664276889
+        ],
+        [
+          7.135110892261065,
+          7.170152045022296,
+          2.1184725803501774,
+          2.371894084259778,
+          2.4376637841814963
+        ],
+        [
+          7.3224961818496865,
+          7.7778618225591,
+          2.371894084259778,
+          2.246093810348695,
+          2.063724330732155
+        ],
+        [
+          6.863944572397555,
+          6.867566664276889,
+          2.4376637841814963,
+          2.063724330732155,
+          1.9382005948579346
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.135110892261065,
+          "Kd_nM": 73.26374384400052,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.2237606048584,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.3224961818496865,
+          "Kd_nM": 47.58869747859648,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.863944572397555,
+          "Kd_nM": 136.7903395549304,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862358093262,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.170152045022296,
+          "Kd_nM": 67.58463224678698,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376251220703,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.7778618225591,
+          "Kd_nM": 16.677777571826105,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 45.43273735046387,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 6.867566664276889,
+          "Kd_nM": 135.6542284845808,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.32029151916504,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0086483375361945,
+        "graph_loss": -2.0086483375361945,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.909011083092036,
+        "worst_homo_pKd": 2.548459390205995,
+        "min_slip_margin": 34.66718292236328,
+        "pKd_A1:B1": 7.135110892261065,
+        "pKd_A1:B2": 7.3224961818496865,
+        "pKd_A1:B3": 6.863944572397555,
+        "pKd_A2:B1": 7.170152045022296,
+        "pKd_A2:B2": 7.7778618225591,
+        "pKd_A2:B3": 6.867566664276889,
+        "A1_len": 28,
+        "A1_chg": 3,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D36"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "QIASLEKKISALKKANASLKWEISALES",
+        "B1": "KIASLQSEISALESENASLEWKISALAS",
+        "B2": "QIASLESEISALESENASLEWKISALKS",
+        "B3": "QIASLESEISALESENASLEWKISALAS"
+      },
+      "pads": {
+        "A1": "-QIASLESKISALKSKNASLKWQISALAS",
+        "A2": "-QIASLEKKISALKKANASLKWEISALES",
+        "B1": "-KIASLQSEISALESENASLEWKISALAS",
+        "B2": "-QIASLESEISALESENASLEWKISALKS",
+        "B3": "-QIASLESEISALESENASLEWKISALAS"
+      },
+      "pkd_matrix": [
+        [
+          2.522346549015464,
+          2.909011083092036,
+          7.135110892261065,
+          7.3433264932519675,
+          6.863944572397555
+        ],
+        [
+          2.909011083092036,
+          2.548459390205995,
+          7.170152045022296,
+          7.7986930263213585,
+          6.867566664276889
+        ],
+        [
+          7.135110892261065,
+          7.170152045022296,
+          2.1184725803501774,
+          2.6250797637735106,
+          2.4376637841814963
+        ],
+        [
+          7.3433264932519675,
+          7.7986930263213585,
+          2.6250797637735106,
+          2.2877557876578187,
+          2.0538458582168255
+        ],
+        [
+          6.863944572397555,
+          6.867566664276889,
+          2.4376637841814963,
+          2.0538458582168255,
+          1.9382005948579346
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.135110892261065,
+          "Kd_nM": 73.26374384400052,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.2237606048584,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.3433264932519675,
+          "Kd_nM": 45.360048135000355,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.66718292236328,
+          "slip_type": "ANTI"
+        },
+        "A1:B3": {
+          "pKd": 6.863944572397555,
+          "Kd_nM": 136.7903395549304,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862358093262,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.170152045022296,
+          "Kd_nM": 67.58463224678698,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376251220703,
+          "slip_type": "ANTI"
+        },
+        "A2:B2": {
+          "pKd": 7.7986930263213585,
+          "Kd_nM": 15.896699828105014,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 45.43273735046387,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 6.867566664276889,
+          "Kd_nM": 135.6542284845808,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.32029151916504,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.0086483375361945,
+        "graph_loss": -2.0086483375361945,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.909011083092036,
+        "worst_homo_pKd": 2.548459390205995,
+        "min_slip_margin": 34.66718292236328,
+        "pKd_A1:B1": 7.135110892261065,
+        "pKd_A1:B2": 7.3433264932519675,
+        "pKd_A1:B3": 6.863944572397555,
+        "pKd_A2:B1": 7.170152045022296,
+        "pKd_A2:B2": 7.7986930263213585,
+        "pKd_A2:B3": 6.867566664276889,
+        "A1_len": 28,
+        "A1_chg": 3,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 2,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -3,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -4,
+        "B3_eps280": 5500
+      },
+      "design_id": "D37"
+    },
+    {
+      "seqs": {
+        "A1": "QIASLESKISALESENASLEWEISALES",
+        "A2": "EIASLEKEISALESENASLEWEISALQS",
+        "B1": "KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pads": {
+        "A1": "-QIASLESKISALESENASLEWEISALES",
+        "A2": "-EIASLEKEISALESENASLEWEISALQS",
+        "B1": "-KVASLKSQISALQSQNASLKWQISALKS",
+        "B2": "-KVASLKSQISALQSKNASLAWQISALKS",
+        "B3": "-KVASLKSAISALQSKNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.934165356405974,
+          2.2041836513816833,
+          7.654770258484772,
+          7.495905243909397,
+          7.451495988580143
+        ],
+        [
+          2.2041836513816833,
+          1.6900810858536781,
+          7.85801965466929,
+          7.699152178121678,
+          7.230433616840268
+        ],
+        [
+          7.654770258484772,
+          7.85801965466929,
+          2.2250077253405527,
+          2.083615172441556,
+          2.385026649979989
+        ],
+        [
+          7.495905243909397,
+          7.699152178121678,
+          2.083615172441556,
+          1.8099734074392675,
+          1.856405352883371
+        ],
+        [
+          7.451495988580143,
+          7.230433616840268,
+          2.385026649979989,
+          1.856405352883371,
+          1.8871277144871277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.654770258484772,
+          "Kd_nM": 22.142657450642712,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169349670410156,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 7.495905243909397,
+          "Kd_nM": 31.922342734447724,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 7.451495988580143,
+          "Kd_nM": 35.35932870976347,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.780790328979492,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B1": {
+          "pKd": 7.85801965466929,
+          "Kd_nM": 13.86693070509565,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.699152178121678,
+          "Kd_nM": 19.991612346446338,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B3": {
+          "pKd": 7.230433616840268,
+          "Kd_nM": 58.82560238952959,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.004875196539104,
+        "graph_loss": -2.004875196539104,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.385026649979989,
+        "worst_homo_pKd": 2.934165356405974,
+        "min_slip_margin": 23.169349670410156,
+        "pKd_A1:B1": 7.654770258484772,
+        "pKd_A1:B2": 7.495905243909397,
+        "pKd_A1:B3": 7.451495988580143,
+        "pKd_A2:B1": 7.85801965466929,
+        "pKd_A2:B2": 7.699152178121678,
+        "pKd_A2:B3": 7.230433616840268,
+        "A1_len": 28,
+        "A1_chg": -5,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": -6,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": 4,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": 4,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": 5,
+        "B3_eps280": 5500
+      },
+      "design_id": "D38"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLESKISALASKNASLKWQISALKS",
+        "A2": "EIASLASKISALKSANASLKWQISALKS",
+        "B1": "AVASLKSEISALESENASLEWAISALKS",
+        "B2": "QIASLKSEISALESENASLEWKISALQS",
+        "B3": "KVASLKSEISALESENASLEWEISALQS"
+      },
+      "pads": {
+        "A1": "-EIASLESKISALASKNASLKWQISALKS",
+        "A2": "-EIASLASKISALKSANASLKWQISALKS",
+        "B1": "-AVASLKSEISALESENASLEWAISALKS",
+        "B2": "-QIASLKSEISALESENASLEWKISALQS",
+        "B3": "-KVASLKSEISALESENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          2.443633004564388,
+          2.567366214516155,
+          7.2208055783652405,
+          8.010453848886028,
+          8.607444657130339
+        ],
+        [
+          2.567366214516155,
+          2.0547903854563847,
+          6.795975374169086,
+          7.446096129696865,
+          7.6944803120589125
+        ],
+        [
+          7.2208055783652405,
+          6.795975374169086,
+          1.0449395571276519,
+          1.8518506236677448,
+          2.089624215468831
+        ],
+        [
+          8.010453848886028,
+          7.446096129696865,
+          1.8518506236677448,
+          2.7675267328292934,
+          2.211357817251308
+        ],
+        [
+          8.607444657130339,
+          7.6944803120589125,
+          2.089624215468831,
+          2.211357817251308,
+          1.481320806504356
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.2208055783652405,
+          "Kd_nM": 60.14429265976435,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.00204086303711,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 8.010453848886028,
+          "Kd_nM": 9.762165163891392,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862548828125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.607444657130339,
+          "Kd_nM": 2.4691947384595374,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.504220962524414,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 6.795975374169086,
+          "Kd_nM": 159.9648731038926,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.768054962158203,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.446096129696865,
+          "Kd_nM": 35.80171823714017,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445478439331055,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.6944803120589125,
+          "Kd_nM": 20.207830383959557,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.768054962158203,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.000366316622153,
+        "graph_loss": -2.000366316622153,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.211357817251308,
+        "worst_homo_pKd": 2.7675267328292934,
+        "min_slip_margin": 27.00204086303711,
+        "pKd_A1:B1": 7.2208055783652405,
+        "pKd_A1:B2": 8.010453848886028,
+        "pKd_A1:B3": 8.607444657130339,
+        "pKd_A2:B1": 6.795975374169086,
+        "pKd_A2:B2": 7.446096129696865,
+        "pKd_A2:B3": 7.6944803120589125,
+        "A1_len": 28,
+        "A1_chg": 2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -3,
+        "B3_eps280": 5500
+      },
+      "design_id": "D39"
+    },
+    {
+      "seqs": {
+        "A1": "EIASLESKISALQSKNASLKWQISALKS",
+        "A2": "EIASLASKISALKSANASLKWQISALKS",
+        "B1": "AVASLKSEISALESENASLEWAISALKS",
+        "B2": "QIASLKSEISALESENASLEWKISALQS",
+        "B3": "KVASLKSEISALESENASLEWEISALQS"
+      },
+      "pads": {
+        "A1": "-EIASLESKISALQSKNASLKWQISALKS",
+        "A2": "-EIASLASKISALKSANASLKWQISALKS",
+        "B1": "-AVASLKSEISALESENASLEWAISALKS",
+        "B2": "-QIASLKSEISALESENASLEWKISALQS",
+        "B3": "-KVASLKSEISALESENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          2.776493461545755,
+          2.668623931938689,
+          7.358375099321604,
+          8.14802426220237,
+          8.745014178086702
+        ],
+        [
+          2.668623931938689,
+          2.0547903854563847,
+          6.795975374169086,
+          7.446096129696865,
+          7.6944803120589125
+        ],
+        [
+          7.358375099321604,
+          6.795975374169086,
+          1.0449395571276519,
+          1.8518506236677448,
+          2.089624215468831
+        ],
+        [
+          8.14802426220237,
+          7.446096129696865,
+          1.8518506236677448,
+          2.7675267328292934,
+          2.211357817251308
+        ],
+        [
+          8.745014178086702,
+          7.6944803120589125,
+          2.089624215468831,
+          2.211357817251308,
+          1.481320806504356
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A1:B1": {
+          "pKd": 7.358375099321604,
+          "Kd_nM": 43.81521031610161,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.00204086303711,
+          "slip_type": "ANTI"
+        },
+        "A1:B2": {
+          "pKd": 8.14802426220237,
+          "Kd_nM": 7.111737822615542,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862548828125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A1:B3": {
+          "pKd": 8.745014178086702,
+          "Kd_nM": 1.7988121896958063,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.504220962524414,
+          "slip_type": "ANTI"
+        },
+        "A2:B1": {
+          "pKd": 6.795975374169086,
+          "Kd_nM": 159.9648731038926,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.768054962158203,
+          "slip_type": "PAR_SLIP"
+        },
+        "A2:B2": {
+          "pKd": 7.446096129696865,
+          "Kd_nM": 35.80171823714017,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445478439331055,
+          "slip_type": "ANTI"
+        },
+        "A2:B3": {
+          "pKd": 7.6944803120589125,
+          "Kd_nM": 20.207830383959557,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.768054962158203,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -2.000366316622153,
+        "graph_loss": -2.000366316622153,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.668623931938689,
+        "worst_homo_pKd": 2.776493461545755,
+        "min_slip_margin": 27.00204086303711,
+        "pKd_A1:B1": 7.358375099321604,
+        "pKd_A1:B2": 8.14802426220237,
+        "pKd_A1:B3": 8.745014178086702,
+        "pKd_A2:B1": 6.795975374169086,
+        "pKd_A2:B2": 7.446096129696865,
+        "pKd_A2:B3": 7.6944803120589125,
+        "A1_len": 28,
+        "A1_chg": 2,
+        "A1_eps280": 5500,
+        "A2_len": 28,
+        "A2_chg": 3,
+        "A2_eps280": 5500,
+        "B1_len": 28,
+        "B1_chg": -2,
+        "B1_eps280": 5500,
+        "B2_len": 28,
+        "B2_chg": -2,
+        "B2_eps280": 5500,
+        "B3_len": 28,
+        "B3_chg": -3,
+        "B3_eps280": 5500
+      },
+      "design_id": "D40"
+    }
+  ]
+}

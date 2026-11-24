@@ -1,0 +1,4075 @@
+{
+  "config": {
+    "name": "cycle_c4",
+    "mode": "graph",
+    "nodes": [
+      {
+        "name": "A",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "B",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "C",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "D",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "u": "A",
+        "v": "B",
+        "pkd_min": 7.0,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "B",
+        "v": "C",
+        "pkd_min": 7.0,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "C",
+        "v": "D",
+        "pkd_min": 7.0,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "D",
+        "v": "A",
+        "pkd_min": 7.0,
+        "pkd_max": 10.5,
+        "require_par": true,
+        "require_shift0": true
+      }
+    ],
+    "hierarchies": [],
+    "off_target_max_pkd": 4.3,
+    "homodimer_max_pkd": 4.3
+  },
+  "designs": [
+    {
+      "seqs": {
+        "A": "EVASLESEISALQSQNASLAWEISALES",
+        "B": "KIASLKSQISALKSENASLQWQISALKS",
+        "C": "EVASLESEISALASKNASLKWEISALES",
+        "D": "KIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-EVASLESEISALQSQNASLAWEISALES",
+        "B": "-KIASLKSQISALKSENASLQWQISALKS",
+        "C": "-EVASLESEISALASKNASLKWEISALES",
+        "D": "-KIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6259086368736355,
+          7.027326214919078,
+          1.9011060292552227,
+          7.591621228631022
+        ],
+        [
+          7.027326214919078,
+          2.6413825986973496,
+          7.438542392829332,
+          2.7155570410699896
+        ],
+        [
+          1.9011060292552227,
+          7.438542392829332,
+          1.7050624264246599,
+          8.121849795981829
+        ],
+        [
+          7.591621228631022,
+          2.7155570410699896,
+          8.121849795981829,
+          2.7516960015928245
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.027326214919078,
+          "Kd_nM": 93.90177140764905,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.934906005859375,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.438542392829332,
+          "Kd_nM": 36.42986880097418,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.76759719848633,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 8.121849795981829,
+          "Kd_nM": 7.553534271668978,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593307495117,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.591621228631022,
+          "Kd_nM": 25.608183394292777,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.7155579334299675,
+        "worst_homo_pKd": 2.7516960015928245,
+        "min_slip_margin": 32.72593116760254,
+        "pKd_A:B": 7.027326214919078,
+        "pKd_B:C": 7.438542392829332,
+        "pKd_C:D": 8.121849795981829,
+        "pKd_A:D": 7.591621228631022,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D01"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASANASLKWEISALES",
+        "B": "KIASLKSQISALKSENASLAWKISALKS",
+        "C": "EVASLESEISALASQNASLKWEISALES",
+        "D": "AIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASANASLKWEISALES",
+        "B": "-KIASLKSQISALKSENASLAWKISALKS",
+        "C": "-EVASLESEISALASQNASLKWEISALES",
+        "D": "-AIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.039139311620845,
+          9.112218544191794,
+          1.8032148991945096,
+          7.779051593160011
+        ],
+        [
+          9.112218544191794,
+          2.4353516718275587,
+          7.991332923365724,
+          2.795919977262426
+        ],
+        [
+          1.8032148991945096,
+          7.991332923365724,
+          2.0939400807526614,
+          7.041645074213779
+        ],
+        [
+          7.779051593160011,
+          2.795919977262426,
+          7.041645074213779,
+          2.7905149432522913
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.112218544191794,
+          "Kd_nM": 0.77229185721555,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 49.265432357788086,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.991332923365724,
+          "Kd_nM": 10.201571473492663,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.767595291137695,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.041645074213779,
+          "Kd_nM": 90.85627468694709,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.779051593160011,
+          "Kd_nM": 16.63215052608367,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.1113166809082,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.795919977262426,
+        "worst_homo_pKd": 2.7905149432522913,
+        "min_slip_margin": 29.559078216552734,
+        "pKd_A:B": 9.112218544191794,
+        "pKd_B:C": 7.991332923365724,
+        "pKd_C:D": 7.041645074213779,
+        "pKd_A:D": 7.779051593160011,
+        "A_len": 28,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D02"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASANASLKWEISALES",
+        "B": "KIASLKSQISALKSENASLAWKISALKS",
+        "C": "EVASLESEISALASKNASLKWEISALES",
+        "D": "AIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASANASLKWEISALES",
+        "B": "-KIASLKSQISALKSENASLAWKISALKS",
+        "C": "-EVASLESEISALASKNASLKWEISALES",
+        "D": "-AIASLKSQISALKSQNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.039139311620845,
+          9.112218544191794,
+          1.6166312698983116,
+          7.779051593160011
+        ],
+        [
+          9.112218544191794,
+          2.4353516718275587,
+          8.771450862904928,
+          2.795919977262426
+        ],
+        [
+          1.6166312698983116,
+          8.771450862904928,
+          1.7050624264246599,
+          7.336070631738458
+        ],
+        [
+          7.779051593160011,
+          2.795919977262426,
+          7.336070631738458,
+          2.7905149432522913
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.112218544191794,
+          "Kd_nM": 0.77229185721555,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 49.265432357788086,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.771450862904928,
+          "Kd_nM": 1.692579736039727,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.76759910583496,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.336070631738458,
+          "Kd_nM": 46.12425540060268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.55908203125,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.779051593160011,
+          "Kd_nM": 16.63215052608367,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.1113166809082,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.795919977262426,
+        "worst_homo_pKd": 2.7905149432522913,
+        "min_slip_margin": 29.55908203125,
+        "pKd_A:B": 9.112218544191794,
+        "pKd_B:C": 8.771450862904928,
+        "pKd_C:D": 7.336070631738458,
+        "pKd_A:D": 7.779051593160011,
+        "A_len": 28,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D03"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASANASLKWEISALES",
+        "B": "KIASLKSQISALKSENASLAWKISALKS",
+        "C": "EVASLESEISALASKNASLKWEISALES",
+        "D": "AIASLKSKISALKSQNASLAWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASANASLKWEISALES",
+        "B": "-KIASLKSQISALKSENASLAWKISALKS",
+        "C": "-EVASLESEISALASKNASLKWEISALES",
+        "D": "-AIASLKSKISALKSQNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.039139311620845,
+          9.112218544191794,
+          1.6166312698983116,
+          7.796596438929691
+        ],
+        [
+          9.112218544191794,
+          2.4353516718275587,
+          8.771450862904928,
+          2.491363486180907
+        ],
+        [
+          1.6166312698983116,
+          8.771450862904928,
+          1.7050624264246599,
+          7.222471789888427
+        ],
+        [
+          7.796596438929691,
+          2.491363486180907,
+          7.222471789888427,
+          2.1542947135702324
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.112218544191794,
+          "Kd_nM": 0.77229185721555,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 49.265432357788086,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.771450862904928,
+          "Kd_nM": 1.692579736039727,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.76759910583496,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.222471789888427,
+          "Kd_nM": 59.91398551851082,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.834733963012695,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.796596438929691,
+          "Kd_nM": 15.973627811433825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.1113166809082,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.134708619675367,
+        "worst_homo_pKd": 2.4353516718275587,
+        "min_slip_margin": 30.834733963012695,
+        "pKd_A:B": 9.112218544191794,
+        "pKd_B:C": 8.771450862904928,
+        "pKd_C:D": 7.222471789888427,
+        "pKd_A:D": 7.796596438929691,
+        "A_len": 28,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D04"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASANASLKWEISALES",
+        "B": "KVASLKSQISALKSENASLAWKISALKS",
+        "C": "EVASLESEISALASKNASLKWEISALES",
+        "D": "AIASLKSKISALKSQNASLAWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASANASLKWEISALES",
+        "B": "-KVASLKSQISALKSENASLAWKISALKS",
+        "C": "-EVASLESEISALASKNASLKWEISALES",
+        "D": "-AIASLKSKISALKSQNASLAWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.039139311620845,
+          8.486949596198894,
+          1.6166312698983116,
+          7.796596438929691
+        ],
+        [
+          8.486949596198894,
+          2.289058777488286,
+          8.562923073019764,
+          1.7743779411057474
+        ],
+        [
+          1.6166312698983116,
+          8.562923073019764,
+          1.7050624264246599,
+          7.222471789888427
+        ],
+        [
+          7.796596438929691,
+          1.7743779411057474,
+          7.222471789888427,
+          2.1542947135702324
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 8.486949596198894,
+          "Kd_nM": 3.2587451949161466,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.767595291137695,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.562923073019764,
+          "Kd_nM": 2.7357532698795732,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.76759910583496,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.222471789888427,
+          "Kd_nM": 59.91398551851082,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.834733963012695,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.796596438929691,
+          "Kd_nM": 15.973627811433825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.1113166809082,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 1.7743779411057474,
+        "worst_homo_pKd": 2.289058777488286,
+        "min_slip_margin": 30.834733963012695,
+        "pKd_A:B": 8.486949596198894,
+        "pKd_B:C": 8.562923073019764,
+        "pKd_C:D": 7.222471789888427,
+        "pKd_A:D": 7.796596438929691,
+        "A_len": 28,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D05"
+    },
+    {
+      "seqs": {
+        "A": "KIASLASAISALKSENASLEWEISALES",
+        "B": "EIASLEEEISALESKNASLKWQISALKS",
+        "C": "KIASLQEAISALKSENASLEWEISALAS",
+        "D": "AVASLEKEISALEKKNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KIASLASAISALKSENASLEWEISALES",
+        "B": "-EIASLEEEISALESKNASLKWQISALKS",
+        "C": "-KIASLQEAISALKSENASLEWEISALAS",
+        "D": "-AVASLEKEISALEKKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.3183110890515124,
+          7.9328224536001475,
+          2.4732687270133225,
+          7.23168354111376
+        ],
+        [
+          7.9328224536001475,
+          2.4867130496379213,
+          7.713461806103409,
+          2.20360087111305
+        ],
+        [
+          2.4732687270133225,
+          7.713461806103409,
+          2.7230874771547704,
+          7.005369268948084
+        ],
+        [
+          7.23168354111376,
+          2.20360087111305,
+          7.005369268948084,
+          1.7894686645340485
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.9328224536001475,
+          "Kd_nM": 11.672867246617706,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 43.474863052368164,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.713461806103409,
+          "Kd_nM": 19.343639681919957,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.88960075378418,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 7.005369268948084,
+          "Kd_nM": 98.7712911721451,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.39176940917969,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.23168354111376,
+          "Kd_nM": 58.65654235173099,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.39176940917969,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.568130162098254,
+        "worst_homo_pKd": 2.7230874771547704,
+        "min_slip_margin": 33.39176940917969,
+        "pKd_A:B": 7.9328224536001475,
+        "pKd_B:C": 7.713461806103409,
+        "pKd_C:D": 7.005369268948084,
+        "pKd_A:D": 7.23168354111376,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D06"
+    },
+    {
+      "seqs": {
+        "A": "AIASLKEQISALKSQNASLEWEISALES",
+        "B": "EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "QIASLKEQISALKSQNASLEWEISALES",
+        "D": "EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pads": {
+        "A": "-AIASLKEQISALKSQNASLEWEISALES",
+        "B": "-EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "-QIASLKEQISALKSQNASLEWEISALES",
+        "D": "-EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7482920817942862,
+          7.023685863222653,
+          1.92766342223754,
+          7.210425982674315
+        ],
+        [
+          7.023685863222653,
+          2.3306734771769095,
+          7.2768731123486425,
+          2.379489078565695
+        ],
+        [
+          1.92766342223754,
+          7.2768731123486425,
+          2.1985275388493566,
+          7.46361144708035
+        ],
+        [
+          7.210425982674315,
+          2.379489078565695,
+          7.46361144708035,
+          2.5123254831727637
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.023685863222653,
+          "Kd_nM": 94.69218475279611,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066022872924805,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.2768731123486425,
+          "Kd_nM": 52.859966997773114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066022872924805,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 7.46361144708035,
+          "Kd_nM": 34.38654585463643,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.107694625854492,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.210425982674315,
+          "Kd_nM": 61.599050416468685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.107694625854492,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.379489078565695,
+        "worst_homo_pKd": 2.5123254831727637,
+        "min_slip_margin": 9.066022872924805,
+        "pKd_A:B": 7.023685863222653,
+        "pKd_B:C": 7.2768731123486425,
+        "pKd_C:D": 7.46361144708035,
+        "pKd_A:D": 7.210425982674315,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D07"
+    },
+    {
+      "seqs": {
+        "A": "AIASLKEQISALKSQNASLEWEISALES",
+        "B": "EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "KIASLKKQISALKKQNASLEWEISALES",
+        "D": "EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pads": {
+        "A": "-AIASLKEQISALKSQNASLEWEISALES",
+        "B": "-EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "-KIASLKKQISALKKQNASLEWEISALES",
+        "D": "-EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7482920817942862,
+          7.023685863222653,
+          2.140699973517882,
+          7.210425982674315
+        ],
+        [
+          7.023685863222653,
+          2.3306734771769095,
+          7.1546520520312065,
+          2.379489078565695
+        ],
+        [
+          2.140699973517882,
+          7.1546520520312065,
+          2.5482081139773296,
+          7.4042299698538745
+        ],
+        [
+          7.210425982674315,
+          2.379489078565695,
+          7.4042299698538745,
+          2.5123254831727637
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.023685863222653,
+          "Kd_nM": 94.69218475279611,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066022872924805,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.1546520520312065,
+          "Kd_nM": 70.04029199473828,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066024780273438,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 7.4042299698538745,
+          "Kd_nM": 39.42484823028622,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.10769271850586,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.210425982674315,
+          "Kd_nM": 61.599050416468685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.107694625854492,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.407151524022847,
+        "worst_homo_pKd": 2.5482081139773296,
+        "min_slip_margin": 9.066022872924805,
+        "pKd_A:B": 7.023685863222653,
+        "pKd_B:C": 7.1546520520312065,
+        "pKd_C:D": 7.4042299698538745,
+        "pKd_A:D": 7.210425982674315,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D08"
+    },
+    {
+      "seqs": {
+        "A": "AIASLKEQISALKSQNASLEWEISALES",
+        "B": "EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "KIASLKEQISALKSENASLEWEISALES",
+        "D": "EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pads": {
+        "A": "-AIASLKEQISALKSQNASLEWEISALES",
+        "B": "-EIASLQSKVSALQSKNASLQWKVSALKS",
+        "C": "-KIASLKEQISALKSENASLEWEISALES",
+        "D": "-EIASLQSEVSALQSKNASLKWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7482920817942862,
+          7.023685863222653,
+          1.850789179521442,
+          7.210425982674315
+        ],
+        [
+          7.023685863222653,
+          2.3306734771769095,
+          7.018573261201086,
+          2.379489078565695
+        ],
+        [
+          1.850789179521442,
+          7.018573261201086,
+          2.5463182343581385,
+          8.098534917553708
+        ],
+        [
+          7.210425982674315,
+          2.379489078565695,
+          8.098534917553708,
+          2.5123254831727637
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.023685863222653,
+          "Kd_nM": 94.69218475279611,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066022872924805,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.018573261201086,
+          "Kd_nM": 95.81350747240766,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 9.066022872924805,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.098534917553708,
+          "Kd_nM": 7.97012407707585,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.885984420776367,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.210425982674315,
+          "Kd_nM": 61.599050416468685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.107694625854492,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4211035802425833,
+        "worst_homo_pKd": 2.5463182343581385,
+        "min_slip_margin": 9.066022872924805,
+        "pKd_A:B": 7.023685863222653,
+        "pKd_B:C": 7.018573261201086,
+        "pKd_C:D": 8.098534917553708,
+        "pKd_A:D": 7.210425982674315,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D09"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESAISALESENASLQWEISALES",
+        "B": "KIASLKSQISALESQNASLAWKISALKS",
+        "C": "EIASLESKISALKSENASLEWEISALQS",
+        "D": "KIASLKSQISALASKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESAISALESENASLQWEISALES",
+        "B": "-KIASLKSQISALESQNASLAWKISALKS",
+        "C": "-EIASLESKISALKSENASLEWEISALQS",
+        "D": "-KIASLKSQISALASKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.7217117792477907,
+          7.347752382568971,
+          2.428848812770461,
+          7.344997109303692
+        ],
+        [
+          7.347752382568971,
+          2.0917712590251023,
+          7.208353370739841,
+          2.3218531080527702
+        ],
+        [
+          2.428848812770461,
+          7.208353370739841,
+          2.627249002177125,
+          8.03267111052069
+        ],
+        [
+          7.344997109303692,
+          2.3218531080527702,
+          8.03267111052069,
+          2.5407904670200265
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.347752382568971,
+          "Kd_nM": 44.90013196503894,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.208353370739841,
+          "Kd_nM": 61.89372618081354,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 42.26588821411133,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.03267111052069,
+          "Kd_nM": 9.275319737429552,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.11131286621094,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.344997109303692,
+          "Kd_nM": 45.18589519716379,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547462463379,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.5752985118806313,
+        "worst_homo_pKd": 2.627249002177125,
+        "min_slip_margin": 39.445472717285156,
+        "pKd_A:B": 7.347752382568971,
+        "pKd_B:C": 7.208353370739841,
+        "pKd_C:D": 8.03267111052069,
+        "pKd_A:D": 7.344997109303692,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D10"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSQISALKSENASLQWKISALKS",
+        "B": "QIASLESEISALQSANASLKWEISALES",
+        "C": "KVASLASQISALKSENASLQWKISALKS",
+        "D": "QVASLESEISALASKNASLKWEISALES"
+      },
+      "pads": {
+        "A": "-KVASLKSQISALKSENASLQWKISALKS",
+        "B": "-QIASLESEISALQSANASLKWEISALES",
+        "C": "-KVASLASQISALKSENASLQWKISALKS",
+        "D": "-QVASLESEISALASKNASLKWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.747916429495345,
+          8.400970086642806,
+          2.4502112856979776,
+          8.063252343531072
+        ],
+        [
+          8.400970086642806,
+          2.6647692088121957,
+          7.823177263041021,
+          2.275467665327139
+        ],
+        [
+          2.4502112856979776,
+          7.823177263041021,
+          1.9714762713984237,
+          7.501167212007135
+        ],
+        [
+          8.063252343531072,
+          2.275467665327139,
+          7.501167212007135,
+          2.45652378645621
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 8.400970086642806,
+          "Kd_nM": 3.972189081911828,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.767601013183594,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.823177263041021,
+          "Kd_nM": 15.025285639938929,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 42.282508850097656,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.501167212007135,
+          "Kd_nM": 31.537901177083274,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.504220962524414,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.063252343531072,
+          "Kd_nM": 8.644654816772134,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.504220962524414,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4502112856979776,
+        "worst_homo_pKd": 2.747916429495345,
+        "min_slip_margin": 37.504220962524414,
+        "pKd_A:B": 8.400970086642806,
+        "pKd_B:C": 7.823177263041021,
+        "pKd_C:D": 7.501167212007135,
+        "pKd_A:D": 8.063252343531072,
+        "A_len": 28,
+        "A_chg": 4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -2,
+        "D_eps280": 5500
+      },
+      "design_id": "D11"
+    },
+    {
+      "seqs": {
+        "A": "EVASLESKISALKSKNASLKWQISALQS",
+        "B": "QIASLKSEISALESENASLEWEISALES",
+        "C": "EIASLESKISALASKNASLKWQISALKS",
+        "D": "QVASLKSEISALESENASLEWKISALQS"
+      },
+      "pads": {
+        "A": "-EVASLESKISALKSKNASLKWQISALQS",
+        "B": "-QIASLKSEISALESENASLEWEISALES",
+        "C": "-EIASLESKISALASKNASLKWQISALKS",
+        "D": "-QVASLKSEISALESENASLEWKISALQS"
+      },
+      "pkd_matrix": [
+        [
+          1.5468300969755013,
+          7.587679115481659,
+          1.8103844732079946,
+          7.670059281866011
+        ],
+        [
+          7.587679115481659,
+          1.9876815469786733,
+          8.784531447157278,
+          2.7815659371953183
+        ],
+        [
+          1.8103844732079946,
+          8.784531447157278,
+          2.443633004564388,
+          7.385186008336995
+        ],
+        [
+          7.670059281866011,
+          2.7815659371953183,
+          7.385186008336995,
+          2.5116259399191403
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.587679115481659,
+          "Kd_nM": 25.841688345190317,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.784531447157278,
+          "Kd_nM": 1.642360732429761,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.111310958862305,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 7.385186008336995,
+          "Kd_nM": 41.19210555124126,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.670059281866011,
+          "Kd_nM": 21.37670274299564,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.7815659371953183,
+        "worst_homo_pKd": 2.5116259399191403,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 7.587679115481659,
+        "pKd_B:C": 8.784531447157278,
+        "pKd_C:D": 7.385186008336995,
+        "pKd_A:D": 7.670059281866011,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -2,
+        "D_eps280": 5500
+      },
+      "design_id": "D12"
+    },
+    {
+      "seqs": {
+        "A": "EVASLESKISALKSKNASLKWKISALAS",
+        "B": "QIASLKSEISALESENASLEWEISALQS",
+        "C": "EIASLESKISALKSQNASLKWQISALKS",
+        "D": "QVASLKSEISALESENASLEWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLESKISALKSKNASLKWKISALAS",
+        "B": "-QIASLKSEISALESENASLEWEISALQS",
+        "C": "-EIASLESKISALKSQNASLKWQISALKS",
+        "D": "-QVASLKSEISALESENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4323213582939784,
+          7.4594048186285615,
+          2.118620201390023,
+          7.727180571373099
+        ],
+        [
+          7.4594048186285615,
+          2.6098981666671923,
+          8.703962324477482,
+          1.970323361679295
+        ],
+        [
+          2.118620201390023,
+          8.703962324477482,
+          2.182805475924895,
+          8.099269090780718
+        ],
+        [
+          7.727180571373099,
+          1.970323361679295,
+          8.099269090780718,
+          1.7317809152774197
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.4594048186285615,
+          "Kd_nM": 34.72123637247116,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.613481521606445,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 8.703962324477482,
+          "Kd_nM": 1.9771411518352362,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 43.4748649597168,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.099269090780718,
+          "Kd_nM": 7.956661993595677,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.977033615112305,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.727180571373099,
+          "Kd_nM": 18.742150831122657,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.118620201390023,
+        "worst_homo_pKd": 2.6098981666671923,
+        "min_slip_margin": 28.613481521606445,
+        "pKd_A:B": 7.4594048186285615,
+        "pKd_B:C": 8.703962324477482,
+        "pKd_C:D": 8.099269090780718,
+        "pKd_A:D": 7.727180571373099,
+        "A_len": 28,
+        "A_chg": 3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -5,
+        "D_eps280": 5500
+      },
+      "design_id": "D13"
+    },
+    {
+      "seqs": {
+        "A": "EVASLESKISALKSKNASLKWKISALAS",
+        "B": "QVASLKSEISALESENASLEWEISALQS",
+        "C": "EIASLESKISALKSQNASLKWQISALKS",
+        "D": "QVASLKSEISALESENASLEWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLESKISALKSKNASLKWKISALAS",
+        "B": "-QVASLKSEISALESENASLEWEISALQS",
+        "C": "-EIASLESKISALKSQNASLKWQISALKS",
+        "D": "-QVASLKSEISALESENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4323213582939784,
+          7.250876813635701,
+          2.118620201390023,
+          7.727180571373099
+        ],
+        [
+          7.250876813635701,
+          2.3539966694275343,
+          8.078695484109833,
+          2.050743544162165
+        ],
+        [
+          2.118620201390023,
+          8.078695484109833,
+          2.182805475924895,
+          8.099269090780718
+        ],
+        [
+          7.727180571373099,
+          2.050743544162165,
+          8.099269090780718,
+          1.7317809152774197
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.250876813635701,
+          "Kd_nM": 56.1207138227911,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.078695484109833,
+          "Kd_nM": 8.34265944966902,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.977031707763672,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.099269090780718,
+          "Kd_nM": 7.956661993595677,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.977033615112305,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.727180571373099,
+          "Kd_nM": 18.742150831122657,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.118620201390023,
+        "worst_homo_pKd": 2.4323213582939784,
+        "min_slip_margin": 31.977031707763672,
+        "pKd_A:B": 7.250876813635701,
+        "pKd_B:C": 8.078695484109833,
+        "pKd_C:D": 8.099269090780718,
+        "pKd_A:D": 7.727180571373099,
+        "A_len": 28,
+        "A_chg": 3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -5,
+        "D_eps280": 5500
+      },
+      "design_id": "D14"
+    },
+    {
+      "seqs": {
+        "A": "EVASLESKISALKSKNASLKWKISALAS",
+        "B": "KIASLKSEISALESENASLEWEISALQS",
+        "C": "EIASLESKISALKSQNASLKWQISALKS",
+        "D": "KVASLKSEISALESENASLQWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLESKISALKSKNASLKWKISALAS",
+        "B": "-KIASLKSEISALESENASLEWEISALQS",
+        "C": "-EIASLESKISALKSQNASLKWQISALKS",
+        "D": "-KVASLKSEISALESENASLQWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.4323213582939784,
+          8.002426870186333,
+          2.118620201390023,
+          7.500667806861051
+        ],
+        [
+          8.002426870186333,
+          2.5785172237869594,
+          9.172717873542943,
+          1.9193394353289381
+        ],
+        [
+          2.118620201390023,
+          9.172717873542943,
+          2.182805475924895,
+          8.379471406201816
+        ],
+        [
+          7.500667806861051,
+          1.9193394353289381,
+          8.379471406201816,
+          1.4561696405287696
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 8.002426870186333,
+          "Kd_nM": 9.944275091358897,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.446170806884766,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 9.172717873542943,
+          "Kd_nM": 0.6718651683587687,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 48.253150939941406,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.379471406201816,
+          "Kd_nM": 4.173770775228438,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.53361129760742,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 7.500667806861051,
+          "Kd_nM": 31.574188189755716,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50421905517578,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.118620201390023,
+        "worst_homo_pKd": 2.5785172237869594,
+        "min_slip_margin": 32.446170806884766,
+        "pKd_A:B": 8.002426870186333,
+        "pKd_B:C": 9.172717873542943,
+        "pKd_C:D": 8.379471406201816,
+        "pKd_A:D": 7.500667806861051,
+        "A_len": 28,
+        "A_chg": 3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -3,
+        "D_eps280": 5500
+      },
+      "design_id": "D15"
+    },
+    {
+      "seqs": {
+        "A": "KIASLQSEISALESENASLEWEISALES",
+        "B": "KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "QIASLKSQISALESENASLEWEISALES",
+        "D": "QVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KIASLQSEISALESENASLEWEISALES",
+        "B": "-KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "-QIASLKSQISALESENASLEWEISALES",
+        "D": "-QVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.872982949586227,
+          7.52128736732632,
+          1.99562992537457,
+          7.266032852932748
+        ],
+        [
+          7.52128736732632,
+          2.3559222723524167,
+          7.122682541548921,
+          2.4667693454513353
+        ],
+        [
+          1.99562992537457,
+          7.122682541548921,
+          1.5382523609523089,
+          7.147161727853769
+        ],
+        [
+          7.266032852932748,
+          2.4667693454513353,
+          7.147161727853769,
+          2.5619080497314313
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.52128736732632,
+          "Kd_nM": 30.11013014541939,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.122682541548921,
+          "Kd_nM": 75.39064492073193,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.147161727853769,
+          "Kd_nM": 71.25876186790475,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169347763061523,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.266032852932748,
+          "Kd_nM": 54.19598913881295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.4667684530913574,
+        "worst_homo_pKd": 2.5619080497314313,
+        "min_slip_margin": 23.169347763061523,
+        "pKd_A:B": 7.52128736732632,
+        "pKd_B:C": 7.122682541548921,
+        "pKd_C:D": 7.147161727853769,
+        "pKd_A:D": 7.266032852932748,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 4,
+        "D_eps280": 5500
+      },
+      "design_id": "D16"
+    },
+    {
+      "seqs": {
+        "A": "KIASLQSEISALESENASLEWEISALES",
+        "B": "KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "QIASLKSQISALESENASLEWEISALES",
+        "D": "KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KIASLQSEISALESENASLEWEISALES",
+        "B": "-KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "-QIASLKSQISALESENASLEWEISALES",
+        "D": "-KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.872982949586227,
+          7.52128736732632,
+          1.99562992537457,
+          7.40473270874053
+        ],
+        [
+          7.52128736732632,
+          2.3559222723524167,
+          7.122682541548921,
+          2.267314649975825
+        ],
+        [
+          1.99562992537457,
+          7.122682541548921,
+          1.5382523609523089,
+          7.006127882963132
+        ],
+        [
+          7.40473270874053,
+          2.267314649975825,
+          7.006127882963132,
+          2.178707242706932
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.52128736732632,
+          "Kd_nM": 30.11013014541939,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.122682541548921,
+          "Kd_nM": 75.39064492073193,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.006127882963132,
+          "Kd_nM": 98.59891071433135,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.40473270874053,
+          "Kd_nM": 39.379236467954605,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.267314649975825,
+        "worst_homo_pKd": 2.3559222723524167,
+        "min_slip_margin": 23.169353485107422,
+        "pKd_A:B": 7.52128736732632,
+        "pKd_B:C": 7.122682541548921,
+        "pKd_C:D": 7.006127882963132,
+        "pKd_A:D": 7.40473270874053,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D17"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKSEISALESENASLEWEISALES",
+        "B": "KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "QIASLKSQISALESENASLEWEISALES",
+        "D": "KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KIASLKSEISALESENASLEWEISALES",
+        "B": "-KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "-QIASLKSQISALESENASLEWEISALES",
+        "D": "-KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.1559218978221786,
+          7.884131948561096,
+          2.244116457508931,
+          7.767577289975307
+        ],
+        [
+          7.884131948561096,
+          2.3559222723524167,
+          7.122682541548921,
+          2.267314649975825
+        ],
+        [
+          2.244116457508931,
+          7.122682541548921,
+          1.5382523609523089,
+          7.006127882963132
+        ],
+        [
+          7.767577289975307,
+          2.267314649975825,
+          7.006127882963132,
+          2.178707242706932
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.884131948561096,
+          "Kd_nM": 13.057741039277186,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.122682541548921,
+          "Kd_nM": 75.39064492073193,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.006127882963132,
+          "Kd_nM": 98.59891071433135,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.767577289975307,
+          "Kd_nM": 17.077437714138764,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.267314649975825,
+        "worst_homo_pKd": 2.3559222723524167,
+        "min_slip_margin": 23.169353485107422,
+        "pKd_A:B": 7.884131948561096,
+        "pKd_B:C": 7.122682541548921,
+        "pKd_C:D": 7.006127882963132,
+        "pKd_A:D": 7.767577289975307,
+        "A_len": 28,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D18"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKSEISALESENASLEWEISALQS",
+        "B": "KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "QIASLKSQISALESENASLEWEISALES",
+        "D": "KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KIASLKSEISALESENASLEWEISALQS",
+        "B": "-KVASLQSKISALKSQNASLKWQISALKS",
+        "C": "-QIASLKSQISALESENASLEWEISALES",
+        "D": "-KVASLQSKISALKSANASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5785172237869594,
+          7.816431482131671,
+          2.502344721630906,
+          7.699875038825925
+        ],
+        [
+          7.816431482131671,
+          2.3559222723524167,
+          7.122682541548921,
+          2.267314649975825
+        ],
+        [
+          2.502344721630906,
+          7.122682541548921,
+          1.5382523609523089,
+          7.006127882963132
+        ],
+        [
+          7.699875038825925,
+          2.267314649975825,
+          7.006127882963132,
+          2.178707242706932
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.816431482131671,
+          "Kd_nM": 15.260491378756868,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.122682541548921,
+          "Kd_nM": 75.39064492073193,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.006127882963132,
+          "Kd_nM": 98.59891071433135,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.169353485107422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.699875038825925,
+          "Kd_nM": 19.958365018528255,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.502344721630906,
+        "worst_homo_pKd": 2.5785172237869594,
+        "min_slip_margin": 23.169353485107422,
+        "pKd_A:B": 7.816431482131671,
+        "pKd_B:C": 7.122682541548921,
+        "pKd_C:D": 7.006127882963132,
+        "pKd_A:D": 7.699875038825925,
+        "A_len": 28,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D19"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKEISALESENASLQWEISALES",
+        "B": "KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "EVASLESEISALASENASLEWEISALAS",
+        "D": "KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKEISALESENASLQWEISALES",
+        "B": "-KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "-EVASLESEISALASENASLEWEISALAS",
+        "D": "-KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.660680501663589,
+          8.193502536058315,
+          1.284582366835691,
+          8.252478664769038
+        ],
+        [
+          8.193502536058315,
+          1.2704270397813646,
+          7.536589666152258,
+          2.407896410492212
+        ],
+        [
+          1.284582366835691,
+          7.536589666152258,
+          1.5525628834523824,
+          7.409613128191228
+        ],
+        [
+          8.252478664769038,
+          2.407896410492212,
+          7.409613128191228,
+          2.7300250395308368
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 8.193502536058315,
+          "Kd_nM": 6.4046804155165304,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.536589666152258,
+          "Kd_nM": 29.067677547466456,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.409613128191228,
+          "Kd_nM": 38.93918628618553,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.252478664769038,
+          "Kd_nM": 5.591409953597105,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27861785888672,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.407896410492212,
+        "worst_homo_pKd": 2.7300250395308368,
+        "min_slip_margin": 27.947643280029297,
+        "pKd_A:B": 8.193502536058315,
+        "pKd_B:C": 7.536589666152258,
+        "pKd_C:D": 7.409613128191228,
+        "pKd_A:D": 8.252478664769038,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D20"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASENASLQWEISALES",
+        "B": "KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "EVASLESEISALASENASLEWEISALAS",
+        "D": "KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASENASLQWEISALES",
+        "B": "-KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "-EVASLESEISALASENASLEWEISALAS",
+        "D": "-KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5123837681782444,
+          7.842432726214561,
+          1.824101921711053,
+          7.931238664264717
+        ],
+        [
+          7.842432726214561,
+          1.2704270397813646,
+          7.536589666152258,
+          2.407896410492212
+        ],
+        [
+          1.824101921711053,
+          7.536589666152258,
+          1.5525628834523824,
+          7.409613128191228
+        ],
+        [
+          7.931238664264717,
+          2.407896410492212,
+          7.409613128191228,
+          2.7300250395308368
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.842432726214561,
+          "Kd_nM": 14.373656892544554,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.536589666152258,
+          "Kd_nM": 29.067677547466456,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.409613128191228,
+          "Kd_nM": 38.93918628618553,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.931238664264717,
+          "Kd_nM": 11.71551368674769,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.407896410492212,
+        "worst_homo_pKd": 2.7300250395308368,
+        "min_slip_margin": 27.947643280029297,
+        "pKd_A:B": 7.842432726214561,
+        "pKd_B:C": 7.536589666152258,
+        "pKd_C:D": 7.409613128191228,
+        "pKd_A:D": 7.931238664264717,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D21"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASENASLQWEISALES",
+        "B": "KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "EVASLEKEISALESENASLEWEISALAS",
+        "D": "KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASENASLQWEISALES",
+        "B": "-KVASLKSQISALKSQNASLKWQISALKS",
+        "C": "-EVASLEKEISALESENASLEWEISALAS",
+        "D": "-KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5123837681782444,
+          7.842432726214561,
+          1.284582366835691,
+          7.931238664264717
+        ],
+        [
+          7.842432726214561,
+          1.2704270397813646,
+          7.887658583636034,
+          2.407896410492212
+        ],
+        [
+          1.284582366835691,
+          7.887658583636034,
+          0.47352131172942347,
+          7.730852451443268
+        ],
+        [
+          7.931238664264717,
+          2.407896410492212,
+          7.730852451443268,
+          2.7300250395308368
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.842432726214561,
+          "Kd_nM": 14.373656892544554,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.559078216552734,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.887658583636034,
+          "Kd_nM": 12.95213660888657,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.730852451443268,
+          "Kd_nM": 18.5843573858092,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.931238664264717,
+          "Kd_nM": 11.71551368674769,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.407896410492212,
+        "worst_homo_pKd": 2.7300250395308368,
+        "min_slip_margin": 27.947643280029297,
+        "pKd_A:B": 7.842432726214561,
+        "pKd_B:C": 7.887658583636034,
+        "pKd_C:D": 7.730852451443268,
+        "pKd_A:D": 7.931238664264717,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D22"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALASENASLQWEISALES",
+        "B": "QVASLKSQISALKSQNASLKWQISALKS",
+        "C": "EVASLEKEISALESENASLEWEISALAS",
+        "D": "KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALASENASLQWEISALES",
+        "B": "-QVASLKSQISALKSQNASLKWQISALKS",
+        "C": "-EVASLEKEISALESENASLEWEISALAS",
+        "D": "-KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5123837681782444,
+          7.248003041734255,
+          1.284582366835691,
+          7.931238664264717
+        ],
+        [
+          7.248003041734255,
+          1.9471857785626527,
+          7.203251242943255,
+          2.7060250747031516
+        ],
+        [
+          1.284582366835691,
+          7.203251242943255,
+          0.47352131172942347,
+          7.730852451443268
+        ],
+        [
+          7.931238664264717,
+          2.7060250747031516,
+          7.730852451443268,
+          2.7300250395308368
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.248003041734255,
+          "Kd_nM": 56.49330180912248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.203251242943255,
+          "Kd_nM": 62.6251468213166,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.730852451443268,
+          "Kd_nM": 18.5843573858092,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.931238664264717,
+          "Kd_nM": 11.71551368674769,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.7060250747031516,
+        "worst_homo_pKd": 2.7300250395308368,
+        "min_slip_margin": 24.78078842163086,
+        "pKd_A:B": 7.248003041734255,
+        "pKd_B:C": 7.203251242943255,
+        "pKd_C:D": 7.730852451443268,
+        "pKd_A:D": 7.931238664264717,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D23"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALQSENASLQWEISALES",
+        "B": "QVASLKSQISALKSQNASLKWQISALKS",
+        "C": "EVASLEKEISALESENASLEWEISALAS",
+        "D": "KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALQSENASLQWEISALES",
+        "B": "-QVASLKSQISALKSQNASLKWQISALKS",
+        "C": "-EVASLEKEISALESENASLEWEISALAS",
+        "D": "-KIASLKSQISALKSKNASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.787523240306366,
+          7.855616042141127,
+          1.4221512105397744,
+          8.273074738309875
+        ],
+        [
+          7.855616042141127,
+          1.9471857785626527,
+          7.203251242943255,
+          2.7060250747031516
+        ],
+        [
+          1.4221512105397744,
+          7.203251242943255,
+          0.47352131172942347,
+          7.730852451443268
+        ],
+        [
+          8.273074738309875,
+          2.7060250747031516,
+          7.730852451443268,
+          2.7300250395308368
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.855616042141127,
+          "Kd_nM": 13.943890314273114,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.203251242943255,
+          "Kd_nM": 62.6251468213166,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.730852451443268,
+          "Kd_nM": 18.5843573858092,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.273074738309875,
+          "Kd_nM": 5.332431210794339,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.7060250747031516,
+        "worst_homo_pKd": 2.787523240306366,
+        "min_slip_margin": 24.78078842163086,
+        "pKd_A:B": 7.855616042141127,
+        "pKd_B:C": 7.203251242943255,
+        "pKd_C:D": 7.730852451443268,
+        "pKd_A:D": 8.273074738309875,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D24"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKEISALQSENASLEWEISALES",
+        "B": "KIASLQSKISALKSQNASLKWQISALKS",
+        "C": "EIASLESEISALESENASLQWEISALQS",
+        "D": "KVASLQSKISALKSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKEISALQSENASLEWEISALES",
+        "B": "-KIASLQSKISALKSQNASLKWQISALKS",
+        "C": "-EIASLESEISALESENASLQWEISALQS",
+        "D": "-KVASLQSKISALKSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.3588674101301157,
+          7.987623291771595,
+          2.123009086174749,
+          8.12546322551104
+        ],
+        [
+          7.987623291771595,
+          2.062338862295385,
+          7.997790108675501,
+          1.9904483764448324
+        ],
+        [
+          2.123009086174749,
+          7.997790108675501,
+          1.9462856732312739,
+          8.135628257694993
+        ],
+        [
+          8.12546322551104,
+          1.9904483764448324,
+          8.135628257694993,
+          2.3559222723524167
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.987623291771595,
+          "Kd_nM": 10.289083891368447,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.50033187866211,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:C": {
+          "pKd": 7.997790108675501,
+          "Kd_nM": 10.051014310346295,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 8.135628257694993,
+          "Kd_nM": 7.317651832769754,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.78078842163086,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:D": {
+          "pKd": 8.12546322551104,
+          "Kd_nM": 7.490947864676397,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002498626708984,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.123009086174749,
+        "worst_homo_pKd": 2.3588674101301157,
+        "min_slip_margin": 20.002498626708984,
+        "pKd_A:B": 7.987623291771595,
+        "pKd_B:C": 7.997790108675501,
+        "pKd_C:D": 8.135628257694993,
+        "pKd_A:D": 8.12546322551104,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -6,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 5,
+        "D_eps280": 5500
+      },
+      "design_id": "D25"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESKISALKSANASLAWEISALES",
+        "B": "KVASLKSEISALESKNASLAWQISALKS",
+        "C": "EIASLEEKISALKSANASLKWEISALES",
+        "D": "KIASLKSEISALESANASLKWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESKISALKSANASLAWEISALES",
+        "B": "-KVASLKSEISALESKNASLAWQISALKS",
+        "C": "-EIASLEEKISALKSANASLKWEISALES",
+        "D": "-KIASLKSEISALESANASLKWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.403711084447215,
+          7.376720823667846,
+          2.420908299550552,
+          7.467042213704549
+        ],
+        [
+          7.376720823667846,
+          2.521086666778242,
+          7.08991912292622,
+          2.0922642391757638
+        ],
+        [
+          2.420908299550552,
+          7.08991912292622,
+          2.5801830706712083,
+          7.555932306680307
+        ],
+        [
+          7.467042213704549,
+          2.0922642391757638,
+          7.555932306680307,
+          2.6290808860475847
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.376720823667846,
+          "Kd_nM": 42.00289032552914,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.55862045288086,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.08991912292622,
+          "Kd_nM": 81.298190071524,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593307495117,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.555932306680307,
+          "Kd_nM": 27.801465744033557,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 43.27816390991211,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.467042213704549,
+          "Kd_nM": 34.115974906196726,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 48.056453704833984,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.420908299550552,
+        "worst_homo_pKd": 2.6290808860475847,
+        "min_slip_margin": 32.72593307495117,
+        "pKd_A:B": 7.376720823667846,
+        "pKd_B:C": 7.08991912292622,
+        "pKd_C:D": 7.555932306680307,
+        "pKd_A:D": 7.467042213704549,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D26"
+    },
+    {
+      "seqs": {
+        "A": "QVASLESEISALQSENASLEWEISALQS",
+        "B": "AVASLKSQISALKSKNASLKWKISALKS",
+        "C": "QVASLESEISALESENASLEWKISALES",
+        "D": "KVASLKSQISALQSKNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-QVASLESEISALQSENASLEWEISALQS",
+        "B": "-AVASLKSQISALKSKNASLKWKISALKS",
+        "C": "-QVASLESEISALESENASLEWKISALES",
+        "D": "-KVASLKSQISALQSKNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.5079549854424625,
+          7.3149239509281125,
+          1.5614942049637435,
+          7.644370499040859
+        ],
+        [
+          7.3149239509281125,
+          2.307088528451388,
+          7.019323345063506,
+          2.2290245618082904
+        ],
+        [
+          1.5614942049637435,
+          7.019323345063506,
+          1.9542137082834543,
+          7.348770108283949
+        ],
+        [
+          7.644370499040859,
+          2.2290245618082904,
+          7.348770108283949,
+          2.462099748652629
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.3149239509281125,
+          "Kd_nM": 48.425715816917766,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.019323345063506,
+          "Kd_nM": 95.64816772815041,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.114952087402344,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.348770108283949,
+          "Kd_nM": 44.795036181922036,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.644370499040859,
+          "Kd_nM": 22.679292432956764,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.2290245618082904,
+        "worst_homo_pKd": 2.5079549854424625,
+        "min_slip_margin": 24.114952087402344,
+        "pKd_A:B": 7.3149239509281125,
+        "pKd_B:C": 7.019323345063506,
+        "pKd_C:D": 7.348770108283949,
+        "pKd_A:D": 7.644370499040859,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D27"
+    },
+    {
+      "seqs": {
+        "A": "EVASLESEISALQSENASLEWEISALQS",
+        "B": "AVASLKSQISALKSKNASLKWKISALKS",
+        "C": "QVASLESEISALESENASLEWKISALES",
+        "D": "KVASLKSQISALQSKNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-EVASLESEISALQSENASLEWEISALQS",
+        "B": "-AVASLKSQISALKSKNASLKWKISALKS",
+        "C": "-QVASLESEISALESENASLEWKISALES",
+        "D": "-KVASLKSQISALQSKNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6622370888195563,
+          7.899550401280678,
+          1.1464895622819888,
+          8.22899716450112
+        ],
+        [
+          7.899550401280678,
+          2.307088528451388,
+          7.019323345063506,
+          2.2290245618082904
+        ],
+        [
+          1.1464895622819888,
+          7.019323345063506,
+          1.9542137082834543,
+          7.348770108283949
+        ],
+        [
+          8.22899716450112,
+          2.2290245618082904,
+          7.348770108283949,
+          2.462099748652629
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.899550401280678,
+          "Kd_nM": 12.602293757083748,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.019323345063506,
+          "Kd_nM": 95.64816772815041,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.114952087402344,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.348770108283949,
+          "Kd_nM": 44.795036181922036,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94764518737793,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.22899716450112,
+          "Kd_nM": 5.902049335939686,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.2290245618082904,
+        "worst_homo_pKd": 2.462099748652629,
+        "min_slip_margin": 24.114952087402344,
+        "pKd_A:B": 7.899550401280678,
+        "pKd_B:C": 7.019323345063506,
+        "pKd_C:D": 7.348770108283949,
+        "pKd_A:D": 8.22899716450112,
+        "A_len": 28,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 6,
+        "D_eps280": 5500
+      },
+      "design_id": "D28"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALES",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLESKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALESQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALES",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLESKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALESQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6732992476031558,
+          7.68777807136777,
+          1.1864012742131314,
+          7.312716652376941
+        ],
+        [
+          7.68777807136777,
+          2.3010066772808067,
+          7.080590146672613,
+          2.079424322356382
+        ],
+        [
+          1.1864012742131314,
+          7.080590146672613,
+          1.336356502266658,
+          7.211658081573071
+        ],
+        [
+          7.312716652376941,
+          2.079424322356382,
+          7.211658081573071,
+          1.5442740551930303
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.68777807136777,
+          "Kd_nM": 20.522106101650362,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.921274185180664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.080590146672613,
+          "Kd_nM": 83.06342857284426,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.211658081573071,
+          "Kd_nM": 61.42454079695319,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.64808464050293,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.312716652376941,
+          "Kd_nM": 48.67246568701994,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.64808464050293,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.07942521471636,
+        "worst_homo_pKd": 2.3010066772808067,
+        "min_slip_margin": 28.648082733154297,
+        "pKd_A:B": 7.68777807136777,
+        "pKd_B:C": 7.080590146672613,
+        "pKd_C:D": 7.211658081573071,
+        "pKd_A:D": 7.312716652376941,
+        "A_len": 28,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D29"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALES",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLESKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALASQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALES",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLESKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALASQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6732992476031558,
+          7.68777807136777,
+          1.1864012742131314,
+          7.073221059493408
+        ],
+        [
+          7.68777807136777,
+          2.3010066772808067,
+          7.080590146672613,
+          2.194027269753855
+        ],
+        [
+          1.1864012742131314,
+          7.080590146672613,
+          1.336356502266658,
+          7.003580227019871
+        ],
+        [
+          7.073221059493408,
+          2.194027269753855,
+          7.003580227019871,
+          2.263457812093563
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.68777807136777,
+          "Kd_nM": 20.522106101650362,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.921274185180664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.080590146672613,
+          "Kd_nM": 83.06342857284426,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.003580227019871,
+          "Kd_nM": 99.17901093849261,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.869792938232422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.073221059493408,
+          "Kd_nM": 84.48487007000399,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.194027269753855,
+        "worst_homo_pKd": 2.3010066772808067,
+        "min_slip_margin": 23.869792938232422,
+        "pKd_A:B": 7.68777807136777,
+        "pKd_B:C": 7.080590146672613,
+        "pKd_C:D": 7.003580227019871,
+        "pKd_A:D": 7.073221059493408,
+        "A_len": 28,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D30"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLESKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALASQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLESKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALASQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.1899449407767886,
+          7.19576483683257,
+          1.5790417122225735,
+          7.0369386537883045
+        ],
+        [
+          7.19576483683257,
+          2.3010066772808067,
+          7.080590146672613,
+          2.194027269753855
+        ],
+        [
+          1.5790417122225735,
+          7.080590146672613,
+          1.336356502266658,
+          7.003580227019871
+        ],
+        [
+          7.0369386537883045,
+          2.194027269753855,
+          7.003580227019871,
+          2.263457812093563
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.19576483683257,
+          "Kd_nM": 63.714042835907634,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.080590146672613,
+          "Kd_nM": 83.06342857284426,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.003580227019871,
+          "Kd_nM": 99.17901093849261,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.869792938232422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.0369386537883045,
+          "Kd_nM": 91.84623245996148,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.194027269753855,
+        "worst_homo_pKd": 2.3010066772808067,
+        "min_slip_margin": 23.869792938232422,
+        "pKd_A:B": 7.19576483683257,
+        "pKd_B:C": 7.080590146672613,
+        "pKd_C:D": 7.003580227019871,
+        "pKd_A:D": 7.0369386537883045,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D31"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLESKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLESKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.1899449407767886,
+          7.19576483683257,
+          1.5790417122225735,
+          7.196940428552435
+        ],
+        [
+          7.19576483683257,
+          2.3010066772808067,
+          7.080590146672613,
+          2.27758848777105
+        ],
+        [
+          1.5790417122225735,
+          7.080590146672613,
+          1.336356502266658,
+          7.163581109424023
+        ],
+        [
+          7.196940428552435,
+          2.27758848777105,
+          7.163581109424023,
+          2.4403118639017585
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.19576483683257,
+          "Kd_nM": 63.714042835907634,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.080590146672613,
+          "Kd_nM": 83.06342857284426,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.648082733154297,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.163581109424023,
+          "Kd_nM": 68.6149720195848,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.869792938232422,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.196940428552435,
+          "Kd_nM": 63.54180851100372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.27758848777105,
+        "worst_homo_pKd": 2.4403118639017585,
+        "min_slip_margin": 23.869792938232422,
+        "pKd_A:B": 7.19576483683257,
+        "pKd_B:C": 7.080590146672613,
+        "pKd_C:D": 7.163581109424023,
+        "pKd_A:D": 7.196940428552435,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -5,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D32"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLQSKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLQSKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.1899449407767886,
+          7.19576483683257,
+          2.019097367984532,
+          7.196940428552435
+        ],
+        [
+          7.19576483683257,
+          2.3010066772808067,
+          7.038764489720872,
+          2.27758848777105
+        ],
+        [
+          2.019097367984532,
+          7.038764489720872,
+          1.9877304739239783,
+          7.137467713636311
+        ],
+        [
+          7.196940428552435,
+          2.27758848777105,
+          7.137467713636311,
+          2.4403118639017585
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.19576483683257,
+          "Kd_nM": 63.714042835907634,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.038764489720872,
+          "Kd_nM": 91.46090834767541,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.137467713636311,
+          "Kd_nM": 72.86723435317222,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.196940428552435,
+          "Kd_nM": 63.54180851100372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.27758848777105,
+        "worst_homo_pKd": 2.4403118639017585,
+        "min_slip_margin": 23.364694595336914,
+        "pKd_A:B": 7.19576483683257,
+        "pKd_B:C": 7.038764489720872,
+        "pKd_C:D": 7.137467713636311,
+        "pKd_A:D": 7.196940428552435,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D33"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALES",
+        "B": "KIASLKSENSALASANASLKWKISALKS",
+        "C": "EIASLQSKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALES",
+        "B": "-KIASLKSENSALASANASLKWKISALKS",
+        "C": "-EIASLQSKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6732992476031558,
+          7.68777807136777,
+          1.61171829926701,
+          7.23322261914984
+        ],
+        [
+          7.68777807136777,
+          2.3010066772808067,
+          7.038764489720872,
+          2.27758848777105
+        ],
+        [
+          1.61171829926701,
+          7.038764489720872,
+          1.9877304739239783,
+          7.137467713636311
+        ],
+        [
+          7.23322261914984,
+          2.27758848777105,
+          7.137467713636311,
+          2.4403118639017585
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.68777807136777,
+          "Kd_nM": 20.522106101650362,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.921274185180664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.038764489720872,
+          "Kd_nM": 91.46090834767541,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.137467713636311,
+          "Kd_nM": 72.86723435317222,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.23322261914984,
+          "Kd_nM": 58.44903978348796,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.27758848777105,
+        "worst_homo_pKd": 2.4403118639017585,
+        "min_slip_margin": 23.364694595336914,
+        "pKd_A:B": 7.68777807136777,
+        "pKd_B:C": 7.038764489720872,
+        "pKd_C:D": 7.137467713636311,
+        "pKd_A:D": 7.23322261914984,
+        "A_len": 28,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D34"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALES",
+        "B": "KIASLKSENSALESANASLKWKISALKS",
+        "C": "EIASLQSKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALES",
+        "B": "-KIASLKSENSALESANASLKWKISALKS",
+        "C": "-EIASLQSKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.6732992476031558,
+          7.927274556099976,
+          1.61171829926701,
+          7.23322261914984
+        ],
+        [
+          7.927274556099976,
+          2.212729970817435,
+          7.262551605964177,
+          2.3844414673311656
+        ],
+        [
+          1.61171829926701,
+          7.262551605964177,
+          1.9877304739239783,
+          7.137467713636311
+        ],
+        [
+          7.23322261914984,
+          2.3844414673311656,
+          7.137467713636311,
+          2.4403118639017585
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.927274556099976,
+          "Kd_nM": 11.822938864827723,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.42637252807617,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.262551605964177,
+          "Kd_nM": 54.63216281969411,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.921274185180664,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.137467713636311,
+          "Kd_nM": 72.86723435317222,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.23322261914984,
+          "Kd_nM": 58.44903978348796,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142980575561523,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.3844414673311656,
+        "worst_homo_pKd": 2.4403118639017585,
+        "min_slip_margin": 23.364694595336914,
+        "pKd_A:B": 7.927274556099976,
+        "pKd_B:C": 7.262551605964177,
+        "pKd_C:D": 7.137467713636311,
+        "pKd_A:D": 7.23322261914984,
+        "A_len": 28,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D35"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "KIASLKSENSALESANASLKWKISALKS",
+        "C": "EIASLQSKNSALASENASLEWEISALES",
+        "D": "KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQSKNSALKSENASLEWEISALQS",
+        "B": "-KIASLKSENSALESANASLKWKISALKS",
+        "C": "-EIASLQSKNSALASENASLEWEISALES",
+        "D": "-KIASLKSENSALQSQNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.1899449407767886,
+          7.450970798362579,
+          2.019097367984532,
+          7.196940428552435
+        ],
+        [
+          7.450970798362579,
+          2.212729970817435,
+          7.262551605964177,
+          2.3844414673311656
+        ],
+        [
+          2.019097367984532,
+          7.262551605964177,
+          1.9877304739239783,
+          7.137467713636311
+        ],
+        [
+          7.196940428552435,
+          2.3844414673311656,
+          7.137467713636311,
+          2.4403118639017585
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.450970798362579,
+          "Kd_nM": 35.4021144401177,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.64808464050293,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.262551605964177,
+          "Kd_nM": 54.63216281969411,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.921274185180664,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.137467713636311,
+          "Kd_nM": 72.86723435317222,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.196940428552435,
+          "Kd_nM": 63.54180851100372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142982482910156,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.3844414673311656,
+        "worst_homo_pKd": 2.4403118639017585,
+        "min_slip_margin": 23.364694595336914,
+        "pKd_A:B": 7.450970798362579,
+        "pKd_B:C": 7.262551605964177,
+        "pKd_C:D": 7.137467713636311,
+        "pKd_A:D": 7.196940428552435,
+        "A_len": 28,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D36"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKKISALKKQNASLKWEISALAS",
+        "B": "AIASLKEEISALESENASLQWKISALQS",
+        "C": "EIASLQKKISALAKQNASLKWQISALES",
+        "D": "KVASLKSEISALESENASLEWKISALES"
+      },
+      "pads": {
+        "A": "-EIASLEKKISALKKQNASLKWEISALAS",
+        "B": "-AIASLKEEISALESENASLQWKISALQS",
+        "C": "-EIASLQKKISALAKQNASLKWQISALES",
+        "D": "-KVASLKSEISALESENASLEWKISALES"
+      },
+      "pkd_matrix": [
+        [
+          2.7992159005745636,
+          7.715013941674641,
+          2.399087156464552,
+          7.1873583544450685
+        ],
+        [
+          7.715013941674641,
+          2.5001330262887755,
+          7.466958294730164,
+          2.1224778516281217
+        ],
+        [
+          2.399087156464552,
+          7.466958294730164,
+          2.4764370161842644,
+          7.280431638861243
+        ],
+        [
+          7.1873583544450685,
+          2.1224778516281217,
+          7.280431638861243,
+          2.387332532749432
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.715013941674641,
+          "Kd_nM": 19.274630369871364,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.22376346588135,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.466958294730164,
+          "Kd_nM": 34.12256779274912,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.280431638861243,
+          "Kd_nM": 52.428612099686916,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.1873583544450685,
+          "Kd_nM": 64.9593462550453,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.248345247206932,
+        "worst_homo_pKd": 2.7992159005745636,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 7.715013941674641,
+        "pKd_B:C": 7.466958294730164,
+        "pKd_C:D": 7.280431638861243,
+        "pKd_A:D": 7.1873583544450685,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -2,
+        "D_eps280": 5500
+      },
+      "design_id": "D37"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALESANASLKWEISALES",
+        "B": "KIASLKSQISALESQNASLAWKISALKS",
+        "C": "EVASLEKKISALQKKNASLKWQISALES",
+        "D": "QVASLKSQISALKSENASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALESANASLKWEISALES",
+        "B": "-KIASLKSQISALESQNASLAWKISALKS",
+        "C": "-EVASLEKKISALQKKNASLKWQISALES",
+        "D": "-QVASLKSQISALKSENASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.5294364818701558,
+          7.586589021658013,
+          2.122807745674052,
+          8.050496311392147
+        ],
+        [
+          7.586589021658013,
+          2.0917712590251023,
+          7.0825309575779185,
+          2.0265080100162463
+        ],
+        [
+          2.122807745674052,
+          7.0825309575779185,
+          1.85046530910423,
+          7.661531003317928
+        ],
+        [
+          8.050496311392147,
+          2.0265080100162463,
+          7.661531003317928,
+          2.6605176053494715
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.586589021658013,
+          "Kd_nM": 25.906633329037618,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.45820617675781,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.0825309575779185,
+          "Kd_nM": 82.69305608244869,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.9476375579834,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.661531003317928,
+          "Kd_nM": 21.80062761794979,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.050496311392147,
+          "Kd_nM": 8.902329990238169,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.72593116760254,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.32372170232608,
+        "worst_homo_pKd": 2.6605176053494715,
+        "min_slip_margin": 27.9476375579834,
+        "pKd_A:B": 7.586589021658013,
+        "pKd_B:C": 7.0825309575779185,
+        "pKd_C:D": 7.661531003317928,
+        "pKd_A:D": 8.050496311392147,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500
+      },
+      "design_id": "D38"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALESANASLKWEISALES",
+        "B": "KIASLKSQISALESQNASLAWKISALKS",
+        "C": "EVASLEKKISALQKKNASLKWQISALES",
+        "D": "QVASLKSQISALKSQNASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALESANASLKWEISALES",
+        "B": "-KIASLKSQISALESQNASLAWKISALKS",
+        "C": "-EVASLEKKISALQKKNASLKWQISALES",
+        "D": "-QVASLKSQISALKSQNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.5294364818701558,
+          7.586589021658013,
+          2.122807745674052,
+          7.7452501172276875
+        ],
+        [
+          7.586589021658013,
+          2.0917712590251023,
+          7.0825309575779185,
+          1.6153255454429125
+        ],
+        [
+          2.122807745674052,
+          7.0825309575779185,
+          1.85046530910423,
+          7.055340837493949
+        ],
+        [
+          7.7452501172276875,
+          1.6153255454429125,
+          7.055340837493949,
+          2.232848200942297
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.586589021658013,
+          "Kd_nM": 25.906633329037618,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.45820617675781,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.0825309575779185,
+          "Kd_nM": 82.69305608244869,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.9476375579834,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.055340837493949,
+          "Kd_nM": 88.03576906499775,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 7.7452501172276875,
+          "Kd_nM": 17.978352144941162,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.32372170232608,
+        "worst_homo_pKd": 2.232848200942297,
+        "min_slip_margin": 27.9476375579834,
+        "pKd_A:B": 7.586589021658013,
+        "pKd_B:C": 7.0825309575779185,
+        "pKd_C:D": 7.055340837493949,
+        "pKd_A:D": 7.7452501172276875,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D39"
+    },
+    {
+      "seqs": {
+        "A": "EIASLESEISALESANASLKWEISALES",
+        "B": "KIASLKSQISALESQNASLAWKISALKS",
+        "C": "EVASLEKKISALQKKNASLKWQISALES",
+        "D": "QIASLKSQISALKSQNASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLESEISALESANASLKWEISALES",
+        "B": "-KIASLKSQISALESQNASLAWKISALKS",
+        "C": "-EVASLEKKISALQKKNASLKWQISALES",
+        "D": "-QIASLKSQISALKSQNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          1.5294364818701558,
+          7.586589021658013,
+          2.122807745674052,
+          8.370518957422991
+        ],
+        [
+          7.586589021658013,
+          2.0917712590251023,
+          7.0825309575779185,
+          2.255040747676417
+        ],
+        [
+          2.122807745674052,
+          7.0825309575779185,
+          1.85046530910423,
+          7.263866950480562
+        ],
+        [
+          8.370518957422991,
+          2.255040747676417,
+          7.263866950480562,
+          2.4887495635389767
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 7.586589021658013,
+          "Kd_nM": 25.906633329037618,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.45820617675781,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.0825309575779185,
+          "Kd_nM": 82.69305608244869,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.9476375579834,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.263866950480562,
+          "Kd_nM": 54.466949105386036,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "A:D": {
+          "pKd": 8.370518957422991,
+          "Kd_nM": 4.26070084757685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3499999999999999,
+        "graph_loss": -1.3499999999999999,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 2.32372170232608,
+        "worst_homo_pKd": 2.4887495635389767,
+        "min_slip_margin": 27.9476375579834,
+        "pKd_A:B": 7.586589021658013,
+        "pKd_B:C": 7.0825309575779185,
+        "pKd_C:D": 7.263866950480562,
+        "pKd_A:D": 8.370518957422991,
+        "A_len": 28,
+        "A_chg": -5,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 3,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500
+      },
+      "design_id": "D40"
+    }
+  ]
+}

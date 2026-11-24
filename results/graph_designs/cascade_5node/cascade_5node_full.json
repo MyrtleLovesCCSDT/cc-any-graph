@@ -1,0 +1,4761 @@
+{
+  "config": {
+    "name": "cascade_5node",
+    "mode": "graph",
+    "nodes": [
+      {
+        "name": "A",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ],
+        "allow_5mer_if_enabled": true
+      },
+      {
+        "name": "B",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ],
+        "allow_5mer_if_enabled": true
+      },
+      {
+        "name": "C",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "D",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "E",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "u": "A",
+        "v": "B",
+        "pkd_min": 9.2,
+        "pkd_max": 12.2,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "B",
+        "v": "C",
+        "pkd_min": 7.8,
+        "pkd_max": 9.0,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "C",
+        "v": "D",
+        "pkd_min": 6.6,
+        "pkd_max": 7.6,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "D",
+        "v": "E",
+        "pkd_min": 5.5,
+        "pkd_max": 6.4,
+        "require_par": true,
+        "require_shift0": false
+      }
+    ],
+    "hierarchies": [
+      {
+        "strong": [
+          "A",
+          "B"
+        ],
+        "weak": [
+          "B",
+          "C"
+        ],
+        "min_dpkd": 0.9,
+        "min_agree": 3
+      },
+      {
+        "strong": [
+          "B",
+          "C"
+        ],
+        "weak": [
+          "C",
+          "D"
+        ],
+        "min_dpkd": 0.9,
+        "min_agree": 3
+      },
+      {
+        "strong": [
+          "C",
+          "D"
+        ],
+        "weak": [
+          "D",
+          "E"
+        ],
+        "min_dpkd": 0.9,
+        "min_agree": 3
+      }
+    ],
+    "off_target_max_pkd": 4.4,
+    "homodimer_max_pkd": 4.3
+  },
+  "designs": [
+    {
+      "seqs": {
+        "A": "KIASLKKENSALESEIASLQWKNSALKSQIASLAS",
+        "B": "KIASLASKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-KIASLKKENSALESEIASLQWKNSALKSQIASLAS",
+        "B": "-KIASLASKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.61454382551212,
+          9.435017392883625,
+          2.570654319788198,
+          3.2023499317295157,
+          3.1390998716879794
+        ],
+        [
+          9.435017392883625,
+          3.8071960628999886,
+          7.8032426176739405,
+          3.482055048898225,
+          2.1929100221513584
+        ],
+        [
+          2.570654319788198,
+          7.8032426176739405,
+          2.380764629785596,
+          6.737935415068519,
+          2.922583547513125
+        ],
+        [
+          3.2023499317295157,
+          3.482055048898225,
+          6.737935415068519,
+          3.1155986461179737,
+          5.5821089953238365
+        ],
+        [
+          3.1390998716879794,
+          2.1929100221513584,
+          2.922583547513125,
+          5.5821089953238365,
+          3.1721364181107763
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.435017392883625,
+          "Kd_nM": 0.36726759165267997,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.12432670593262,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.8032426176739405,
+          "Kd_nM": 15.731038079042573,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.5821089953238365,
+          "Kd_nM": 2617.526002638744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.9266654971295445,
+        "graph_loss": -1.9266654971295445,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.482055048898225,
+        "worst_homo_pKd": 3.8071960628999886,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.435017392883625,
+        "pKd_B:C": 7.8032426176739405,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.5821089953238365,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D01"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKSENSALESEIASLQWKNSALKSQIASLKS",
+        "B": "KIASLASKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-KIASLKSENSALESEIASLQWKNSALKSQIASLKS",
+        "B": "-KIASLASKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.6214346223420395,
+          9.61172542118723,
+          2.557142329760853,
+          3.232337020319216,
+          3.1255880967683316
+        ],
+        [
+          9.61172542118723,
+          3.8071960628999886,
+          7.8032426176739405,
+          3.482055048898225,
+          2.1929100221513584
+        ],
+        [
+          2.557142329760853,
+          7.8032426176739405,
+          2.380764629785596,
+          6.737935415068519,
+          2.922583547513125
+        ],
+        [
+          3.232337020319216,
+          3.482055048898225,
+          6.737935415068519,
+          3.1155986461179737,
+          5.5821089953238365
+        ],
+        [
+          3.1255880967683316,
+          2.1929100221513584,
+          2.922583547513125,
+          5.5821089953238365,
+          3.1721364181107763
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.61172542118723,
+          "Kd_nM": 0.24449758783259826,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.06992530822754,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.8032426176739405,
+          "Kd_nM": 15.731038079042573,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.5821089953238365,
+          "Kd_nM": 2617.526002638744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.9231605805545484,
+        "graph_loss": -1.9231605805545484,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.482055048898225,
+        "worst_homo_pKd": 3.8071960628999886,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.61172542118723,
+        "pKd_B:C": 7.8032426176739405,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.5821089953238365,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D02"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQEKNSALQSANASLQWEISALQS"
+      },
+      "pads": {
+        "A": "-KIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQEKNSALQSANASLQWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          3.879434681251825,
+          9.255155925913158,
+          2.8308198118960224,
+          3.011240776492895,
+          2.8640041341960396
+        ],
+        [
+          9.255155925913158,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.3517449060962665
+        ],
+        [
+          2.8308198118960224,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          3.2662385786720813
+        ],
+        [
+          3.011240776492895,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.728053027145021
+        ],
+        [
+          2.8640041341960396,
+          2.3517449060962665,
+          3.2662385786720813,
+          5.728053027145021,
+          2.7448758222993206
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.255155925913158,
+          "Kd_nM": 0.5557047052982699,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.291635513305664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.728053027145021,
+          "Kd_nM": 1870.4537449300371,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.8616614949318118,
+        "graph_loss": -1.8616614949318118,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 3.9024476700372217,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.255155925913158,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.728053027145021,
+        "A_len": 35,
+        "A_chg": 3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D03"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKKENSALESEIASLQWKNSALKSQIASLAS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-KIASLKKENSALESEIASLQWKNSALKSQIASLAS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.61454382551212,
+          9.862380184770885,
+          2.570654319788198,
+          3.2023499317295157,
+          3.1390998716879794
+        ],
+        [
+          9.862380184770885,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.3760122109773096
+        ],
+        [
+          2.570654319788198,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          2.922583547513125
+        ],
+        [
+          3.2023499317295157,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.5821089953238365
+        ],
+        [
+          3.1390998716879794,
+          2.3760122109773096,
+          2.922583547513125,
+          5.5821089953238365,
+          3.1721364181107763
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.862380184770885,
+          "Kd_nM": 0.1372839654306503,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.12432670593262,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.5821089953238365,
+          "Kd_nM": 2617.526002638744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.8325915612113042,
+        "graph_loss": -1.8325915612113042,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 3.9024476700372217,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.862380184770885,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.5821089953238365,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D04"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKKENSALEKEIASLQWKNSALKSQIASLES",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-KIASLKKENSALEKEIASLQWKNSALKSQIASLES",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.655352385292151,
+          10.508115521967195,
+          2.5885082586924346,
+          3.2363831961118503,
+          3.152612076823022
+        ],
+        [
+          10.508115521967195,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.3760122109773096
+        ],
+        [
+          2.5885082586924346,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          2.922583547513125
+        ],
+        [
+          3.2363831961118503,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.5821089953238365
+        ],
+        [
+          3.152612076823022,
+          2.3760122109773096,
+          2.922583547513125,
+          5.5821089953238365,
+          3.1721364181107763
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 10.508115521967195,
+          "Kd_nM": 0.03103733887709736,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.90262031555176,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.5821089953238365,
+          "Kd_nM": 2617.526002638744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.8193384568166928,
+        "graph_loss": -1.8193384568166928,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 3.9024476700372217,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 10.508115521967195,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.5821089953238365,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D05"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQEKNSALQSANASLQWEISALQS"
+      },
+      "pads": {
+        "A": "-QIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQEKNSALQSANASLQWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          4.05625979781329,
+          9.257677662282475,
+          2.283519449657798,
+          3.2012491596360935,
+          2.772433600630338
+        ],
+        [
+          9.257677662282475,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.3517449060962665
+        ],
+        [
+          2.283519449657798,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          3.2662385786720813
+        ],
+        [
+          3.2012491596360935,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.728053027145021
+        ],
+        [
+          2.772433600630338,
+          2.3517449060962665,
+          3.2662385786720813,
+          5.728053027145021,
+          2.7448758222993206
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.257677662282475,
+          "Kd_nM": 0.5524873487904755,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.291635513305664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.728053027145021,
+          "Kd_nM": 1870.4537449300371,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.8066364699761122,
+        "graph_loss": -1.8066364699761122,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 4.05625979781329,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.257677662282475,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.728053027145021,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D06"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKKENSALQSEIASLQWKNSALKSQIASLQS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLQWEISALES"
+      },
+      "pads": {
+        "A": "-QIASLKKENSALQSEIASLQWKNSALKSQIASLQS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLQWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.7909908396783063,
+          9.288028379255486,
+          2.3108392027967453,
+          3.214761364771136,
+          3.167945307205419
+        ],
+        [
+          9.288028379255486,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.7600380093912324
+        ],
+        [
+          2.3108392027967453,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          3.674531628323902
+        ],
+        [
+          3.214761364771136,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.696325455659973
+        ],
+        [
+          3.167945307205419,
+          2.7600380093912324,
+          3.674531628323902,
+          5.696325455659973,
+          2.222279933804945
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.288028379255486,
+          "Kd_nM": 0.5151949777307546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.346036911010742,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.696325455659973,
+          "Kd_nM": 2012.2157516503664,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.7429642293975174,
+        "graph_loss": -1.7429642293975174,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 3.9024476700372217,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.288028379255486,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.696325455659973,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D07"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.25109511550135,
+          2.605498831677843,
+          4.385063112662635,
+          1.741887839335849
+        ],
+        [
+          9.25109511550135,
+          3.7475179591341194,
+          7.9512571542714126,
+          4.143798578063468,
+          2.6396622788139785
+        ],
+        [
+          2.605498831677843,
+          7.9512571542714126,
+          3.1013744385308897,
+          7.025652784805337,
+          1.6084504059064155
+        ],
+        [
+          4.385063112662635,
+          4.143798578063468,
+          7.025652784805337,
+          2.96025339060421,
+          5.694843851090184
+        ],
+        [
+          1.741887839335849,
+          2.6396622788139785,
+          1.6084504059064155,
+          5.694843851090184,
+          0.8467434465207848
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.25109511550135,
+          "Kd_nM": 0.5609251135083846,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.9512571542714126,
+          "Kd_nM": 11.187752385662495,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.694843851090184,
+          "Kd_nM": 2019.0921900172236,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.720921365947468,
+        "graph_loss": -1.720921365947468,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.7475179591341194,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.25109511550135,
+        "pKd_B:C": 7.9512571542714126,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.694843851090184,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D08"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQSKNSALQSANASLQWEISALES"
+      },
+      "pads": {
+        "A": "-QIASLKSENSALQSEIASLQWKNSALKSQIASLKS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQSKNSALQSANASLQWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.05625979781329,
+          9.257677662282475,
+          2.283519449657798,
+          3.2012491596360935,
+          3.154433102070376
+        ],
+        [
+          9.257677662282475,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          2.7600380093912324
+        ],
+        [
+          2.283519449657798,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          3.674531628323902
+        ],
+        [
+          3.2012491596360935,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.696325455659973
+        ],
+        [
+          3.154433102070376,
+          2.7600380093912324,
+          3.674531628323902,
+          5.696325455659973,
+          2.222279933804945
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.257677662282475,
+          "Kd_nM": 0.5524873487904755,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.291635513305664,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.696325455659973,
+          "Kd_nM": 2012.2157516503664,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.366270065307617,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.7072275472177827,
+        "graph_loss": -1.7072275472177827,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 4.05625979781329,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.257677662282475,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.696325455659973,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D09"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.25109511550135,
+          2.605498831677843,
+          4.385063112662635,
+          1.2602853025563618
+        ],
+        [
+          9.25109511550135,
+          3.7475179591341194,
+          7.9512571542714126,
+          4.143798578063468,
+          3.093429582286287
+        ],
+        [
+          2.605498831677843,
+          7.9512571542714126,
+          3.1013744385308897,
+          7.025652784805337,
+          1.055919965656769
+        ],
+        [
+          4.385063112662635,
+          4.143798578063468,
+          7.025652784805337,
+          2.96025339060421,
+          5.886271457065924
+        ],
+        [
+          1.2602853025563618,
+          3.093429582286287,
+          1.055919965656769,
+          5.886271457065924,
+          0.8225374089410096
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.25109511550135,
+          "Kd_nM": 0.5609251135083846,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.9512571542714126,
+          "Kd_nM": 11.187752385662495,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.886271457065924,
+          "Kd_nM": 1299.3571570761605,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.6919069286045247,
+        "graph_loss": -1.6919069286045247,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.7475179591341194,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.25109511550135,
+        "pKd_B:C": 7.9512571542714126,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.886271457065924,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D10"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EIASLEKKISALKKKNASLKWEISALES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "AIASLKEQNSALESQNASLKWEISALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EIASLEKKISALKKKNASLKWEISALES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-AIASLKEQNSALESQNASLKWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.177814187651126,
+          2.605498831677843,
+          4.385063112662635,
+          2.2166617569415568
+        ],
+        [
+          9.177814187651126,
+          2.8988649671131634,
+          8.129327958917,
+          4.181979265476004,
+          3.36519404210698
+        ],
+        [
+          2.605498831677843,
+          8.129327958917,
+          3.1013744385308897,
+          7.025652784805337,
+          1.5738594069461493
+        ],
+        [
+          4.385063112662635,
+          4.181979265476004,
+          7.025652784805337,
+          2.96025339060421,
+          5.769184075604764
+        ],
+        [
+          2.2166617569415568,
+          3.36519404210698,
+          1.5738594069461493,
+          5.769184075604764,
+          1.758006149823479
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.177814187651126,
+          "Kd_nM": 0.6640271128005834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.129327958917,
+          "Kd_nM": 7.424582563352372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.769184075604764,
+          "Kd_nM": 1701.4372018213485,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.479419708251953,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.6248319231420645,
+        "graph_loss": -1.6248319231420645,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.689183414688223,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.177814187651126,
+        "pKd_B:C": 8.129327958917,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.769184075604764,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D11"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSQVASLES",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSQVASLES",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.5209141591845974,
+          10.061788612317363,
+          3.4904361711381533,
+          3.841889918709217,
+          3.6158875673306676
+        ],
+        [
+          10.061788612317363,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          3.4904361711381533,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          3.841889918709217,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          3.6158875673306676,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 10.061788612317363,
+          "Kd_nM": 0.08673839618720708,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205093383789062,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.6240525261492649,
+        "graph_loss": -1.6240525261492649,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.841889918709217,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 10.061788612317363,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D12"
+    },
+    {
+      "seqs": {
+        "A": "EVASLQSKISALKSQNASLKWQISALQSKVASLKS",
+        "B": "QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "KIASLQSKISALQSKNASLKWEISALES",
+        "D": "KIASLQSKISALKSENASLAWKISALKS",
+        "E": "AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLQSKISALKSQNASLKWQISALQSKVASLKS",
+        "B": "-QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "-KIASLQSKISALQSKNASLKWEISALES",
+        "D": "-KIASLQSKISALKSENASLAWKISALKS",
+        "E": "-AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.3019318101810313,
+          10.118952341654937,
+          3.635217553260259,
+          3.701520012590161,
+          3.8062479559710227
+        ],
+        [
+          10.118952341654937,
+          2.966518416748812,
+          7.95986202784047,
+          4.378802518723523,
+          3.731618544040043
+        ],
+        [
+          3.635217553260259,
+          7.95986202784047,
+          3.2273351389929754,
+          6.624833842007386,
+          2.5715767960856954
+        ],
+        [
+          3.701520012590161,
+          4.378802518723523,
+          6.624833842007386,
+          2.793316522780577,
+          5.697930165827877
+        ],
+        [
+          3.8062479559710227,
+          3.731618544040043,
+          2.5715767960856954,
+          5.697930165827877,
+          2.634335574637954
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 10.118952341654937,
+          "Kd_nM": 0.076040971774329,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.98338508605957,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.95986202784047,
+          "Kd_nM": 10.968265945324601,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.34329605102539,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 6.624833842007386,
+          "Kd_nM": 237.22811500245268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547939300537,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.697930165827877,
+          "Kd_nM": 2004.7943706262283,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.509004592895508,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.597621207423826,
+        "graph_loss": -1.597621207423826,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.378802518723523,
+        "worst_homo_pKd": 3.3019318101810313,
+        "min_slip_margin": 32.34329605102539,
+        "pKd_A:B": 10.118952341654937,
+        "pKd_B:C": 7.95986202784047,
+        "pKd_C:D": 6.624833842007386,
+        "pKd_D:E": 5.697930165827877,
+        "A_len": 35,
+        "A_chg": 4,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 4,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D13"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EIASLEKKISALKKKNASLKWEISALES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KIASLKEQVSALESQNASLAWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EIASLEKKISALKKKNASLKWEISALES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KIASLKEQVSALESQNASLAWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.177814187651126,
+          2.605498831677843,
+          4.385063112662635,
+          1.4962174589114294
+        ],
+        [
+          9.177814187651126,
+          2.8988649671131634,
+          8.129327958917,
+          4.181979265476004,
+          3.6536231247209057
+        ],
+        [
+          2.605498831677843,
+          8.129327958917,
+          3.1013744385308897,
+          7.025652784805337,
+          1.3840053431585408
+        ],
+        [
+          4.385063112662635,
+          4.181979265476004,
+          7.025652784805337,
+          2.96025339060421,
+          5.741575787456245
+        ],
+        [
+          1.4962174589114294,
+          3.6536231247209057,
+          1.3840053431585408,
+          5.741575787456245,
+          0.4339210714719277
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.177814187651126,
+          "Kd_nM": 0.6640271128005834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.129327958917,
+          "Kd_nM": 7.424582563352372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.741575787456245,
+          "Kd_nM": 1813.1102477106804,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.790155410766602,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.5815674268959787,
+        "graph_loss": -1.5815674268959787,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.689183414688223,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.177814187651126,
+        "pKd_B:C": 8.129327958917,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.741575787456245,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D14"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLESKISALKSKNASLKWEISALESEVASLES",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.25109511550135,
+          2.7448956555438357,
+          4.385063112662635,
+          1.2602853025563618
+        ],
+        [
+          9.25109511550135,
+          3.7475179591341194,
+          8.159783267258025,
+          4.143798578063468,
+          3.093429582286287
+        ],
+        [
+          2.7448956555438357,
+          8.159783267258025,
+          3.932174470162603,
+          7.234179682330522,
+          1.2797177926612582
+        ],
+        [
+          4.385063112662635,
+          4.143798578063468,
+          7.234179682330522,
+          2.96025339060421,
+          5.886271457065924
+        ],
+        [
+          1.2602853025563618,
+          3.093429582286287,
+          1.2797177926612582,
+          5.886271457065924,
+          0.8225374089410096
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.25109511550135,
+          "Kd_nM": 0.5609251135083846,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.159783267258025,
+          "Kd_nM": 6.921763122710299,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.234179682330522,
+          "Kd_nM": 58.320376321007124,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 29.55908203125,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.886271457065924,
+          "Kd_nM": 1299.3571570761605,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.5672869238597682,
+        "graph_loss": -1.5672869238597682,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.25109511550135,
+        "pKd_B:C": 8.159783267258025,
+        "pKd_C:D": 7.234179682330522,
+        "pKd_D:E": 5.886271457065924,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D15"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKKEISALQSENASLEWKISALKS",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKKEISALQSENASLEWKISALKS",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          2.898954557781572,
+          9.278406636581353,
+          3.236156381975647,
+          4.361335671466508,
+          2.7634607158806457
+        ],
+        [
+          9.278406636581353,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          3.236156381975647,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          4.361335671466508,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          2.7634607158806457,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.278406636581353,
+          "Kd_nM": 0.5267364390563913,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.541804547041937,
+        "graph_loss": -1.541804547041937,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.361335671466508,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.278406636581353,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D16"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKKENSALQSEIASLQWKNSALKSQIASLQS",
+        "B": "KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "EIASLESENSALESEIASLQWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQEKNSALQSKNASLQWEISALES"
+      },
+      "pads": {
+        "A": "-QIASLKKENSALQSEIASLQWKNSALKSQIASLQS",
+        "B": "-KIASLQSKNSALKSKIASLKWENSALESKIASLAS",
+        "C": "-EIASLESENSALESEIASLQWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQEKNSALQSKNASLQWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.7909908396783063,
+          9.288028379255486,
+          2.3108392027967453,
+          3.214761364771136,
+          3.5772834400995555
+        ],
+        [
+          9.288028379255486,
+          3.9024476700372217,
+          7.940814138457957,
+          4.01396301454926,
+          3.50229506410057
+        ],
+        [
+          2.3108392027967453,
+          7.940814138457957,
+          2.380764629785596,
+          6.737935415068519,
+          3.9841985058525173
+        ],
+        [
+          3.214761364771136,
+          4.01396301454926,
+          6.737935415068519,
+          3.1155986461179737,
+          5.759646653696156
+        ],
+        [
+          3.5772834400995555,
+          3.50229506410057,
+          3.9841985058525173,
+          5.759646653696156,
+          2.826342947668997
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.288028379255486,
+          "Kd_nM": 0.5151949777307546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.346036911010742,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.940814138457957,
+          "Kd_nM": 11.460032823895563,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.56340217590332,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.737935415068519,
+          "Kd_nM": 182.83720973468942,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.759646653696156,
+          "Kd_nM": 1739.2152960976175,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.53357696533203,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.5408177760686697,
+        "graph_loss": -1.5408177760686697,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.01396301454926,
+        "worst_homo_pKd": 3.9024476700372217,
+        "min_slip_margin": 27.56340217590332,
+        "pKd_A:B": 9.288028379255486,
+        "pKd_B:C": 7.940814138457957,
+        "pKd_C:D": 6.737935415068519,
+        "pKd_D:E": 5.759646653696156,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D17"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLES",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLES",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.7609870829391054,
+          9.729169795563188,
+          3.74299074133925,
+          4.273184240465339,
+          3.4420345763824924
+        ],
+        [
+          9.729169795563188,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          3.74299074133925,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          4.273184240465339,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          3.4420345763824924,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.729169795563188,
+          "Kd_nM": 0.18656501373578888,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.5115422024347323,
+        "graph_loss": -1.5115422024347323,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.273184240465339,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.729169795563188,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D18"
+    },
+    {
+      "seqs": {
+        "A": "EVASLQSKISALKSQNASLKWQISALESKVASLKS",
+        "B": "QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "KIASLQSKISALQSKNASLKWEISALES",
+        "D": "KIASLQSKISALKSENASLAWKISALKS",
+        "E": "AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLQSKISALKSQNASLKWQISALESKVASLKS",
+        "B": "-QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "-KIASLQSKISALQSKNASLKWEISALES",
+        "D": "-KIASLQSKISALKSENASLAWKISALKS",
+        "E": "-AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.6155610530057123,
+          10.434757494365225,
+          3.516432203211958,
+          4.265432528903507,
+          3.6795960632943947
+        ],
+        [
+          10.434757494365225,
+          2.966518416748812,
+          7.95986202784047,
+          4.378802518723523,
+          3.731618544040043
+        ],
+        [
+          3.516432203211958,
+          7.95986202784047,
+          3.2273351389929754,
+          6.624833842007386,
+          2.5715767960856954
+        ],
+        [
+          4.265432528903507,
+          4.378802518723523,
+          6.624833842007386,
+          2.793316522780577,
+          5.697930165827877
+        ],
+        [
+          3.6795960632943947,
+          3.731618544040043,
+          2.5715767960856954,
+          5.697930165827877,
+          2.634335574637954
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 10.434757494365225,
+          "Kd_nM": 0.036748744448012224,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.98338508605957,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.95986202784047,
+          "Kd_nM": 10.968265945324601,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.34329605102539,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 6.624833842007386,
+          "Kd_nM": 237.22811500245268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547939300537,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.697930165827877,
+          "Kd_nM": 2004.7943706262283,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.509004592895508,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.5028055299618615,
+        "graph_loss": -1.5028055299618615,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.378802518723523,
+        "worst_homo_pKd": 3.6155610530057123,
+        "min_slip_margin": 32.34329605102539,
+        "pKd_A:B": 10.434757494365225,
+        "pKd_B:C": 7.95986202784047,
+        "pKd_C:D": 6.624833842007386,
+        "pKd_D:E": 5.697930165827877,
+        "A_len": 35,
+        "A_chg": 3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 4,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D19"
+    },
+    {
+      "seqs": {
+        "A": "EVASLQSKISALKSQNASLKWQISALQSKVASLES",
+        "B": "QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "KIASLQSKISALQSKNASLKWEISALES",
+        "D": "KIASLQSKISALKSENASLAWKISALKS",
+        "E": "AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLQSKISALKSQNASLKWQISALQSKVASLES",
+        "B": "-QVASLKSEISALESENASLEWKISALKSQVASLES",
+        "C": "-KIASLQSKISALQSKNASLKWEISALES",
+        "D": "-KIASLQSKISALKSENASLAWKISALKS",
+        "E": "-AIASLKEENSALQSANASLKWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.13942923653533,
+          9.437452465004844,
+          3.698055459428861,
+          3.8271958249273643,
+          3.4338699469759537
+        ],
+        [
+          9.437452465004844,
+          2.966518416748812,
+          7.95986202784047,
+          4.378802518723523,
+          3.731618544040043
+        ],
+        [
+          3.698055459428861,
+          7.95986202784047,
+          3.2273351389929754,
+          6.624833842007386,
+          2.5715767960856954
+        ],
+        [
+          3.8271958249273643,
+          4.378802518723523,
+          6.624833842007386,
+          2.793316522780577,
+          5.697930165827877
+        ],
+        [
+          3.4338699469759537,
+          3.731618544040043,
+          2.5715767960856954,
+          5.697930165827877,
+          2.634335574637954
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.437452465004844,
+          "Kd_nM": 0.3652140989816363,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.9833869934082,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.95986202784047,
+          "Kd_nM": 10.968265945324601,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.34329605102539,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 6.624833842007386,
+          "Kd_nM": 237.22811500245268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547939300537,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.697930165827877,
+          "Kd_nM": 2004.7943706262283,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.509004592895508,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4995762370440706,
+        "graph_loss": -1.4995762370440706,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.378802518723523,
+        "worst_homo_pKd": 4.13942923653533,
+        "min_slip_margin": 32.34329605102539,
+        "pKd_A:B": 9.437452465004844,
+        "pKd_B:C": 7.95986202784047,
+        "pKd_C:D": 6.624833842007386,
+        "pKd_D:E": 5.697930165827877,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 4,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D20"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLAS",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLAS",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.974227991182966,
+          9.854510133640153,
+          3.8671682092731836,
+          4.023454833961612,
+          3.473453529466793
+        ],
+        [
+          9.854510133640153,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          3.8671682092731836,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          4.023454833961612,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          3.473453529466793,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.854510133640153,
+          "Kd_nM": 0.13979442959128757,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205093383789062,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.493676014020977,
+        "graph_loss": -1.493676014020977,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.023454833961612,
+        "worst_homo_pKd": 3.974227991182966,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.854510133640153,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D21"
+    },
+    {
+      "seqs": {
+        "A": "KVASLESEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKSQVSALESQNASLEWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLESEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKSQVSALESQNASLEWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.817496678393904,
+          9.392237756818524,
+          4.406945509011794,
+          3.1413645661825065,
+          2.302388602836408
+        ],
+        [
+          9.392237756818524,
+          3.6109422902298296,
+          8.405343948421717,
+          3.772510360527375,
+          3.5511883395716493
+        ],
+        [
+          4.406945509011794,
+          8.405343948421717,
+          3.932174470162603,
+          6.705547239198763,
+          1.1691727029873302
+        ],
+        [
+          3.1413645661825065,
+          3.772510360527375,
+          6.705547239198763,
+          2.9998964820517173,
+          5.554763530165271
+        ],
+        [
+          2.302388602836408,
+          3.5511883395716493,
+          1.1691727029873302,
+          5.554763530165271,
+          0.3222177731850264
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.392237756818524,
+          "Kd_nM": 0.40528659840483644,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.9833869934082,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.405343948421717,
+          "Kd_nM": 3.932385187904877,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.554763530165271,
+          "Kd_nM": 2787.6386021618273,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.347168922424316,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4752304744872715,
+        "graph_loss": -1.4752304744872715,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.406945509011794,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.392237756818524,
+        "pKd_B:C": 8.405343948421717,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.554763530165271,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D22"
+    },
+    {
+      "seqs": {
+        "A": "KVASLESEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLESEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.817496678393904,
+          9.392237756818524,
+          4.406945509011794,
+          3.1413645661825065,
+          3.603734565113643
+        ],
+        [
+          9.392237756818524,
+          3.6109422902298296,
+          8.405343948421717,
+          3.772510360527375,
+          2.5644561558059324
+        ],
+        [
+          4.406945509011794,
+          8.405343948421717,
+          3.932174470162603,
+          6.705547239198763,
+          1.8154790310287972
+        ],
+        [
+          3.1413645661825065,
+          3.772510360527375,
+          6.705547239198763,
+          2.9998964820517173,
+          5.582952350982271
+        ],
+        [
+          3.603734565113643,
+          2.5644561558059324,
+          1.8154790310287972,
+          5.582952350982271,
+          0.8467434465207848
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.392237756818524,
+          "Kd_nM": 0.40528659840483644,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.9833869934082,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.405343948421717,
+          "Kd_nM": 3.932385187904877,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.582952350982271,
+          "Kd_nM": 2612.4479658025825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4673485406559728,
+        "graph_loss": -1.4673485406559728,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.406945509011794,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.392237756818524,
+        "pKd_B:C": 8.405343948421717,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.582952350982271,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D23"
+    },
+    {
+      "seqs": {
+        "A": "QIASLAEANSALKSQIASLKWENSALESEIASLQS",
+        "B": "QIASLKKENSALEKEIASLQWKNSALKSQIASLQS",
+        "C": "EIASLQKKNSALKKAIASLKWEISALES",
+        "D": "KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "EIASLEKKNSALKSQNASLAWQISALKS"
+      },
+      "pads": {
+        "A": "-QIASLAEANSALKSQIASLKWENSALESEIASLQS",
+        "B": "-QIASLKKENSALEKEIASLQWKNSALKSQIASLQS",
+        "C": "-EIASLQKKNSALKKAIASLKWEISALES",
+        "D": "-KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "-EIASLEKKNSALKSQNASLAWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.551603868440706,
+          9.206827135257749,
+          1.990764670976234,
+          3.2570365986806085,
+          2.5251555642981645
+        ],
+        [
+          9.206827135257749,
+          3.4760637971111406,
+          8.084635656304808,
+          2.0041532516726557,
+          2.910151323844585
+        ],
+        [
+          1.990764670976234,
+          8.084635656304808,
+          3.207721556438883,
+          6.633402860803484,
+          2.384134067815576
+        ],
+        [
+          3.2570365986806085,
+          2.0041532516726557,
+          6.633402860803484,
+          4.380728189568421,
+          5.610328190192396
+        ],
+        [
+          2.5251555642981645,
+          2.910151323844585,
+          2.384134067815576,
+          5.610328190192396,
+          0.770880350318575
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.206827135257749,
+          "Kd_nM": 0.6211162115089565,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.400440216064453,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.084635656304808,
+          "Kd_nM": 8.229327453461389,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.34169006347656,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.633402860803484,
+          "Kd_nM": 232.5932672000879,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547176361084,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.610328190192396,
+          "Kd_nM": 2452.854627622505,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142979621887207,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4657869121177418,
+        "graph_loss": -1.4657869121177418,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.2570365986806085,
+        "worst_homo_pKd": 4.380728189568421,
+        "min_slip_margin": 30.400440216064453,
+        "pKd_A:B": 9.206827135257749,
+        "pKd_B:C": 8.084635656304808,
+        "pKd_C:D": 6.633402860803484,
+        "pKd_D:E": 5.610328190192396,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D24"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQEQVSALESQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQEQVSALESQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.258814484584315,
+          2.7448956555438357,
+          3.5618746800004497,
+          2.9619260842158184
+        ],
+        [
+          9.258814484584315,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          2.4962908884770405
+        ],
+        [
+          2.7448956555438357,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.8656292472550593
+        ],
+        [
+          3.5618746800004497,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.527996043210692
+        ],
+        [
+          2.9619260842158184,
+          2.4962908884770405,
+          2.8656292472550593,
+          5.527996043210692,
+          1.7184568287084847
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.258814484584315,
+          "Kd_nM": 0.5510430324520218,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.527996043210692,
+          "Kd_nM": 2964.858401763899,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.45563971773537,
+        "graph_loss": -1.45563971773537,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.7403160987701787,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.258814484584315,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.527996043210692,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D25"
+    },
+    {
+      "seqs": {
+        "A": "EIASLKEENSALESEIASLAWKNSALKSQIASLAS",
+        "B": "KIASLKSKNSALKSKIASLKWENSALESAIASLAS",
+        "C": "EIASLESENSALESEIASLEWKISALKS",
+        "D": "KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "EIASLQEKNSALQSKNASLQWEISALES"
+      },
+      "pads": {
+        "A": "-EIASLKEENSALESEIASLAWKNSALKSQIASLAS",
+        "B": "-KIASLKSKNSALKSKIASLKWENSALESAIASLAS",
+        "C": "-EIASLESENSALESEIASLEWKISALKS",
+        "D": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "E": "-EIASLQEKNSALQSKNASLQWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.177920007151016,
+          9.679587646893207,
+          1.5869456937406525,
+          3.7394805117580225,
+          3.7329491943061295
+        ],
+        [
+          9.679587646893207,
+          4.064897384618067,
+          8.731241068848107,
+          2.9748788031877487,
+          2.7056379308232534
+        ],
+        [
+          1.5869456937406525,
+          8.731241068848107,
+          2.100920344584523,
+          7.127484504240878,
+          4.415994898492871
+        ],
+        [
+          3.7394805117580225,
+          2.9748788031877487,
+          7.127484504240878,
+          3.1155986461179737,
+          5.759646653696156
+        ],
+        [
+          3.7329491943061295,
+          2.7056379308232534,
+          4.415994898492871,
+          5.759646653696156,
+          2.826342947668997
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.679587646893207,
+          "Kd_nM": 0.2091280813867142,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.90261650085449,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.731241068848107,
+          "Kd_nM": 1.8567735082973484,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.06193542480469,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 7.127484504240878,
+          "Kd_nM": 74.56164753756487,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862358093262,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.759646653696156,
+          "Kd_nM": 1739.2152960976175,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.53357696533203,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.453814154535367,
+        "graph_loss": -1.453814154535367,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.415995790852849,
+        "worst_homo_pKd": 4.177920007151016,
+        "min_slip_margin": 32.06193542480469,
+        "pKd_A:B": 9.679587646893207,
+        "pKd_B:C": 8.731241068848107,
+        "pKd_C:D": 7.127484504240878,
+        "pKd_D:E": 5.759646653696156,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 4,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -4,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 3,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D26"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EIASLEKKISALKKKNASLKWEISALES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KVASLKKKVSALQSQNASLAWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EIASLEKKISALKKKNASLKWEISALES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KVASLKKKVSALQSQNASLAWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.177814187651126,
+          2.605498831677843,
+          4.385063112662635,
+          3.4346125237072798
+        ],
+        [
+          9.177814187651126,
+          2.8988649671131634,
+          8.129327958917,
+          4.181979265476004,
+          2.724653438749028
+        ],
+        [
+          2.605498831677843,
+          8.129327958917,
+          3.1013744385308897,
+          7.025652784805337,
+          4.023309962322164
+        ],
+        [
+          4.385063112662635,
+          4.181979265476004,
+          7.025652784805337,
+          2.96025339060421,
+          5.633753123250847
+        ],
+        [
+          3.4346125237072798,
+          2.724653438749028,
+          4.023309962322164,
+          5.633753123250847,
+          1.772817463972932
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.177814187651126,
+          "Kd_nM": 0.6640271128005834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.129327958917,
+          "Kd_nM": 7.424582563352372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.633753123250847,
+          "Kd_nM": 2324.057542414503,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.450008915413021,
+        "graph_loss": -1.450008915413021,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.689183414688223,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.177814187651126,
+        "pKd_B:C": 8.129327958917,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.633753123250847,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D27"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.258814484584315,
+          2.7448956555438357,
+          3.5618746800004497,
+          2.119717085874438
+        ],
+        [
+          9.258814484584315,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          2.7448956555438357,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          3.5618746800004497,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          2.119717085874438,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.258814484584315,
+          "Kd_nM": 0.5510430324520218,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4464313105218158,
+        "graph_loss": -1.4464313105218158,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.7403160987701787,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.258814484584315,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D28"
+    },
+    {
+      "seqs": {
+        "A": "QIASLASANSALKSQIASLKWENSALESEIASLES",
+        "B": "KIASLKKENSALESEIASLQWKNSALKSQIASLQS",
+        "C": "EIASLEEKNSALKSAIASLKWEISALES",
+        "D": "KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "EIASLEKKNSALKKQNASLEWQISALKS"
+      },
+      "pads": {
+        "A": "-QIASLASANSALKSQIASLKWENSALESEIASLES",
+        "B": "-KIASLKKENSALESEIASLQWKNSALKSQIASLQS",
+        "C": "-EIASLEEKNSALKSAIASLKWEISALES",
+        "D": "-KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "-EIASLEKKNSALKKQNASLEWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.202943994284885,
+          9.303176346980154,
+          1.6541131775207782,
+          3.2361543736089757,
+          2.1768265849044113
+        ],
+        [
+          9.303176346980154,
+          3.6982806323412722,
+          8.22979705489615,
+          2.229102838167784,
+          3.2169398224313834
+        ],
+        [
+          1.6541131775207782,
+          8.22979705489615,
+          2.668083151925817,
+          6.9229018748454925,
+          2.9809024595019693
+        ],
+        [
+          3.2361543736089757,
+          2.229102838167784,
+          6.9229018748454925,
+          4.380728189568421,
+          5.740352723814636
+        ],
+        [
+          2.1768265849044113,
+          3.2169398224313834,
+          2.9809024595019693,
+          5.740352723814636,
+          2.3327840376889304
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.303176346980154,
+          "Kd_nM": 0.49753501790846044,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.400440216064453,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.22979705489615,
+          "Kd_nM": 5.891188853386587,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.563400268554688,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.9229018748454925,
+          "Kd_nM": 119.42579064276747,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.740352723814636,
+          "Kd_nM": 1818.2235401610658,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142979621887207,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4385913103464842,
+        "graph_loss": -1.4385913103464842,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.2361543736089757,
+        "worst_homo_pKd": 4.380728189568421,
+        "min_slip_margin": 27.563400268554688,
+        "pKd_A:B": 9.303176346980154,
+        "pKd_B:C": 8.22979705489615,
+        "pKd_C:D": 6.9229018748454925,
+        "pKd_D:E": 5.740352723814636,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D29"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLEKKISALAKKNASLKWEISALESAVASLKS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLEKKISALAKKNASLKWEISALESAVASLKS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          4.226728809382314,
+          9.841677211221771,
+          4.31075206035231,
+          4.023454833961612,
+          3.346976041989937
+        ],
+        [
+          9.841677211221771,
+          2.97311805759648,
+          8.308115626024174,
+          3.930241865730355,
+          2.5738653786558174
+        ],
+        [
+          4.31075206035231,
+          8.308115626024174,
+          3.932174470162603,
+          6.705547239198763,
+          1.8154790310287972
+        ],
+        [
+          4.023454833961612,
+          3.930241865730355,
+          6.705547239198763,
+          2.9998964820517173,
+          5.582952350982271
+        ],
+        [
+          3.346976041989937,
+          2.5738653786558174,
+          1.8154790310287972,
+          5.582952350982271,
+          0.8467434465207848
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.841677211221771,
+          "Kd_nM": 0.14398683608344176,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.98338317871094,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.308115626024174,
+          "Kd_nM": 4.919085531228755,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.582952350982271,
+          "Kd_nM": 2612.4479658025825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4334984729619042,
+        "graph_loss": -1.4334984729619042,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.31075206035231,
+        "worst_homo_pKd": 4.226728809382314,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.841677211221771,
+        "pKd_B:C": 8.308115626024174,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.582952350982271,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D30"
+    },
+    {
+      "seqs": {
+        "A": "QIASLAEANSALKSQIASLKWENSALESEIASLQS",
+        "B": "QIASLKKENSALEKEIASLQWKNSALKSQIASLQS",
+        "C": "EIASLQKKNSALKKAIASLKWEISALES",
+        "D": "KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "EIASLEKKNSALKKQNASLEWQISALKS"
+      },
+      "pads": {
+        "A": "-QIASLAEANSALKSQIASLKWENSALESEIASLQS",
+        "B": "-QIASLKKENSALEKEIASLQWKNSALKSQIASLQS",
+        "C": "-EIASLQKKNSALKKAIASLKWEISALES",
+        "D": "-KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "-EIASLEKKNSALKKQNASLEWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.551603868440706,
+          9.206827135257749,
+          1.990764670976234,
+          3.2570365986806085,
+          2.188033774394447
+        ],
+        [
+          9.206827135257749,
+          3.4760637971111406,
+          8.084635656304808,
+          2.0041532516726557,
+          2.7344230153124283
+        ],
+        [
+          1.990764670976234,
+          8.084635656304808,
+          3.207721556438883,
+          6.633402860803484,
+          2.9664795966206077
+        ],
+        [
+          3.2570365986806085,
+          2.0041532516726557,
+          6.633402860803484,
+          4.380728189568421,
+          5.740352723814636
+        ],
+        [
+          2.188033774394447,
+          2.7344230153124283,
+          2.9664795966206077,
+          5.740352723814636,
+          2.3327840376889304
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.206827135257749,
+          "Kd_nM": 0.6211162115089565,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.400440216064453,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.084635656304808,
+          "Kd_nM": 8.229327453461389,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.34169006347656,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.633402860803484,
+          "Kd_nM": 232.5932672000879,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.44547176361084,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.740352723814636,
+          "Kd_nM": 1818.2235401610658,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.142979621887207,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4213762031939505,
+        "graph_loss": -1.4213762031939505,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.2570365986806085,
+        "worst_homo_pKd": 4.380728189568421,
+        "min_slip_margin": 30.400440216064453,
+        "pKd_A:B": 9.206827135257749,
+        "pKd_B:C": 8.084635656304808,
+        "pKd_C:D": 6.633402860803484,
+        "pKd_D:E": 5.740352723814636,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D31"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLEEKISALASKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLEEKISALASKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          4.226728809382314,
+          9.428753145048839,
+          4.31075206035231,
+          4.023454833961612,
+          3.346976041989937
+        ],
+        [
+          9.428753145048839,
+          3.0135221058045873,
+          8.176298058703914,
+          4.004069563502364,
+          2.655723098272654
+        ],
+        [
+          4.31075206035231,
+          8.176298058703914,
+          3.932174470162603,
+          6.705547239198763,
+          1.8154790310287972
+        ],
+        [
+          4.023454833961612,
+          4.004069563502364,
+          6.705547239198763,
+          2.9998964820517173,
+          5.582952350982271
+        ],
+        [
+          3.346976041989937,
+          2.655723098272654,
+          1.8154790310287972,
+          5.582952350982271,
+          0.8467434465207848
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.428753145048839,
+          "Kd_nM": 0.37260343555583586,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.176298058703914,
+          "Kd_nM": 6.663492930436591,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.582952350982271,
+          "Kd_nM": 2612.4479658025825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.4163637110648868,
+        "graph_loss": -1.4163637110648868,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.31075206035231,
+        "worst_homo_pKd": 4.226728809382314,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.428753145048839,
+        "pKd_B:C": 8.176298058703914,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.582952350982271,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D32"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQEEISALQSENASLEWKISALKSQVASLES",
+        "B": "EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQEEISALQSENASLEWKISALKSQVASLES",
+        "B": "-EVASLEKKISALKKKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          4.129682689122855,
+          9.673891561759106,
+          3.934633723108311,
+          3.9844008536020565,
+          3.906825188100461
+        ],
+        [
+          9.673891561759106,
+          3.2081528260182557,
+          8.418855938449061,
+          3.7403160987701787,
+          3.0233154656395103
+        ],
+        [
+          3.934633723108311,
+          8.418855938449061,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          3.9844008536020565,
+          3.7403160987701787,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          3.906825188100461,
+          3.0233154656395103,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.673891561759106,
+          "Kd_nM": 0.21188901312297095,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.418855938449061,
+          "Kd_nM": 3.8119224922201336,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.401090330513608,
+        "graph_loss": -1.401090330513608,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.9844008536020565,
+        "worst_homo_pKd": 4.129682689122855,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.673891561759106,
+        "pKd_B:C": 8.418855938449061,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D33"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKKQVSALEKQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.24530249455697,
+          2.7448956555438357,
+          3.5618746800004497,
+          1.741887839335849
+        ],
+        [
+          9.24530249455697,
+          3.6109422902298296,
+          8.405343948421717,
+          3.772510360527375,
+          2.5644561558059324
+        ],
+        [
+          2.7448956555438357,
+          8.405343948421717,
+          3.932174470162603,
+          6.705547239198763,
+          1.8154790310287972
+        ],
+        [
+          3.5618746800004497,
+          3.772510360527375,
+          6.705547239198763,
+          2.9998964820517173,
+          5.582952350982271
+        ],
+        [
+          1.741887839335849,
+          2.5644561558059324,
+          1.8154790310287972,
+          5.582952350982271,
+          0.8467434465207848
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.24530249455697,
+          "Kd_nM": 0.5684568516634415,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.405343948421717,
+          "Kd_nM": 3.932385187904877,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.582952350982271,
+          "Kd_nM": 2612.4479658025825,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.399681071472427,
+        "graph_loss": -1.399681071472427,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.772510360527375,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.24530249455697,
+        "pKd_B:C": 8.405343948421717,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.582952350982271,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D34"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLEEKISALASKNASLKWEISALESAVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLEEKISALASKNASLKWEISALESAVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQSQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          4.226728809382314,
+          9.428753145048839,
+          4.31075206035231,
+          4.023454833961612,
+          3.473453529466793
+        ],
+        [
+          9.428753145048839,
+          3.0135221058045873,
+          8.176298058703914,
+          4.004069563502364,
+          2.9141163765545155
+        ],
+        [
+          4.31075206035231,
+          8.176298058703914,
+          3.932174470162603,
+          6.705547239198763,
+          2.424033445308015
+        ],
+        [
+          4.023454833961612,
+          4.004069563502364,
+          6.705547239198763,
+          2.9998964820517173,
+          5.579008528127126
+        ],
+        [
+          3.473453529466793,
+          2.9141163765545155,
+          2.424033445308015,
+          5.579008528127126,
+          2.1845958817822213
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.428753145048839,
+          "Kd_nM": 0.37260343555583586,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.176298058703914,
+          "Kd_nM": 6.663492930436591,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.579008528127126,
+          "Kd_nM": 2636.2796173839265,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.395274765314178,
+        "graph_loss": -1.395274765314178,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.31075206035231,
+        "worst_homo_pKd": 4.226728809382314,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.428753145048839,
+        "pKd_B:C": 8.176298058703914,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.579008528127126,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D35"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EIASLEKKISALKKKNASLKWEISALES",
+        "C": "KVASLKEQISALESENASLEWEISALKS",
+        "D": "EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "KVASLKKKVSALQSENASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EIASLEKKISALKKKNASLKWEISALES",
+        "C": "-KVASLKEQISALESENASLEWEISALKS",
+        "D": "-EVASLEKKISALQSQNASLQWKISALKS",
+        "E": "-KVASLKKKVSALQSENASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.177814187651126,
+          2.605498831677843,
+          4.385063112662635,
+          3.8299559343078737
+        ],
+        [
+          9.177814187651126,
+          2.8988649671131634,
+          8.129327958917,
+          4.181979265476004,
+          2.9816905910565072
+        ],
+        [
+          2.605498831677843,
+          8.129327958917,
+          3.1013744385308897,
+          7.025652784805337,
+          3.7948144239288855
+        ],
+        [
+          4.385063112662635,
+          4.181979265476004,
+          7.025652784805337,
+          2.96025339060421,
+          5.49674346998381
+        ],
+        [
+          3.8299559343078737,
+          2.9816905910565072,
+          3.7948144239288855,
+          5.49674346998381,
+          2.7501162986165566
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.177814187651126,
+          "Kd_nM": 0.6640271128005834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.129327958917,
+          "Kd_nM": 7.424582563352372,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 7.025652784805337,
+          "Kd_nM": 94.2642931323209,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.50422382354736,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.49674346998381,
+          "Kd_nM": 3186.078926096751,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.392870816193915,
+        "graph_loss": -1.392870816193915,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.385063112662635,
+        "worst_homo_pKd": 3.689183414688223,
+        "min_slip_margin": 27.94763946533203,
+        "pKd_A:B": 9.177814187651126,
+        "pKd_B:C": 8.129327958917,
+        "pKd_C:D": 7.025652784805337,
+        "pKd_D:E": 5.49674346998381,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D36"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSEISALKSENASLEWKISALKS",
+        "B": "EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLQEQVSALESQNASLKWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLKSEISALKSENASLEWKISALKS",
+        "B": "-EVASLEKKISALKSKNASLKWEISALESAVASLKS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLQEQVSALESQNASLKWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          3.689183414688223,
+          9.24530249455697,
+          2.7448956555438357,
+          3.5618746800004497,
+          2.9619260842158184
+        ],
+        [
+          9.24530249455697,
+          3.6109422902298296,
+          8.405343948421717,
+          3.772510360527375,
+          2.7045021549807693
+        ],
+        [
+          2.7448956555438357,
+          8.405343948421717,
+          3.932174470162603,
+          6.705547239198763,
+          2.8656292472550593
+        ],
+        [
+          3.5618746800004497,
+          3.772510360527375,
+          6.705547239198763,
+          2.9998964820517173,
+          5.527996043210692
+        ],
+        [
+          2.9619260842158184,
+          2.7045021549807693,
+          2.8656292472550593,
+          5.527996043210692,
+          1.7184568287084847
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.24530249455697,
+          "Kd_nM": 0.5684568516634415,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947643280029297,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.405343948421717,
+          "Kd_nM": 3.932385187904877,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.94763946533203,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.527996043210692,
+          "Kd_nM": 2964.858401763899,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.50855541229248,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.390392158840054,
+        "graph_loss": -1.390392158840054,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.772510360527375,
+        "worst_homo_pKd": 3.932174470162603,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.24530249455697,
+        "pKd_B:C": 8.405343948421717,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.527996043210692,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D37"
+    },
+    {
+      "seqs": {
+        "A": "EIASLQKKISALKSKNASLKWEISALES",
+        "B": "KIASLKKEISALEKENASLEWKISALKS",
+        "C": "QIASLESKISALASKNASLKWQISALKS",
+        "D": "AVASLQSQISALESQNASLEWEISALES",
+        "E": "QVASLEKQISALASKNASLQWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLQKKISALKSKNASLKWEISALES",
+        "B": "-KIASLKKEISALEKENASLEWKISALKS",
+        "C": "-QIASLESKISALASKNASLKWQISALKS",
+        "D": "-AVASLQSQISALESQNASLEWEISALES",
+        "E": "-QVASLEKQISALASKNASLQWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.0614791948725717,
+          9.765371606613812,
+          3.6736118881651634,
+          4.219784402059824,
+          3.8595235386404347
+        ],
+        [
+          9.765371606613812,
+          3.0469729376846466,
+          7.845555076988329,
+          4.286644851823075,
+          3.9929614435192335
+        ],
+        [
+          3.6736118881651634,
+          7.845555076988329,
+          2.6681155496285696,
+          6.63319468822851,
+          3.0164679974361928
+        ],
+        [
+          4.219784402059824,
+          4.286644851823075,
+          6.63319468822851,
+          2.6845018326672916,
+          5.4749036495653485
+        ],
+        [
+          3.8595235386404347,
+          3.9929614435192335,
+          3.0164679974361928,
+          5.4749036495653485,
+          2.3675696052950386
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.765371606613812,
+          "Kd_nM": 0.17164390774986957,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 7.845555076988329,
+          "Kd_nM": 14.270688386000158,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.27862358093262,
+          "slip_type": "PAR_SLIP"
+        },
+        "C:D": {
+          "pKd": 6.63319468822851,
+          "Kd_nM": 232.70478403444483,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.002500534057617,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.4749036495653485,
+          "Kd_nM": 3350.397611843522,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.731852531433105,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.381910021253758,
+        "graph_loss": -1.381910021253758,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.286644851823075,
+        "worst_homo_pKd": 3.0614791948725717,
+        "min_slip_margin": 20.002500534057617,
+        "pKd_A:B": 9.765371606613812,
+        "pKd_B:C": 7.845555076988329,
+        "pKd_C:D": 6.63319468822851,
+        "pKd_D:E": 5.4749036495653485,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 28,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": 3,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": -4,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": 2,
+        "E_eps280": 5500
+      },
+      "design_id": "D38"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "EVASLESKISALASKNASLKWEISALESEVASLQS",
+        "C": "KIASLKEQISALESENASLEWEISALKS",
+        "D": "EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pads": {
+        "A": "-KVASLQSEISALESENASLEWKISALKSEVASLQS",
+        "B": "-EVASLESKISALASKNASLKWEISALESEVASLQS",
+        "C": "-KIASLKEQISALESENASLEWEISALKS",
+        "D": "-EIASLEKKVSALQSQNASLQWKVSALKS",
+        "E": "-KVASLKEQVSALESQNASLQWEVSALES"
+      },
+      "pkd_matrix": [
+        [
+          4.226728809382314,
+          9.71093498158065,
+          4.31075206035231,
+          4.023454833961612,
+          2.3938331096754597
+        ],
+        [
+          9.71093498158065,
+          3.4658306851462477,
+          8.049044739553093,
+          4.140651041396594,
+          3.086792278017212
+        ],
+        [
+          4.31075206035231,
+          8.049044739553093,
+          3.932174470162603,
+          6.705547239198763,
+          1.2797177926612582
+        ],
+        [
+          4.023454833961612,
+          4.140651041396594,
+          6.705547239198763,
+          2.9998964820517173,
+          5.774381526570269
+        ],
+        [
+          2.3938331096754597,
+          3.086792278017212,
+          1.2797177926612582,
+          5.774381526570269,
+          0.8225374089410096
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.71093498158065,
+          "Kd_nM": 0.19456513441445772,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.049044739553093,
+          "Kd_nM": 8.932134631544766,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.725929260253906,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.705547239198763,
+          "Kd_nM": 196.99389208249744,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.831584930419922,
+          "slip_type": "PAR_SLIP"
+        },
+        "D:E": {
+          "pKd": 5.774381526570269,
+          "Kd_nM": 1681.1964854122818,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.286845207214355,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3670579009294088,
+        "graph_loss": -1.3670579009294088,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 4.31075206035231,
+        "worst_homo_pKd": 4.226728809382314,
+        "min_slip_margin": 19.831584930419922,
+        "pKd_A:B": 9.71093498158065,
+        "pKd_B:C": 8.049044739553093,
+        "pKd_C:D": 6.705547239198763,
+        "pKd_D:E": 5.774381526570269,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D39"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEEQNSALKSQIASLKWQNSALESAIASLQS",
+        "B": "KIASLKKENSALESEIASLQWKNSALKSQIASLQS",
+        "C": "EIASLEEKNSALKSAIASLKWEISALES",
+        "D": "KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "EIASLEEKNSALESQNASLAWQISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEEQNSALKSQIASLKWQNSALESAIASLQS",
+        "B": "-KIASLKKENSALESEIASLQWKNSALKSQIASLQS",
+        "C": "-EIASLEEKNSALKSAIASLKWEISALES",
+        "D": "-KIASLKKQNSALESAIASLQWEISALKS",
+        "E": "-EIASLEEKNSALESQNASLAWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          2.823573306538374,
+          9.302359929744508,
+          0.8249264542662917,
+          3.5815599403503127,
+          0.8320023451109622
+        ],
+        [
+          9.302359929744508,
+          3.6982806323412722,
+          8.22979705489615,
+          2.229102838167784,
+          2.5248574927056335
+        ],
+        [
+          0.8249264542662917,
+          8.22979705489615,
+          2.668083151925817,
+          6.9229018748454925,
+          2.1137901912067774
+        ],
+        [
+          3.5815599403503127,
+          2.229102838167784,
+          6.9229018748454925,
+          4.380728189568421,
+          5.629558524609809
+        ],
+        [
+          0.8320023451109622,
+          2.5248574927056335,
+          2.1137901912067774,
+          5.629558524609809,
+          3.3244995634401544
+        ]
+      ],
+      "c0_uM": [],
+      "edges": {
+        "A:B": {
+          "pKd": 9.302359929744508,
+          "Kd_nM": 0.49847119881399504,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.17873001098633,
+          "slip_type": "ANTI"
+        },
+        "B:C": {
+          "pKd": 8.22979705489615,
+          "Kd_nM": 5.891188853386587,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.563400268554688,
+          "slip_type": "ANTI"
+        },
+        "C:D": {
+          "pKd": 6.9229018748454925,
+          "Kd_nM": 119.42579064276747,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 39.445472717285156,
+          "slip_type": "ANTI"
+        },
+        "D:E": {
+          "pKd": 5.629558524609809,
+          "Kd_nM": 2346.6130167501733,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.144558906555176,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -1.3642460209825042,
+        "graph_loss": -1.3642460209825042,
+        "circuit_loss": 0.0,
+        "worst_off_pKd": 3.5815599403503127,
+        "worst_homo_pKd": 4.380728189568421,
+        "min_slip_margin": 27.563400268554688,
+        "pKd_A:B": 9.302359929744508,
+        "pKd_B:C": 8.22979705489615,
+        "pKd_C:D": 6.9229018748454925,
+        "pKd_D:E": 5.629558524609809,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "C_len": 28,
+        "C_chg": -2,
+        "C_eps280": 5500,
+        "D_len": 28,
+        "D_chg": 2,
+        "D_eps280": 5500,
+        "E_len": 28,
+        "E_chg": -2,
+        "E_eps280": 5500
+      },
+      "design_id": "D40"
+    }
+  ]
+}
