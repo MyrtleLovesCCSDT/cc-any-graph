@@ -1,0 +1,84 @@
+{
+  "boundary": "line",
+  "conc_scale": 1.0,
+  "threshold_nM": 50.0,
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B"
+  ],
+  "edges": [
+    "AB",
+    "XA",
+    "YB"
+  ],
+  "ideal_Kd_nM": {
+    "AB": 3.8176309458370707,
+    "XA": 7.424514859668594,
+    "YB": 1.0000000001206149
+  },
+  "ideal_total_nM": {
+    "A": 399.99999978201,
+    "B": 377.53285670980506
+  },
+  "ideal_metrics": {
+    "loss": 0.07707637198913311,
+    "accuracy": 0.9946724950481525,
+    "error_nM": 0.4314813991584409
+  },
+  "seqs": {
+    "X": "EIASLESEISALESENASLQWEISALAS",
+    "Y": "EVASLQKEISALEKKNASLKWQISALKS",
+    "A": "KIASLKSKISALQSKNASLKWQISALKS",
+    "B": "EVASLKEKISALKSENASLEWEISALQS"
+  },
+  "pads": {
+    "X": "-EIASLESEISALESENASLQWEISALAS",
+    "Y": "-EVASLQKEISALEKKNASLKWQISALKS",
+    "A": "-KIASLKSKISALQSKNASLKWQISALKS",
+    "B": "-EVASLKEKISALKSENASLEWEISALQS"
+  },
+  "pkd_matrix": [
+    [
+      2.052615813872632,
+      4.926172529669407,
+      8.23953565121081,
+      4.480073361368543
+    ],
+    [
+      4.926172529669407,
+      3.4392390761406832,
+      4.435981911861446,
+      8.90173290566512
+    ],
+    [
+      8.23953565121081,
+      4.435981911861446,
+      3.509805774931681,
+      8.30083463591508
+    ],
+    [
+      4.480073361368543,
+      8.90173290566512,
+      8.30083463591508,
+      4.383291487625494
+    ]
+  ],
+  "fitted_total_nM": {
+    "A": 363.52541126053154,
+    "B": 343.8161150180197
+  },
+  "initial_metrics": {
+    "loss": 0.0861463840313309,
+    "accuracy": 0.9766409398265146,
+    "error_nM": 2.9659245778766303
+  },
+  "fitted_metrics": {
+    "loss": 0.08189067980685598,
+    "accuracy": 0.9825148555426542,
+    "error_nM": 2.862670260967037
+  },
+  "worst_off_pKd": 4.926172529669407,
+  "worst_homo_pKd": 4.383291487625494
+}

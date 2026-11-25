@@ -1,0 +1,129 @@
+{
+  "boundary": "cubic",
+  "conc_scale": 15.0,
+  "use_seed": false,
+  "cubic_yd": true,
+  "contour_fit": true,
+  "threshold_nM": 750.0,
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "edges": [
+    "AB",
+    "AD",
+    "CD",
+    "XA",
+    "XC",
+    "YD",
+    "YB"
+  ],
+  "ideal_Kd_nM": {
+    "AB": 1594.9669747379794,
+    "AD": 7.500228727342727,
+    "CD": 26.377972011823992,
+    "XA": 14999.999999999984,
+    "XC": 7.500000000000002,
+    "YD": 5540.779830515538,
+    "YB": 7.500000000000002
+  },
+  "ideal_total_nM": {
+    "A": 5794.646822544372,
+    "B": 1635.647661655608,
+    "C": 576.9353025309654,
+    "D": 4992.213078077384
+  },
+  "ideal_metrics": {
+    "loss": 0.29579323833040555,
+    "accuracy": 0.9844955945632129,
+    "error_nM": 33.85045617077057
+  },
+  "seqs": {
+    "X": "EIASLEKQNSALQSKIASLQWKISALKS",
+    "Y": "QIASLKSQNSALKSQIASLEWKNSALKSQIASLES",
+    "A": "KIASLKEQNSALESEIASLEWENSALKSQIASLQS",
+    "B": "EVASLASENSALQSKIASLQWENSALESKVASLES",
+    "C": "KIASLKSQNSALESEIASLEWEISALESEIASLAS",
+    "D": "QIASLEKKNSALQKKIASLAWQNSALKSEIASLES"
+  },
+  "pads": {
+    "X": "-EIASLEKQNSALQSKIASLQWKISALKS",
+    "Y": "-QIASLKSQNSALKSQIASLEWKNSALKSQIASLES",
+    "A": "-KIASLKEQNSALESEIASLEWENSALKSQIASLQS",
+    "B": "-EVASLASENSALQSKIASLQWENSALESKVASLES",
+    "C": "-KIASLKSQNSALESEIASLEWEISALESEIASLAS",
+    "D": "-QIASLEKKNSALQKKIASLAWQNSALKSEIASLES"
+  },
+  "pkd_matrix": [
+    [
+      3.3010798674982595,
+      3.651583178434488,
+      5.024268917087514,
+      3.386730892334882,
+      7.79759038177434,
+      2.432118983399815
+    ],
+    [
+      3.651583178434488,
+      2.82947185579003,
+      4.089020653018182,
+      8.45689526953357,
+      4.467520064174439,
+      5.385831802940801
+    ],
+    [
+      5.024268917087514,
+      4.089020653018182,
+      3.8222234900777563,
+      5.713906423219042,
+      3.447408603352241,
+      7.980248028140064
+    ],
+    [
+      3.386730892334882,
+      8.45689526953357,
+      5.713906423219042,
+      4.060595425389215,
+      2.7641620726552745,
+      4.342421336279384
+    ],
+    [
+      7.79759038177434,
+      4.467520064174439,
+      3.447408603352241,
+      2.7641620726552745,
+      4.276502475898779,
+      7.4933688554352305
+    ],
+    [
+      2.432118983399815,
+      5.385831802940801,
+      7.980248028140064,
+      4.342421336279384,
+      7.4933688554352305,
+      4.436429265479454
+    ]
+  ],
+  "fitted_total_nM": {
+    "A": 4899.049138895931,
+    "B": 1895.5523109553678,
+    "C": 501.2561578823599,
+    "D": 4027.206743465461
+  },
+  "initial_metrics": {
+    "loss": 0.32162890168462693,
+    "accuracy": 0.9010313503176013,
+    "error_nM": 187.8987075996339
+  },
+  "fitted_metrics": {
+    "loss": 0.27869199027968933,
+    "accuracy": 0.9704255173826924,
+    "error_nM": 61.926671463390484
+  },
+  "worst_off_pKd": 4.467520064174439,
+  "worst_homo_pKd": 4.436429265479454
+}

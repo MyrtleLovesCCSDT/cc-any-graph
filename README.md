@@ -63,6 +63,33 @@ Two Monte Carlo stages are reported separately:
 
 ---
 
+### JAX Solver Cross-Check & Robust `c0` Tuning (`check_eqconc_and_adam.py`)
+
+Verified equilibrium equivalence between `EQTK` and the JAX fixed-point solver `eq_conc` (van Dorp et al., *Phys. Rev. E* 84, 036114, 2011; damped variant `damping=0.5` removes stoichiometric oscillations on stiff pairs, e.g. `xor_4node` max mass-balance residual `3.07e-01 -> 9.55e-03`), followed by MC-ensemble `c0` optimization via `optimize_batch_c0_ADAM` (`256` MC + nominal draws, `con_max = 20.0 uM`, fixed reporter) and independent `EQTK` validation (`n_mc = 400`, `sigma_pKd = 0.643`, `conc_std = 0.015`):
+
+| Circuit (Design) | Nominal Delta (`Before -> After`) | Fold (`Before -> After`) | `MC_Delta_p10` (`Before -> After`) | Sim MC Pass (`Before -> After`) |
+| :--- | :---: | :---: | :---: | :---: |
+| `xor_4node` (`D01`) | `0.748 -> 0.794` | `5.9x -> 7.0x` | `0.193 -> 0.210` | `71.0% -> 75.2%` |
+| `xnor_4node` (`D02`) | `0.606 -> 0.674` | `9.2x -> 16.7x` | `0.138 -> 0.162` | `37.5% -> 52.2%` |
+| `imply_5node` (`D01`) | `0.827 -> 0.904` | `13.5x -> 25.4x` | `0.297 -> 0.397` | `64.2% -> 80.2%` |
+| `and_5node` (`D01`) | `0.910 -> 0.908` | `34.0x -> 79.3x` | `0.504 -> 0.466` | `67.5% -> 78.0%` |
+| `nand_6node` (`D01`) | `0.730 -> 0.756` | `5.6x -> 14.5x` | `0.115 -> 0.133` | `35.2% -> 49.2%` |
+
+### 2D Decision Boundaries (`design_2d_boundary.py`, `des_bounds` integration)
+
+*De novo* coiled-coil sequence designs classifying `(X, Y)` concentrations by `Free A > 50 * conc_scale` nM (`121x121` exact `eq_conc` + Newton verification, SA + `L-BFGS-B` concentration fitting, and `n_mc = 200` stress test at `sigma_pKd = 0.643, conc_std = 0.015`):
+
+| Boundary | Folder (`results/des_bounds_designs/`) | Lengths | Ideal Acc | Fitted Acc | BCE Loss | Contour Error (`% domain`) | Off / Homo pKd | Registers | MC Med Acc |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `line` | `line_s1` (`s=1`) | `4mer` | 99.47% | **98.25%** | 0.0819 | `2.86 nM (1.43%)` | `4.93 / 4.38` | 3/3 `PAR, 0` | 82.2% |
+| `circle` | `circle_s5_kmin2` (`s=5`) | `4mer` | 99.77% | **97.05%** | 0.1261 | `46.17 nM (4.62%)` | `4.82 / 4.13` | 5/5 `PAR, 0` | 77.4% |
+| `quadratic` | `quadratic_s10_seed` (`s=10`) | `4/5mer` | 94.19% | **91.69%** | 0.3002 | `94.01 nM (4.70%)` | `4.73 / 4.04` | 4/5 `0` (`YC -7`) | 65.1% |
+| `cubic` (bipartite `YD`) | `cubic_yd_4mer_cfit_s15_kmin0.5` (`s=15`) | `4mer` | 98.45% | **96.52%** | 0.2500 | `68.97 nM (2.30%)` | `4.82 / 4.03` | 7/7 `PAR, 0` | 70.5% |
+
+*(A mixed `4/5mer` variant `cubic_yd_5mer_cfit_s15_kmin0.5` achieves `97.04%` Acc, `2.06%` contour error, `7/7 PAR shift=0`, `off/homo = 4.47 / 4.44`, `MC med = 70.8%`.)*
+
+---
+
 ## Diagnostic Examples (`simulate_circuit.py`, `n_mc = 400`, `conc_std = 0.015`)
 
 | `and_5node` (Sim MC Pass: 67.5%) | `xor_4node` (Sim MC Pass: 71.0%) |
@@ -105,6 +132,15 @@ python3 scripts/scorecard_3d_graph.py --full-json results/graph_designs/and_5nod
 
 ---
 
+### 4. JAX solver cross-check, ADAM `c0` tuning, and 2D decision boundaries
+```bash
+python3 scripts/check_eqconc_and_adam.py --full-json results/graph_designs/xor_4node/xor_4node_full.json --tune-adam --fix-reporter
+python3 scripts/design_2d_boundary.py --boundary cubic --cubic-yd --contour-fit --conc-scale 15.0 --kd-min-native 0.5 --restarts 40 --steps 3000 --top-fit 40 --seed 42
+python3 scripts/validate_and_fix_2d.py --mc-and-slippage --reports results/des_bounds_designs/cubic_yd_4mer_cfit_s15_kmin0.5/cubic_report.json
+```
+
+---
+
 ## Repository Structure
 
 ```text
@@ -128,8 +164,12 @@ CC-any-graph/
 │   ├── export_3d_jobs_graph.py      # Multi-circuit Boltz-2/ColabFold job exporter
 │   ├── analyze_boltz.py             # Parses Boltz-2 outputs
 │   ├── score_rosetta.py             # PyRosetta FastRelax + InterfaceAnalyzerMover
-│   └── scorecard_3d_graph.py        # 3D-EQTK consistency & Complete_3D scorecard
+│   ├── scorecard_3d_graph.py        # 3D-EQTK consistency & Complete_3D scorecard
+│   ├── check_eqconc_and_adam.py     # EQTK vs JAX eq_conc verification & MC ADAM c0 tuning
+│   ├── design_2d_boundary.py        # De novo 2D boundary design (des_bounds integration)
+│   └── validate_and_fix_2d.py       # 2D boundary v3 replot, register check & MC stress test
 ├── results/graph_designs/           # Committed *_full.json and *.csv designs per circuit
+├── results/des_bounds_designs/      # Final 2D boundary designs (line, circle, quadratic, cubic_yd)
 ├── designs_top3_summary.csv         # Consolidated top-3 sequences & metrics across all 25 designs
 └── assets/                          # Diagnostic plots
 ```

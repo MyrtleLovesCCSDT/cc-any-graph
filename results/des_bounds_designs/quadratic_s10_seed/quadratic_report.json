@@ -1,0 +1,105 @@
+{
+  "boundary": "quadratic",
+  "conc_scale": 10.0,
+  "use_seed": true,
+  "threshold_nM": 500.0,
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B",
+    "C"
+  ],
+  "edges": [
+    "XB",
+    "BC",
+    "XC",
+    "YC",
+    "AC"
+  ],
+  "ideal_Kd_nM": {
+    "XB": 10.011000000000001,
+    "BC": 22.812,
+    "XC": 35.668,
+    "YC": 118.17999999999999,
+    "AC": 10.664
+  },
+  "ideal_total_nM": {
+    "A": 2313.27,
+    "B": 978.035,
+    "C": 2568.214
+  },
+  "ideal_metrics": {
+    "loss": 0.2962362175943742,
+    "accuracy": 0.9418755549484324,
+    "error_nM": 61.13568848002789
+  },
+  "seqs": {
+    "X": "KVASLKSEISALQSQNASLEWKISALKSKVASLKS",
+    "Y": "QIASLESANSALKSEIASLEWENSALQSKIASLES",
+    "A": "KIASLKSEISALESENASLQWAISALES",
+    "B": "EVASLKKEISALQSENASLEWEISALESEVASLES",
+    "C": "EVASLESKISALKSQNASLKWKISALESKVASLAS"
+  },
+  "pads": {
+    "X": "-KVASLKSEISALQSQNASLEWKISALKSKVASLKS",
+    "Y": "-QIASLESANSALKSEIASLEWENSALQSKIASLES",
+    "A": "-KIASLKSEISALESENASLQWAISALES",
+    "B": "-EVASLKKEISALQSENASLEWEISALESEVASLES",
+    "C": "-EVASLESKISALKSQNASLKWKISALESKVASLAS"
+  },
+  "pkd_matrix": [
+    [
+      4.035008507145522,
+      4.73427930266681,
+      3.7664173072713663,
+      8.022106152261687,
+      7.40036231887521
+    ],
+    [
+      4.73427930266681,
+      3.8546346011968153,
+      1.945592613864286,
+      3.082609650112876,
+      6.952227381195632
+    ],
+    [
+      3.7664173072713663,
+      1.945592613864286,
+      2.8966101407659934,
+      3.484113032536616,
+      7.914385844652179
+    ],
+    [
+      8.022106152261687,
+      3.082609650112876,
+      3.484113032536616,
+      3.5391074330592027,
+      7.630556521593411
+    ],
+    [
+      7.40036231887521,
+      6.952227381195632,
+      7.914385844652179,
+      7.630556521593411,
+      3.9975319371434246
+    ]
+  ],
+  "fitted_total_nM": {
+    "A": 2331.518026347259,
+    "B": 960.888063041145,
+    "C": 2642.2252662118117
+  },
+  "initial_metrics": {
+    "loss": 0.32304914625410747,
+    "accuracy": 0.8773307834164333,
+    "error_nM": 147.64018656062
+  },
+  "fitted_metrics": {
+    "loss": 0.30022642017063994,
+    "accuracy": 0.9169455638276074,
+    "error_nM": 94.0105252349306
+  },
+  "worst_off_pKd": 4.73427930266681,
+  "worst_homo_pKd": 4.035008507145522
+}
