@@ -17,3 +17,7 @@ __pycache__/
 !results/fold_uncensored.csv
 !results/adam_tuning/
 !results/adam_tuning/*.json
+
+# рабочие файлы, не для репозитория
+apply_review_fixes.sh
+des.txt
