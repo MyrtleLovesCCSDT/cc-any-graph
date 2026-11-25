@@ -22,7 +22,7 @@ Two Monte Carlo stages are reported separately:
 | Circuit | Topology / Readout | Delta | Fold | Thresh (`0.85*min_Δ`) | `MC_Delta_p10` | Design MC (`n=200`) | Sim MC (`n=400, std=0.015`) | Worst Off / Homo pKd | Min Slip Margin |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `yes_3node` | Buffer (`I-Q-S`, `free_frac(S)`) | 0.959 | 27.7x | 0.383 | 0.795 | 99.5% | 96.2% | 1.70 / 3.30 | 3.3 |
-| `not_3node` | Inverter (`I-A-S`, `dimer_frac(A,S)`) | 0.975 | 195.3x | 0.383 | 0.855 | 99.5% | 99.8% | 1.56 / 2.78 | 27.9 |
+| `not_3node` | Inverter (`I-A-S`, `dimer_frac(A,S)`) | 0.975 | 731.5x† | 0.383 | 0.855 | 99.5% | 99.8% | 1.56 / 2.78 | 27.9 |
 | `or_4node` | OR (`I1,I2-Q-S`, `free_frac(S)`) | 0.936 | 21.9x | 0.383 | 0.663 | 98.0% | 92.8% | 2.52 / 3.05 | 13.2 |
 | `nor_4node` | Compact NOR (`dimer_frac(Q,S)`) | 0.981 | 192.3x | 0.552 | 0.874 | 96.0% | 93.8% | 2.46 / 3.49 | 21.2 |
 | `nor_5node` | Fig. S4 NOR (`free_frac(S)`, 5-mer) | 0.952 | 34.9x | 0.425 | 0.702 | 93.5% | 92.2% | 3.88 / 3.66 | 23.7 |
@@ -39,6 +39,8 @@ Two Monte Carlo stages are reported separately:
 | `ortho2_6node` | Dual orthogonal YES outputs | 0.919 | 14.0x | 0.383 | 0.645 | 89.5% (joint) | 93.2% / 90.5% (per-obs) | 3.28 / 3.98 | 32.7 |
 
 *\*Note on negative `min_slip_margin`: computed over `require_par=true` and `require_shift0=true` edges. Negative margins occur on 5-mer/4-mer shift-7 edges: `nand_6node` D01 `M1:Q1` (`shift=7`, `slip=-22.8`), `xnor_5node` D01 `M:Q` (`shift=-7`, `slip=-33.9`).*
+
+*†Note on `not_3node` Fold: `Fold` in the code is `min_ON / max(max_OFF, 0.005)`, so any design with `max_OFF < 0.005` is reported at the ≈200x floor rather than at its true ratio. `not_3node` has `max_OFF = 0.0013`, i.e. a true fold of `731.5x`; it is the only row affected. See [`results/fold_uncensored.csv`](results/fold_uncensored.csv).*
 
 ### Analog Curves (`mode: "curve"`)
 

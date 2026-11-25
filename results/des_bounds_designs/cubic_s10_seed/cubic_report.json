@@ -1,0 +1,142 @@
+{
+  "boundary": "cubic",
+  "conc_scale": 10.0,
+  "use_seed": true,
+  "threshold_nM": 500.0,
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B",
+    "C",
+    "D"
+  ],
+  "edges": [
+    "XA",
+    "AB",
+    "CD",
+    "YD",
+    "XC",
+    "AD",
+    "YB"
+  ],
+  "ideal_Kd_nM": {
+    "XA": 910.813,
+    "AB": 908.369,
+    "CD": 26.216,
+    "YD": 10.359,
+    "XC": 11.551,
+    "AD": 40.657,
+    "YB": 11.822999999999999
+  },
+  "ideal_total_nM": {
+    "A": 1626.712,
+    "B": 201.206,
+    "C": 606.316,
+    "D": 1839.222
+  },
+  "ideal_metrics": {
+    "loss": 0.13853457424284982,
+    "accuracy": 0.9396899118912643,
+    "error_nM": 92.76802260898938
+  },
+  "seqs": {
+    "X": "AVASLESANSALKSEIASLEWENSALESKVASLKS",
+    "Y": "EIASLKSENSALQSKNASLKWQISALKS",
+    "A": "QIASLKSENSALQSKIASLAWQISALKSQIASLAS",
+    "B": "EIASLKSQISALKSENASLEWEISALQS",
+    "C": "KIASLKSQNSALASKIASLKWKISALKSQIASLES",
+    "D": "EIASLQSKNSALKSENASLEWEISALES"
+  },
+  "pads": {
+    "X": "-AVASLESANSALKSEIASLEWENSALESKVASLKS",
+    "Y": "-EIASLKSENSALQSKNASLKWQISALKS",
+    "A": "-QIASLKSENSALQSKIASLAWQISALKSQIASLAS",
+    "B": "-EIASLKSQISALKSENASLEWEISALQS",
+    "C": "-KIASLKSQNSALASKIASLKWKISALKSQIASLES",
+    "D": "-EIASLQSKNSALKSENASLEWEISALES"
+  },
+  "pkd_matrix": [
+    [
+      1.2234852671257386,
+      3.0805075286739187,
+      5.738502843539672,
+      2.3644995268826516,
+      8.354046016760806,
+      2.229453166143813
+    ],
+    [
+      3.0805075286739187,
+      3.520371784301862,
+      3.528093284302655,
+      7.7771171751276205,
+      4.274299352287079,
+      8.363293161762602
+    ],
+    [
+      5.738502843539672,
+      3.528093284302655,
+      4.528142178379895,
+      5.659018094915592,
+      4.803240448069659,
+      7.019860579617233
+    ],
+    [
+      2.3644995268826516,
+      7.7771171751276205,
+      5.659018094915592,
+      3.904781935400426,
+      4.59591806695013,
+      2.650563429899976
+    ],
+    [
+      8.354046016760806,
+      4.274299352287079,
+      4.803240448069659,
+      4.59591806695013,
+      4.581029298141937,
+      7.8160035884380346
+    ],
+    [
+      2.229453166143813,
+      8.363293161762602,
+      7.019860579617233,
+      2.650563429899976,
+      7.8160035884380346,
+      1.6732992476031558
+    ]
+  ],
+  "fitted_total_nM": {
+    "A": 975.1952434545208,
+    "B": 10.000000000000002,
+    "C": 760.2217009114174,
+    "D": 1500.9899390750797
+  },
+  "initial_metrics": {
+    "loss": 0.4614936376484489,
+    "accuracy": 0.8143569428317737,
+    "error_nM": 299.74200657393175
+  },
+  "fitted_metrics": {
+    "loss": 0.14218529194458207,
+    "accuracy": 0.9407144320743118,
+    "error_nM": 89.29236984179303
+  },
+  "worst_off_pKd": 4.803240448069659,
+  "worst_homo_pKd": 4.581029298141937,
+  "fitted_metrics_extra": {
+    "recomputed_with": "eqtk, independent of design_2d_boundary.py",
+    "recomputed_accuracy": 0.9407144320743118,
+    "recomputed_loss": 0.1421852919444857,
+    "recomputed_error_nM": 89.29236984179155,
+    "max_relative_mass_balance_residual": 1.153803201063769e-05,
+    "matches_stored_metrics": true,
+    "positive_class_fraction": 0.49996584932723176,
+    "majority_baseline_accuracy": 0.5000341506727682,
+    "sensitivity": 0.9512295081967214,
+    "specificity": 0.9302007922414971,
+    "balanced_accuracy": 0.9407151502191092,
+    "mcc": 0.8816241352977346,
+    "contour_error_pct_of_domain": 4.464618492089578
+  }
+}

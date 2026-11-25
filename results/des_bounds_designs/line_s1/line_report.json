@@ -80,5 +80,20 @@
     "error_nM": 2.862670260967037
   },
   "worst_off_pKd": 4.926172529669407,
-  "worst_homo_pKd": 4.383291487625494
+  "worst_homo_pKd": 4.383291487625494,
+  "fitted_metrics_extra": {
+    "recomputed_with": "eqtk, independent of design_2d_boundary.py",
+    "recomputed_accuracy": 0.9825148555426542,
+    "recomputed_loss": 0.0818906798348466,
+    "recomputed_error_nM": 2.862670257292297,
+    "max_relative_mass_balance_residual": 3.5097595585745356e-06,
+    "matches_stored_metrics": true,
+    "positive_class_fraction": 0.49586776859504134,
+    "majority_baseline_accuracy": 0.5041322314049587,
+    "sensitivity": 0.9679063360881542,
+    "specificity": 0.9968838910716705,
+    "balanced_accuracy": 0.9823951135799124,
+    "mcc": 0.9654165829951402,
+    "contour_error_pct_of_domain": 1.4313351286461482
+  }
 }

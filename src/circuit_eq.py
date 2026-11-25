@@ -189,12 +189,18 @@ def evaluate_truth_table(
     off_vals = vals[bits == 0]
     min_on = float(np.min(on_vals))
     max_off = float(np.max(off_vals))
+    fold_floor = 0.005
+    # "Fold" keeps the 0.005 floor, so every number already published and every MC
+    # pass criterion is unchanged. "Fold_uncensored" is the true ratio and
+    # "Fold_censored" marks the rows where the floor, not the design, set the value.
     return {
         "values": vals,
         "min_ON": min_on,
         "max_OFF": max_off,
         "Delta": min_on - max_off,
-        "Fold": min_on / max(max_off, 0.005),
+        "Fold": min_on / max(max_off, fold_floor),
+        "Fold_uncensored": (min_on / max_off) if max_off > 0.0 else float("inf"),
+        "Fold_censored": bool(max_off < fold_floor),
     }
 
 

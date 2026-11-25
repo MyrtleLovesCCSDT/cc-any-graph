@@ -9,3 +9,11 @@ __pycache__/
 *.py[cod]
 *.bak
 .DS_Store
+
+# keep the committed 2D designs and the post-hoc metric artifacts
+!results/des_bounds_designs/
+!results/des_bounds_designs/*/
+!results/des_bounds_designs/*/*
+!results/fold_uncensored.csv
+!results/adam_tuning/
+!results/adam_tuning/*.json

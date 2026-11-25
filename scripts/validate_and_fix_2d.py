@@ -26,7 +26,8 @@ DEFAULT_DESIGNS = [
     ROOT / "results/des_bounds_designs/line_s1/line_report.json",
     ROOT / "results/des_bounds_designs/circle_s5_kmin2/circle_report.json",
     ROOT / "results/des_bounds_designs/quadratic_s10_seed/quadratic_report.json",
-    ROOT / "results/des_bounds_designs/cubic_s5/cubic_report.json",
+    ROOT / "results/des_bounds_designs/cubic_yd_4mer_cfit_s15_kmin0.5/cubic_report.json",
+    ROOT / "results/des_bounds_designs/cubic_yd_5mer_cfit_s15_kmin0.5/cubic_report.json",
 ]
 
 
@@ -145,6 +146,14 @@ def check_slippage_and_mc(
         f"(n_mc={n_mc}, grid={grid_n}x{grid_n}, sigma_pKd={sigma_pkd:.3f}, conc_std={conc_std:.3f}) ==="
     )
     model = ConsensusModel(str(calib_path))
+    # iCipa_nter score units -> log10(Kd) units, read off the ridge calibration, so the
+    # register margin can be judged in affinity terms instead of arbitrary score points.
+    _icipa_i = list(model.models).index("iCipa_nter")
+    slip_to_dlog10kd = abs(
+        float(model.calib["ridge_coef_log10_kd"][_icipa_i])
+        / float(model.calib["scaler_scale"][_icipa_i])
+    )
+    print(f"  1 iCipa_nter score unit = {slip_to_dlog10kd:.4f} log10 Kd units")
 
     for rp in report_paths:
         if not rp.exists():
@@ -177,16 +186,23 @@ def check_slippage_and_mc(
             orient = sc.get("iCipa_best_orient", "?")
             shift_raw = sc.get("iCipa_best_shift", None)
             shift_str = f"{int(shift_raw):+d}" if shift_raw is not None else "?"
-            margin = float(sc.get("iCipa_slippage_margin", float("nan")))
+            # predict_pair never returns "iCipa_slippage_margin"; the old sc.get() made this
+            # column silently nan, so the register check never actually ran.
+            margin_val, margin_type = model.slippage_margin(pads[u], pads[v])
+            margin = float(margin_val)
+            dlog10 = margin * slip_to_dlog10kd
             flag = ""
             if orient != "PAR" or (shift_raw is not None and int(shift_raw) != 0):
                 flag = "  <-- WARN: orient/shift!"
-            elif np.isfinite(margin) and margin < 1.0:
-                flag = "  <-- tight margin (<1.0)"
+            elif dlog10 < 0.0:
+                flag = "  <-- WARN: wrong pose is preferred!"
+            elif dlog10 < 0.30:
+                flag = "  <-- weak register preference (<0.30 log10 Kd)"
             print(
                 f"    {e}: len=({len(pads[u])-1},{len(pads[v])-1})  "
                 f"pKd={pkd_mat[iu, iv]:.2f} (pred={pkd_pred:.2f})  "
-                f"{orient} shift={shift_str}  margin={margin:.2f}{flag}"
+                f"{orient} shift={shift_str}  margin={margin:.2f} "
+                f"({dlog10:+.2f} log10 Kd vs {margin_type}){flag}"
             )
 
         gx, gy = np.meshgrid(*[np.linspace(0.0, max_in, grid_n)] * 2)

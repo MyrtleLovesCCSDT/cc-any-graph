@@ -336,6 +336,48 @@ def tune_c0_mc_adam(parsed, des, args):
     print(f"EQTK Before: Nom Delta={tt_old['Delta']:.3f}, Fold={tt_old['Fold']:.1f}x | Sim MC Pass={mc_old['MC_Pass_rate']*100:.1f}%, p10={mc_old['MC_Delta_p10']:.3f}")
     print(f"EQTK After : Nom Delta={tt_new['Delta']:.3f}, Fold={tt_new['Fold']:.1f}x | Sim MC Pass={mc_new['MC_Pass_rate']*100:.1f}%, p10={mc_new['MC_Delta_p10']:.3f}")
 
+    if getattr(args, "save_json", None) is not None:
+        def _snap(tt, mc):
+            return {
+                "Delta": float(tt["Delta"]),
+                "Fold": float(tt["Fold"]),
+                "Fold_uncensored": float(tt.get("Fold_uncensored", tt["Fold"])),
+                "min_ON": float(tt["min_ON"]),
+                "max_OFF": float(tt["max_OFF"]),
+                "MC_Pass_rate": float(mc["MC_Pass_rate"]),
+                "MC_Delta_p10": float(mc["MC_Delta_p10"]),
+                "MC_Delta_med": float(mc["MC_Delta_med"]),
+                "MC_Fold_med": float(mc["MC_Fold_med"]),
+            }
+
+        payload = {
+            "circuit": parsed["name"],
+            "design_id": des.get("design_id"),
+            "settings": {
+                "sigma_pKd": float(args.sigma),
+                "conc_std": float(args.conc_std),
+                "eval_mc": int(args.eval_mc),
+                "batch_mc": int(args.batch_mc),
+                "adam_steps": int(args.steps),
+                "con_min_uM": float(args.con_min),
+                "con_max_uM": float(args.con_max),
+                "train_seed": int(args.train_seed),
+                "eval_seed": 42,
+                "fix_reporter": bool(args.fix_reporter),
+            },
+            "node_names": [str(x) for x in names],
+            "tuned_nodes": [str(names[int(j)]) for j in np.atleast_1d(tunable_idx).tolist()],
+            "levels_uM_before": np.asarray(nom_levels, dtype=float).tolist(),
+            "levels_uM_after": np.asarray(new_levels, dtype=float).tolist(),
+            "c0_uM_before": np.asarray(c0_uM_base, dtype=float).tolist(),
+            "c0_uM_after": np.asarray(new_c0_uM, dtype=float).tolist(),
+            "before": _snap(tt_old, mc_old),
+            "after": _snap(tt_new, mc_new),
+        }
+        args.save_json.parent.mkdir(parents=True, exist_ok=True)
+        args.save_json.write_text(json.dumps(payload, indent=2) + "\n")
+        print(f"Saved ADAM tuning report to {args.save_json}")
+
 
 def main():
     p = argparse.ArgumentParser()
@@ -354,6 +396,8 @@ def main():
     p.add_argument("--conc-std", type=float, default=0.015)
     p.add_argument("--sigma", type=float, default=None)
     p.add_argument("--train-seed", type=int, default=123)
+    p.add_argument("--save-json", type=Path, default=None,
+                   help="Write the before/after tuning report (c0 levels and metrics) to this JSON.")
     args = p.parse_args()
 
     if args.sigma is None:

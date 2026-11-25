@@ -242,6 +242,35 @@ def contour_error(delta: np.ndarray, gx: np.ndarray, gy: np.ndarray, tree: cKDTr
     return float((cKDTree(samples).query(tree.data)[0].mean() + tree.query(samples)[0].mean()) / 2.0)
 
 
+def classification_extras(pred: np.ndarray, labels: np.ndarray, err_nM: float, max_in: float) -> dict:
+    """Class-imbalance context for a thresholded 2D field.
+
+    Raw accuracy on a uniform grid is not interpretable on its own: the circle and
+    quadratic boundaries put ~78% and ~66% of the domain in one class, so a constant
+    classifier already scores that. Reviewers ask for the baseline, the balanced
+    accuracy and MCC alongside it.
+    """
+    pred = np.asarray(pred, dtype=bool).ravel()
+    lab = np.asarray(labels, dtype=bool).ravel()
+    tp = float(np.sum(pred & lab))
+    tn = float(np.sum(~pred & ~lab))
+    fp = float(np.sum(pred & ~lab))
+    fn = float(np.sum(~pred & lab))
+    den = np.sqrt((tp + fp) * (tp + fn) * (tn + fp) * (tn + fn))
+    tpr = tp / (tp + fn) if (tp + fn) > 0 else 0.0
+    tnr = tn / (tn + fp) if (tn + fp) > 0 else 0.0
+    pos = float(lab.mean())
+    return {
+        "positive_class_fraction": pos,
+        "majority_baseline_accuracy": max(pos, 1.0 - pos),
+        "sensitivity": tpr,
+        "specificity": tnr,
+        "balanced_accuracy": 0.5 * (tpr + tnr),
+        "mcc": float((tp * tn - fp * fn) / den) if den > 0 else 0.0,
+        "contour_error_pct_of_domain": (100.0 * err_nM / max_in) if np.isfinite(err_nM) else None,
+    }
+
+
 def evaluate_full_2d(name: str, kd_mat_nM: np.ndarray, totals_nM: Dict[str, float], nodes: Sequence[str], conc_scale: float):
     max_in = 200.0 * conc_scale
     thresh = 50.0 * conc_scale
@@ -257,6 +286,7 @@ def evaluate_full_2d(name: str, kd_mat_nM: np.ndarray, totals_nM: Dict[str, floa
         accuracy=float(np.mean((delta > 0.0) == labels)),
         error_nM=err if np.isfinite(err) else None,
     )
+    metrics.update(classification_extras(delta > 0.0, labels, err, max_in))
     return metrics, values, val_grid
 
 
