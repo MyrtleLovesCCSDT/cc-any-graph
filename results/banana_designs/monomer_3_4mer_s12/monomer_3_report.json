@@ -1,0 +1,321 @@
+{
+  "topology": "monomer_3",
+  "conc_scale": 12.0,
+  "lengths": [
+    "4mer"
+  ],
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H"
+  ],
+  "outputs": [
+    "A",
+    "B"
+  ],
+  "seqs": {
+    "X": "EVASLQKEISALASKNASLKWQISALKS",
+    "Y": "KVASLQSKISALKSKNASLQWQISALKS",
+    "A": "EIASLAKKVSALEKQNASLEWKVSALKS",
+    "B": "EIASLEKKVSALQKQNASLQWKVSALQS",
+    "C": "EIASLKSEISALESQNASLEWEISALES",
+    "D": "EVASLKKKISALKSENASLEWKISALAS",
+    "E": "KIASLASKISALESQNASLKWQISALKS",
+    "H": "EIASLESEVSALESKNASLEWEVSALKS"
+  },
+  "pads": {
+    "X": "-EVASLQKEISALASKNASLKWQISALKS",
+    "Y": "-KVASLQSKISALKSKNASLQWQISALKS",
+    "A": "-EIASLAKKVSALEKQNASLEWKVSALKS",
+    "B": "-EIASLEKKVSALQKQNASLQWKVSALQS",
+    "C": "-EIASLKSEISALESQNASLEWEISALES",
+    "D": "-EVASLKKKISALKSENASLEWKISALAS",
+    "E": "-KIASLASKISALESQNASLKWQISALKS",
+    "H": "-EIASLESEVSALESKNASLEWEVSALKS"
+  },
+  "pkd_matrix": [
+    [
+      3.98575076843215,
+      4.951353413014049,
+      3.675825643992504,
+      4.2728653956269795,
+      7.167248293756785,
+      7.376536414017497,
+      2.794261447259718,
+      4.251390841837916
+    ],
+    [
+      4.951353413014049,
+      4.224042191573708,
+      3.3319792951289484,
+      4.040796688829488,
+      7.867944340104682,
+      3.977312094136936,
+      3.014141505680197,
+      7.059020130899398
+    ],
+    [
+      3.675825643992504,
+      3.3319792951289484,
+      2.3477723430288435,
+      3.1568365184284195,
+      5.0619331574972675,
+      2.5009034303743594,
+      3.9571270771841096,
+      2.6205324956389546
+    ],
+    [
+      4.2728653956269795,
+      4.040796688829488,
+      3.1568365184284195,
+      3.965901747269046,
+      6.163479013900738,
+      3.949515007284105,
+      5.432626985661658,
+      2.713186249447019
+    ],
+    [
+      7.167248293756785,
+      7.867944340104682,
+      5.0619331574972675,
+      6.163479013900738,
+      4.696661979209512,
+      6.751121736086389,
+      6.260351324366596,
+      3.028951858296767
+    ],
+    [
+      7.376536414017497,
+      3.977312094136936,
+      2.5009034303743594,
+      3.949515007284105,
+      6.751121736086389,
+      3.924691221918394,
+      4.174289428970753,
+      4.197184097139296
+    ],
+    [
+      2.794261447259718,
+      3.014141505680197,
+      3.9571270771841096,
+      5.432626985661658,
+      6.260351324366596,
+      4.174289428970753,
+      3.688745892142557,
+      4.7175452122036
+    ],
+    [
+      4.251390841837916,
+      7.059020130899398,
+      2.6205324956389546,
+      2.713186249447019,
+      3.028951858296767,
+      4.197184097139296,
+      4.7175452122036,
+      2.179013039421891
+    ]
+  ],
+  "fitted_total_native_nM": {
+    "A": 82.86316844941977,
+    "B": 116.33590939406962,
+    "C": 18.374826774618423,
+    "D": 116.59791264143384,
+    "E": 157.26357968505354,
+    "H": 77.8174565549781
+  },
+  "fitted_total_scaled_nM": {
+    "A": 994.3580213930372,
+    "B": 1396.0309127288353,
+    "C": 220.49792129542107,
+    "D": 1399.174951697206,
+    "E": 1887.1629562206426,
+    "H": 933.8094786597371
+  },
+  "edges": {
+    "AC": {
+      "Kd_real_nM": 8670.953206066863,
+      "Kd_native_nM": 722.5794338389052,
+      "ideal_native_nM": 499.99999988736414,
+      "pKd": 5.0619331574972675,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 18.885984420776367,
+      "slip_type": "PAR_SLIP"
+    },
+    "BE": {
+      "Kd_real_nM": 3692.946485538859,
+      "Kd_native_nM": 307.7455404615716,
+      "ideal_native_nM": 53.99999990442276,
+      "pKd": 5.432626985661658,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 9.329404830932617,
+      "slip_type": "PAR_SLIP"
+    },
+    "CE": {
+      "Kd_real_nM": 549.0965001957519,
+      "Kd_native_nM": 45.758041682979325,
+      "ideal_native_nM": 13.199999978146812,
+      "pKd": 6.260351324366596,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 26.458663940429688,
+      "slip_type": "PAR_SLIP"
+    },
+    "BC": {
+      "Kd_real_nM": 686.3110417240624,
+      "Kd_native_nM": 57.19258681033853,
+      "ideal_native_nM": 50.00000009262788,
+      "pKd": 6.163479013900738,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 14.107694625854492,
+      "slip_type": "PAR_SLIP"
+    },
+    "XC": {
+      "Kd_real_nM": 68.03802621730756,
+      "Kd_native_nM": 5.669835518108964,
+      "ideal_native_nM": 5.446685925157823,
+      "pKd": 7.167248293756785,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 18.79352378845215,
+      "slip_type": "PAR_SLIP"
+    },
+    "YC": {
+      "Kd_real_nM": 13.553631067859756,
+      "Kd_native_nM": 1.1294692556549797,
+      "ideal_native_nM": 1.0,
+      "pKd": 7.867944340104682,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 29.559083938598633,
+      "slip_type": "PAR_SLIP"
+    },
+    "YH": {
+      "Kd_real_nM": 87.29309043890618,
+      "Kd_native_nM": 7.274424203242181,
+      "ideal_native_nM": 3.859176663621489,
+      "pKd": 7.059020130899398,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 0.4552879333496094,
+      "slip_type": "PAR_SLIP"
+    },
+    "XD": {
+      "Kd_real_nM": 42.020729334237856,
+      "Kd_native_nM": 3.501727444519821,
+      "ideal_native_nM": 1.6380434573105336,
+      "pKd": 7.376536414017497,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 32.725932121276855,
+      "slip_type": "ANTI"
+    },
+    "CD": {
+      "Kd_real_nM": 177.36922316159755,
+      "Kd_native_nM": 14.780768596799795,
+      "ideal_native_nM": 7.751217994791379,
+      "pKd": 6.751121736086389,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 32.72593116760254,
+      "slip_type": "ANTI"
+    }
+  },
+  "worst_off_pKd": 4.951353413014049,
+  "worst_homo_pKd": 4.696661979209512,
+  "stages": {
+    "ideal": {
+      "uniform_train": {
+        "accuracy": 0.9857227840571089,
+        "correct": 1657,
+        "n": 1681,
+        "cross_entropy_1nM": 0.6629036195253891,
+        "training_scale_CE": 0.03538738204662145,
+        "median_gap_nM": 0.029884268670194558
+      },
+      "uniform_validation": {
+        "accuracy": 0.98578125,
+        "correct": 6309,
+        "n": 6400,
+        "cross_entropy_1nM": 0.6642641345130252,
+        "training_scale_CE": 0.034374714867616604,
+        "median_gap_nM": 0.02777849239788388
+      },
+      "uniform_test": {
+        "accuracy": 0.9844140625,
+        "correct": 25201,
+        "n": 25600,
+        "cross_entropy_1nM": 0.6642623775220968,
+        "training_scale_CE": 0.035232418591162586,
+        "median_gap_nM": 0.027794508137324314
+      }
+    },
+    "initial": {
+      "uniform_train": {
+        "accuracy": 0.3087447947650208,
+        "correct": 519,
+        "n": 1681,
+        "cross_entropy_1nM": 5.347584372065989,
+        "training_scale_CE": 3709.9133122367475,
+        "median_gap_nM": 7.7025945656801085
+      },
+      "uniform_validation": {
+        "accuracy": 0.3153125,
+        "correct": 2018,
+        "n": 6400,
+        "cross_entropy_1nM": 5.2936932144678295,
+        "training_scale_CE": 3672.5281006322557,
+        "median_gap_nM": 7.684780907494835
+      },
+      "uniform_test": {
+        "accuracy": 0.3151953125,
+        "correct": 8069,
+        "n": 25600,
+        "cross_entropy_1nM": 5.294747066084409,
+        "training_scale_CE": 3673.2593012680927,
+        "median_gap_nM": 7.685732644637936
+      }
+    },
+    "optimized": {
+      "uniform_train": {
+        "accuracy": 0.9232599643069601,
+        "correct": 1552,
+        "n": 1681,
+        "cross_entropy_1nM": 0.6351933694790247,
+        "training_scale_CE": 0.9923584785310506,
+        "median_gap_nM": 0.06591372339296697
+      },
+      "uniform_validation": {
+        "accuracy": 0.920625,
+        "correct": 5892,
+        "n": 6400,
+        "cross_entropy_1nM": 0.6374809839859775,
+        "training_scale_CE": 0.9711082091448031,
+        "median_gap_nM": 0.06393679174595945
+      },
+      "uniform_test": {
+        "accuracy": 0.9212109375,
+        "correct": 23583,
+        "n": 25600,
+        "cross_entropy_1nM": 0.6374544059635758,
+        "training_scale_CE": 0.9564557488793451,
+        "median_gap_nM": 0.06386148866740626
+      }
+    }
+  },
+  "mc_uniform_val": {
+    "MC_Acc_med": 0.39664062499999997,
+    "MC_Acc_p10": 0.3153125,
+    "MC_Acc_p90": 0.6846875,
+    "MC_Pass_80": 0.0,
+    "MC_Pass_85": 0.0
+  },
+  "mc_banana_test": null
+}

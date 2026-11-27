@@ -161,7 +161,7 @@ def check_slippage_and_mc(
             continue
         rep = json.loads(rp.read_text())
         bname = rep["boundary"]
-        bkey = "cubic" if bname == "cubic_yd" else bname
+        bkey = "cubic" if bname == "cubic_yd" else d2b.base_boundary_name(bname)
         s = float(rep["conc_scale"])
         max_in = 200.0 * s
         nodes = rep["nodes"]
@@ -170,12 +170,16 @@ def check_slippage_and_mc(
         pkd_mat = np.array(rep["pkd_matrix"], dtype=float)
         totals_nM = rep["fitted_total_nM"]
         fm = rep["fitted_metrics"]
-        err_pct = 100.0 * fm["error_nM"] / max_in
+        err_str = (
+            f"{fm['error_nM']:.2f} nM ({100.0 * fm['error_nM'] / max_in:.2f}% of domain)"
+            if fm.get("error_nM") is not None
+            else "n/a"
+        )
 
         print(f"\n--- {rp.parent.name} ({bname}, scale={s}x) ---")
         print(
             f"  Nominal 121x121: acc={fm['accuracy']:.2%}, loss={fm['loss']:.4f}, "
-            f"err={fm['error_nM']:.2f} nM ({err_pct:.2f}% of domain)"
+            f"err={err_str}"
         )
         print("  Target edges (orient / shift / iCipa_slippage_margin):")
         for e in edges:

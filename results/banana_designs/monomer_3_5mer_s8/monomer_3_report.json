@@ -1,0 +1,322 @@
+{
+  "topology": "monomer_3",
+  "conc_scale": 8.0,
+  "lengths": [
+    "4mer",
+    "5mer"
+  ],
+  "nodes": [
+    "X",
+    "Y",
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "H"
+  ],
+  "outputs": [
+    "A",
+    "B"
+  ],
+  "seqs": {
+    "X": "QVASLEKAISALKKENASLKWEISALESKVASLKS",
+    "Y": "EIASLESENSALESKNASLKWEISALKS",
+    "A": "KVASLEEEISALESKNASLAWQISALQS",
+    "B": "EVASLKEEISALESKNASLQWQISALAS",
+    "C": "KVASLKKKISALKSENASLAWEISALKSEVASLES",
+    "D": "QVASLEKEISALQSKNASLKWKISALKSQVASLES",
+    "E": "EVASLQKKISALQKKNASLQWEISALQS",
+    "H": "KIASLKEKNSALKSKNASLQWKISALKS"
+  },
+  "pads": {
+    "X": "-QVASLEKAISALKKENASLKWEISALESKVASLKS",
+    "Y": "-EIASLESENSALESKNASLKWEISALKS",
+    "A": "-KVASLEEEISALESKNASLAWQISALQS",
+    "B": "-EVASLKEEISALESKNASLQWQISALAS",
+    "C": "-KVASLKKKISALKSENASLAWEISALKSEVASLES",
+    "D": "-QVASLEKEISALQSKNASLKWKISALKSQVASLES",
+    "E": "-EVASLQKKISALQKKNASLQWEISALQS",
+    "H": "-KIASLKEKNSALKSKNASLQWKISALKS"
+  },
+  "pkd_matrix": [
+    [
+      3.9936633940839315,
+      4.552096066157385,
+      4.189435456081428,
+      3.8413489842952293,
+      6.935858641430678,
+      8.478057195170075,
+      3.5039829442655526,
+      3.3225842566129384
+    ],
+    [
+      4.552096066157385,
+      3.3368125258537953,
+      1.7650094205063551,
+      1.33986007032889,
+      7.308502959646817,
+      2.450321493421516,
+      3.8296623276051096,
+      7.296793795818216
+    ],
+    [
+      4.189435456081428,
+      1.7650094205063551,
+      3.1512954363872963,
+      1.6573591572857111,
+      5.214164351423237,
+      3.199929343483837,
+      3.902883571775899,
+      3.157080668049872
+    ],
+    [
+      3.8413489842952293,
+      1.33986007032889,
+      1.6573591572857111,
+      3.9800192266470127,
+      5.9354821228755075,
+      2.654033471208831,
+      5.905981069565706,
+      3.884592310108371
+    ],
+    [
+      6.935858641430678,
+      7.308502959646817,
+      5.214164351423237,
+      5.9354821228755075,
+      4.222212417978513,
+      6.582815124850492,
+      6.348064905935049,
+      2.599038729033336
+    ],
+    [
+      8.478057195170075,
+      2.450321493421516,
+      3.199929343483837,
+      2.654033471208831,
+      6.582815124850492,
+      3.5856053522341917,
+      4.6324965928190505,
+      2.977221509494994
+    ],
+    [
+      3.5039829442655526,
+      3.8296623276051096,
+      3.902883571775899,
+      5.905981069565706,
+      6.348064905935049,
+      4.6324965928190505,
+      4.508930505752352,
+      3.887477761239236
+    ],
+    [
+      3.3225842566129384,
+      7.296793795818216,
+      3.157080668049872,
+      3.884592310108371,
+      2.599038729033336,
+      2.977221509494994,
+      3.887477761239236,
+      2.535162240456839
+    ]
+  ],
+  "fitted_total_native_nM": {
+    "A": 18.51594502064152,
+    "B": 35.979986500018846,
+    "C": 272.0723923175218,
+    "D": 98.1580046758793,
+    "E": 241.75344774966507,
+    "H": 223.28931136701516
+  },
+  "fitted_total_scaled_nM": {
+    "A": 148.12756016513217,
+    "B": 287.83989200015077,
+    "C": 2176.5791385401744,
+    "D": 785.2640374070344,
+    "E": 1934.0275819973206,
+    "H": 1786.3144909361213
+  },
+  "edges": {
+    "AC": {
+      "Kd_real_nM": 6107.108679399514,
+      "Kd_native_nM": 763.3885849249392,
+      "ideal_native_nM": 499.99999988736414,
+      "pKd": 5.214164351423237,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 24.310293197631836,
+      "slip_type": "ANTI"
+    },
+    "BE": {
+      "Kd_real_nM": 1241.7064310747287,
+      "Kd_native_nM": 155.2133038843411,
+      "ideal_native_nM": 53.99999990442276,
+      "pKd": 5.905981069565706,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 23.16935443878174,
+      "slip_type": "PAR_SLIP"
+    },
+    "CE": {
+      "Kd_real_nM": 448.67832930036974,
+      "Kd_native_nM": 56.08479116254622,
+      "ideal_native_nM": 13.199999978146812,
+      "pKd": 6.348064905935049,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 19.53200340270996,
+      "slip_type": "ANTI"
+    },
+    "BC": {
+      "Kd_real_nM": 1160.1599715265793,
+      "Kd_native_nM": 145.0199964408224,
+      "ideal_native_nM": 50.00000009262788,
+      "pKd": 5.9354821228755075,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 24.310293197631836,
+      "slip_type": "ANTI"
+    },
+    "XC": {
+      "Kd_real_nM": 115.9154588141937,
+      "Kd_native_nM": 14.489432351774212,
+      "ideal_native_nM": 5.446685925157823,
+      "pKd": 6.935858641430678,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 33.7744140625,
+      "slip_type": "ANTI"
+    },
+    "YC": {
+      "Kd_real_nM": 49.14700308988977,
+      "Kd_native_nM": 6.1433753862362215,
+      "ideal_native_nM": 1.0,
+      "pKd": 7.308502959646817,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 15.807222366333008,
+      "slip_type": "PAR_SLIP"
+    },
+    "YH": {
+      "Kd_real_nM": 50.49009689914405,
+      "Kd_native_nM": 6.311262112393006,
+      "ideal_native_nM": 3.859176663621489,
+      "pKd": 7.296793795818216,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 27.70248794555664,
+      "slip_type": "ANTI"
+    },
+    "XD": {
+      "Kd_real_nM": 3.326157459980101,
+      "Kd_native_nM": 0.4157696824975126,
+      "ideal_native_nM": 1.6380434573105336,
+      "pKd": 8.478057195170075,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 30.205101013183594,
+      "slip_type": "ANTI"
+    },
+    "CD": {
+      "Kd_real_nM": 261.3273564071979,
+      "Kd_native_nM": 32.66591955089974,
+      "ideal_native_nM": 7.751217994791379,
+      "pKd": 6.582815124850492,
+      "orient": "PAR",
+      "shift": 0,
+      "slip_margin": 30.13706398010254,
+      "slip_type": "ANTI"
+    }
+  },
+  "worst_off_pKd": 4.6324965928190505,
+  "worst_homo_pKd": 4.508930505752352,
+  "stages": {
+    "ideal": {
+      "uniform_train": {
+        "accuracy": 0.9857227840571089,
+        "correct": 1657,
+        "n": 1681,
+        "cross_entropy_1nM": 0.6629036195253891,
+        "training_scale_CE": 0.03538738204662145,
+        "median_gap_nM": 0.029884268670194558
+      },
+      "uniform_validation": {
+        "accuracy": 0.98578125,
+        "correct": 6309,
+        "n": 6400,
+        "cross_entropy_1nM": 0.6642641345130252,
+        "training_scale_CE": 0.034374714867616604,
+        "median_gap_nM": 0.02777849239788388
+      },
+      "uniform_test": {
+        "accuracy": 0.9844140625,
+        "correct": 25201,
+        "n": 25600,
+        "cross_entropy_1nM": 0.6642623775220968,
+        "training_scale_CE": 0.035232418591162586,
+        "median_gap_nM": 0.027794508137324314
+      }
+    },
+    "initial": {
+      "uniform_train": {
+        "accuracy": 0.3087447947650208,
+        "correct": 519,
+        "n": 1681,
+        "cross_entropy_1nM": 3.895693912585109,
+        "training_scale_CE": 2699.9549054362246,
+        "median_gap_nM": 5.558486673880253
+      },
+      "uniform_validation": {
+        "accuracy": 0.3153125,
+        "correct": 2018,
+        "n": 6400,
+        "cross_entropy_1nM": 3.8519138180297467,
+        "training_scale_CE": 2669.5560024574147,
+        "median_gap_nM": 5.545532677065916
+      },
+      "uniform_test": {
+        "accuracy": 0.3151953125,
+        "correct": 8069,
+        "n": 25600,
+        "cross_entropy_1nM": 3.8526872289361473,
+        "training_scale_CE": 2670.092657727535,
+        "median_gap_nM": 5.5463011117966445
+      }
+    },
+    "optimized": {
+      "uniform_train": {
+        "accuracy": 0.9714455681142177,
+        "correct": 1633,
+        "n": 1681,
+        "cross_entropy_1nM": 0.6750148867014352,
+        "training_scale_CE": 0.08107177817981963,
+        "median_gap_nM": 0.012143057442585814
+      },
+      "uniform_validation": {
+        "accuracy": 0.97,
+        "correct": 6208,
+        "n": 6400,
+        "cross_entropy_1nM": 0.6760682859410332,
+        "training_scale_CE": 0.07996564222435273,
+        "median_gap_nM": 0.011157666131147437
+      },
+      "uniform_test": {
+        "accuracy": 0.970546875,
+        "correct": 24846,
+        "n": 25600,
+        "cross_entropy_1nM": 0.6760646535019136,
+        "training_scale_CE": 0.07929888556765065,
+        "median_gap_nM": 0.011163658972382251
+      }
+    }
+  },
+  "mc_uniform_val": {
+    "MC_Acc_med": 0.677734375,
+    "MC_Acc_p10": 0.3153125,
+    "MC_Acc_p90": 0.6846875,
+    "MC_Pass_80": 0.0,
+    "MC_Pass_85": 0.0
+  },
+  "mc_banana_test": null
+}

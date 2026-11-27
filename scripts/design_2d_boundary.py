@@ -1,4 +1,8 @@
-"""De novo coiled-coil sequence design for 2D boundaries from korenkov-es/des_bounds (v3)."""
+"""De novo coiled-coil sequence design for 2D boundaries from korenkov-es/des_boundaries (v4)."""
+
+import os
+for _k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS", "VECLIB_MAXIMUM_THREADS", "NUMEXPR_NUM_THREADS"):
+    os.environ.setdefault(_k, "1")
 
 import argparse
 from concurrent.futures import ProcessPoolExecutor
@@ -77,21 +81,80 @@ def create_fig(xsize=None, ysize=None, n_rows=1, n_cols=1):
     return fig, grid.subplots()
 
 
+ALL_GATES = [
+    "line",
+    "circle",
+    "quadratic",
+    "cubic",
+    "full_circle",
+    "full_circle_2",
+    "angle",
+    "angle_2",
+    "bandpass",
+    "bandpass_2",
+]
+
 TOPOLOGIES = {
     "line": dict(nodes=("X", "Y", "A", "B"), edges=("AB", "XA", "YB")),
     "circle": dict(nodes=("X", "Y", "A", "B", "C", "D"), edges=("AC", "BC", "XC", "XD", "YB")),
     "quadratic": dict(nodes=("X", "Y", "A", "B", "C"), edges=("AC", "BC", "XB", "XC", "YC")),
     "cubic": dict(nodes=("X", "Y", "A", "B", "C", "D"), edges=("AB", "AD", "CD", "XA", "XC", "XD", "YB")),
+    "full_circle": dict(nodes=("X", "Y", "A", "B", "C", "D"), edges=("XB", "XC", "YC", "YD", "AC", "BC", "CD")),
+    "full_circle_2": dict(
+        nodes=("X", "Y", "A", "C", "D", "E", "G"),
+        edges=("XD", "XG", "YC", "YE", "AC", "AG", "CE", "DG"),
+    ),
+    "angle": dict(nodes=("X", "Y", "A", "C", "E"), edges=("XC", "YE", "AC", "AE", "CE")),
+    "angle_2": dict(
+        nodes=("X", "Y", "A", "B", "E", "F", "G"),
+        edges=("XY", "XE", "YF", "AB", "AE", "BG", "EF", "FG"),
+    ),
+    "bandpass": dict(nodes=("X", "Y", "A", "B", "C"), edges=("XA", "XB", "YC", "AB", "AC", "BC")),
+    "bandpass_2": dict(nodes=("X", "Y", "A", "B", "C"), edges=("XY", "XA", "XB", "YC", "AB", "AC", "BC")),
 }
 
 STARTING_SEEDS = {
     "quadratic": (
-        {"XB": 1.0011, "BC": 2.2812, "XC": 3.5668, "YC": 11.8180, "AC": 1.0664},
-        {"A": 231.3270, "B": 97.8035, "C": 256.8214},
+        {"XB": 1.0010652542114258, "BC": 2.281172752380371, "XC": 3.5668487548828125,
+         "YC": 11.817999839782715, "AC": 1.0663700103759766},
+        {"A": 231.3270263671875, "B": 97.80352020263672, "C": 256.8213806152344},
     ),
     "cubic": (
-        {"XA": 91.0813, "AB": 90.8369, "CD": 2.6216, "YD": 1.0359, "XC": 1.1551, "AD": 4.0657, "YB": 1.1823},
-        {"A": 162.6712, "B": 20.1206, "C": 60.6316, "D": 183.9222},
+        {"XA": 91.08134460449219, "AB": 90.83689880371094, "CD": 2.6216490268707275, "YD": 1.0358837842941284,
+         "XC": 1.155128002166748, "AD": 4.06572151184082, "YB": 1.1823222637176514},
+        {"A": 162.6712188720703, "B": 20.12062644958496, "C": 60.63164138793945, "D": 183.9221954345703},
+    ),
+    "full_circle": (
+        {"XB": 1.0, "XC": 6.5619658207637315, "YC": 6.5619658207641836, "YD": 1.000000000000002,
+         "AC": 1.0000000000000002, "BC": 6.8086315365657555, "CD": 6.808631536566877},
+        {"A": 324.9227986910585, "B": 103.79024815914606, "C": 315.85145665091954, "D": 103.7902481591466},
+    ),
+    "full_circle_2": (
+        {"XD": 1.0, "XG": 3.4682258511743993, "YC": 3.467787909332605, "YE": 1.0, "AC": 1.0000000000000073,
+         "AG": 1.0, "CE": 3.6762066181612996, "DG": 3.6766395586815643},
+        {"A": 353.45203911854117, "C": 172.9761826445396, "D": 104.1326629887872,
+         "E": 104.13292799810259, "G": 172.986042314218},
+    ),
+    "angle": (
+        {"XC": 1.7498635399722011, "YE": 1.7498635399719276, "AC": 79.15394957585218,
+         "AE": 79.15394957584402, "CE": 1.0000000000000038},
+        {"A": 66.41112440901443, "C": 191.47934304115967, "E": 191.47934304115898},
+    ),
+    "angle_2": (
+        {"XY": 4.211920825851432, "XE": 1.234885049779596, "YF": 1.1154574942272528, "AB": 2.2023142053814535,
+         "AE": 336.9917823381263, "BG": 1.0000000000000042, "EF": 1.000000000000011, "FG": 24.300308243276362},
+        {"A": 330.1040524367706, "B": 348.0877793262765, "E": 60.03574221555958,
+         "F": 59.56207486917893, "G": 62.72052078086879},
+    ),
+    "bandpass": (
+        {"XA": 50.68336067224629, "XB": 1.0000000000047613, "YC": 1.0, "AB": 33.44078126840161,
+         "AC": 185.20229340647523, "BC": 3.726120209205433},
+        {"A": 84.67795090431774, "B": 219.7827364670203, "C": 299.51165875817435},
+    ),
+    "bandpass_2": (
+        {"XY": 3.0756601299814568, "XA": 41.57373229720732, "XB": 1.000000001836519, "YC": 1.0000000161825586,
+         "AB": 31.079879675683074, "AC": 162.6459717613409, "BC": 3.986718692771153},
+        {"A": 84.18489562291869, "B": 168.2695100923247, "C": 237.95434643567992},
     ),
 }
 
@@ -100,42 +163,89 @@ FIT_SETTINGS = {
     "circle": dict(starts=5, max_nfev=180, min_slope=0.40),
     "quadratic": dict(starts=6, max_nfev=220, min_slope=0.10),
     "cubic": dict(starts=8, max_nfev=250, min_slope=0.10),
+    "full_circle": dict(starts=4, max_nfev=220, min_slope=0.12),
+    "angle": dict(starts=4, max_nfev=220, min_slope=0.05),
+    "bandpass": dict(starts=4, max_nfev=220, min_slope=0.12),
 }
 
 
+def base_boundary_name(name: str) -> str:
+    return name[:-2] if name.endswith("_2") else name
+
+
 def boundary_fn(name: str, x, y, max_in: float = 200.0):
-    if name == "line":
+    b = base_boundary_name(name)
+    s = max_in / 200.0
+    if b == "line":
         return y > x
-    if name == "circle":
+    if b == "circle":
         return x ** 2 + (y - max_in) ** 2 > max_in ** 2
-    if name == "quadratic":
+    if b == "quadratic":
         return y > 4.0 * x * (1.0 - x / max_in)
-    if name == "cubic":
+    if b == "cubic":
         return y > 0.5 * max_in * (1.0 + (2.0 * x / max_in - 1.0) ** 3)
+    if b == "full_circle":
+        c, r = 100.0 * s, 30.0 * s
+        return (x - c) ** 2 + (y - c) ** 2 > r ** 2
+    if b == "angle":
+        return (y > 0.5 * x) & (y < 2.0 * x)
+    if b == "bandpass":
+        return (y > 1.25 * x + 10.0 * s) & (y < 1.25 * x + 60.0 * s)
     raise ValueError(f"Unknown boundary: {name}")
 
 
-def curve_points(name: str, max_in: float = 200.0, n_pts: int = 1001):
+def curves(name: str, max_in: float = 200.0, n_pts: int = 1001) -> Tuple[np.ndarray, ...]:
+    b = base_boundary_name(name)
+    s = max_in / 200.0
     t = np.linspace(0.0, 1.0, n_pts)
-    if name == "line":
-        return max_in * t, max_in * t
-    if name == "circle":
-        return max_in * np.sin(np.pi * t / 2.0), max_in * (1.0 - np.cos(np.pi * t / 2.0))
-    if name == "quadratic":
+    if b == "line":
+        return (np.column_stack((max_in * t, max_in * t)),)
+    if b == "circle":
+        return (np.column_stack((max_in * np.sin(np.pi * t / 2.0), max_in * (1.0 - np.cos(np.pi * t / 2.0)))),)
+    if b == "quadratic":
         x = max_in * t
-        return x, 4.0 * x * (1.0 - x / max_in)
-    if name == "cubic":
+        return (np.column_stack((x, 4.0 * x * (1.0 - x / max_in))),)
+    if b == "cubic":
         x = max_in * t
-        return x, 0.5 * max_in * (1.0 + (2.0 * x / max_in - 1.0) ** 3)
+        return (np.column_stack((x, 0.5 * max_in * (1.0 + (2.0 * x / max_in - 1.0) ** 3))),)
+    if b == "full_circle":
+        c, r = 100.0 * s, 30.0 * s
+        semicircle = r * np.column_stack((-np.cos(np.pi * t), np.sin(np.pi * t)))
+        return (c + semicircle, c - semicircle)
+    if b == "angle":
+        return (
+            np.column_stack((max_in * t, 0.5 * max_in * t)),
+            np.column_stack((max_in * (1.0 - t) / 2.0, max_in * (1.0 - t))),
+        )
+    if b == "bandpass":
+        bx_lo = (max_in - 10.0 * s) * t / 1.25
+        bx_hi = (max_in - 60.0 * s) * (1.0 - t) / 1.25
+        return (
+            np.column_stack((bx_lo, 1.25 * bx_lo + 10.0 * s)),
+            np.column_stack((bx_hi, 1.25 * bx_hi + 60.0 * s)),
+        )
     raise ValueError(f"Unknown boundary: {name}")
 
 
-def contour_samples(name: str, curve: np.ndarray, max_in: float = 200.0, offset: float = 3.0) -> np.ndarray:
-    tangent = np.gradient(curve, axis=0)
-    normal = np.column_stack((-tangent[:, 1], tangent[:, 0]))
-    normal /= np.maximum(np.linalg.norm(normal, axis=1, keepdims=True), 1e-12)
-    if name == "circle":
-        normal *= -1.0
+def contour_geometry(name: str, max_in: float = 200.0, step: int = 25, interior: bool = False) -> Tuple[np.ndarray, np.ndarray]:
+    b = base_boundary_name(name)
+    points, normals = [], []
+    for branch in curves(b, max_in):
+        curve = branch[::step]
+        if interior and len(curve) > 2:
+            curve = curve[1:-1]
+        if b == "angle":
+            curve = curve[np.any(curve != 0.0, axis=1)]
+        tangent = np.gradient(curve, axis=0)
+        normal = np.column_stack((-tangent[:, 1], tangent[:, 0]))
+        normal /= np.maximum(np.linalg.norm(normal, axis=1, keepdims=True), 1e-12)
+        points.append(curve)
+        normals.append(-normal if b == "circle" else normal)
+    return np.vstack(points), np.vstack(normals)
+
+
+def contour_samples(name: str, max_in: float = 200.0, step: int = 25, offset: float = 3.0, interior: bool = False) -> np.ndarray:
+    curve, normal = contour_geometry(name, max_in=max_in, step=step, interior=interior)
     return np.vstack([
         curve,
         np.clip(curve + offset * normal, 0.0, max_in),
@@ -151,10 +261,10 @@ def fit_ideal_gate(name: str, kd_min_native: float = 1.0, kd_max_native: float =
     nodes = [*inputs, *internal]
     row, col = np.array([[nodes.index(nd) for nd in pair] for pair in edges]).T
     out_idx = nodes.index("A")
-    opts = FIT_SETTINGS[name]
+    b = base_boundary_name(name)
+    opts = FIT_SETTINGS[b]
 
-    curve = np.column_stack(curve_points(name, 200.0))[::25][1:-1]
-    pts = jnp.asarray(contour_samples(name, curve, 200.0, 3.0))
+    pts = jnp.asarray(contour_samples(b, max_in=200.0, step=25, offset=3.0, interior=True))
 
     def residual(log_params):
         kd = jnp.exp(log_params[: len(edges)])
@@ -173,10 +283,13 @@ def fit_ideal_gate(name: str, kd_min_native: float = 1.0, kd_max_native: float =
     bounds = np.log([kd_b] * len(edges) + [tot_b] * len(internal)).T
     rng = np.random.default_rng(seed)
     fits = []
-    for _ in range(opts["starts"]):
+    for index in range(opts["starts"]):
         log_kd = rng.uniform(np.log(kd_b[0]), np.log(min(100.0, kd_b[1])), len(edges))
         log_tot = rng.uniform(np.log(60.0), np.log(360.0), len(internal))
         start = np.clip(np.r_[log_kd, log_tot], *bounds)
+        if index == 0 and name in STARTING_SEEDS:
+            skd, stot = STARTING_SEEDS[name]
+            start = np.clip(np.log([skd[e] for e in edges] + [stot[nd] for nd in internal]), *bounds)
         fits.append(least_squares(lambda z: np.asarray(fun(z)), start, jac=lambda z: np.asarray(jac(z)), bounds=bounds, max_nfev=opts["max_nfev"]))
     best_x = np.exp(min(fits, key=lambda f: f.cost).x)
     return dict(zip(edges, best_x[: len(edges)])), dict(zip(internal, best_x[len(edges) :]))
@@ -243,13 +356,6 @@ def contour_error(delta: np.ndarray, gx: np.ndarray, gy: np.ndarray, tree: cKDTr
 
 
 def classification_extras(pred: np.ndarray, labels: np.ndarray, err_nM: float, max_in: float) -> dict:
-    """Class-imbalance context for a thresholded 2D field.
-
-    Raw accuracy on a uniform grid is not interpretable on its own: the circle and
-    quadratic boundaries put ~78% and ~66% of the domain in one class, so a constant
-    classifier already scores that. Reviewers ask for the baseline, the balanced
-    accuracy and MCC alongside it.
-    """
     pred = np.asarray(pred, dtype=bool).ravel()
     lab = np.asarray(labels, dtype=bool).ravel()
     tp = float(np.sum(pred & lab))
@@ -271,15 +377,20 @@ def classification_extras(pred: np.ndarray, labels: np.ndarray, err_nM: float, m
     }
 
 
-def evaluate_full_2d(name: str, kd_mat_nM: np.ndarray, totals_nM: Dict[str, float], nodes: Sequence[str], conc_scale: float):
+def evaluate_full_2d(name: str, kd_mat_nM: np.ndarray, totals_nM: Dict[str, float], nodes: Sequence[str], conc_scale: float, use_jax: bool = True):
     max_in = 200.0 * conc_scale
     thresh = 50.0 * conc_scale
     trans = 5.0 * conc_scale
     val_grid = np.meshgrid(*[np.linspace(0.0, max_in, 121)] * 2)
-    values = equilibrium_matrix_jax(kd_mat_nM, totals_nM, *val_grid, nodes, output="A")
+    if use_jax:
+        values = equilibrium_matrix_jax(kd_mat_nM, totals_nM, *val_grid, nodes, output="A")
+    else:
+        gx, gy = val_grid
+        c0 = np.column_stack((gx.ravel(), gy.ravel(), *[np.full(gx.size, totals_nM[nm]) for nm in nodes[2:]]))
+        values = solve_eq_batch_np(c0, kd_mat_nM)[:, nodes.index("A")].reshape(gx.shape)
     labels = boundary_fn(name, *val_grid, max_in=max_in)
     delta = values - thresh
-    tree = cKDTree(np.column_stack(curve_points(name, max_in)))
+    tree = cKDTree(np.vstack(curves(name, max_in)))
     err = contour_error(delta, *val_grid, tree, conc_scale=conc_scale)
     metrics = dict(
         loss=bce_loss(values, labels, thresh, trans),
@@ -290,7 +401,15 @@ def evaluate_full_2d(name: str, kd_mat_nM: np.ndarray, totals_nM: Dict[str, floa
     return metrics, values, val_grid
 
 
-def fit_concentrations_full(name: str, kd_mat_nM: np.ndarray, init_totals_nM: Dict[str, float], nodes: Sequence[str], conc_scale: float, contour_fit: bool = False):
+def fit_concentrations_full(
+    name: str,
+    kd_mat_nM: np.ndarray,
+    init_totals_nM: Dict[str, float],
+    nodes: Sequence[str],
+    conc_scale: float,
+    contour_fit: bool = False,
+    tot_max_native: float = 400.0,
+):
     max_in = 200.0 * conc_scale
     thresh = 50.0 * conc_scale
     trans = 5.0 * conc_scale
@@ -303,10 +422,15 @@ def fit_concentrations_full(name: str, kd_mat_nM: np.ndarray, init_totals_nM: Di
     n_grid = xy.shape[0]
 
     if contour_fit:
-        curve = np.column_stack(curve_points(name, max_in))[::25][1:-1]
-        pts = contour_samples(name, curve, max_in, offset=4.0 * conc_scale)
+        pts = contour_samples(name, max_in=max_in, step=25, offset=4.0 * conc_scale, interior=True)
+        n_c = len(pts) // 3
+        plus_xy = pts[n_c : 2 * n_c]
+        minus_xy = pts[2 * n_c :]
+        plus_lbl = boundary_fn(name, plus_xy[:, 0], plus_xy[:, 1], max_in=max_in)
+        minus_lbl = boundary_fn(name, minus_xy[:, 0], minus_xy[:, 1], max_in=max_in)
         all_xy = np.vstack((xy, pts))
     else:
+        plus_lbl = minus_lbl = None
         all_xy = xy
 
     def objective(log_totals):
@@ -318,13 +442,10 @@ def fit_concentrations_full(name: str, kd_mat_nM: np.ndarray, init_totals_nM: Di
         grid_v = free[:n_grid]
         center, plus, minus = np.split(free[n_grid:], 3)
         c_loss = float(np.mean(((center - thresh) / trans) ** 2))
-        band_bce = 0.5 * (
-            bce_loss(plus, np.ones(len(plus), dtype=bool), thresh, trans)
-            + bce_loss(minus, np.zeros(len(minus), dtype=bool), thresh, trans)
-        )
+        band_bce = 0.5 * (bce_loss(plus, plus_lbl, thresh, trans) + bce_loss(minus, minus_lbl, thresh, trans))
         return c_loss + 0.8 * band_bce + 0.25 * bce_loss(grid_v, labels, thresh, trans)
 
-    bounds = [(np.log(1.0 * conc_scale), np.log(500.0 * conc_scale))] * len(internal)
+    bounds = [(np.log(1.0 * conc_scale), np.log(tot_max_native * conc_scale))] * len(internal)
     best_res = None
     for scale_mult in (1.0, 0.5, 2.0):
         start = np.clip(np.log([init_totals_nM[k] * scale_mult for k in internal]), [b[0] for b in bounds], [b[1] for b in bounds])
@@ -352,12 +473,12 @@ def _score_2d_sa(
     n_grid_pts: int,
     thresh_nM: float,
     trans_nM: float,
+    cfit_mode: bool,
 ) -> Tuple[float, dict]:
     n = len(nodes)
     target_set = {(min(u, v), max(u, v)) for u, v, _ in target_edges}
 
     graph_loss = 0.0
-    cfit_mode = (len(c0_train_nM) - n_grid_pts) > 25
     tol_lo = 0.22 if cfit_mode else 0.35
     tol_hi = 0.28 if cfit_mode else 0.45
     w_pkd = 4.0 if cfit_mode else 1.5
@@ -401,7 +522,7 @@ def _score_2d_sa(
     curve_vals = a_vals[n_grid_pts:]
     bce = bce_loss(grid_vals, labels_train, thresh_nM, trans_nM)
     acc = float(np.mean((grid_vals > thresh_nM) == labels_train))
-    curve_pen = float(np.mean(((curve_vals - thresh_nM) / trans_nM) ** 2))
+    curve_pen = float(np.mean(((curve_vals - thresh_nM) / trans_nM) ** 2)) if curve_vals.size else 0.0
     if cfit_mode:
         circuit_loss = 10.0 * bce + 18.0 * curve_pen
     else:
@@ -433,6 +554,7 @@ def _worker_sa_2d(args_tuple):
         n_grid_pts,
         thresh_nM,
         trans_nM,
+        cfit_mode,
         worker_seed,
         n_restarts,
         n_steps,
@@ -462,7 +584,7 @@ def _worker_sa_2d(args_tuple):
         mat = [[model.predict_pair(pads[i], pads[j]) for j in range(n)] for i in range(n)]
         cur_loss, cur_m = _score_2d_sa(
             mat, nodes, target_edges, hierarchies, off_max_pkd, homo_max_pkd,
-            c0_train_nM, labels_train, n_grid_pts, thresh_nM, trans_nM,
+            c0_train_nM, labels_train, n_grid_pts, thresh_nM, trans_nM, cfit_mode,
         )
         hof[tuple(raws)] = (cur_loss, tuple(raws), tuple(pads), cur_m)
 
@@ -488,7 +610,7 @@ def _worker_sa_2d(args_tuple):
 
             new_loss, new_m = _score_2d_sa(
                 new_mat, nodes, target_edges, hierarchies, off_max_pkd, homo_max_pkd,
-                c0_train_nM, labels_train, n_grid_pts, thresh_nM, trans_nM,
+                c0_train_nM, labels_train, n_grid_pts, thresh_nM, trans_nM, cfit_mode,
             )
             delta = new_loss - cur_loss
             if delta <= 0.0 or rng.random() < math.exp(-delta / max(temp, 1e-6)):
@@ -532,8 +654,10 @@ def plot_topology_and_contour(
         network.plot([p1[0], p2[0]], [p1[1], p2[1]], color="0.5", lw=1.4)
         mid = 0.44 * p1 + 0.56 * p2
         kd_val = kd_mat_nM[nodes.index(a), nodes.index(b)]
-        network.text(mid[0], mid[1], f"{kd_val:.1f} nM", fontsize=4.8, ha="center", va="center",
-                     bbox=dict(boxstyle="round,pad=0.14", facecolor="white", edgecolor="none", alpha=0.85))
+        network.text(
+            mid[0], mid[1], f"{kd_val:.1f} nM", fontsize=4.8, ha="center", va="center",
+            bbox=dict(boxstyle="round,pad=0.14", facecolor="white", edgecolor="none", alpha=0.85),
+        )
 
     for nd, pt in positions.items():
         lbl = f"{nd}\n{totals_nM[nd]:.0f}" if nd in totals_nM else nd
@@ -547,7 +671,8 @@ def plot_topology_and_contour(
     if field.min() < thresh < field.max():
         ax.contour(*val_grid, field, levels=[thresh], colors="#191919", linewidths=1.2)
         ax.plot([], [], color="#191919", label=f"Free A = {thresh:.0f} nM")
-    ax.plot(*curve_points(name, max_in), "--", color="#198438", lw=1.2, label="Target")
+    for i, branch in enumerate(curves(name, max_in)):
+        ax.plot(*branch.T, "--", color="#198438", lw=1.2, label="Target" if i == 0 else None)
     err_str = f"{metrics['error_nM']:.1f} nM" if metrics["error_nM"] is not None else "n/a"
     ax.set(xlabel="X (nM)", ylabel="Y (nM)", aspect="equal", xlim=(0, max_in), ylim=(0, max_in))
     ax.set_title(f"{name.capitalize()} (Acc {metrics['accuracy']:.1%}, err {err_str})", fontsize=7)
@@ -572,7 +697,8 @@ def plot_performance_stages(name: str, stages: dict, val_grid, conc_scale: float
         if values.min() < thresh < values.max():
             ax.contour(*val_grid, values, levels=[thresh], colors="#191919", linewidths=1.2)
             ax.plot([], [], color="#191919", label=f"Free A = {thresh:.0f} nM")
-        ax.plot(*curve_points(name, max_in), "--", color="#198438", lw=1.2, label="Target")
+        for i, branch in enumerate(curves(name, max_in)):
+            ax.plot(*branch.T, "--", color="#198438", lw=1.2, label="Target" if i == 0 else None)
         ax.set(xlabel="X (nM)", aspect="equal", xlim=(0, max_in), ylim=(0, max_in))
         ax.set_title(f"{title}\nLoss {metrics['loss']:.3f}   Acc {metrics['accuracy']:.1%}", fontsize=7.5)
     axes[0].set_ylabel("Y (nM)")
@@ -582,13 +708,51 @@ def plot_performance_stages(name: str, stages: dict, val_grid, conc_scale: float
     plt.close(fig)
 
 
+def _worker_fit_2d(job):
+    calib_path_str, pads_t, sa_m, name, ideal_tot_nM, nodes, s, contour_fit, tot_max_native = job
+    model = ConsensusModel(Path(calib_path_str))
+    pads = list(pads_t)
+    raws = [p.lstrip("-") for p in pads]
+    mat = [[model.predict_pair(pads[i], pads[j]) for j in range(len(nodes))] for i in range(len(nodes))]
+    pkd_mat = np.array([[mat[i][j]["pKd"] for j in range(len(nodes))] for i in range(len(nodes))], dtype=float)
+    kd_mat_nM = 10.0 ** (9.0 - pkd_mat)
+
+    def _err_val(m):
+        return float("inf") if m["error_nM"] is None else float(m["error_nM"])
+
+    init_eval = evaluate_full_2d(name, kd_mat_nM, ideal_tot_nM, nodes, s, use_jax=False)
+    fitted_tot = fit_concentrations_full(
+        name, kd_mat_nM, ideal_tot_nM, nodes, s,
+        contour_fit=contour_fit, tot_max_native=tot_max_native,
+    )
+    fit_eval = evaluate_full_2d(name, kd_mat_nM, fitted_tot, nodes, s, use_jax=False)
+    if contour_fit:
+        if (_err_val(fit_eval[0]), -fit_eval[0]["accuracy"]) >= (_err_val(init_eval[0]), -init_eval[0]["accuracy"]):
+            fitted_tot, fit_eval = ideal_tot_nM, init_eval
+        score_key = (_err_val(fit_eval[0]), -fit_eval[0]["accuracy"], fit_eval[0]["loss"])
+    else:
+        if fit_eval[0]["loss"] >= init_eval[0]["loss"]:
+            fitted_tot, fit_eval = ideal_tot_nM, init_eval
+        score_key = (fit_eval[0]["loss"], -fit_eval[0]["accuracy"])
+    return {
+        "score_key": score_key,
+        "pads": pads,
+        "raws": raws,
+        "pkd_mat": pkd_mat,
+        "kd_mat_nM": kd_mat_nM,
+        "fitted_tot": fitted_tot,
+        "sa_m": sa_m,
+    }
+
+
 def main():
-    p = argparse.ArgumentParser(description="Design coiled-coil sequences for 2D boundaries from des_bounds.")
-    p.add_argument("--boundary", type=str, default="line", choices=["line", "circle", "quadratic", "cubic"])
+    p = argparse.ArgumentParser(description="Design coiled-coil sequences for 2D boundaries from des_boundaries.")
+    p.add_argument("--boundary", type=str, default="line", choices=ALL_GATES)
     p.add_argument("--conc-scale", type=float, default=1.0, help="Scale [0, 200] nM grid & Kd by s (weakens Kd s-fold).")
     p.add_argument("--kd-min-native", type=float, default=1.0, help="Lower Kd bound in native [0,200] nM space.")
     p.add_argument("--kd-max-native", type=float, default=1000.0, help="Upper Kd bound in native [0,200] nM space.")
-    p.add_argument("--use-seed", action="store_true", help="Use starting_models from des_bounds/threshold_seeds.py.")
+    p.add_argument("--tot-max-native", type=float, default=400.0, help="Upper total conc bound in native [0,200] nM space.")
+    p.add_argument("--use-seed", action="store_true", help="Use starting_models from des_boundaries/threshold_seeds.py.")
     p.add_argument("--allow-5mer", action="store_true")
     p.add_argument("--cubic-yd", action="store_true", help="Use bipartite cubic topology (YD instead of XD).")
     p.add_argument("--contour-fit", action="store_true", help="Optimize contour shape instead of raw grid BCE.")
@@ -598,6 +762,7 @@ def main():
     p.add_argument("--top-fit", type=int, default=25)
     p.add_argument("--calib", type=Path, default=DEFAULT_CALIB_PATH)
     p.add_argument("--out-dir", type=Path, default=ROOT / "results" / "des_bounds_designs")
+    p.add_argument("--off-max-pkd", type=float, default=4.5)
     p.add_argument("--seed", type=int, default=42)
     args = p.parse_args()
 
@@ -608,22 +773,22 @@ def main():
     trans = 5.0 * s
     use_seed = bool(args.use_seed and name in STARTING_SEEDS)
     tag = "seed" if use_seed else f"kmin{args.kd_min_native:g}"
+    mer_tag = "_5mer" if args.allow_5mer else "_4mer"
+    cf_tag = "_cfit" if args.contour_fit else ""
+
     if name == "cubic" and args.cubic_yd:
         TOPOLOGIES["cubic"]["edges"] = ("AB", "AD", "CD", "XA", "XC", "YD", "YB")
-        mer_tag = "_5mer" if args.allow_5mer else "_4mer"
-        cf_tag = "_cfit" if args.contour_fit else ""
         out_dir = args.out_dir / f"cubic_yd{mer_tag}{cf_tag}_s{s:g}_{tag}"
     else:
-        cf_tag = "_cfit" if args.contour_fit else ""
-        out_dir = args.out_dir / f"{name}{cf_tag}_s{s:g}_{tag}"
+        out_dir = args.out_dir / f"{name}{mer_tag if args.allow_5mer else ''}{cf_tag}_s{s:g}_{tag}"
     out_dir.mkdir(parents=True, exist_ok=True)
 
     graph = TOPOLOGIES[name]
     nodes = list(graph["nodes"])
     if use_seed:
-        print(f"=== [{name}] Step 1: Using des_bounds STARTING_SEEDS (conc_scale={s}) ===")
+        print(f"=== [{name}] Step 1: Using des_boundaries STARTING_SEEDS (conc_scale={s}) ===")
         ideal_kd_nat, ideal_tot_nat = STARTING_SEEDS[name]
-        edges_pairs = list(ideal_kd_nat.keys())
+        edges_pairs = list(graph["edges"]) if name in ("line", "circle") else list(ideal_kd_nat.keys())
     else:
         print(f"=== [{name}] Step 1: Fitting ideal parameters (conc_scale={s}, native Kd=[{args.kd_min_native}, {args.kd_max_native}] -> eff min={args.kd_min_native*s:.1f} nM) ===")
         ideal_kd_nat, ideal_tot_nat = fit_ideal_gate(name, kd_min_native=args.kd_min_native, kd_max_native=args.kd_max_native, seed=args.seed)
@@ -658,23 +823,22 @@ def main():
 
     hierarchies = []
     for a in range(len(target_edges)):
-        for b in range(len(target_edges)):
-            if a == b:
+        for b_idx in range(len(target_edges)):
+            if a == b_idx:
                 continue
             u1, v1, p1 = target_edges[a]
-            u2, v2, p2 = target_edges[b]
+            u2, v2, p2 = target_edges[b_idx]
             if p1 - p2 >= 0.30:
                 hierarchies.append((u1, v1, u2, v2, min(0.75 * (p1 - p2), 1.5)))
-    if name in ("circle", "quadratic"):
+    if name == "circle":
         ac_u, ac_v = min(nodes.index("A"), nodes.index("C")), max(nodes.index("A"), nodes.index("C"))
         bc_u, bc_v = min(nodes.index("B"), nodes.index("C")), max(nodes.index("B"), nodes.index("C"))
-        if name == "circle":
-            hierarchies.append((bc_u, bc_v, ac_u, ac_v, 0.05))
+        hierarchies.append((bc_u, bc_v, ac_u, ac_v, 0.05))
 
     gx_c, gy_c = np.meshgrid(*[np.linspace(0.0, max_in, 11)] * 2)
     labels_c = boundary_fn(name, gx_c, gy_c, max_in=max_in).ravel()
     stride = 20 if args.contour_fit else 50
-    curve_c = np.column_stack(curve_points(name, max_in))[::stride][1:-1]
+    curve_c, _ = contour_geometry(name, max_in=max_in, step=stride, interior=True)
     xy_all = np.vstack((np.column_stack((gx_c.ravel(), gy_c.ravel())), curve_c))
     internal = nodes[2:]
     c0_train_nM = np.column_stack((xy_all, np.broadcast_to([ideal_tot_nM[k] for k in internal], (xy_all.shape[0], len(internal)))))
@@ -685,7 +849,7 @@ def main():
     jobs = [
         (
             str(args.calib), pools_by_node, nodes, target_edges, hierarchies, lengths_by_node,
-            4.5, 4.35, c0_train_nM, labels_c, gx_c.size, thresh, trans,
+            args.off_max_pkd, 4.35, c0_train_nM, labels_c, gx_c.size, thresh, trans, bool(args.contour_fit),
             args.seed + 1009 * idx, r_cnt, args.steps,
         )
         for idx, r_cnt in enumerate(r_per_w) if r_cnt > 0
@@ -706,45 +870,31 @@ def main():
     top_cands = sorted(dedup.values(), key=lambda x: x[0])[: args.top_fit]
     print(f"SA finished in {time.time() - t0:.1f}s ({len(dedup)} unique designs). Fitting concentrations on top {len(top_cands)}...")
 
-    best_bundle = None
-    for _, pads_t, sa_m in top_cands:
-        pads = list(pads_t)
-        raws = [p.lstrip("-") for p in pads]
-        mat = [[model.predict_pair(pads[i], pads[j]) for j in range(len(nodes))] for i in range(len(nodes))]
-        pkd_mat = np.array([[mat[i][j]["pKd"] for j in range(len(nodes))] for i in range(len(nodes))], dtype=float)
-        kd_mat_nM = 10.0 ** (9.0 - pkd_mat)
-
-        def _err_val(m):
-            return float("inf") if m["error_nM"] is None else float(m["error_nM"])
-
-        init_eval = evaluate_full_2d(name, kd_mat_nM, ideal_tot_nM, nodes, s)
-        fitted_tot = fit_concentrations_full(name, kd_mat_nM, ideal_tot_nM, nodes, s, contour_fit=args.contour_fit)
-        fit_eval = evaluate_full_2d(name, kd_mat_nM, fitted_tot, nodes, s)
-        if args.contour_fit:
-            if (_err_val(fit_eval[0]), -fit_eval[0]["accuracy"]) >= (_err_val(init_eval[0]), -init_eval[0]["accuracy"]):
-                fitted_tot, fit_eval = ideal_tot_nM, init_eval
-            score_key = (_err_val(fit_eval[0]), -fit_eval[0]["accuracy"], fit_eval[0]["loss"])
-        else:
-            if fit_eval[0]["loss"] >= init_eval[0]["loss"]:
-                fitted_tot, fit_eval = ideal_tot_nM, init_eval
-            score_key = (fit_eval[0]["loss"], -fit_eval[0]["accuracy"])
-        if best_bundle is None or score_key < best_bundle["score_key"]:
-            best_bundle = {
-                "score_key": score_key,
-                "pads": pads,
-                "raws": raws,
-                "pkd_mat": pkd_mat,
-                "kd_mat_nM": kd_mat_nM,
-                "init_eval": init_eval,
-                "fitted_tot": fitted_tot,
-                "fit_eval": fit_eval,
-                "sa_m": sa_m,
-            }
+    t_ref = time.time()
+    fit_jobs = [
+        (str(args.calib), pads_t, sa_m, name, ideal_tot_nM, nodes, s, bool(args.contour_fit), args.tot_max_native)
+        for _, pads_t, sa_m in top_cands
+    ]
+    if workers == 1:
+        fit_bundles = [_worker_fit_2d(j) for j in fit_jobs]
+    else:
+        with ProcessPoolExecutor(max_workers=workers) as ex:
+            fit_bundles = list(ex.map(_worker_fit_2d, fit_jobs))
+    best_bundle = min(fit_bundles, key=lambda b: b["score_key"])
+    best_bundle["init_eval"] = evaluate_full_2d(name, best_bundle["kd_mat_nM"], ideal_tot_nM, nodes, s, use_jax=True)
+    best_bundle["fit_eval"] = evaluate_full_2d(name, best_bundle["kd_mat_nM"], best_bundle["fitted_tot"], nodes, s, use_jax=True)
+    print(f"Parallel concentration fit finished in {time.time() - t_ref:.1f}s.")
 
     b = best_bundle
     print(f"\n=== Best CC Design for '{name}' (conc_scale={s}, use_seed={use_seed}) ===")
-    print(f"Initial totals : loss={b['init_eval'][0]['loss']:.4f}, acc={b['init_eval'][0]['accuracy']:.2%}, err_nM={b['init_eval'][0]['error_nM']}")
-    print(f"Fitted totals  : loss={b['fit_eval'][0]['loss']:.4f}, acc={b['fit_eval'][0]['accuracy']:.2%}, err_nM={b['fit_eval'][0]['error_nM']}")
+    print(
+        f"Initial totals : loss={b['init_eval'][0]['loss']:.4f}, acc={b['init_eval'][0]['accuracy']:.2%}, "
+        f"bal_acc={b['init_eval'][0]['balanced_accuracy']:.2%}, err_nM={b['init_eval'][0]['error_nM']}"
+    )
+    print(
+        f"Fitted totals  : loss={b['fit_eval'][0]['loss']:.4f}, acc={b['fit_eval'][0]['accuracy']:.2%}, "
+        f"bal_acc={b['fit_eval'][0]['balanced_accuracy']:.2%}, mcc={b['fit_eval'][0]['mcc']:.3f}, err_nM={b['fit_eval'][0]['error_nM']}"
+    )
     print(f"Worst off/homo pKd: {b['sa_m']['worst_off_pKd']:.2f} / {b['sa_m']['worst_homo_pKd']:.2f}")
     print("Fitted Totals (nM):", {k: round(float(v), 1) for k, v in b["fitted_tot"].items()})
     for pair in edges_pairs:
@@ -759,16 +909,12 @@ def main():
         "Fitted concentrations": (b["fit_eval"][0], b["fit_eval"][1]),
     }
     val_grid = b["fit_eval"][2]
-    plot_topology_and_contour(
-        name, nodes, edges_pairs, b["kd_mat_nM"], b["fitted_tot"], b["fit_eval"][1], val_grid, s,
-        b["fit_eval"][0], b["sa_m"]["worst_off_pKd"], b["sa_m"]["worst_homo_pKd"], out_dir / f"{name}_contours.pdf",
-    )
-    plot_topology_and_contour(
-        name, nodes, edges_pairs, b["kd_mat_nM"], b["fitted_tot"], b["fit_eval"][1], val_grid, s,
-        b["fit_eval"][0], b["sa_m"]["worst_off_pKd"], b["sa_m"]["worst_homo_pKd"], out_dir / f"{name}_contours.png",
-    )
-    plot_performance_stages(name, stages, val_grid, s, out_dir / f"{name}_performance.pdf")
-    plot_performance_stages(name, stages, val_grid, s, out_dir / f"{name}_performance.png")
+    for ext in (".pdf", ".png"):
+        plot_topology_and_contour(
+            name, nodes, edges_pairs, b["kd_mat_nM"], b["fitted_tot"], b["fit_eval"][1], val_grid, s,
+            b["fit_eval"][0], b["sa_m"]["worst_off_pKd"], b["sa_m"]["worst_homo_pKd"], out_dir / f"{name}_contours{ext}",
+        )
+        plot_performance_stages(name, stages, val_grid, s, out_dir / f"{name}_performance{ext}")
 
     report = {
         "boundary": name,
@@ -792,7 +938,15 @@ def main():
         "worst_homo_pKd": b["sa_m"]["worst_homo_pKd"],
     }
     (out_dir / f"{name}_report.json").write_text(json.dumps(report, indent=2) + "\n")
-    print(f"Saved plots and JSON to {out_dir}")
+
+    # Export full N*(N+1)/2 Kd matrix in native [0, 200] nM scale for korenkov-es/des_boundaries/molecular_performance.py
+    mol_kd = {
+        f"{nodes[i]}{nodes[j]}": float(b["kd_mat_nM"][i, j] / s)
+        for i in range(len(nodes))
+        for j in range(i, len(nodes))
+    }
+    (out_dir / f"molecules_{name}.json").write_text(json.dumps({"boundary": name, "Kd_nM": mol_kd}, indent=2) + "\n")
+    print(f"Saved plots, report, and molecules_{name}.json to {out_dir}")
 
 
 if __name__ == "__main__":

@@ -5,7 +5,7 @@ import json
 import re
 import sys
 from pathlib import Path
-from typing import Dict, List, Tuple
+from typing import Dict, List, Set, Tuple
 
 import numpy as np
 import pandas as pd
@@ -42,32 +42,66 @@ def write_3d_job(out_dir: Path, job_id: str, chains: List[str]) -> None:
             f.write(f"  - protein:\n      id: {cid}\n      sequence: {seq}\n      msa: empty\n")
 
 
+def _parse_design_map(items: List[str]) -> Dict[str, Set[str]]:
+    out: Dict[str, Set[str]] = {}
+    for item in items:
+        if ":" not in item:
+            raise ValueError(f"Invalid --design-map entry '{item}', expected circuit:D02,D05")
+        circ, dids = item.split(":", 1)
+        out[circ.strip()] = {d.strip() for d in dids.split(",") if d.strip()}
+    return out
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export 3D dimer/trimer jobs from one or more *_full.json files.")
     parser.add_argument("--full-json", type=Path, nargs="+", required=True, help="One or more <name>_full.json paths from design_graph.py")
     parser.add_argument("--out-dir", type=Path, default=ROOT / "results" / "3d_inputs")
-    parser.add_argument("--top-n", type=int, default=3, help="Number of top designs per circuit to export.")
+    parser.add_argument("--top-n", type=int, default=3, help="Number of top designs per circuit to export (ignored for circuits in --design-map).")
+    parser.add_argument("--design-map", type=str, nargs="*", default=[], help="Explicit design IDs per circuit, e.g. nor_4node:D05,D13,D31")
+    parser.add_argument("--existing-manifest", type=Path, default=None, help="Optional existing manifest.csv to skip already-exported chain tuples.")
     parser.add_argument("--max-offtargets", type=int, default=-1, help="Worst 1D off-target heterodimers per design (-1 for all).")
     parser.add_argument("--trimer-mode", type=str, default="targets", choices=["none", "targets", "hubs"])
     parser.add_argument("--max-trimers", type=int, default=12, help="Max trimer jobs per design (-1 for all).")
     parser.add_argument("--no-controls", action="store_true")
     args = parser.parse_args()
 
+    design_map = _parse_design_map(args.design_map)
     args.out_dir.mkdir(parents=True, exist_ok=True)
     rows = []
     seen_jobs: Dict[Tuple[str, ...], str] = {}
+    reused_count = 0
+    new_count = 0
+
+    if args.existing_manifest is not None and args.existing_manifest.exists():
+        old_man = pd.read_csv(args.existing_manifest)
+        for _, r in old_man.iterrows():
+            if pd.notna(r.get("seqs")) and pd.notna(r.get("job_id")):
+                key = tuple(_clean_seq(s) for s in str(r["seqs"]).split(":"))
+                seen_jobs.setdefault(key, str(r["job_id"]))
 
     for json_path in args.full_json:
         with open(json_path, "r") as f:
             bundle = json.load(f)
 
         cfg = bundle["config"]
-        designs = bundle["designs"][: args.top_n]
         parsed = _parse_config(cfg, allow_5mer=True)
+        raw_name = parsed["name"]
+        circ_name = _safe_tag(raw_name)
+
+        if design_map:
+            if raw_name in design_map:
+                wanted = design_map[raw_name]
+            elif circ_name in design_map:
+                wanted = design_map[circ_name]
+            else:
+                continue
+            designs = [d for d in bundle["designs"] if d["design_id"] in wanted]
+        else:
+            designs = bundle["designs"][: args.top_n]
+
         names = parsed["node_names"]
         n = len(names)
         target_pairs = parsed["target_pairs"]
-        circ_name = _safe_tag(parsed["name"])
 
         for des in designs:
             dtag = des["design_id"]
@@ -76,19 +110,16 @@ def main() -> None:
 
             jobs: List[Tuple[str, str, int, int, int, List[str], float]] = []
 
-            # 1. All target edges
             for u, v in sorted(target_pairs):
                 role = f"edge_{names[u]}__{names[v]}"
                 jobs.append((role, "target_dimer", u, v, -1, [seqs[u], seqs[v]], float(pkd_mat[u, v])))
 
-            # 2. All homodimers (unless already in target_pairs)
             for u in range(n):
                 if (u, u) in target_pairs:
                     continue
                 role = f"homo_{names[u]}"
                 jobs.append((role, "homodimer", u, u, -1, [seqs[u], seqs[u]], float(pkd_mat[u, u])))
 
-            # 3. Off-target heterodimers sorted by worst (highest) 1D pKd
             off_list = []
             for u in range(n):
                 for v in range(u + 1, n):
@@ -102,7 +133,6 @@ def main() -> None:
                 role = f"off_{names[u]}__{names[v]}"
                 jobs.append((role, "off_target", u, v, -1, [seqs[u], seqs[v]], pkd_v))
 
-            # 4. Suspicious trimer traps: binary (uuv/uvv), connected 3-node heterotrimers (uvw), and optional hubs (uuu)
             if args.trimer_mode != "none":
                 trimer_cands = []
                 for u, v in sorted(target_pairs):
@@ -132,12 +162,14 @@ def main() -> None:
                     job_id = _safe_tag(f"{circ_name}_{dtag}__{role}")
                     seen_jobs[key] = job_id
                     write_3d_job(args.out_dir, job_id, chains)
+                    new_count += 1
                 else:
                     job_id = seen_jobs[key]
+                    reused_count += 1
 
                 rows.append({
                     "job_id": job_id,
-                    "circuit": parsed["name"],
+                    "circuit": raw_name,
                     "design_id": dtag,
                     "role": role,
                     "pair_type": pair_type,
@@ -162,12 +194,14 @@ def main() -> None:
                 s2 = _clean_seq(pep_dict[p2][0])
                 chains = [s1, s2]
                 key = tuple(chains)
-                job_id = _safe_tag(f"CTRL_{dataset}_{p1}__{p2}")
                 if key not in seen_jobs:
+                    job_id = _safe_tag(f"CTRL_{dataset}_{p1}__{p2}")
                     seen_jobs[key] = job_id
                     write_3d_job(args.out_dir, job_id, chains)
+                    new_count += 1
                 else:
                     job_id = seen_jobs[key]
+                    reused_count += 1
 
                 rows.append({
                     "job_id": job_id,
@@ -187,7 +221,7 @@ def main() -> None:
     manifest = pd.DataFrame(rows)
     manifest_path = args.out_dir / "manifest.csv"
     manifest.to_csv(manifest_path, index=False)
-    print(f"Exported {len(seen_jobs)} unique 3D jobs ({len(manifest)} manifest entries) to {args.out_dir}")
+    print(f"Exported {new_count} NEW 3D jobs (reused {reused_count}, {len(manifest)} manifest entries) to {args.out_dir}")
     print(f"Manifest saved to {manifest_path}")
 
 
