@@ -57,13 +57,14 @@
       "pkd_min": 7.8,
       "pkd_max": 11.5,
       "require_par": true,
-      "require_shift0": true
+      "require_shift0": true,
+      "min_slippage": 5.0
     },
     {
       "u": "Q4",
       "v": "S",
       "pkd_min": 6.0,
-      "pkd_max": 7.3,
+      "pkd_max": 7.2,
       "require_par": true,
       "require_shift0": true
     },
@@ -73,7 +74,8 @@
       "pkd_min": 8.6,
       "pkd_max": 12.0,
       "require_par": true,
-      "require_shift0": true
+      "require_shift0": true,
+      "min_slippage": 5.0
     },
     {
       "u": "M2",
@@ -81,12 +83,13 @@
       "pkd_min": 7.3,
       "pkd_max": 8.8,
       "require_par": true,
-      "require_shift0": true
+      "require_shift0": true,
+      "min_slippage": 5.0
     },
     {
       "u": "Q1",
       "v": "S",
-      "pkd_min": 5.9,
+      "pkd_min": 6.0,
       "pkd_max": 7.2,
       "require_par": true,
       "require_shift0": false
@@ -114,7 +117,7 @@
         "M2",
         "Q1"
       ],
-      "min_dpkd": 1.1,
+      "min_dpkd": 1.3,
       "min_agree": 3
     },
     {
@@ -126,7 +129,7 @@
         "Q1",
         "S"
       ],
-      "min_dpkd": 1.1,
+      "min_dpkd": 1.3,
       "min_agree": 3
     }
   ],

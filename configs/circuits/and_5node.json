@@ -49,7 +49,8 @@
       "pkd_min": 7.8,
       "pkd_max": 11.5,
       "require_par": true,
-      "require_shift0": true
+      "require_shift0": true,
+      "min_slippage": 5.0
     },
     {
       "u": "I2",
@@ -57,7 +58,8 @@
       "pkd_min": 7.8,
       "pkd_max": 11.5,
       "require_par": true,
-      "require_shift0": true
+      "require_shift0": true,
+      "min_slippage": 5.0
     },
     {
       "u": "Q4",

@@ -378,6 +378,27 @@ def tune_c0_mc_adam(parsed, des, args):
         args.save_json.write_text(json.dumps(payload, indent=2) + "\n")
         print(f"Saved ADAM tuning report to {args.save_json}")
 
+    if getattr(args, "out_full_json", None) is not None:
+        with open(args.full_json, "r") as f:
+            bundle_out = json.load(f)
+        for d in bundle_out["designs"]:
+            if d["design_id"] == des.get("design_id"):
+                d["c0_uM"] = np.asarray(new_c0_uM, dtype=float).tolist()
+                d["metrics"].update({
+                    "Delta": float(tt_new["Delta"]),
+                    "Fold": float(tt_new["Fold"]),
+                    "min_ON": float(tt_new["min_ON"]),
+                    "max_OFF": float(tt_new["max_OFF"]),
+                    "MC_Pass_rate": float(mc_new["MC_Pass_rate"]),
+                    "MC_Delta_p10": float(mc_new["MC_Delta_p10"]),
+                    "MC_Delta_med": float(mc_new["MC_Delta_med"]),
+                    "MC_Fold_med": float(mc_new["MC_Fold_med"]),
+                })
+                break
+        args.out_full_json.parent.mkdir(parents=True, exist_ok=True)
+        args.out_full_json.write_text(json.dumps(bundle_out, indent=2) + "\n")
+        print(f"Saved ADAM-updated full JSON to {args.out_full_json}")
+
 
 def main():
     p = argparse.ArgumentParser()
@@ -398,6 +419,8 @@ def main():
     p.add_argument("--train-seed", type=int, default=123)
     p.add_argument("--save-json", type=Path, default=None,
                    help="Write the before/after tuning report (c0 levels and metrics) to this JSON.")
+    p.add_argument("--out-full-json", type=Path, default=None,
+                   help="Save a copy of --full-json with ADAM-tuned c0_uM and metrics for the chosen design.")
     args = p.parse_args()
 
     if args.sigma is None:

@@ -145,11 +145,29 @@ def _parse_config(cfg: dict, allow_5mer: bool = False) -> dict:
     }
 
 
+def _cached_slippage(
+    model: ConsensusModel,
+    pad_u: str,
+    pad_v: str,
+    slip_cache: Optional[Dict[Tuple[str, str], Tuple[float, str]]],
+) -> Tuple[float, str]:
+    a, b = (pad_u, pad_v) if pad_u <= pad_v else (pad_v, pad_u)
+    if slip_cache is not None and (a, b) in slip_cache:
+        return slip_cache[(a, b)]
+    res = model.slippage_margin(a, b)
+    if slip_cache is not None:
+        slip_cache[(a, b)] = res
+    return res
+
+
 def _score_matrix(
     pair_mat: List[List[dict]],
     parsed: dict,
     model_names: Sequence[str],
     c0_override_m: Optional[np.ndarray] = None,
+    model: Optional[ConsensusModel] = None,
+    pads: Optional[Sequence[str]] = None,
+    slip_cache: Optional[Dict[Tuple[str, str], Tuple[float, str]]] = None,
 ) -> Tuple[float, dict]:
     n = parsed["n_nodes"]
     target_pairs = parsed["target_pairs"]
@@ -167,19 +185,27 @@ def _score_matrix(
         graph_loss += _hinge_sq(ed["pkd_min"] - pkd, 30.0, 6.0)
         graph_loss += _hinge_sq(pkd - ed["pkd_max"], 30.0, 6.0)
         if ed["require_par"] and sc.get("iCipa_best_orient", "PAR") != "PAR":
-            graph_loss += 35.0
+            graph_loss += 60.0
         if ed["require_shift0"] and sc.get("iCipa_best_shift", 0) != 0:
-            graph_loss += 16.0
+            graph_loss += 45.0
+        if ed["min_slippage"] > 0.0 and model is not None and pads is not None:
+            slip, _ = _cached_slippage(model, pads[u], pads[v], slip_cache)
+            graph_loss += _hinge_sq(ed["min_slippage"] - slip, 0.5, 1.5)
 
     # 2. Pairwise hierarchies & multi-model consensus
+    hier_margin_bonus = 0.0
     for h in parsed["hierarchies"]:
         sc_s = pair_mat[h["su"]][h["sv"]]
         sc_w = pair_mat[h["wu"]][h["wv"]]
         dpkd = sc_s["pKd"] - sc_w["pKd"]
         graph_loss += _hinge_sq(h["min_dpkd"] - dpkd, 25.0, 5.0)
+        if dpkd > h["min_dpkd"]:
+            hier_margin_bonus += min(dpkd - h["min_dpkd"], 1.5)
         agree = sum(sc_s[m] > sc_w[m] for m in model_names)
         if agree < h["min_agree"]:
             graph_loss += 8.0 * float(h["min_agree"] - agree)
+
+    graph_loss -= 0.4 * hier_margin_bonus
 
     # 3. Off-target & homodimer suppression (including all shifts & ANTI via predict_pair)
     worst_off_pkd = -99.0
@@ -280,6 +306,7 @@ def _worker_sa(args_tuple) -> List[Tuple[float, Tuple[str, ...], dict]]:
     parsed = _parse_config(cfg_dict, allow_5mer=allow_5mer)
     n = parsed["n_nodes"]
     mutable_nodes = [i for i in range(n) if parsed["fixed_pads"][i] is None]
+    slip_cache: Dict[Tuple[str, str], Tuple[float, str]] = {}
 
     # Hall of fame: raw_tuple -> (loss, raw_tuple, pads_tuple, metrics)
     hof: Dict[Tuple[str, ...], Tuple[float, Tuple[str, ...], Tuple[str, ...], dict]] = {}
@@ -308,7 +335,9 @@ def _worker_sa(args_tuple) -> List[Tuple[float, Tuple[str, ...], dict]]:
                         break
 
         cur_mat = _build_pair_matrix(model, pads)
-        cur_loss, cur_metrics = _score_matrix(cur_mat, parsed, model.models)
+        cur_loss, cur_metrics = _score_matrix(
+            cur_mat, parsed, model.models, model=model, pads=pads, slip_cache=slip_cache
+        )
 
         best_key = tuple(raws)
         hof[best_key] = (cur_loss, best_key, tuple(pads), cur_metrics)
@@ -348,7 +377,11 @@ def _worker_sa(args_tuple) -> List[Tuple[float, Tuple[str, ...], dict]]:
                 new_mat[k][j] = row_k[j]
                 new_mat[j][k] = row_k[j]
 
-            new_loss, new_metrics = _score_matrix(new_mat, parsed, model.models)
+            cand_pads = pads[:]
+            cand_pads[k] = cand_pad
+            new_loss, new_metrics = _score_matrix(
+                new_mat, parsed, model.models, model=model, pads=cand_pads, slip_cache=slip_cache
+            )
             delta = new_loss - cur_loss
             if delta <= 0.0 or rng.random() < math.exp(-delta / max(temp, 1e-6)):
                 specs[k] = cand_spec
@@ -435,7 +468,7 @@ def run_graph_design(
     n_restarts: int = 16,
     n_steps: int = 1500,
     n_workers: int = 4,
-    top_mc_audit: int = 40,
+    top_mc_audit: int = 80,
     n_mc: int = 200,
     tune_conc: bool = False,
     seed: int = 42,
@@ -504,6 +537,7 @@ def run_graph_design(
     mode = parsed["mode"]
     names = parsed["node_names"]
 
+    slip_cache: Dict[Tuple[str, str], Tuple[float, str]] = {}
     for rank_idx, (loss, pads_t, base_metrics) in enumerate(candidates, 1):
         pads = list(pads_t)
         raws = [p.lstrip("-") for p in pads]
@@ -516,19 +550,18 @@ def run_graph_design(
             tuned = _polish_scaffold_concentrations(log10_kd_mat, parsed)
             if tuned is not None:
                 c0_m = tuned
-        loss, base_metrics = _score_matrix(mat, parsed, model.models, c0_override_m=c0_m)
+        loss, base_metrics = _score_matrix(
+            mat, parsed, model.models, c0_override_m=c0_m, model=model, pads=pads, slip_cache=slip_cache
+        )
 
         # Edge slippage check
         edge_details = {}
         min_slip = np.inf
-        slip_penalty = 0.0
         for ed in parsed["edges"]:
             u, v = ed["u"], ed["v"]
-            slip, slip_type = model.slippage_margin(pads[u], pads[v])
+            slip, slip_type = _cached_slippage(model, pads[u], pads[v], slip_cache)
             if ed["require_par"] and ed["require_shift0"]:
                 min_slip = min(min_slip, slip)
-            if ed["min_slippage"] > 0.0 and slip < ed["min_slippage"]:
-                slip_penalty += _hinge_sq(ed["min_slippage"] - slip, 1.0, 2.0)
             edge_details[f"{ed['u_name']}:{ed['v_name']}"] = {
                 "pKd": float(pkd_mat[u, v]),
                 "Kd_nM": float(mat[u][v]["Kd_nM"]),
@@ -537,7 +570,6 @@ def run_graph_design(
                 "slip_margin": float(slip),
                 "slip_type": slip_type,
             }
-        loss = float(loss + slip_penalty)
         if np.isinf(min_slip):
             min_slip = np.nan
 

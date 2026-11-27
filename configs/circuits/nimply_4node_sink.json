@@ -1,0 +1,143 @@
+{
+  "name": "nimply_4node_sink",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "I1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "I2",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "I1",
+      "v": "I2",
+      "pkd_min": 9.0,
+      "pkd_max": 12.5,
+      "require_par": true,
+      "require_shift0": true,
+      "min_slippage": 5.0
+    },
+    {
+      "u": "I1",
+      "v": "Q",
+      "pkd_min": 7.3,
+      "pkd_max": 8.6,
+      "require_par": true,
+      "require_shift0": true,
+      "min_slippage": 5.0
+    },
+    {
+      "u": "Q",
+      "v": "S",
+      "pkd_min": 5.9,
+      "pkd_max": 7.0,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "I1",
+        "I2"
+      ],
+      "weak": [
+        "I1",
+        "Q"
+      ],
+      "min_dpkd": 1.5,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "I1",
+        "Q"
+      ],
+      "weak": [
+        "Q",
+        "S"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "I1": 0.0,
+      "I2": 0.0,
+      "Q": 2.5,
+      "S": 0.4
+    },
+    {
+      "I1": 10.0,
+      "I2": 0.0,
+      "Q": 2.5,
+      "S": 0.4
+    },
+    {
+      "I1": 0.0,
+      "I2": 10.0,
+      "Q": 2.5,
+      "S": 0.4
+    },
+    {
+      "I1": 10.0,
+      "I2": 10.0,
+      "Q": 2.5,
+      "S": 0.4
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        0,
+        1,
+        0,
+        0
+      ],
+      "min_delta": 0.55,
+      "min_fold": 5.0
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q",
+      "min_uM": 1.0,
+      "max_uM": 5.0
+    }
+  ]
+}

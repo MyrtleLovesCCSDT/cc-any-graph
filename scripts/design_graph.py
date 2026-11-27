@@ -50,30 +50,36 @@ def make_preset(name: str) -> dict:
 
     if name == "not":
         return {
-            "name": "not_3node",
+            "name": "not_4node",
             "mode": "truth_table",
             "nodes": [
-                {"name": "I", "charge_mode": "mixed", "lengths": ["4mer"]},
-                {"name": "A", "charge_mode": "mixed", "lengths": ["4mer"]},
+                {"name": "I", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": True},
+                {"name": "M1", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": True},
+                {"name": "Q1", "charge_mode": "mixed", "lengths": ["4mer"]},
                 {"name": "S", "charge_mode": "mixed", "lengths": ["4mer", "35mer", "3mer"]},
             ],
             "edges": [
-                {"u": "I", "v": "A", "pkd_min": 7.5, "pkd_max": 11.5, "require_par": True, "require_shift0": True},
-                {"u": "A", "v": "S", "pkd_min": 6.1, "pkd_max": 7.4, "require_par": True, "require_shift0": True},
+                {"u": "I", "v": "M1", "pkd_min": 8.4, "pkd_max": 12.0, "require_par": True, "require_shift0": True, "min_slippage": 5.0},
+                {"u": "M1", "v": "Q1", "pkd_min": 7.0, "pkd_max": 8.6, "require_par": True, "require_shift0": True, "min_slippage": 5.0},
+                {"u": "Q1", "v": "S", "pkd_min": 5.8, "pkd_max": 7.0, "require_par": True, "require_shift0": False},
             ],
             "hierarchies": [
-                {"strong": ["I", "A"], "weak": ["A", "S"], "min_dpkd": 1.2, "min_agree": 3},
+                {"strong": ["I", "M1"], "weak": ["M1", "Q1"], "min_dpkd": 1.4, "min_agree": 3},
+                {"strong": ["M1", "Q1"], "weak": ["Q1", "S"], "min_dpkd": 1.3, "min_agree": 3},
             ],
-            "off_target_max_pkd": 4.7,
-            "homodimer_max_pkd": 4.5,
+            "off_target_max_pkd": 4.5,
+            "homodimer_max_pkd": 4.3,
             "states_uM": [
-                {"I": 0.0, "A": 3.0, "S": 0.5},
-                {"I": 12.5, "A": 3.0, "S": 0.5},
+                {"I": 0.0, "M1": 3.5, "Q1": 2.0, "S": 0.5},
+                {"I": 12.0, "M1": 3.5, "Q1": 2.0, "S": 0.5},
             ],
             "observables": [
-                {"kind": "dimer_frac", "nodes": ["A", "S"], "ref_nodes": ["S"], "targets": [1, 0], "min_delta": 0.45},
+                {"kind": "free_frac", "nodes": ["S"], "targets": [1, 0], "min_delta": 0.50, "min_fold": 4.5},
             ],
-            "tunable_scaffolds": [{"node": "A", "min_uM": 1.0, "max_uM": 8.0}],
+            "tunable_scaffolds": [
+                {"node": "Q1", "min_uM": 1.0, "max_uM": 4.5},
+                {"node": "M1", "min_uM": 1.5, "max_uM": 7.5},
+            ],
         }
 
     if name == "or":
@@ -110,43 +116,41 @@ def make_preset(name: str) -> dict:
 
     if name == "and":
         return {
-            "name": "and_6node",
+            "name": "and_5node",
             "mode": "truth_table",
             "nodes": [
                 {"name": "I1", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": True},
-                {"name": "Q1", "charge_mode": "mixed", "lengths": ["4mer"]},
-                {"name": "SA", "charge_mode": "mixed", "lengths": ["4mer", "35mer"]},
                 {"name": "I2", "charge_mode": "mixed", "lengths": ["4mer"], "allow_5mer_if_enabled": True},
-                {"name": "Q2", "charge_mode": "mixed", "lengths": ["4mer"]},
-                {"name": "SB", "charge_mode": "mixed", "lengths": ["4mer", "35mer"]},
+                {"name": "Q3", "charge_mode": "mixed", "lengths": ["4mer"]},
+                {"name": "Q4", "charge_mode": "mixed", "lengths": ["4mer"]},
+                {"name": "S", "charge_mode": "mixed", "lengths": ["4mer", "35mer", "3mer"]},
             ],
             "edges": [
-                {"u": "I1", "v": "Q1", "pkd_min": 8.2, "pkd_max": 12.0, "require_par": True, "require_shift0": True},
-                {"u": "I2", "v": "Q2", "pkd_min": 8.2, "pkd_max": 12.0, "require_par": True, "require_shift0": True},
-                {"u": "Q1", "v": "SA", "pkd_min": 6.6, "pkd_max": 7.8, "require_par": True, "require_shift0": False},
-                {"u": "Q2", "v": "SB", "pkd_min": 6.6, "pkd_max": 7.8, "require_par": True, "require_shift0": False},
-                {"u": "SA", "v": "SB", "pkd_min": 6.2, "pkd_max": 7.1, "require_par": True, "require_shift0": True},
+                {"u": "I1", "v": "Q4", "pkd_min": 7.8, "pkd_max": 11.5, "require_par": True, "require_shift0": True, "min_slippage": 5.0},
+                {"u": "I2", "v": "Q3", "pkd_min": 7.8, "pkd_max": 11.5, "require_par": True, "require_shift0": True, "min_slippage": 5.0},
+                {"u": "Q4", "v": "S", "pkd_min": 6.0, "pkd_max": 7.4, "require_par": True, "require_shift0": True},
+                {"u": "Q3", "v": "S", "pkd_min": 6.0, "pkd_max": 7.4, "require_par": True, "require_shift0": True},
             ],
             "hierarchies": [
-                {"strong": ["I1", "Q1"], "weak": ["Q1", "SA"], "min_dpkd": 1.4, "min_agree": 3},
-                {"strong": ["I2", "Q2"], "weak": ["Q2", "SB"], "min_dpkd": 1.4, "min_agree": 3},
-                {"strong": ["Q1", "SA"], "weak": ["SA", "SB"], "min_dpkd": 0.4, "min_agree": 2},
-                {"strong": ["Q2", "SB"], "weak": ["SA", "SB"], "min_dpkd": 0.4, "min_agree": 2},
+                {"strong": ["I1", "Q4"], "weak": ["Q4", "S"], "min_dpkd": 1.4, "min_agree": 3},
+                {"strong": ["I2", "Q3"], "weak": ["Q3", "S"], "min_dpkd": 1.4, "min_agree": 3},
+                {"strong": ["Q4", "S"], "weak": ["I1", "Q3"], "min_dpkd": 1.2, "min_agree": 3},
+                {"strong": ["Q3", "S"], "weak": ["I2", "Q4"], "min_dpkd": 1.2, "min_agree": 3},
             ],
-            "off_target_max_pkd": 4.8,
-            "homodimer_max_pkd": 4.5,
+            "off_target_max_pkd": 4.5,
+            "homodimer_max_pkd": 4.3,
             "states_uM": [
-                {"I1": 0.0, "Q1": 10.0, "SA": 2.5, "I2": 0.0, "Q2": 10.0, "SB": 2.5},
-                {"I1": 16.0, "Q1": 10.0, "SA": 2.5, "I2": 0.0, "Q2": 10.0, "SB": 2.5},
-                {"I1": 0.0, "Q1": 10.0, "SA": 2.5, "I2": 16.0, "Q2": 10.0, "SB": 2.5},
-                {"I1": 16.0, "Q1": 10.0, "SA": 2.5, "I2": 16.0, "Q2": 10.0, "SB": 2.5},
+                {"I1": 0.0,  "I2": 0.0,  "Q3": 3.0, "Q4": 3.0, "S": 0.5},
+                {"I1": 10.0, "I2": 0.0,  "Q3": 3.0, "Q4": 3.0, "S": 0.5},
+                {"I1": 0.0,  "I2": 10.0, "Q3": 3.0, "Q4": 3.0, "S": 0.5},
+                {"I1": 10.0, "I2": 10.0, "Q3": 3.0, "Q4": 3.0, "S": 0.5},
             ],
             "observables": [
-                {"kind": "dimer_frac", "nodes": ["SA", "SB"], "ref_nodes": ["SA"], "targets": [0, 0, 0, 1], "min_delta": 0.50, "min_fold": 3.5},
+                {"kind": "free_frac", "nodes": ["S"], "targets": [0, 0, 0, 1], "min_delta": 0.65, "min_fold": 8.0},
             ],
             "tunable_scaffolds": [
-                {"node": "Q1", "min_uM": 5.0, "max_uM": 18.0},
-                {"node": "Q2", "min_uM": 5.0, "max_uM": 18.0},
+                {"node": "Q3", "min_uM": 1.5, "max_uM": 6.0},
+                {"node": "Q4", "min_uM": 1.5, "max_uM": 6.0},
             ],
         }
 
@@ -378,6 +382,7 @@ def main() -> None:
     parser.add_argument("--restarts", type=int, default=16)
     parser.add_argument("--steps", type=int, default=1500)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--top-mc-audit", type=int, default=80)
     parser.add_argument("--n-mc", type=int, default=200)
     parser.add_argument("--seed", type=int, default=42)
     args = parser.parse_args()
@@ -405,6 +410,7 @@ def main() -> None:
         n_restarts=args.restarts,
         n_steps=args.steps,
         n_workers=args.workers,
+        top_mc_audit=args.top_mc_audit,
         n_mc=args.n_mc,
         tune_conc=args.tune_conc,
         seed=args.seed,

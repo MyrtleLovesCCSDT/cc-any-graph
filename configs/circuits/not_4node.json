@@ -1,0 +1,134 @@
+{
+  "name": "not_4node",
+  "mode": "truth_table",
+  "nodes": [
+    {
+      "name": "I",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "M1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ],
+      "allow_5mer_if_enabled": true
+    },
+    {
+      "name": "Q1",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer"
+      ]
+    },
+    {
+      "name": "S",
+      "charge_mode": "mixed",
+      "lengths": [
+        "4mer",
+        "35mer",
+        "3mer"
+      ]
+    }
+  ],
+  "edges": [
+    {
+      "u": "I",
+      "v": "M1",
+      "pkd_min": 8.4,
+      "pkd_max": 12.0,
+      "require_par": true,
+      "require_shift0": true,
+      "min_slippage": 5.0
+    },
+    {
+      "u": "M1",
+      "v": "Q1",
+      "pkd_min": 7.0,
+      "pkd_max": 8.6,
+      "require_par": true,
+      "require_shift0": true,
+      "min_slippage": 5.0
+    },
+    {
+      "u": "Q1",
+      "v": "S",
+      "pkd_min": 5.8,
+      "pkd_max": 7.0,
+      "require_par": true,
+      "require_shift0": false
+    }
+  ],
+  "hierarchies": [
+    {
+      "strong": [
+        "I",
+        "M1"
+      ],
+      "weak": [
+        "M1",
+        "Q1"
+      ],
+      "min_dpkd": 1.4,
+      "min_agree": 3
+    },
+    {
+      "strong": [
+        "M1",
+        "Q1"
+      ],
+      "weak": [
+        "Q1",
+        "S"
+      ],
+      "min_dpkd": 1.3,
+      "min_agree": 3
+    }
+  ],
+  "off_target_max_pkd": 4.5,
+  "homodimer_max_pkd": 4.3,
+  "states_uM": [
+    {
+      "I": 0.0,
+      "M1": 3.5,
+      "Q1": 2.0,
+      "S": 0.5
+    },
+    {
+      "I": 12.0,
+      "M1": 3.5,
+      "Q1": 2.0,
+      "S": 0.5
+    }
+  ],
+  "observables": [
+    {
+      "kind": "free_frac",
+      "nodes": [
+        "S"
+      ],
+      "targets": [
+        1,
+        0
+      ],
+      "min_delta": 0.5,
+      "min_fold": 4.5
+    }
+  ],
+  "tunable_scaffolds": [
+    {
+      "node": "Q1",
+      "min_uM": 1.0,
+      "max_uM": 4.5
+    },
+    {
+      "node": "M1",
+      "min_uM": 1.5,
+      "max_uM": 7.5
+    }
+  ]
+}

@@ -1,0 +1,5498 @@
+{
+  "config": {
+    "name": "xor_4node",
+    "mode": "truth_table",
+    "nodes": [
+      {
+        "name": "A",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ],
+        "allow_5mer_if_enabled": true
+      },
+      {
+        "name": "B",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ],
+        "allow_5mer_if_enabled": true
+      },
+      {
+        "name": "Q",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer"
+        ]
+      },
+      {
+        "name": "S",
+        "charge_mode": "mixed",
+        "lengths": [
+          "4mer",
+          "35mer",
+          "3mer"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "u": "A",
+        "v": "B",
+        "pkd_min": 8.8,
+        "pkd_max": 12.5,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "A",
+        "v": "Q",
+        "pkd_min": 6.6,
+        "pkd_max": 7.8,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "B",
+        "v": "Q",
+        "pkd_min": 6.6,
+        "pkd_max": 7.8,
+        "require_par": true,
+        "require_shift0": true
+      },
+      {
+        "u": "Q",
+        "v": "S",
+        "pkd_min": 5.4,
+        "pkd_max": 6.5,
+        "require_par": true,
+        "require_shift0": false
+      }
+    ],
+    "hierarchies": [
+      {
+        "strong": [
+          "A",
+          "B"
+        ],
+        "weak": [
+          "A",
+          "Q"
+        ],
+        "min_dpkd": 1.5,
+        "min_agree": 3
+      },
+      {
+        "strong": [
+          "A",
+          "B"
+        ],
+        "weak": [
+          "B",
+          "Q"
+        ],
+        "min_dpkd": 1.5,
+        "min_agree": 3
+      },
+      {
+        "strong": [
+          "A",
+          "Q"
+        ],
+        "weak": [
+          "Q",
+          "S"
+        ],
+        "min_dpkd": 0.8,
+        "min_agree": 3
+      },
+      {
+        "strong": [
+          "B",
+          "Q"
+        ],
+        "weak": [
+          "Q",
+          "S"
+        ],
+        "min_dpkd": 0.8,
+        "min_agree": 3
+      }
+    ],
+    "off_target_max_pkd": 4.7,
+    "homodimer_max_pkd": 4.5,
+    "states_uM": [
+      {
+        "A": 0.0,
+        "B": 0.0,
+        "Q": 6.0,
+        "S": 0.5
+      },
+      {
+        "A": 12.0,
+        "B": 0.0,
+        "Q": 6.0,
+        "S": 0.5
+      },
+      {
+        "A": 0.0,
+        "B": 12.0,
+        "Q": 6.0,
+        "S": 0.5
+      },
+      {
+        "A": 12.0,
+        "B": 12.0,
+        "Q": 6.0,
+        "S": 0.5
+      }
+    ],
+    "observables": [
+      {
+        "kind": "free_frac",
+        "nodes": [
+          "S"
+        ],
+        "targets": [
+          0,
+          1,
+          1,
+          0
+        ],
+        "min_delta": 0.35,
+        "min_fold": 2.5
+      }
+    ],
+    "tunable_scaffolds": [
+      {
+        "node": "Q",
+        "min_uM": 2.0,
+        "max_uM": 12.0
+      }
+    ],
+    "mc_conc_rel_std": 0.05
+  },
+  "designs": [
+    {
+      "seqs": {
+        "A": "EVASLKSEISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSEISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.3752865972803,
+          11.302679540974575,
+          7.001472967450056,
+          2.891783757127894
+        ],
+        [
+          11.302679540974575,
+          3.5301672493683975,
+          7.186706568518009,
+          2.906932066763427
+        ],
+        [
+          7.001472967450056,
+          7.186706568518009,
+          3.968487972717476,
+          6.205792539677292
+        ],
+        [
+          2.891783757127894,
+          2.906932066763427,
+          6.205792539677292,
+          1.5357736965621074
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.848653316497803,
+          0.5
+        ],
+        [
+          20.0,
+          0.0,
+          5.848653316497803,
+          0.5
+        ],
+        [
+          0.0,
+          20.0,
+          5.848653316497803,
+          0.5
+        ],
+        [
+          20.0,
+          20.0,
+          5.848653316497803,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.302679540974575,
+          "Kd_nM": 0.004981044928327329,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205101013183594,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.001472967450056,
+          "Kd_nM": 99.66141121969625,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 19.899620056152344,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.186706568518009,
+          "Kd_nM": 65.05690995169546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577739715576172,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.205792539677292,
+          "Kd_nM": 622.5976259462464,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -10.024548426911004,
+        "graph_loss": -1.046844398353235,
+        "circuit_loss": -8.977704028557769,
+        "worst_off_pKd": 2.906932066763427,
+        "worst_homo_pKd": 3.968487972717476,
+        "min_slip_margin": 19.899620056152344,
+        "Delta": 0.7943850260378331,
+        "Fold": 7.024366835578135,
+        "min_ON": 0.9262470204546455,
+        "max_OFF": 0.1318619944168123,
+        "MC_Pass_rate": 0.7525,
+        "MC_Delta_med": 0.5707276453422084,
+        "MC_Delta_p10": 0.21038421240455446,
+        "MC_Fold_med": 4.8460828113347825,
+        "pKd_A:B": 11.302679540974575,
+        "pKd_A:Q": 7.001472967450056,
+        "pKd_B:Q": 7.186706568518009,
+        "pKd_Q:S": 6.205792539677292,
+        "A_len": 35,
+        "A_chg": -4,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D01"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALEKEIASLAWEISALEKEIASLES",
+        "B": "KIASLKSQNSALKSAIASLKWQISALKSQIASLKS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALEKEIASLAWEISALEKEIASLES",
+        "B": "-KIASLKSQNSALKSAIASLKWQISALKSQIASLKS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.346972083769747,
+          11.504371544189858,
+          6.828864870607346,
+          3.7266077189959237
+        ],
+        [
+          11.504371544189858,
+          4.471475318094617,
+          7.104929480713569,
+          1.9402570472105296
+        ],
+        [
+          6.828864870607346,
+          7.104929480713569,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          3.7266077189959237,
+          1.9402570472105296,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.7819580078124995,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.7819580078124995,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.7819580078124995,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.7819580078124995,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.504371544189858,
+          "Kd_nM": 0.003130606306725604,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278621673583984,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.828864870607346,
+          "Kd_nM": 148.2979437860145,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.732311248779297,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.104929480713569,
+          "Kd_nM": 78.53631489003227,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.826003749289391,
+        "graph_loss": -0.8215464803826896,
+        "circuit_loss": -8.004457268906702,
+        "worst_off_pKd": 3.7266077189959237,
+        "worst_homo_pKd": 4.471475318094617,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.6670381057422252,
+        "Fold": 4.432792542293234,
+        "min_ON": 0.8613516558691485,
+        "max_OFF": 0.19431355012692336,
+        "MC_Pass_rate": 0.65,
+        "MC_Delta_med": 0.44686896503182133,
+        "MC_Delta_p10": 0.14992954866271838,
+        "MC_Fold_med": 3.289806716944412,
+        "pKd_A:B": 11.504371544189858,
+        "pKd_A:Q": 6.828864870607346,
+        "pKd_B:Q": 7.104929480713569,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D02"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKEQNSALKSQIASLKWQISALKSKIASLKS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKKENASLEWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKEQNSALKSQIASLKWQISALKSKIASLKS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKKENASLEWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          11.764397865187167,
+          7.253318878873214,
+          3.7584963424452393
+        ],
+        [
+          11.764397865187167,
+          4.4153088002065175,
+          7.293493021833997,
+          2.2930762835078644
+        ],
+        [
+          7.253318878873214,
+          7.293493021833997,
+          4.177968343255114,
+          6.010839637846647
+        ],
+        [
+          3.7584963424452393,
+          2.2930762835078644,
+          6.010839637846647,
+          1.4135243355137534
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.151074218750003,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.151074218750003,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.151074218750003,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.151074218750003,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.764397865187167,
+          "Kd_nM": 0.0017202918617560364,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 41.05691909790039,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.293493021833997,
+          "Kd_nM": 50.875299413106866,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.57773780822754,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.010839637846647,
+          "Kd_nM": 975.3497166823737,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.468475341796875,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.66811095908743,
+        "graph_loss": -0.798794879416222,
+        "circuit_loss": -8.869316079671208,
+        "worst_off_pKd": 3.7584963424452393,
+        "worst_homo_pKd": 4.4153088002065175,
+        "min_slip_margin": 21.57773780822754,
+        "Delta": 0.7391096733059339,
+        "Fold": 5.6006478440675656,
+        "min_ON": 0.8997630635146627,
+        "max_OFF": 0.16065339020872887,
+        "MC_Pass_rate": 0.615,
+        "MC_Delta_med": 0.4423112790882201,
+        "MC_Delta_p10": 0.14733123146656021,
+        "MC_Fold_med": 3.42146167106002,
+        "pKd_A:B": 11.764397865187167,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 7.293493021833997,
+        "pKd_Q:S": 6.010839637846647,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D03"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKKENASLEWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKKENASLEWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          10.784409574166757,
+          7.253318878873214,
+          3.7584963424452393
+        ],
+        [
+          10.784409574166757,
+          4.3515171509927475,
+          7.272611011870063,
+          2.2652333884482534
+        ],
+        [
+          7.253318878873214,
+          7.272611011870063,
+          4.177968343255114,
+          6.010839637846647
+        ],
+        [
+          3.7584963424452393,
+          2.2652333884482534,
+          6.010839637846647,
+          1.4135243355137534
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.414965820312504,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.414965820312504,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.414965820312504,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.414965820312504,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.784409574166757,
+          "Kd_nM": 0.01642821681185973,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.272611011870063,
+          "Kd_nM": 53.38128059588548,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.010839637846647,
+          "Kd_nM": 975.3497166823737,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.468475341796875,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.336556059068103,
+        "graph_loss": -0.8083636267982875,
+        "circuit_loss": -8.528192432269815,
+        "worst_off_pKd": 3.7584963424452393,
+        "worst_homo_pKd": 4.3515171509927475,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.7106827026891512,
+        "Fold": 4.860135850308044,
+        "min_ON": 0.8947909129306219,
+        "max_OFF": 0.1841082102414706,
+        "MC_Pass_rate": 0.6,
+        "MC_Delta_med": 0.44721113592643874,
+        "MC_Delta_p10": 0.19262088737690788,
+        "MC_Fold_med": 3.1311175834908775,
+        "pKd_A:B": 10.784409574166757,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 7.272611011870063,
+        "pKd_Q:S": 6.010839637846647,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D04"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.08732758832138,
+          9.883792907133548,
+          7.192174583566153,
+          3.509840427877487
+        ],
+        [
+          9.883792907133548,
+          3.5301672493683975,
+          7.186706568518009,
+          2.906932066763427
+        ],
+        [
+          7.192174583566153,
+          7.186706568518009,
+          3.968487972717476,
+          6.205792539677292
+        ],
+        [
+          3.509840427877487,
+          2.906932066763427,
+          6.205792539677292,
+          1.5357736965621074
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.330981445312499,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.330981445312499,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.330981445312499,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.330981445312499,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.883792907133548,
+          "Kd_nM": 0.13067938828700415,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.192174583566153,
+          "Kd_nM": 64.24294129430834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.69063949584961,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.186706568518009,
+          "Kd_nM": 65.05690995169546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577739715576172,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.205792539677292,
+          "Kd_nM": 622.5976259462464,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.429701701462559,
+        "graph_loss": -1.065626514257289,
+        "circuit_loss": -8.36407518720527,
+        "worst_off_pKd": 3.509840427877487,
+        "worst_homo_pKd": 3.968487972717476,
+        "min_slip_margin": 18.69063949584961,
+        "Delta": 0.6970062656004392,
+        "Fold": 4.72315149856809,
+        "min_ON": 0.8842149424078443,
+        "max_OFF": 0.18720867680740505,
+        "MC_Pass_rate": 0.59,
+        "MC_Delta_med": 0.41338632035802525,
+        "MC_Delta_p10": 0.10801724059853661,
+        "MC_Fold_med": 3.242869302549873,
+        "pKd_A:B": 9.883792907133548,
+        "pKd_A:Q": 7.192174583566153,
+        "pKd_B:Q": 7.186706568518009,
+        "pKd_Q:S": 6.205792539677292,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D05"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          10.784409574166757,
+          7.253318878873214,
+          3.854157093822796
+        ],
+        [
+          10.784409574166757,
+          4.3515171509927475,
+          7.272611011870063,
+          2.3802816389184516
+        ],
+        [
+          7.253318878873214,
+          7.272611011870063,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          3.854157093822796,
+          2.3802816389184516,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.673803710937503,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.673803710937503,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.673803710937503,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.673803710937503,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.784409574166757,
+          "Kd_nM": 0.01642821681185973,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.272611011870063,
+          "Kd_nM": 53.38128059588548,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.198576220917303,
+        "graph_loss": -0.794014514091654,
+        "circuit_loss": -8.40456170682565,
+        "worst_off_pKd": 3.854157093822796,
+        "worst_homo_pKd": 4.3515171509927475,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.7003801422354707,
+        "Fold": 4.701669885645844,
+        "min_ON": 0.889586679790689,
+        "max_OFF": 0.18920653755521824,
+        "MC_Pass_rate": 0.575,
+        "MC_Delta_med": 0.4335681857552619,
+        "MC_Delta_p10": 0.15738650961722167,
+        "MC_Fold_med": 2.788587629739717,
+        "pKd_A:B": 10.784409574166757,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 7.272611011870063,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D06"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLQS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLQS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          10.702250310354346,
+          7.253318878873214,
+          3.854157093822796
+        ],
+        [
+          10.702250310354346,
+          4.468926056379895,
+          7.272611011870063,
+          2.3802816389184516
+        ],
+        [
+          7.253318878873214,
+          7.272611011870063,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          3.854157093822796,
+          2.3802816389184516,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.705078125000004,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.705078125000004,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.705078125000004,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.705078125000004,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.702250310354346,
+          "Kd_nM": 0.019849505397410382,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.272611011870063,
+          "Kd_nM": 53.38128059588548,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.132755586307583,
+        "graph_loss": -0.776403178283582,
+        "circuit_loss": -8.356352408024001,
+        "worst_off_pKd": 3.854157093822796,
+        "worst_homo_pKd": 4.468926056379895,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.6963627006686668,
+        "Fold": 4.615443963978282,
+        "min_ON": 0.8889704986615912,
+        "max_OFF": 0.19260779799292438,
+        "MC_Pass_rate": 0.565,
+        "MC_Delta_med": 0.42368923773415157,
+        "MC_Delta_p10": 0.10895735703728163,
+        "MC_Fold_med": 2.828206798773683,
+        "pKd_A:B": 10.702250310354346,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 7.272611011870063,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D07"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALQS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLKS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          3.08732758832138,
+          9.883792907133548,
+          7.192174583566153,
+          3.497799425527522
+        ],
+        [
+          9.883792907133548,
+          3.5301672493683975,
+          7.186706568518009,
+          3.1064855712173074
+        ],
+        [
+          7.192174583566153,
+          7.186706568518009,
+          3.968487972717476,
+          6.411802714750877
+        ],
+        [
+          3.497799425527522,
+          3.1064855712173074,
+          6.411802714750877,
+          1.3693523517098054
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.071069335937499,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.071069335937499,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.071069335937499,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.071069335937499,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.883792907133548,
+          "Kd_nM": 0.13067938828700415,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.205097198486328,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.192174583566153,
+          "Kd_nM": 64.24294129430834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.69063949584961,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.186706568518009,
+          "Kd_nM": 65.05690995169546,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577739715576172,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.411802714750877,
+          "Kd_nM": 387.43360289432826,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.475031627006222,
+        "graph_loss": -0.8184342752831678,
+        "circuit_loss": -8.656597351723054,
+        "worst_off_pKd": 3.497799425527522,
+        "worst_homo_pKd": 3.968487972717476,
+        "min_slip_margin": 18.69063949584961,
+        "Delta": 0.7213831126435879,
+        "Fold": 5.659019737525393,
+        "min_ON": 0.8762189264593812,
+        "max_OFF": 0.1548358138157933,
+        "MC_Pass_rate": 0.54,
+        "MC_Delta_med": 0.4043334583802411,
+        "MC_Delta_p10": 0.14752595581823075,
+        "MC_Fold_med": 3.0174104811674596,
+        "pKd_A:B": 9.883792907133548,
+        "pKd_A:Q": 7.192174583566153,
+        "pKd_B:Q": 7.186706568518009,
+        "pKd_Q:S": 6.411802714750877,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D08"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSQIASLKS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKKENASLEWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSQIASLKS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKKENASLEWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          11.560780921440115,
+          7.253318878873214,
+          3.7584963424452393
+        ],
+        [
+          11.560780921440115,
+          4.000736008603372,
+          6.8398463166740555,
+          2.2652333884482534
+        ],
+        [
+          7.253318878873214,
+          6.8398463166740555,
+          4.177968343255114,
+          6.010839637846647
+        ],
+        [
+          3.7584963424452393,
+          2.2652333884482534,
+          6.010839637846647,
+          1.4135243355137534
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.253662109374998,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.253662109374998,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.253662109374998,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.253662109374998,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.560780921440115,
+          "Kd_nM": 0.00274928066981892,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.8398463166740555,
+          "Kd_nM": 144.59513574907206,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.010839637846647,
+          "Kd_nM": 975.3497166823737,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.468475341796875,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.142137731801602,
+        "graph_loss": -0.8609807981566938,
+        "circuit_loss": -8.281156933644908,
+        "worst_off_pKd": 3.7584963424452393,
+        "worst_homo_pKd": 4.177968343255114,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.6900964111370756,
+        "Fold": 4.450510572746982,
+        "min_ON": 0.890094758218703,
+        "max_OFF": 0.19999834708162734,
+        "MC_Pass_rate": 0.535,
+        "MC_Delta_med": 0.40627340409891766,
+        "MC_Delta_p10": 0.14247765129035003,
+        "MC_Fold_med": 2.829312977852096,
+        "pKd_A:B": 11.560780921440115,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 6.8398463166740555,
+        "pKd_Q:S": 6.010839637846647,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D09"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSAIASLKWQISALKSQIASLKS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSAIASLKWQISALKSQIASLKS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.337900539230137,
+          11.602424283754804,
+          7.172010426453543,
+          4.12383727192057
+        ],
+        [
+          11.602424283754804,
+          4.471475318094617,
+          7.104929480713569,
+          1.9402570472105296
+        ],
+        [
+          7.172010426453543,
+          7.104929480713569,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          4.12383727192057,
+          1.9402570472105296,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.270019531250003,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.270019531250003,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.270019531250003,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.270019531250003,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.602424283754804,
+          "Kd_nM": 0.0024979038434871084,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.172010426453543,
+          "Kd_nM": 67.29604997916455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577735900878906,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.104929480713569,
+          "Kd_nM": 78.53631489003227,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.913905507911148,
+        "graph_loss": -0.6133227791249343,
+        "circuit_loss": -8.300582728786214,
+        "worst_off_pKd": 4.12383727192057,
+        "worst_homo_pKd": 4.471475318094617,
+        "min_slip_margin": 21.577735900878906,
+        "Delta": 0.6917152273988512,
+        "Fold": 5.1683180995629705,
+        "min_ON": 0.8576611103369538,
+        "max_OFF": 0.16594588293810264,
+        "MC_Pass_rate": 0.535,
+        "MC_Delta_med": 0.4159929219682667,
+        "MC_Delta_p10": 0.15102679208302672,
+        "MC_Fold_med": 3.0013914500566345,
+        "pKd_A:B": 11.602424283754804,
+        "pKd_A:Q": 7.172010426453543,
+        "pKd_B:Q": 7.104929480713569,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D10"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.08732758832138,
+          9.554329498848848,
+          7.192174583566153,
+          3.509840427877487
+        ],
+        [
+          9.554329498848848,
+          4.052038668562998,
+          7.233834890602515,
+          2.844094214493624
+        ],
+        [
+          7.192174583566153,
+          7.233834890602515,
+          3.968487972717476,
+          6.205792539677292
+        ],
+        [
+          3.509840427877487,
+          2.844094214493624,
+          6.205792539677292,
+          1.5357736965621074
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.262915039062504,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.262915039062504,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.262915039062504,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.262915039062504,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.554329498848848,
+          "Kd_nM": 0.2790425944158454,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 26.37240982055664,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.192174583566153,
+          "Kd_nM": 64.24294129430834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.69063949584961,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.233834890602515,
+          "Kd_nM": 58.36669596914248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.205792539677292,
+          "Kd_nM": 622.5976259462464,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.866736580217776,
+        "graph_loss": -0.9873458013780988,
+        "circuit_loss": -7.879390778839677,
+        "worst_off_pKd": 3.509840427877487,
+        "worst_homo_pKd": 4.052038668562998,
+        "min_slip_margin": 18.69063949584961,
+        "Delta": 0.6566165439671701,
+        "Fold": 4.283066820108511,
+        "min_ON": 0.8566175125571021,
+        "max_OFF": 0.20000096858993197,
+        "MC_Pass_rate": 0.535,
+        "MC_Delta_med": 0.3949840139893973,
+        "MC_Delta_p10": 0.12280609374819283,
+        "MC_Fold_med": 2.7891973981363147,
+        "pKd_A:B": 9.554329498848848,
+        "pKd_A:Q": 7.192174583566153,
+        "pKd_B:Q": 7.233834890602515,
+        "pKd_Q:S": 6.205792539677292,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D11"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALQS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          3.08732758832138,
+          9.554329498848848,
+          7.192174583566153,
+          3.497799425527522
+        ],
+        [
+          9.554329498848848,
+          4.052038668562998,
+          7.233834890602515,
+          3.043647718947504
+        ],
+        [
+          7.192174583566153,
+          7.233834890602515,
+          3.968487972717476,
+          6.411802714750877
+        ],
+        [
+          3.497799425527522,
+          3.043647718947504,
+          6.411802714750877,
+          1.3693523517098054
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.378979492187498,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.378979492187498,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.378979492187498,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.378979492187498,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.554329498848848,
+          "Kd_nM": 0.2790425944158454,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 26.37240982055664,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.192174583566153,
+          "Kd_nM": 64.24294129430834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.69063949584961,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.233834890602515,
+          "Kd_nM": 58.36669596914248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.411802714750877,
+          "Kd_nM": 387.43360289432826,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -9.143882934202487,
+        "graph_loss": -0.8813797074618567,
+        "circuit_loss": -8.26250322674063,
+        "worst_off_pKd": 3.497799425527522,
+        "worst_homo_pKd": 4.052038668562998,
+        "min_slip_margin": 18.69063949584961,
+        "Delta": 0.6885419355617193,
+        "Fold": 4.852322080907489,
+        "min_ON": 0.8672761953408289,
+        "max_OFF": 0.17873425977910962,
+        "MC_Pass_rate": 0.525,
+        "MC_Delta_med": 0.40749928806877234,
+        "MC_Delta_p10": 0.1643655054830405,
+        "MC_Fold_med": 3.1494101415451214,
+        "pKd_A:B": 9.554329498848848,
+        "pKd_A:Q": 7.192174583566153,
+        "pKd_B:Q": 7.233834890602515,
+        "pKd_Q:S": 6.411802714750877,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D12"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLQS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLQS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.337900539230137,
+          11.054170018286154,
+          7.172010426453543,
+          4.12383727192057
+        ],
+        [
+          11.054170018286154,
+          4.468926056379895,
+          7.272611011870063,
+          2.3802816389184516
+        ],
+        [
+          7.172010426453543,
+          7.272611011870063,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          4.12383727192057,
+          2.3802816389184516,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.426684570312504,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.426684570312504,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.426684570312504,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.426684570312504,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.054170018286154,
+          "Kd_nM": 0.00882734258572242,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.172010426453543,
+          "Kd_nM": 67.29604997916455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577735900878906,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.272611011870063,
+          "Kd_nM": 53.38128059588548,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.71139468604644,
+        "graph_loss": -0.6137051683821426,
+        "circuit_loss": -8.097689517664296,
+        "worst_off_pKd": 4.12383727192057,
+        "worst_homo_pKd": 4.468926056379895,
+        "min_slip_margin": 21.577735900878906,
+        "Delta": 0.674807459805358,
+        "Fold": 4.7498404782282275,
+        "min_ON": 0.8547637709400118,
+        "max_OFF": 0.1799563111346538,
+        "MC_Pass_rate": 0.525,
+        "MC_Delta_med": 0.4061272899677467,
+        "MC_Delta_p10": 0.08658431772330694,
+        "MC_Fold_med": 3.1546022119138897,
+        "pKd_A:B": 11.054170018286154,
+        "pKd_A:Q": 7.172010426453543,
+        "pKd_B:Q": 7.272611011870063,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D13"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKEQNSALKSKIASLKWQISALQSKIASLKS",
+        "B": "EIASLESKNSALKSEIASLEWEISALESEIASLES",
+        "Q": "KIASLKSENSALESEIASLEWEISALKS",
+        "S": "QISALESKNASLKWKISALKS"
+      },
+      "pads": {
+        "A": "-KIASLKEQNSALKSKIASLKWQISALQSKIASLKS",
+        "B": "-EIASLESKNSALKSEIASLEWEISALESEIASLES",
+        "Q": "-KIASLKSENSALESEIASLEWEISALKS",
+        "S": "-QISALESKNASLKWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.525769686684486,
+          12.075678457573371,
+          6.7781845443077335,
+          3.422929833016053
+        ],
+        [
+          12.075678457573371,
+          4.135991890749612,
+          7.5935744677096055,
+          4.299580372048122
+        ],
+        [
+          6.7781845443077335,
+          7.5935744677096055,
+          4.257965844707227,
+          5.904202170524857
+        ],
+        [
+          3.422929833016053,
+          4.299580372048122,
+          5.904202170524857,
+          2.120373014068722
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.781567382812502,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.781567382812502,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.781567382812502,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.781567382812502,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 12.075678457573371,
+          "Kd_nM": 0.0008400817350317618,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 44.889610290527344,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.7781845443077335,
+          "Kd_nM": 166.65389014086108,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 17.745044708251953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.5935744677096055,
+          "Kd_nM": 25.493269217248308,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.38496208190918,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.904202170524857,
+          "Kd_nM": 1246.8029738454777,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.912155633373823,
+        "graph_loss": -0.4220794567040058,
+        "circuit_loss": -7.490076176669817,
+        "worst_off_pKd": 4.299580372048122,
+        "worst_homo_pKd": 4.525769686684486,
+        "min_slip_margin": 17.745044708251953,
+        "Delta": 0.6246196468596641,
+        "Fold": 4.1127147429820345,
+        "min_ON": 0.8252868131227915,
+        "max_OFF": 0.20066716626312747,
+        "MC_Pass_rate": 0.525,
+        "MC_Delta_med": 0.3810610321888549,
+        "MC_Delta_p10": 0.08912537014388529,
+        "MC_Fold_med": 2.8477197004698898,
+        "pKd_A:B": 12.075678457573371,
+        "pKd_A:Q": 6.7781845443077335,
+        "pKd_B:Q": 7.5935744677096055,
+        "pKd_Q:S": 5.904202170524857,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D14"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.337900539230137,
+          11.136329497206262,
+          7.172010426453543,
+          4.12383727192057
+        ],
+        [
+          11.136329497206262,
+          4.3515171509927475,
+          7.272611011870063,
+          2.3802816389184516
+        ],
+        [
+          7.172010426453543,
+          7.272611011870063,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          4.12383727192057,
+          2.3802816389184516,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.403247070312503,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.403247070312503,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.403247070312503,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.403247070312503,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.136329497206262,
+          "Kd_nM": 0.007305845820321207,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.172010426453543,
+          "Kd_nM": 67.29604997916455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577735900878906,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.272611011870063,
+          "Kd_nM": 53.38128059588548,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.760718000163704,
+        "graph_loss": -0.6313165041902148,
+        "circuit_loss": -8.12940149597349,
+        "worst_off_pKd": 4.12383727192057,
+        "worst_homo_pKd": 4.3515171509927475,
+        "min_slip_margin": 21.577735900878906,
+        "Delta": 0.6774501246644575,
+        "Fold": 4.811048836796549,
+        "min_ON": 0.8552096217675965,
+        "max_OFF": 0.177759497103139,
+        "MC_Pass_rate": 0.52,
+        "MC_Delta_med": 0.39439448942830474,
+        "MC_Delta_p10": 0.1492049301873822,
+        "MC_Fold_med": 2.9087134352759554,
+        "pKd_A:B": 11.136329497206262,
+        "pKd_A:Q": 7.172010426453543,
+        "pKd_B:Q": 7.272611011870063,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D15"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSQIASLAS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKKENASLEWAISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSQIASLAS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKKENASLEWAISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          10.503241464669724,
+          7.253318878873214,
+          3.7584963424452393
+        ],
+        [
+          10.503241464669724,
+          4.145029054683736,
+          6.871265269758356,
+          2.296652341532554
+        ],
+        [
+          7.253318878873214,
+          6.871265269758356,
+          4.177968343255114,
+          6.010839637846647
+        ],
+        [
+          3.7584963424452393,
+          2.296652341532554,
+          6.010839637846647,
+          1.4135243355137534
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.4437744140625,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.4437744140625,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.4437744140625,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.4437744140625,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.503241464669724,
+          "Kd_nM": 0.03138763078506063,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.500335693359375,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.253318878873214,
+          "Kd_nM": 55.80602908789613,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.871265269758356,
+          "Kd_nM": 134.50385452276927,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.46893310546875,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.010839637846647,
+          "Kd_nM": 975.3497166823737,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 30.468475341796875,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.697791091914985,
+        "graph_loss": -0.8393368412446393,
+        "circuit_loss": -7.858454250670345,
+        "worst_off_pKd": 3.7584963424452393,
+        "worst_homo_pKd": 4.177968343255114,
+        "min_slip_margin": 23.46893310546875,
+        "Delta": 0.6548719802598729,
+        "Fold": 4.274340434573067,
+        "min_ON": 0.8548731693070528,
+        "max_OFF": 0.20000118904717987,
+        "MC_Pass_rate": 0.505,
+        "MC_Delta_med": 0.3865857718821343,
+        "MC_Delta_p10": 0.10794120440116887,
+        "MC_Fold_med": 3.041126360682897,
+        "pKd_A:B": 10.503241464669724,
+        "pKd_A:Q": 7.253318878873214,
+        "pKd_B:Q": 6.871265269758356,
+        "pKd_Q:S": 6.010839637846647,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D16"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "KIASLKSENSALESEIASLEWEISALQS",
+        "S": "EIASLQKKNSALKSQNASLAWEISALKS"
+      },
+      "pads": {
+        "A": "-QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "-EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "-KIASLKSENSALESEIASLEWEISALQS",
+        "S": "-EIASLQKKNSALKSQNASLAWEISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.546659214844492,
+          10.167608765830026,
+          7.107037222224176,
+          3.560193487397506
+        ],
+        [
+          10.167608765830026,
+          4.37959835139967,
+          7.157318490521162,
+          3.3098393663599945
+        ],
+        [
+          7.107037222224176,
+          7.157318490521162,
+          2.882098034606991,
+          5.960093931082877
+        ],
+        [
+          3.560193487397506,
+          3.3098393663599945,
+          5.960093931082877,
+          3.4626820142590495
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.973217773437503,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.973217773437503,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.973217773437503,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.973217773437503,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.167608765830026,
+          "Kd_nM": 0.06798157688677196,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.33302688598633,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.107037222224176,
+          "Kd_nM": 78.15608162202268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 17.745044708251953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.157318490521162,
+          "Kd_nM": 69.61158292720329,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.38495922088623,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.960093931082877,
+          "Kd_nM": 1096.2410707559595,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.40793800354004,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.299940101589204,
+        "graph_loss": -0.4904298846174923,
+        "circuit_loss": -7.809510216971712,
+        "worst_off_pKd": 3.560193487397506,
+        "worst_homo_pKd": 4.546659214844492,
+        "min_slip_margin": 17.745044708251953,
+        "Delta": 0.6507930493847494,
+        "Fold": 4.2539522807098935,
+        "min_ON": 0.8507938463364397,
+        "max_OFF": 0.2000007969516904,
+        "MC_Pass_rate": 0.505,
+        "MC_Delta_med": 0.38285867950833125,
+        "MC_Delta_p10": 0.0979924816434194,
+        "MC_Fold_med": 2.683535909664662,
+        "pKd_A:B": 10.167608765830026,
+        "pKd_A:Q": 7.107037222224176,
+        "pKd_B:Q": 7.157318490521162,
+        "pKd_Q:S": 5.960093931082877,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D17"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKKENSALESEIASLEWEISALESEIASLES",
+        "B": "KIASLKEQNSALKSQIASLKWQISALKSKIASLKS",
+        "Q": "EIASLEEKNSALKSEIASLQWQISALQS",
+        "S": "KVSALKSENASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-QIASLKKENSALESEIASLEWEISALESEIASLES",
+        "B": "-KIASLKEQNSALKSQIASLKWQISALKSKIASLKS",
+        "Q": "-EIASLEEKNSALKSEIASLQWQISALQS",
+        "S": "-KVSALKSENASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.6471697053404903,
+          10.95394807039128,
+          6.945042673552373,
+          3.176554514925285
+        ],
+        [
+          10.95394807039128,
+          4.4153088002065175,
+          6.600867108181825,
+          2.219805134938812
+        ],
+        [
+          6.945042673552373,
+          6.600867108181825,
+          3.133064802584574,
+          5.862448232723374
+        ],
+        [
+          3.176554514925285,
+          2.219805134938812,
+          5.862448232723374,
+          1.5652521573734663
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.631933593750001,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.631933593750001,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.631933593750001,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.631933593750001,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.95394807039128,
+          "Kd_nM": 0.01111864667596757,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.4459342956543,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.945042673552373,
+          "Kd_nM": 113.48992955725068,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.9412899017334,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.600867108181825,
+          "Kd_nM": 250.6876226568998,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.523334503173828,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.862448232723374,
+          "Kd_nM": 1372.6245661275896,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.192352294921875,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.827182907747591,
+        "graph_loss": -0.6179570085774793,
+        "circuit_loss": -7.209225899170113,
+        "worst_off_pKd": 3.176554514925285,
+        "worst_homo_pKd": 4.4153088002065175,
+        "min_slip_margin": 22.523334503173828,
+        "Delta": 0.6021258059242343,
+        "Fold": 3.98067008432338,
+        "min_ON": 0.8041360213758105,
+        "max_OFF": 0.20201021545157632,
+        "MC_Pass_rate": 0.5,
+        "MC_Delta_med": 0.37852694194466185,
+        "MC_Delta_p10": 0.09373468229120865,
+        "MC_Fold_med": 2.62012416652051,
+        "pKd_A:B": 10.95394807039128,
+        "pKd_A:Q": 6.945042673552373,
+        "pKd_B:Q": 6.600867108181825,
+        "pKd_Q:S": 5.862448232723374,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D18"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "KIASLKSENSALESEIASLEWEISALQS",
+        "S": "EIASLEKKNSALKKQNASLAWEISALKS"
+      },
+      "pads": {
+        "A": "-QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "-EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "-KIASLKSENSALESEIASLEWEISALQS",
+        "S": "-EIASLEKKNSALKKQNASLAWEISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.546659214844492,
+          10.167608765830026,
+          7.107037222224176,
+          3.5395976449289592
+        ],
+        [
+          10.167608765830026,
+          4.37959835139967,
+          7.157318490521162,
+          3.0426620310079846
+        ],
+        [
+          7.107037222224176,
+          7.157318490521162,
+          2.882098034606991,
+          5.952593456785664
+        ],
+        [
+          3.5395976449289592,
+          3.0426620310079846,
+          5.952593456785664,
+          2.9623514224164307
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          8.102490234375004,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          8.102490234375004,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          8.102490234375004,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          8.102490234375004,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.167608765830026,
+          "Kd_nM": 0.06798157688677196,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.33302688598633,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.107037222224176,
+          "Kd_nM": 78.15608162202268,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 17.745044708251953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.157318490521162,
+          "Kd_nM": 69.61158292720329,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.38495922088623,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.952593456785664,
+          "Kd_nM": 1115.3381134605756,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.186227798461914,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.379724705461584,
+        "graph_loss": -0.5793974680806309,
+        "circuit_loss": -7.800327237380953,
+        "worst_off_pKd": 3.5395976449289592,
+        "worst_homo_pKd": 4.546659214844492,
+        "min_slip_margin": 17.745044708251953,
+        "Delta": 0.6500287745329738,
+        "Fold": 4.25010719366137,
+        "min_ON": 0.8500310316279749,
+        "max_OFF": 0.20000225709500108,
+        "MC_Pass_rate": 0.495,
+        "MC_Delta_med": 0.3785370809928318,
+        "MC_Delta_p10": 0.11354646068183413,
+        "MC_Fold_med": 3.2312315671372343,
+        "pKd_A:B": 10.167608765830026,
+        "pKd_A:Q": 7.107037222224176,
+        "pKd_B:Q": 7.157318490521162,
+        "pKd_Q:S": 5.952593456785664,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D19"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "EIASLEKKNSALKKEIASLQWAISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALESKIASLQWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSKIASLAS",
+        "Q": "-EIASLEKKNSALKKEIASLQWAISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5229273179849825,
+          10.784409574166757,
+          6.670708423155817,
+          3.854157093822796
+        ],
+        [
+          10.784409574166757,
+          4.3515171509927475,
+          6.898257620742258,
+          2.3802816389184516
+        ],
+        [
+          6.670708423155817,
+          6.898257620742258,
+          3.3166001820558177,
+          5.854538001910729
+        ],
+        [
+          3.854157093822796,
+          2.3802816389184516,
+          5.854538001910729,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.057250976562503,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.057250976562503,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.057250976562503,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.057250976562503,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.784409574166757,
+          "Kd_nM": 0.01642821681185973,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.670708423155817,
+          "Kd_nM": 213.44774787404478,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.565004348754883,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.898257620742258,
+          "Kd_nM": 126.3986336334919,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.57773780822754,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.854538001910729,
+          "Kd_nM": 1397.8545940134022,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.227407416183226,
+        "graph_loss": -0.9232197382715485,
+        "circuit_loss": -7.304187677911678,
+        "worst_off_pKd": 3.854157093822796,
+        "worst_homo_pKd": 4.3515171509927475,
+        "min_slip_margin": 21.57773780822754,
+        "Delta": 0.6086831067784475,
+        "Fold": 4.0433972671219855,
+        "min_ON": 0.8086843071981528,
+        "max_OFF": 0.20000120041970526,
+        "MC_Pass_rate": 0.49,
+        "MC_Delta_med": 0.3556699301746883,
+        "MC_Delta_p10": 0.08708907629295148,
+        "MC_Fold_med": 2.6664139535347964,
+        "pKd_A:B": 10.784409574166757,
+        "pKd_A:Q": 6.670708423155817,
+        "pKd_B:Q": 6.898257620742258,
+        "pKd_Q:S": 5.854538001910729,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D20"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESQVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQVSALESENASLEWEISALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESQVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQVSALESENASLEWEISALAS"
+      },
+      "pkd_matrix": [
+        [
+          4.335033374381183,
+          9.6290814764157,
+          6.9634812389429595,
+          3.5230291559555518
+        ],
+        [
+          9.6290814764157,
+          4.052038668562998,
+          7.233834890602515,
+          2.844094214493624
+        ],
+        [
+          6.9634812389429595,
+          7.233834890602515,
+          3.968487972717476,
+          6.205792539677292
+        ],
+        [
+          3.5230291559555518,
+          2.844094214493624,
+          6.205792539677292,
+          1.5357736965621074
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.095727539062499,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.095727539062499,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.095727539062499,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.095727539062499,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.6290814764157,
+          "Kd_nM": 0.23491920560863766,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.150699615478516,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.9634812389429595,
+          "Kd_nM": 108.77241251347226,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.46893310546875,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.233834890602515,
+          "Kd_nM": 58.36669596914248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.205792539677292,
+          "Kd_nM": 622.5976259462464,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.44980812072754,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.964847816809552,
+        "graph_loss": -0.5418989663399778,
+        "circuit_loss": -7.422948850469575,
+        "worst_off_pKd": 3.5230291559555518,
+        "worst_homo_pKd": 4.335033374381183,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.6185794426087171,
+        "Fold": 4.0928885900325325,
+        "min_ON": 0.8185800002111526,
+        "max_OFF": 0.20000055760243554,
+        "MC_Pass_rate": 0.49,
+        "MC_Delta_med": 0.35175288769395974,
+        "MC_Delta_p10": 0.12224587711403682,
+        "MC_Fold_med": 2.762535815629252,
+        "pKd_A:B": 9.6290814764157,
+        "pKd_A:Q": 6.9634812389429595,
+        "pKd_B:Q": 7.233834890602515,
+        "pKd_Q:S": 6.205792539677292,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D21"
+    },
+    {
+      "seqs": {
+        "A": "EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "KIASLKSQNSALKSQIASLKWQISALKSQIASLKS",
+        "Q": "EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "KISALKSENASLQWKISALKS"
+      },
+      "pads": {
+        "A": "-EIASLEKENSALEKKIASLEWEISALESEIASLES",
+        "B": "-KIASLKSQNSALKSQIASLKWQISALKSQIASLKS",
+        "Q": "-EIASLEKKNSALKSEIASLQWKISALKS",
+        "S": "-KISALKSENASLQWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.337900539230137,
+          11.912700629371923,
+          7.172010426453543,
+          4.12383727192057
+        ],
+        [
+          11.912700629371923,
+          4.000736008603372,
+          6.8398463166740555,
+          2.3802816389184516
+        ],
+        [
+          7.172010426453543,
+          6.8398463166740555,
+          4.177968343255114,
+          5.981350326594604
+        ],
+        [
+          4.12383727192057,
+          2.3802816389184516,
+          5.981350326594604,
+          1.5121440226088634
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.916650390625,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.916650390625,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.916650390625,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.916650390625,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 11.912700629371923,
+          "Kd_nM": 0.001222642169208014,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 36.278629302978516,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.172010426453543,
+          "Kd_nM": 67.29604997916455,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.577735900878906,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.8398463166740555,
+          "Kd_nM": 144.59513574907206,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.981350326594604,
+          "Kd_nM": 1043.8778283635365,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 25.690183639526367,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.954011215162836,
+        "graph_loss": -0.6839336755486211,
+        "circuit_loss": -8.270077539614215,
+        "worst_off_pKd": 4.12383727192057,
+        "worst_homo_pKd": 4.337900539230137,
+        "min_slip_margin": 21.577735900878906,
+        "Delta": 0.6891731283011846,
+        "Fold": 4.686130665698348,
+        "min_ON": 0.876136964042102,
+        "max_OFF": 0.1869638357409174,
+        "MC_Pass_rate": 0.485,
+        "MC_Delta_med": 0.3696046828406049,
+        "MC_Delta_p10": 0.0650837653511488,
+        "MC_Fold_med": 2.7098561403933346,
+        "pKd_A:B": 11.912700629371923,
+        "pKd_A:Q": 7.172010426453543,
+        "pKd_B:Q": 6.8398463166740555,
+        "pKd_Q:S": 5.981350326594604,
+        "A_len": 35,
+        "A_chg": -6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 21,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D22"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "EVASLKSQISALKSENASLEWKISALQSKVASLKS",
+        "Q": "EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "LQSEVSALESQNASLEWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "-EVASLKSQISALKSENASLEWKISALQSKVASLKS",
+        "Q": "-EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "-----LQSEVSALESQNASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.031213323648087,
+          10.585843576549433,
+          6.802134355423762,
+          2.962151228704534
+        ],
+        [
+          10.585843576549433,
+          3.9672117556658577,
+          6.8882952759227924,
+          3.5516912556363613
+        ],
+        [
+          6.802134355423762,
+          6.8882952759227924,
+          4.048159059918488,
+          5.950085801353955
+        ],
+        [
+          2.962151228704534,
+          3.5516912556363613,
+          5.950085801353955,
+          0.7870463374254646
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.419677734375002,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.419677734375002,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.419677734375002,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.419677734375002,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.585843576549433,
+          "Kd_nM": 0.025951138975351378,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.02505683898926,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.802134355423762,
+          "Kd_nM": 157.71232877969638,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 13.912353515625,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.8882952759227924,
+          "Kd_nM": 129.3316219426317,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 21.57773780822754,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.950085801353955,
+          "Kd_nM": 1121.7968047132108,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.449810028076172,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.695619139951244,
+        "graph_loss": -0.840258690769681,
+        "circuit_loss": -7.855360449181562,
+        "worst_off_pKd": 3.5516912556363613,
+        "worst_homo_pKd": 4.048159059918488,
+        "min_slip_margin": 13.912353515625,
+        "Delta": 0.654614087134987,
+        "Fold": 4.273052850420022,
+        "min_ON": 0.8546151616825558,
+        "max_OFF": 0.2000010745475687,
+        "MC_Pass_rate": 0.485,
+        "MC_Delta_med": 0.3565756515474501,
+        "MC_Delta_p10": 0.11701696031905354,
+        "MC_Fold_med": 2.90781495190524,
+        "pKd_A:B": 10.585843576549433,
+        "pKd_A:Q": 6.802134355423762,
+        "pKd_B:Q": 6.8882952759227924,
+        "pKd_Q:S": 5.950085801353955,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 4,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -5,
+        "S_eps280": 5500
+      },
+      "design_id": "D23"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSKNSALASKIASLKWQISALASKIASLKS",
+        "B": "EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "KIASLKSENSALESEIASLEWEISALQS",
+        "S": "EIASLEKKNSALKKQNASLAWEISALKS"
+      },
+      "pads": {
+        "A": "-QIASLKSKNSALASKIASLKWQISALASKIASLKS",
+        "B": "-EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "-KIASLKSENSALESEIASLEWEISALQS",
+        "S": "-EIASLEKKNSALKKQNASLAWEISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.386962941981141,
+          10.135930774736309,
+          7.064216930067826,
+          3.4967771217003185
+        ],
+        [
+          10.135930774736309,
+          4.37959835139967,
+          7.157318490521162,
+          3.0426620310079846
+        ],
+        [
+          7.064216930067826,
+          7.157318490521162,
+          2.882098034606991,
+          5.952593456785664
+        ],
+        [
+          3.4967771217003185,
+          3.0426620310079846,
+          5.952593456785664,
+          2.9623514224164307
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          8.034960937500005,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          8.034960937500005,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          8.034960937500005,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          8.034960937500005,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.135930774736309,
+          "Kd_nM": 0.073125563419262,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.33302688598633,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 7.064216930067826,
+          "Kd_nM": 86.25475976725284,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 17.745044708251953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.157318490521162,
+          "Kd_nM": 69.61158292720329,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.38495922088623,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.952593456785664,
+          "Kd_nM": 1115.3381134605756,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.186227798461914,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.65105640643616,
+        "graph_loss": -0.8904992377378307,
+        "circuit_loss": -7.760557168698329,
+        "worst_off_pKd": 3.4967771217003185,
+        "worst_homo_pKd": 4.386962941981141,
+        "min_slip_margin": 17.745044708251953,
+        "Delta": 0.6471321343935269,
+        "Fold": 4.2255629591827795,
+        "min_ON": 0.8477582398462887,
+        "max_OFF": 0.20062610545276185,
+        "MC_Pass_rate": 0.47,
+        "MC_Delta_med": 0.3323717246764203,
+        "MC_Delta_p10": 0.12671391374075344,
+        "MC_Fold_med": 2.8425784976006327,
+        "pKd_A:B": 10.135930774736309,
+        "pKd_A:Q": 7.064216930067826,
+        "pKd_B:Q": 7.157318490521162,
+        "pKd_Q:S": 5.952593456785664,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D24"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "KVASLQEEISALESKNASLKWEISALES",
+        "S": "LQSKVSALKSQNASLEWKVSALKS"
+      },
+      "pads": {
+        "A": "-KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "-EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "-KVASLQEEISALESKNASLKWEISALES",
+        "S": "-----LQSKVSALKSQNASLEWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.3896025999844928,
+          9.425216718944615,
+          6.8436661973572726,
+          1.5135372027043745
+        ],
+        [
+          9.425216718944615,
+          2.281120541706957,
+          6.955342615540467,
+          3.2607125511991457
+        ],
+        [
+          6.8436661973572726,
+          6.955342615540467,
+          3.7291145805526775,
+          6.092433371232733
+        ],
+        [
+          1.5135372027043745,
+          3.2607125511991457,
+          6.092433371232733,
+          0.6518961210013892
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.734179687500002,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.734179687500002,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.734179687500002,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.734179687500002,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.425216718944615,
+          "Kd_nM": 0.37564990301967616,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.037790298461914,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.8436661973572726,
+          "Kd_nM": 143.32891149149793,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.310291290283203,
+          "slip_type": "ANTI"
+        },
+        "B:Q": {
+          "pKd": 6.955342615540467,
+          "Kd_nM": 110.83001307230545,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "Q:S": {
+          "pKd": 6.092433371232733,
+          "Kd_nM": 808.2889259994266,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.249450380696473,
+        "graph_loss": -0.8697937396672639,
+        "circuit_loss": -7.37965664102921,
+        "worst_off_pKd": 3.2607125511991457,
+        "worst_homo_pKd": 3.7291145805526775,
+        "min_slip_margin": 24.310291290283203,
+        "Delta": 0.6185852065854348,
+        "Fold": 4.013834594076497,
+        "min_ON": 0.82383376528246,
+        "max_OFF": 0.20524855869702519,
+        "MC_Pass_rate": 0.445,
+        "MC_Delta_med": 0.33311286485070835,
+        "MC_Delta_p10": 0.10396907925841233,
+        "MC_Fold_med": 2.7381543749003,
+        "pKd_A:B": 9.425216718944615,
+        "pKd_A:Q": 6.8436661973572726,
+        "pKd_B:Q": 6.955342615540467,
+        "pKd_Q:S": 6.092433371232733,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D25"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQISALESENASLEWEVSALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESEVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQISALESENASLEWEVSALAS"
+      },
+      "pkd_matrix": [
+        [
+          3.08732758832138,
+          9.554329498848848,
+          7.192174583566153,
+          3.105541721209079
+        ],
+        [
+          9.554329498848848,
+          4.052038668562998,
+          7.233834890602515,
+          2.7950270601660936
+        ],
+        [
+          7.192174583566153,
+          7.233834890602515,
+          3.968487972717476,
+          6.156725385349762
+        ],
+        [
+          3.105541721209079,
+          2.7950270601660936,
+          6.156725385349762,
+          0.7271754512138546
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.802783203125004,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.802783203125004,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.802783203125004,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.802783203125004,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.554329498848848,
+          "Kd_nM": 0.2790425944158454,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 26.37240982055664,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 7.192174583566153,
+          "Kd_nM": 64.24294129430834,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 18.69063949584961,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.233834890602515,
+          "Kd_nM": 58.36669596914248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.156725385349762,
+          "Kd_nM": 697.0671467925366,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.10769271850586,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.800970074719087,
+        "graph_loss": -1.0338218655597218,
+        "circuit_loss": -7.767148209159365,
+        "worst_off_pKd": 3.105541721209079,
+        "worst_homo_pKd": 4.052038668562998,
+        "min_slip_margin": 18.69063949584961,
+        "Delta": 0.6509726172293686,
+        "Fold": 4.1695357956295,
+        "min_ON": 0.8563568309451437,
+        "max_OFF": 0.20538421371577512,
+        "MC_Pass_rate": 0.435,
+        "MC_Delta_med": 0.3192523221028544,
+        "MC_Delta_p10": 0.08637089977300284,
+        "MC_Fold_med": 2.6496498759029894,
+        "pKd_A:B": 9.554329498848848,
+        "pKd_A:Q": 7.192174583566153,
+        "pKd_B:Q": 7.233834890602515,
+        "pKd_Q:S": 6.156725385349762,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D26"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "QVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "KVASLQEEISALESKNASLKWEISALES",
+        "S": "LQSKVSALKSENASLAWKVSALKS"
+      },
+      "pads": {
+        "A": "-KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "-QVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "-KVASLQEEISALESKNASLKWEISALES",
+        "S": "-----LQSKVSALKSENASLAWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.3896025999844928,
+          9.345867573060735,
+          6.8436661973572726,
+          1.967894074168778
+        ],
+        [
+          9.345867573060735,
+          2.64629958937452,
+          7.000359415354444,
+          3.3809212987502373
+        ],
+        [
+          6.8436661973572726,
+          7.000359415354444,
+          3.7291145805526775,
+          6.080433409842572
+        ],
+        [
+          1.967894074168778,
+          3.3809212987502373,
+          6.080433409842572,
+          0.6765021561160101
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.004882812500002,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.004882812500002,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.004882812500002,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.004882812500002,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.345867573060735,
+          "Kd_nM": 0.45095419046817026,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.03779220581055,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.8436661973572726,
+          "Kd_nM": 143.32891149149793,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.310291290283203,
+          "slip_type": "ANTI"
+        },
+        "B:Q": {
+          "pKd": 7.000359415354444,
+          "Kd_nM": 99.91727579162165,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "Q:S": {
+          "pKd": 6.080433409842572,
+          "Kd_nM": 830.9341156504813,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.035417364723262,
+        "graph_loss": -0.937422467831915,
+        "circuit_loss": -7.097994896891347,
+        "worst_off_pKd": 3.3809212987502373,
+        "worst_homo_pKd": 3.7291145805526775,
+        "min_slip_margin": 24.310291290283203,
+        "Delta": 0.6016325849711307,
+        "Fold": 3.8116522155316406,
+        "min_ON": 0.8156108934004935,
+        "max_OFF": 0.21397830842936283,
+        "MC_Pass_rate": 0.435,
+        "MC_Delta_med": 0.3220716078428739,
+        "MC_Delta_p10": 0.09499926346490485,
+        "MC_Fold_med": 2.6729291445060293,
+        "pKd_A:B": 9.345867573060735,
+        "pKd_A:Q": 6.8436661973572726,
+        "pKd_B:Q": 7.000359415354444,
+        "pKd_Q:S": 6.080433409842572,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -4,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D27"
+    },
+    {
+      "seqs": {
+        "A": "KIASLQSKNSALQSEIASLEWKISALKS",
+        "B": "EIASLESENSALESKIASLKWEISALESEIASLES",
+        "Q": "KIASLKSQNSALESQIASLKWQISALKS",
+        "S": "EIASLQSANSALQSENASLEWEISALQS"
+      },
+      "pads": {
+        "A": "-KIASLQSKNSALQSEIASLEWKISALKS",
+        "B": "-EIASLESENSALESKIASLKWEISALESEIASLES",
+        "Q": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "S": "-EIASLQSANSALQSENASLEWEISALQS"
+      },
+      "pkd_matrix": [
+        [
+          3.6970047196127664,
+          9.247771523113622,
+          6.939146789865464,
+          2.906341796815573
+        ],
+        [
+          9.247771523113622,
+          4.487236486507069,
+          7.085520588762346,
+          3.7134607942902536
+        ],
+        [
+          6.939146789865464,
+          7.085520588762346,
+          3.1155986461179737,
+          6.203112535418495
+        ],
+        [
+          2.906341796815573,
+          3.7134607942902536,
+          6.203112535418495,
+          2.2262668712609885
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.6931640625,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.6931640625,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.6931640625,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.6931640625,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.247771523113622,
+          "Kd_nM": 0.565234259269556,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.552268981933594,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.939146789865464,
+          "Kd_nM": 115.04114885637462,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.4459285736084,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.085520588762346,
+          "Kd_nM": 82.12576182419312,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 7.925083160400391,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.203112535418495,
+          "Kd_nM": 626.4515160332131,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.36469268798828,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.80922649581916,
+        "graph_loss": -0.5058857601517532,
+        "circuit_loss": -7.3033407356674065,
+        "worst_off_pKd": 3.7134607942902536,
+        "worst_homo_pKd": 4.487236486507069,
+        "min_slip_margin": 7.925083160400391,
+        "Delta": 0.6104362562021237,
+        "Fold": 4.011651740712752,
+        "min_ON": 0.813127771940811,
+        "max_OFF": 0.20269151573868727,
+        "MC_Pass_rate": 0.415,
+        "MC_Delta_med": 0.30161903717453525,
+        "MC_Delta_p10": 0.10288747344724347,
+        "MC_Fold_med": 2.5564768240863502,
+        "pKd_A:B": 9.247771523113622,
+        "pKd_A:Q": 6.939146789865464,
+        "pKd_B:Q": 7.085520588762346,
+        "pKd_Q:S": 6.203112535418495,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D28"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSKISALKSQNASLKWEISALQSKVASLKS",
+        "B": "EVASLEEKISALQSENASLKWKISALKSEVASLES",
+        "Q": "QIASLESEISALESENASLKWEISALES",
+        "S": "LQSQISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KVASLKSKISALKSQNASLKWEISALQSKVASLKS",
+        "B": "-EVASLEEKISALQSENASLKWKISALKSEVASLES",
+        "Q": "-QIASLESEISALESENASLKWEISALES",
+        "S": "-----LQSQISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.2896104460882603,
+          9.72511054376284,
+          6.845264590159623,
+          3.136142321106087
+        ],
+        [
+          9.72511054376284,
+          4.11860370585493,
+          6.883675674822926,
+          3.9607484844684233
+        ],
+        [
+          6.845264590159623,
+          6.883675674822926,
+          3.8591304904087065,
+          6.110136938755085
+        ],
+        [
+          3.136142321106087,
+          3.9607484844684233,
+          6.110136938755085,
+          2.907699564752966
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          5.742919921874998,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          5.742919921874998,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          5.742919921874998,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          5.742919921874998,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.72511054376284,
+          "Kd_nM": 0.1883169693207694,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.092193603515625,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.845264590159623,
+          "Kd_nM": 142.80236823474158,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 11.75777816772461,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.883675674822926,
+          "Kd_nM": 130.71466829898617,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.77397918701172,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.110136938755085,
+          "Kd_nM": 776.0023943000598,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.948097229003906,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.778783900229529,
+        "graph_loss": -0.3164024658093795,
+        "circuit_loss": -7.462381434420149,
+        "worst_off_pKd": 3.9607484844684233,
+        "worst_homo_pKd": 4.11860370585493,
+        "min_slip_margin": 11.75777816772461,
+        "Delta": 0.6218651195350124,
+        "Fold": 4.127448199801118,
+        "min_ON": 0.8207061809391816,
+        "max_OFF": 0.19884106140416916,
+        "MC_Pass_rate": 0.415,
+        "MC_Delta_med": 0.3459036106956888,
+        "MC_Delta_p10": 0.06854537277719511,
+        "MC_Fold_med": 2.5608727937997577,
+        "pKd_A:B": 9.72511054376284,
+        "pKd_A:Q": 6.845264590159623,
+        "pKd_B:Q": 6.883675674822926,
+        "pKd_Q:S": 6.110136938755085,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -5,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 4,
+        "S_eps280": 5500
+      },
+      "design_id": "D29"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "EVASLKSKISALKSENASLEWKISALQSAVASLKS",
+        "Q": "EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "LQSEVSALESQNASLEWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "-EVASLKSKISALKSENASLEWKISALQSAVASLKS",
+        "Q": "-EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "-----LQSEVSALESQNASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.031213323648087,
+          10.806923440424203,
+          6.802134355423762,
+          2.962151228704534
+        ],
+        [
+          10.806923440424203,
+          4.406135539759265,
+          6.697863697205274,
+          3.856520672705194
+        ],
+        [
+          6.802134355423762,
+          6.697863697205274,
+          4.048159059918488,
+          5.950085801353955
+        ],
+        [
+          2.962151228704534,
+          3.856520672705194,
+          5.950085801353955,
+          0.7870463374254646
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.0170654296874995,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.0170654296874995,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.0170654296874995,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.0170654296874995,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.806923440424203,
+          "Kd_nM": 0.015598274526771996,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.24676704406738,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.802134355423762,
+          "Kd_nM": 157.71232877969638,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 13.912353515625,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.697863697205274,
+          "Kd_nM": 200.5101227203685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.950085801353955,
+          "Kd_nM": 1121.7968047132108,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.449810028076172,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.678257688352615,
+        "graph_loss": -0.39940648580904436,
+        "circuit_loss": -7.278851202543571,
+        "worst_off_pKd": 3.856520672705194,
+        "worst_homo_pKd": 4.406135539759265,
+        "min_slip_margin": 13.912353515625,
+        "Delta": 0.6065713564281864,
+        "Fold": 4.032847163135292,
+        "min_ON": 0.806571990750005,
+        "max_OFF": 0.20000063432181855,
+        "MC_Pass_rate": 0.415,
+        "MC_Delta_med": 0.3428672324982439,
+        "MC_Delta_p10": 0.10005541873899244,
+        "MC_Fold_med": 2.232774970799391,
+        "pKd_A:B": 10.806923440424203,
+        "pKd_A:Q": 6.802134355423762,
+        "pKd_B:Q": 6.697863697205274,
+        "pKd_Q:S": 5.950085801353955,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 4,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -5,
+        "S_eps280": 5500
+      },
+      "design_id": "D30"
+    },
+    {
+      "seqs": {
+        "A": "KIASLQSKNSALQSEIASLEWKISALKS",
+        "B": "EIASLESENSALESKIASLKWEISALESEIASLES",
+        "Q": "KIASLKSQNSALESQIASLKWQISALKS",
+        "S": "EIASLQSANSALQSENASLEWEISALES"
+      },
+      "pads": {
+        "A": "-KIASLQSKNSALQSEIASLEWKISALKS",
+        "B": "-EIASLESENSALESKIASLKWEISALESEIASLES",
+        "Q": "-KIASLKSQNSALESQIASLKWQISALKS",
+        "S": "-EIASLQSANSALQSENASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          3.6970047196127664,
+          9.247771523113622,
+          6.939146789865464,
+          3.2875409187756213
+        ],
+        [
+          9.247771523113622,
+          4.487236486507069,
+          7.085520588762346,
+          3.2746627995656556
+        ],
+        [
+          6.939146789865464,
+          7.085520588762346,
+          3.1155986461179737,
+          6.239395941281173
+        ],
+        [
+          3.2875409187756213,
+          3.2746627995656556,
+          6.239395941281173,
+          1.6040509018753504
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.306958007812502,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.306958007812502,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.306958007812502,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.306958007812502,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.247771523113622,
+          "Kd_nM": 0.565234259269556,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.552268981933594,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.939146789865464,
+          "Kd_nM": 115.04114885637462,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 32.4459285736084,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.085520588762346,
+          "Kd_nM": 82.12576182419312,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 7.925083160400391,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.239395941281173,
+          "Kd_nM": 576.2408716695277,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.364694595336914,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.596383119612602,
+        "graph_loss": -0.2282003983453449,
+        "circuit_loss": -7.368182721267257,
+        "worst_off_pKd": 3.2875409187756213,
+        "worst_homo_pKd": 4.487236486507069,
+        "min_slip_margin": 7.925083160400391,
+        "Delta": 0.6140162411038789,
+        "Fold": 4.070057850316129,
+        "min_ON": 0.8140177625868218,
+        "max_OFF": 0.20000152148294295,
+        "MC_Pass_rate": 0.415,
+        "MC_Delta_med": 0.3198525626883941,
+        "MC_Delta_p10": 0.06058476205288994,
+        "MC_Fold_med": 2.5960706634537907,
+        "pKd_A:B": 9.247771523113622,
+        "pKd_A:Q": 6.939146789865464,
+        "pKd_B:Q": 7.085520588762346,
+        "pKd_Q:S": 6.239395941281173,
+        "A_len": 28,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": -5,
+        "S_eps280": 5500
+      },
+      "design_id": "D31"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "KVASLQEEISALESKNASLKWEISALES",
+        "S": "LQSAISALKKENASLQWKISALQS"
+      },
+      "pads": {
+        "A": "-KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "-EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "-KVASLQEEISALESKNASLKWEISALES",
+        "S": "-----LQSAISALKKENASLQWKISALQS"
+      },
+      "pkd_matrix": [
+        [
+          3.3896025999844928,
+          9.425216718944615,
+          6.8436661973572726,
+          3.677478441816604
+        ],
+        [
+          9.425216718944615,
+          2.281120541706957,
+          6.955342615540467,
+          3.64406628170575
+        ],
+        [
+          6.8436661973572726,
+          6.955342615540467,
+          3.7291145805526775,
+          6.134940131641651
+        ],
+        [
+          3.677478441816604,
+          3.64406628170575,
+          6.134940131641651,
+          1.6382408553342156
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.341528320312501,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.341528320312501,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.341528320312501,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.341528320312501,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.425216718944615,
+          "Kd_nM": 0.37564990301967616,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.037790298461914,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.8436661973572726,
+          "Kd_nM": 143.32891149149793,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.310291290283203,
+          "slip_type": "ANTI"
+        },
+        "B:Q": {
+          "pKd": 6.955342615540467,
+          "Kd_nM": 110.83001307230545,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "Q:S": {
+          "pKd": 6.134940131641651,
+          "Kd_nM": 732.9255614220498,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947640419006348,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.689197024769,
+        "graph_loss": -0.3793177659754552,
+        "circuit_loss": -7.309879258793545,
+        "worst_off_pKd": 3.677478441816604,
+        "worst_homo_pKd": 3.7291145805526775,
+        "min_slip_margin": 24.310291290283203,
+        "Delta": 0.6091566048994621,
+        "Fold": 4.045785981813045,
+        "min_ON": 0.8091564107088164,
+        "max_OFF": 0.19999980580935423,
+        "MC_Pass_rate": 0.41,
+        "MC_Delta_med": 0.30187318093793714,
+        "MC_Delta_p10": 0.08000099678506185,
+        "MC_Fold_med": 2.6797233275153975,
+        "pKd_A:B": 9.425216718944615,
+        "pKd_A:Q": 6.8436661973572726,
+        "pKd_B:Q": 6.955342615540467,
+        "pKd_Q:S": 6.134940131641651,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D32"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSQISALESKNASLKWEISALESQVASLES",
+        "B": "KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "EIASLESKISALQSKNASLKWKISALKS",
+        "S": "LQSQISALESENASLEWEVSALAS"
+      },
+      "pads": {
+        "A": "-EVASLKSQISALESKNASLKWEISALESQVASLES",
+        "B": "-KVASLKSKISALKSENASLEWKISALKSKVASLQS",
+        "Q": "-EIASLESKISALQSKNASLKWKISALKS",
+        "S": "-----LQSQISALESENASLEWEVSALAS"
+      },
+      "pkd_matrix": [
+        [
+          4.335033374381183,
+          9.6290814764157,
+          6.9634812389429595,
+          3.1187305029302905
+        ],
+        [
+          9.6290814764157,
+          4.052038668562998,
+          7.233834890602515,
+          2.7950270601660936
+        ],
+        [
+          6.9634812389429595,
+          7.233834890602515,
+          3.968487972717476,
+          6.156725385349762
+        ],
+        [
+          3.1187305029302905,
+          2.7950270601660936,
+          6.156725385349762,
+          0.7271754512138546
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.764208984375003,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.764208984375003,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.764208984375003,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.764208984375003,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.6290814764157,
+          "Kd_nM": 0.23491920560863766,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 31.150699615478516,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.9634812389429595,
+          "Kd_nM": 108.77241251347226,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.46893310546875,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.233834890602515,
+          "Kd_nM": 58.36669596914248,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.156725385349762,
+          "Kd_nM": 697.0671467925366,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 14.10769271850586,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.215006689678278,
+        "graph_loss": -0.8466659976507513,
+        "circuit_loss": -7.368340692027526,
+        "worst_off_pKd": 3.1187305029302905,
+        "worst_homo_pKd": 4.335033374381183,
+        "min_slip_margin": 22.52333641052246,
+        "Delta": 0.6140291564750037,
+        "Fold": 4.070128156756606,
+        "min_ON": 0.8140303046758287,
+        "max_OFF": 0.200001148200825,
+        "MC_Pass_rate": 0.395,
+        "MC_Delta_med": 0.35060134640751806,
+        "MC_Delta_p10": 0.11065311204587303,
+        "MC_Fold_med": 2.4810204857638056,
+        "pKd_A:B": 9.6290814764157,
+        "pKd_A:Q": 6.9634812389429595,
+        "pKd_B:Q": 7.233834890602515,
+        "pKd_Q:S": 6.156725385349762,
+        "A_len": 35,
+        "A_chg": -2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 3,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -4,
+        "S_eps280": 5500
+      },
+      "design_id": "D33"
+    },
+    {
+      "seqs": {
+        "A": "QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "KIASLKSENSALESEIASLEWEISALAS",
+        "S": "EIASLQKKNSALKSQNASLAWEISALKS"
+      },
+      "pads": {
+        "A": "-QIASLKSKNSALASKIASLKWQISALQSKIASLKS",
+        "B": "-EIASLESKNSALKSQIASLEWEISALESEIASLES",
+        "Q": "-KIASLKSENSALESEIASLEWEISALAS",
+        "S": "-EIASLQKKNSALKSQNASLAWEISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.546659214844492,
+          10.167608765830026,
+          6.8313002675303105,
+          3.560193487397506
+        ],
+        [
+          10.167608765830026,
+          4.37959835139967,
+          7.168880846314687,
+          3.3098393663599945
+        ],
+        [
+          6.8313002675303105,
+          7.168880846314687,
+          2.799507751806267,
+          6.04282734926948
+        ],
+        [
+          3.560193487397506,
+          3.3098393663599945,
+          6.04282734926948,
+          3.4626820142590495
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.020800781250001,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.020800781250001,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.020800781250001,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.020800781250001,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.167608765830026,
+          "Kd_nM": 0.06798157688677196,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 35.33302688598633,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.8313002675303105,
+          "Kd_nM": 147.46865948934544,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 17.745044708251953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 7.168880846314687,
+          "Kd_nM": 67.7827451857683,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 37.38495922088623,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.04282734926948,
+          "Kd_nM": 906.0927401327733,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.40793800354004,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.871177253535892,
+        "graph_loss": -0.42947263558610743,
+        "circuit_loss": -7.441704617949784,
+        "worst_off_pKd": 3.560193487397506,
+        "worst_homo_pKd": 4.546659214844492,
+        "min_slip_margin": 17.745044708251953,
+        "Delta": 0.6201420514958154,
+        "Fold": 4.100727122648903,
+        "min_ON": 0.8201409636754972,
+        "max_OFF": 0.19999891217968183,
+        "MC_Pass_rate": 0.395,
+        "MC_Delta_med": 0.32510630702599086,
+        "MC_Delta_p10": 0.08984131179424415,
+        "MC_Fold_med": 2.325349153210351,
+        "pKd_A:B": 10.167608765830026,
+        "pKd_A:Q": 6.8313002675303105,
+        "pKd_B:Q": 7.168880846314687,
+        "pKd_Q:S": 6.04282734926948,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -3,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": 2,
+        "S_eps280": 5500
+      },
+      "design_id": "D34"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "KVASLQEEISALESKNASLKWEISALES",
+        "S": "LQSKVSALKSENASLAWKVSALKS"
+      },
+      "pads": {
+        "A": "-KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "-EVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "-KVASLQEEISALESKNASLKWEISALES",
+        "S": "-----LQSKVSALKSENASLAWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.3896025999844928,
+          9.425216718944615,
+          6.8436661973572726,
+          1.967894074168778
+        ],
+        [
+          9.425216718944615,
+          2.281120541706957,
+          6.955342615540467,
+          3.428049728376688
+        ],
+        [
+          6.8436661973572726,
+          6.955342615540467,
+          3.7291145805526775,
+          6.080433409842572
+        ],
+        [
+          1.967894074168778,
+          3.428049728376688,
+          6.080433409842572,
+          0.6765021561160101
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.8295410156250025,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.8295410156250025,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.8295410156250025,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.8295410156250025,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.425216718944615,
+          "Kd_nM": 0.37564990301967616,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.037790298461914,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.8436661973572726,
+          "Kd_nM": 143.32891149149793,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.310291290283203,
+          "slip_type": "ANTI"
+        },
+        "B:Q": {
+          "pKd": 6.955342615540467,
+          "Kd_nM": 110.83001307230545,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "Q:S": {
+          "pKd": 6.080433409842572,
+          "Kd_nM": 830.9341156504813,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.26491266231748,
+        "graph_loss": -0.9303532033879474,
+        "circuit_loss": -7.334559458929532,
+        "worst_off_pKd": 3.428049728376688,
+        "worst_homo_pKd": 3.7291145805526775,
+        "min_slip_margin": 24.310291290283203,
+        "Delta": 0.6162692881403251,
+        "Fold": 3.9734829258430455,
+        "min_ON": 0.8235243165059578,
+        "max_OFF": 0.20725502836563275,
+        "MC_Pass_rate": 0.385,
+        "MC_Delta_med": 0.34351256157311233,
+        "MC_Delta_p10": 0.1168211063580141,
+        "MC_Fold_med": 2.5306100423145916,
+        "pKd_A:B": 9.425216718944615,
+        "pKd_A:Q": 6.8436661973572726,
+        "pKd_B:Q": 6.955342615540467,
+        "pKd_Q:S": 6.080433409842572,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -5,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D35"
+    },
+    {
+      "seqs": {
+        "A": "KVASLKSKISALKSQNASLKWEISALASKVASLKS",
+        "B": "EVASLEEKISALQSENASLKWKISALKSEVASLES",
+        "Q": "QIASLESEISALESENASLKWEISALES",
+        "S": "LQSQISALKSKNASLKWQISALKS"
+      },
+      "pads": {
+        "A": "-KVASLKSKISALKSQNASLKWEISALASKVASLKS",
+        "B": "-EVASLEEKISALQSENASLKWKISALKSEVASLES",
+        "Q": "-QIASLESEISALESENASLKWEISALES",
+        "S": "-----LQSQISALKSKNASLKWQISALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.5357291509099795,
+          9.428371405432664,
+          6.919202231152296,
+          2.8456322424073077
+        ],
+        [
+          9.428371405432664,
+          4.11860370585493,
+          6.883675674822926,
+          3.9607484844684233
+        ],
+        [
+          6.919202231152296,
+          6.883675674822926,
+          3.8591304904087065,
+          6.110136938755085
+        ],
+        [
+          2.8456322424073077,
+          3.9607484844684233,
+          6.110136938755085,
+          2.907699564752966
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.722827148437502,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.722827148437502,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.722827148437502,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.722827148437502,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.428371405432664,
+          "Kd_nM": 0.37293109346825504,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 33.092193603515625,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.919202231152296,
+          "Kd_nM": 120.44749406660203,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 11.75777816772461,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.883675674822926,
+          "Kd_nM": 130.71466829898617,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 28.77397918701172,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 6.110136938755085,
+          "Kd_nM": 776.0023943000598,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 20.948097229003906,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.7739033465776295,
+        "graph_loss": -0.7090569433707126,
+        "circuit_loss": -7.064846403206917,
+        "worst_off_pKd": 3.9607484844684233,
+        "worst_homo_pKd": 4.11860370585493,
+        "min_slip_margin": 11.75777816772461,
+        "Delta": 0.5887372002672431,
+        "Fold": 3.9436912770723245,
+        "min_ON": 0.7887368418236691,
+        "max_OFF": 0.19999964155642608,
+        "MC_Pass_rate": 0.385,
+        "MC_Delta_med": 0.29297589569640053,
+        "MC_Delta_p10": 0.04555173242290811,
+        "MC_Fold_med": 2.5329395724428148,
+        "pKd_A:B": 9.428371405432664,
+        "pKd_A:Q": 6.919202231152296,
+        "pKd_B:Q": 6.883675674822926,
+        "pKd_Q:S": 6.110136938755085,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -2,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -5,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 4,
+        "S_eps280": 5500
+      },
+      "design_id": "D36"
+    },
+    {
+      "seqs": {
+        "A": "EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "EVASLKKQISALKSENASLEWKISALQSAVASLKS",
+        "Q": "EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "LQSEVSALESQNASLEWEISALES"
+      },
+      "pads": {
+        "A": "-EVASLKSEISALQSKNASLKWEISALESEVASLES",
+        "B": "-EVASLKKQISALKSENASLEWKISALQSAVASLKS",
+        "Q": "-EIASLQSKISALQSKNASLKWKISALKS",
+        "S": "-----LQSEVSALESQNASLEWEISALES"
+      },
+      "pkd_matrix": [
+        [
+          4.031213323648087,
+          9.918274341691987,
+          6.802134355423762,
+          2.962151228704534
+        ],
+        [
+          9.918274341691987,
+          3.5333603487693104,
+          6.756977687725736,
+          3.581472398682318
+        ],
+        [
+          6.802134355423762,
+          6.756977687725736,
+          4.048159059918488,
+          5.950085801353955
+        ],
+        [
+          2.962151228704534,
+          3.581472398682318,
+          5.950085801353955,
+          0.7870463374254646
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          7.062011718750003,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          7.062011718750003,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          7.062011718750003,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          7.062011718750003,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.918274341691987,
+          "Kd_nM": 0.12070511059685685,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.02505683898926,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.802134355423762,
+          "Kd_nM": 157.71232877969638,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 13.912353515625,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.756977687725736,
+          "Kd_nM": 174.9936590900226,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 22.52333641052246,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.950085801353955,
+          "Kd_nM": 1121.7968047132108,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 16.449810028076172,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -8.172789614971526,
+        "graph_loss": -0.9008692303472694,
+        "circuit_loss": -7.271920384624257,
+        "worst_off_pKd": 3.581472398682318,
+        "worst_homo_pKd": 4.048159059918488,
+        "min_slip_margin": 13.912353515625,
+        "Delta": 0.609717748262561,
+        "Fold": 3.9683822978740677,
+        "min_ON": 0.8151217990478106,
+        "max_OFF": 0.20540405078524962,
+        "MC_Pass_rate": 0.37,
+        "MC_Delta_med": 0.3033150396504184,
+        "MC_Delta_p10": 0.07121732546843337,
+        "MC_Fold_med": 2.474839546510777,
+        "pKd_A:B": 9.918274341691987,
+        "pKd_A:Q": 6.802134355423762,
+        "pKd_B:Q": 6.756977687725736,
+        "pKd_Q:S": 5.950085801353955,
+        "A_len": 35,
+        "A_chg": -3,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": 2,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 4,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": -5,
+        "S_eps280": 5500
+      },
+      "design_id": "D37"
+    },
+    {
+      "seqs": {
+        "A": "AIASLKKQNSALESQIASLKWQISALKSQIASLES",
+        "B": "EIASLESENSALESEIASLEWEISALQSKIASLQS",
+        "Q": "KIASLKKKNSALKKEIASLEWEISALES",
+        "S": "EIASLKEENSALESQNASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-AIASLKKQNSALESQIASLKWQISALKSQIASLES",
+        "B": "-EIASLESENSALESEIASLEWEISALQSKIASLQS",
+        "Q": "-KIASLKKKNSALKKEIASLEWEISALES",
+        "S": "-EIASLKEENSALESQNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.511497033346295,
+          10.003471193710261,
+          6.793050178981884,
+          3.540767340706928
+        ],
+        [
+          10.003471193710261,
+          4.24716938917803,
+          6.700994317814317,
+          2.8645991863635336
+        ],
+        [
+          6.793050178981884,
+          6.700994317814317,
+          3.48640340085501,
+          5.979976716520413
+        ],
+        [
+          3.540767340706928,
+          2.8645991863635336,
+          5.979976716520413,
+          3.66051365321831
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.253271484375,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.253271484375,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.253271484375,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.253271484375,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 10.003471193710261,
+          "Kd_nM": 0.09920391379547266,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.11131286621094,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.793050178981884,
+          "Kd_nM": 161.04595497163623,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 23.732311248779297,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.700994317814317,
+          "Kd_nM": 199.0699384562288,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 10.548797607421875,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.979976716520413,
+          "Kd_nM": 1047.1846884136135,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 13.491912841796875,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.481490295542044,
+        "graph_loss": -0.10311474511593421,
+        "circuit_loss": -7.37837555042611,
+        "worst_off_pKd": 3.540767340706928,
+        "worst_homo_pKd": 4.511497033346295,
+        "min_slip_margin": 10.548797607421875,
+        "Delta": 0.614865776340023,
+        "Fold": 4.074302432119509,
+        "min_ON": 0.8148674970282891,
+        "max_OFF": 0.20000172068826605,
+        "MC_Pass_rate": 0.37,
+        "MC_Delta_med": 0.3100693529855718,
+        "MC_Delta_p10": 0.09765908246201192,
+        "MC_Fold_med": 2.4144526718759556,
+        "pKd_A:B": 10.003471193710261,
+        "pKd_A:Q": 6.793050178981884,
+        "pKd_B:Q": 6.700994317814317,
+        "pKd_Q:S": 5.979976716520413,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -6,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": -2,
+        "S_eps280": 5500
+      },
+      "design_id": "D38"
+    },
+    {
+      "seqs": {
+        "A": "KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "QVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "KVASLQEEISALESKNASLKWEISALES",
+        "S": "LQSKVSALKSENASLQWKVSALKS"
+      },
+      "pads": {
+        "A": "-KVASLQSKISALKSQNASLKWQISALKSQVASLKS",
+        "B": "-QVASLESEISALESENASLEWKISALKSEVASLQS",
+        "Q": "-KVASLQEEISALESKNASLKWEISALES",
+        "S": "-----LQSKVSALKSENASLQWKVSALKS"
+      },
+      "pkd_matrix": [
+        [
+          3.3896025999844928,
+          9.345867573060735,
+          6.8436661973572726,
+          2.579089880939933
+        ],
+        [
+          9.345867573060735,
+          2.64629958937452,
+          7.000359415354444,
+          3.4098207734008437
+        ],
+        [
+          6.8436661973572726,
+          7.000359415354444,
+          3.7291145805526775,
+          6.1093328844931785
+        ],
+        [
+          2.579089880939933,
+          3.4098207734008437,
+          6.1093328844931785,
+          0.1150255875299564
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.7860351562500005,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.7860351562500005,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.7860351562500005,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.7860351562500005,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.345867573060735,
+          "Kd_nM": 0.45095419046817026,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 34.03779220581055,
+          "slip_type": "ANTI"
+        },
+        "A:Q": {
+          "pKd": 6.8436661973572726,
+          "Kd_nM": 143.32891149149793,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.310291290283203,
+          "slip_type": "ANTI"
+        },
+        "B:Q": {
+          "pKd": 7.000359415354444,
+          "Kd_nM": 99.91727579162165,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 27.947641372680664,
+          "slip_type": "ANTI"
+        },
+        "Q:S": {
+          "pKd": 6.1093328844931785,
+          "Kd_nM": 777.4404185089014,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 4.951976776123047,
+          "slip_type": "ANTI"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.915199459303761,
+        "graph_loss": -0.7145830262446441,
+        "circuit_loss": -7.200616433059117,
+        "worst_off_pKd": 3.4098207734008437,
+        "worst_homo_pKd": 3.7291145805526775,
+        "min_slip_margin": 24.310291290283203,
+        "Delta": 0.6061757982852205,
+        "Fold": 3.9043614085309364,
+        "min_ON": 0.8148880461840907,
+        "max_OFF": 0.20871224789887016,
+        "MC_Pass_rate": 0.365,
+        "MC_Delta_med": 0.285415666183635,
+        "MC_Delta_p10": 0.06536201582731181,
+        "MC_Fold_med": 2.4885815885663263,
+        "pKd_A:B": 9.345867573060735,
+        "pKd_A:Q": 6.8436661973572726,
+        "pKd_B:Q": 7.000359415354444,
+        "pKd_Q:S": 6.1093328844931785,
+        "A_len": 35,
+        "A_chg": 6,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -4,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": -2,
+        "Q_eps280": 5500,
+        "S_len": 24,
+        "S_chg": 3,
+        "S_eps280": 5500
+      },
+      "design_id": "D39"
+    },
+    {
+      "seqs": {
+        "A": "KIASLKSQNSALESQIASLKWQISALKSQIASLES",
+        "B": "EIASLESENSALESEIASLAWEISALQSKIASLKS",
+        "Q": "KIASLKKKNSALKKEIASLEWEISALES",
+        "S": "EIASLKEENSALESQNASLEWKISALKS"
+      },
+      "pads": {
+        "A": "-KIASLKSQNSALESQIASLKWQISALKSQIASLES",
+        "B": "-EIASLESENSALESEIASLAWEISALQSKIASLKS",
+        "Q": "-KIASLKKKNSALKKEIASLEWEISALES",
+        "S": "-EIASLKEENSALESQNASLEWKISALKS"
+      },
+      "pkd_matrix": [
+        [
+          4.307794446440168,
+          9.75846273642547,
+          6.846530446198216,
+          3.628280657709201
+        ],
+        [
+          9.75846273642547,
+          4.34430320245313,
+          6.784010605692971,
+          2.3767352538164763
+        ],
+        [
+          6.846530446198216,
+          6.784010605692971,
+          3.48640340085501,
+          5.979976716520413
+        ],
+        [
+          3.628280657709201,
+          2.3767352538164763,
+          5.979976716520413,
+          3.66051365321831
+        ]
+      ],
+      "c0_uM": [
+        [
+          0.0,
+          0.0,
+          6.8951660156250005,
+          0.5
+        ],
+        [
+          12.0,
+          0.0,
+          6.8951660156250005,
+          0.5
+        ],
+        [
+          0.0,
+          12.0,
+          6.8951660156250005,
+          0.5
+        ],
+        [
+          12.0,
+          12.0,
+          6.8951660156250005,
+          0.5
+        ]
+      ],
+      "edges": {
+        "A:B": {
+          "pKd": 9.75846273642547,
+          "Kd_nM": 0.17439629875199977,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 40.11131286621094,
+          "slip_type": "PAR_SLIP"
+        },
+        "A:Q": {
+          "pKd": 6.846530446198216,
+          "Kd_nM": 142.38674229754224,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 24.677906036376953,
+          "slip_type": "PAR_SLIP"
+        },
+        "B:Q": {
+          "pKd": 6.784010605692971,
+          "Kd_nM": 164.4331567308257,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 11.757774353027344,
+          "slip_type": "PAR_SLIP"
+        },
+        "Q:S": {
+          "pKd": 5.979976716520413,
+          "Kd_nM": 1047.1846884136135,
+          "orient": "PAR",
+          "shift": 0,
+          "slip_margin": 13.491912841796875,
+          "slip_type": "PAR_SLIP"
+        }
+      },
+      "metrics": {
+        "total_loss": -7.968915667763379,
+        "graph_loss": -0.7159056958986272,
+        "circuit_loss": -7.253009971864752,
+        "worst_off_pKd": 3.628280657709201,
+        "worst_homo_pKd": 4.34430320245313,
+        "min_slip_margin": 11.757774353027344,
+        "Delta": 0.6072701500283719,
+        "Fold": 3.974331722468156,
+        "min_ON": 0.8114404332019137,
+        "max_OFF": 0.20417028317354186,
+        "MC_Pass_rate": 0.355,
+        "MC_Delta_med": 0.3017507486513328,
+        "MC_Delta_p10": 0.05725775476652267,
+        "MC_Fold_med": 2.2653566899544817,
+        "pKd_A:B": 9.75846273642547,
+        "pKd_A:Q": 6.846530446198216,
+        "pKd_B:Q": 6.784010605692971,
+        "pKd_Q:S": 5.979976716520413,
+        "A_len": 35,
+        "A_chg": 2,
+        "A_eps280": 5500,
+        "B_len": 35,
+        "B_chg": -4,
+        "B_eps280": 5500,
+        "Q_len": 28,
+        "Q_chg": 2,
+        "Q_eps280": 5500,
+        "S_len": 28,
+        "S_chg": -2,
+        "S_eps280": 5500
+      },
+      "design_id": "D40"
+    }
+  ]
+}
