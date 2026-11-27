@@ -4,7 +4,7 @@ Universal 1D + EQTK + 3D validation framework for *de novo* coiled-coil peptide 
 
 Extended from [coiled-coil-consensus](https://github.com/MyrtleLovesCCSDT/coiled-coil-consensus) (YES-gate pipeline) to support:
 - **`mode: "graph"`**: arbitrary target interaction topologies, edge hierarchies, and off-target/homodimer suppression.
-- **`mode: "truth_table"`**: all 10 non-trivial input-permutation equivalence classes of two-input Boolean logic (covering all 16 two-input functions up to `I1`/`I2` relabeling and trivial constants `0`/`1`), plus 3-input `OR` (`or3_5node`) and dual-output `ortho2_6node`.
+- **`mode: "truth_table"`**: all 10 non-trivial input-permutation equivalence classes of two-input Boolean logic (unified under `free_frac(S)` fluorophore-quencher readout, comparing compact `I1:I2`-sink vs Fig. S4 topologies for `NIMPLY`, `XOR`, `XNOR`), plus 3-input `OR` (`or3_5node`) and dual-output `ortho2_6node`.
 - **`mode: "curve"`**: quantitative concentration-response curves (quadratic decay, prozone bandpass domes, and decoy-buffered sharp threshold switches).
 
 ---
@@ -17,30 +17,29 @@ Two Monte Carlo stages are reported separately:
 1. **`Design MC` (`design_graph.py`, `n_mc = 200`, `sigma_pKd = 0.643`)**: post-SA ranking stage with `mc_conc_rel_std = 0.0` for all configs except `xor_4node` (`0.05`).
 2. **`Sim MC` (`simulate_circuit.py`, `n_mc = 400`, `sigma_pKd = 0.643`, `conc_std = 0.015`)**: dense diagnostic sweep modeling `1.5%` nanoliter dispenser pipetting noise (matching all diagnostic plots in `assets/`).
 
-### Logic Circuits (`mode: "truth_table"`)
+### Logic Circuits (`mode: "truth_table"`, unified `free_frac(S)` readout)
+
+All two-input, 3-input, and dual-output logic gates now share the exact same fluorophore-on-`S` / quencher-on-`Q` readout (`free_frac(S)`, unlabeled `I`/`M` that never directly bind `S`). For `NIMPLY`, `XOR`, and `XNOR`, both compact coiled-coil-native `I1:I2`-sink topologies (`4–5` nodes) and strict Fig. S4 topologies (`6–7` nodes, no `I1:I2` edge) are benchmarked side by side.
 
 | Circuit | Topology / Readout | Delta | Fold | Thresh (`0.85*min_Δ`) | `MC_Delta_p10` | Design MC (`n=200`) | Sim MC (`n=400, std=0.015`) | Worst Off / Homo pKd | Min Slip Margin |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `yes_3node` | Buffer (`I-Q-S`, `free_frac(S)`) | 0.959 | 27.7x | 0.383 | 0.795 | 99.5% | 96.2% | 1.70 / 3.30 | 3.3 |
-| `not_3node` | Inverter (`I-A-S`, `dimer_frac(A,S)`) | 0.975 | 731.5x† | 0.383 | 0.855 | 99.5% | 99.8% | 1.56 / 2.78 | 27.9 |
+| `not_4node` | Fig. S4 NOT (`I-M1-Q1-S`, `free_frac(S)`) | 0.910 | 13.3x | 0.425 | 0.665 | 84.5% | 82.8% | 4.61 / 3.18 | 48.1 |
 | `or_4node` | OR (`I1,I2-Q-S`, `free_frac(S)`) | 0.936 | 21.9x | 0.383 | 0.663 | 98.0% | 92.8% | 2.52 / 3.05 | 13.2 |
-| `nor_4node` | Compact NOR (`dimer_frac(Q,S)`) | 0.981 | 192.3x | 0.552 | 0.874 | 96.0% | 93.8% | 2.46 / 3.49 | 21.2 |
-| `nor_5node` | Fig. S4 NOR (`free_frac(S)`, 5-mer) | 0.952 | 34.9x | 0.425 | 0.702 | 93.5% | 92.2% | 3.88 / 3.66 | 23.7 |
-| `and_5node` | Fig. S4 AND (`free_frac(S)`, 4-mer) | 0.910 | 34.0x | 0.552 | 0.476 | 71.0% | 67.5% | 4.36 / 3.61 | 22.8 |
-| `and_6node` | Split-reporter AND (`SA:SB`, 4-mer) | 0.502 | 10.4x | 0.425 | 0.139 | 31.5% | 26.2% | 4.97 / 3.65 | 23.2 |
-| `nand_6node` | Fig. S4 NAND (`free_frac(S)`, 5-mer) | 0.730 | 5.6x | 0.425 | 0.199 | 41.5% | 35.2% | 4.27 / 3.99 | -22.8* |
-| `imply_5node` | Fig. S4 `NOT I1 OR I2` (`free_frac(S)`) | 0.827 | 13.5x | 0.425 | 0.352 | 71.5% | 64.2% | 4.33 / 3.78 | 27.9 |
-| `nimply_4node` | Compact `I1 AND NOT I2` (`free_frac(S)`) | 0.978 | 66.9x | 0.552 | 0.843 | 93.0% | 90.5% | 4.27 / 4.03 | 1.7 |
-| `nimply_6node` | Fig. S4 `I1 AND NOT I2` (`free_frac(S)`) | 0.792 | 15.0x | 0.425 | 0.187 | 51.0% | 54.0% | 4.61 / 3.97 | 23.3 |
-| `xor_4node` | Competitive sink (`A:B >> A,B:Q > Q:S`) | 0.748 | 5.9x | 0.297 | 0.184 | 68.0% (`std=0.05`) | 71.0% | 2.91 / 3.97 | 19.9 |
-| `xnor_4node` | Dimer readout of XOR (`dimer_frac(Q,S)`) | 0.602 | 8.3x | 0.425 | 0.135 | 40.5% | 34.8% | 3.12 / 4.58 | 25.7 |
-| `xnor_5node` | Mediator XNOR (`A:B > A,B:M > M:Q > Q:S`) | 0.551 | 3.6x | 0.383 | 0.094 | 23.0% | 19.2% | 4.05 / 4.46 | -33.9* |
+| `nor_5node` | Fig. S4 NOR (`I1,I2-M5-Q1-S`, `free_frac(S)`) | 0.942 | 33.0x | 0.425 | 0.656 | 94.0% | 91.2% | 4.10 / 4.38 | 32.3 |
+| `and_5node` | Fig. S4 AND (`I1-Q4-S`, `I2-Q3-S`, `free_frac(S)`) | 0.879 | 33.4x | 0.552 | 0.418 | 58.0% | 56.5% | 4.55 / 4.32 | 27.9 |
+| `nand_6node` | Fig. S4 NAND (`free_frac(S)`) | 0.730 | 7.9x | 0.425 | 0.141 | 43.5% | 37.8% | 4.45 / 3.96 | 19.2 |
+| `imply_5node` | Fig. S4 `NOT I1 OR I2` (`free_frac(S)`) | 0.905 | 17.5x | 0.425 | 0.574 | 84.0% | 80.0% | 4.26 / 4.01 | 21.6 |
+| `nimply_4node_sink` | Compact `I1 AND NOT I2` (`I1:I2` sink, `free_frac(S)`) | 0.925 | 22.6x | 0.468 | 0.681 | 90.5% | 84.0% | 4.45 / 3.13 | 27.9 |
+| `nimply_6node` | Fig. S4 `I1 AND NOT I2` (`free_frac(S)`) | 0.768 | 7.4x | 0.425 | 0.210 | 42.0% | 35.8% | 4.63 / 4.11 | 27.9 |
+| `xor_4node` | Compact XOR (`A:B >> A,B:Q > Q:S`, `free_frac(S)`) | 0.748 | 5.9x | 0.297 | 0.184 | 68.0% (`std=0.05`) | 71.0% | 2.91 / 3.97 | 19.9 |
+| `xor_7node` | Fig. S4 XOR (7-node, `free_frac(S)`) | 0.572 | 4.3x | 0.425 | -0.162 | 4.0% | 2.5% | 5.03 / 4.63 | 9.8 |
+| `xnor_5node` | Compact XNOR (`A:B > A,B:M > M:Q > Q:S`, `free_frac(S)`) | 0.621 | 4.1x | 0.383 | 0.130 | 30.0% | 28.7% | 4.18 / 4.56 | 27.6 |
+| `xnor_7node` | Fig. S4 XNOR (7-node, `free_frac(S)`) | 0.537 | 3.4x | 0.425 | -0.159 | 2.5% | 1.2% | 5.33 / 3.96 | 17.7 |
 | `or3_5node` | 3-input OR (8 states, 4-mer) | 0.964 | 39.0x | 0.510 | 0.774 | 93.5% | 87.8% | 3.44 / 3.91 | 22.8 |
 | `ortho2_6node` | Dual orthogonal YES outputs | 0.919 | 14.0x | 0.383 | 0.645 | 89.5% (joint) | 93.2% / 90.5% (per-obs) | 3.28 / 3.98 | 32.7 |
 
-*\*Note on negative `min_slip_margin`: computed over `require_par=true` and `require_shift0=true` edges. Negative margins occur on 5-mer/4-mer shift-7 edges: `nand_6node` D01 `M1:Q1` (`shift=7`, `slip=-22.8`), `xnor_5node` D01 `M:Q` (`shift=-7`, `slip=-33.9`).*
-
-*†Note on `not_3node` Fold: `Fold` in the code is `min_ON / max(max_OFF, 0.005)`, so any design with `max_OFF < 0.005` is reported at the ≈200x floor rather than at its true ratio. `not_3node` has `max_OFF = 0.0013`, i.e. a true fold of `731.5x`; it is the only row affected. See [`results/fold_uncensored.csv`](results/fold_uncensored.csv).*
+*All redesigned edges have positive slippage margins (`min_slip_margin >= +9.8`, zero `shift != 0` register slips). Note that `not_3node`, `nor_4node`, `and_6node`, `xnor_4node` (dimer/bound readouts), and old `nimply_4node` (`I2:S`) were retired for experimental assay consistency.*
 
 ### Analog Curves (`mode: "curve"`)
 
@@ -71,11 +70,17 @@ Verified equilibrium equivalence between `EQTK` and the JAX fixed-point solver `
 
 | Circuit (Design) | Nominal Delta (`Before -> After`) | Fold (`Before -> After`) | `MC_Delta_p10` (`Before -> After`) | Sim MC Pass (`Before -> After`) |
 | :--- | :---: | :---: | :---: | :---: |
+| `not_4node` (`D01`) | `0.910 -> 0.947` | `13.3x -> 27.2x` | `0.590 -> 0.674` | `82.8% -> 90.0%` |
+| `nor_5node` (`D01`) | `0.942 -> 0.946` | `33.0x -> 40.6x` | `0.631 -> 0.660` | `91.2% -> 93.8%` |
+| `and_5node` (`D01`) | `0.879 -> 0.859` | `33.4x -> 70.7x` | `0.396 -> 0.380` | `56.5% -> 63.7%` |
+| `imply_5node` (`D01`) | `0.905 -> 0.937` | `17.5x -> 29.4x` | `0.474 -> 0.551` | `80.0% -> 88.2%` |
+| `nand_6node` (`D01`) | `0.730 -> 0.830` | `7.9x -> 14.8x` | `0.127 -> 0.193` | `37.8% -> 59.8%` |
+| `nimply_4node_sink` (`D01`) | `0.925 -> 0.948` | `22.6x -> 36.9x` | `0.585 -> 0.663` | `84.0% -> 89.2%` |
+| `nimply_6node` (`D01`) | `0.768 -> 0.787` | `7.4x -> 13.6x` | `0.190 -> 0.199` | `35.8% -> 53.0%` |
 | `xor_4node` (`D01`) | `0.748 -> 0.794` | `5.9x -> 7.0x` | `0.193 -> 0.210` | `71.0% -> 75.2%` |
-| `xnor_4node` (`D02`) | `0.606 -> 0.674` | `9.2x -> 16.7x` | `0.138 -> 0.162` | `37.5% -> 52.2%` |
-| `imply_5node` (`D01`) | `0.827 -> 0.904` | `13.5x -> 25.4x` | `0.297 -> 0.397` | `64.2% -> 80.2%` |
-| `and_5node` (`D01`) | `0.910 -> 0.908` | `34.0x -> 79.3x` | `0.504 -> 0.466` | `67.5% -> 78.0%` |
-| `nand_6node` (`D01`) | `0.730 -> 0.756` | `5.6x -> 14.5x` | `0.115 -> 0.133` | `35.2% -> 49.2%` |
+| `xor_7node` (`D01`) | `0.572 -> 0.628` | `4.3x -> 4.9x` | `-0.086 -> -0.055` | `2.5% -> 5.8%` |
+| `xnor_5node` (`D01`) | `0.621 -> 0.731` | `4.1x -> 5.7x` | `0.134 -> 0.173` | `28.7% -> 42.0%` |
+| `xnor_7node` (`D01`) | `0.537 -> 0.568` | `3.4x -> 3.9x` | `-0.172 -> -0.128` | `1.2% -> 3.0%` |
 
 ### 2D Decision Boundaries (`design_2d_boundary.py`, `des_bounds` integration)
 
