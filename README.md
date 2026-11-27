@@ -82,18 +82,31 @@ Verified equilibrium equivalence between `EQTK` and the JAX fixed-point solver `
 | `xnor_5node` (`D01`) | `0.621 -> 0.731` | `4.1x -> 5.7x` | `0.134 -> 0.173` | `28.7% -> 42.0%` |
 | `xnor_7node` (`D01`) | `0.537 -> 0.568` | `3.4x -> 3.9x` | `-0.172 -> -0.128` | `1.2% -> 3.0%` |
 
-### 2D Decision Boundaries (`design_2d_boundary.py`, `des_bounds` integration)
+### 2D Decision Boundaries (`design_2d_boundary.py`, `des_boundaries` integration)
 
-*De novo* coiled-coil sequence designs classifying `(X, Y)` concentrations by `Free A > 50 * conc_scale` nM (`121x121` exact `eq_conc` + Newton verification, SA + `L-BFGS-B` concentration fitting, and `n_mc = 200` stress test at `sigma_pKd = 0.643, conc_std = 0.015`):
+*De novo* coiled-coil sequence designs classifying `(X, Y)` concentrations by `Free A > 50 * conc_scale` nM (`121x121` exact `eq_conc` + Newton verification, SA + `L-BFGS-B` contour/concentration fitting, and `n_mc = 200` stress test at `sigma_pKd = 0.643, conc_std = 0.015`):
 
 | Boundary | Folder (`results/des_bounds_designs/`) | Lengths | Ideal Acc | Fitted Acc | BCE Loss | Contour Error (`% domain`) | Off / Homo pKd | Registers | MC Med Acc |
 | :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | `line` | `line_s1` (`s=1`) | `4mer` | 99.47% | **98.25%** | 0.0819 | `2.86 nM (1.43%)` | `4.93 / 4.38` | 3/3 `PAR, 0` | 82.2% |
-| `circle` | `circle_s5_kmin2` (`s=5`) | `4mer` | 99.77% | **97.05%** | 0.1261 | `46.17 nM (4.62%)` | `4.82 / 4.13` | 5/5 `PAR, 0` | 77.4% |
-| `quadratic` | `quadratic_s10_seed` (`s=10`) | `4/5mer` | 94.19% | **91.69%** | 0.3002 | `94.01 nM (4.70%)` | `4.73 / 4.04` | 4/5 `0` (`YC -7`) | 65.1% |
+| `circle` | `circle_cfit_s5_kmin2` (`s=5`) | `4mer` | 99.77% | **99.69%** | 0.2004 | `4.27 nM (0.43%)` | `4.94 / 4.34` | 5/5 `PAR, 0` | 77.4% |
+| `quadratic` | `quadratic_cfit_s10_seed` (`s=10`) | `4mer` | 94.19% | **99.16%** | 0.4550 | `10.84 nM (0.54%)` | `4.99 / 3.78` | 5/5 `PAR, 0` | 56.5% |
 | `cubic` (bipartite `YD`) | `cubic_yd_4mer_cfit_s15_kmin0.5` (`s=15`) | `4mer` | 98.45% | **96.52%** | 0.2500 | `68.97 nM (2.30%)` | `4.82 / 4.03` | 7/7 `PAR, 0` | 70.5% |
+| `angle` | `angle_cfit_s15_seed` (`s=15`) | `4mer` | 97.81% | **98.65%** | 0.4226 | `20.97 nM (0.70%)` | `4.45 / 4.34` | 5/5 `PAR, 0` | 51.9% |
+| `bandpass_2` | `bandpass_2_cfit_s15_seed` (`s=15`) | `4mer` | 99.88% | **96.78%** | 0.2865 | `43.37 nM (1.45%)` | `4.06 / 4.30` | 7/7 `PAR, 0` | 84.0% |
+| `full_circle` | `full_circle_cfit_s15_seed` (`s=15`) | `4mer` | 99.74% | **99.49%** | 0.2568 | `17.61 nM (0.59%)` | `5.03 / 4.20` | 7/7 `PAR, 0` | 92.9% |
 
 *(A mixed `4/5mer` variant `cubic_yd_5mer_cfit_s15_kmin0.5` achieves `97.04%` Acc, `2.06%` contour error, `7/7 PAR shift=0`, `off/homo = 4.47 / 4.44`, `MC med = 70.8%`.)*
+
+### Banana Benchmark Classifiers (`design_banana.py`, `banana` integration)
+
+*De novo* coiled-coil classifiers evaluated on the `160x160` concentric-band grid (`banana/topologies.json` geometric target, `[0, 200*s]` nM domain; class determined by larger output species, with concentration refitting via implicit-adjoint `L-BFGS-B` / `least_squares` on the full `N×N` predicted `Kd` matrix):
+
+| Topology | Folder (`results/banana_designs/`) | Lengths | Ideal Grid Acc | Selected Acc | Refitted Grid Acc | Median Gap (native) | Off / Homo pKd | Registers |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| `monomer_3` (3 bands, `-1:A / +1:B`) | `monomer_3_5mer_s8` (`s=8`) | `4/5mer` | 98.44% | 31.52% | **97.05%** | `0.0112 nM` | `4.63 / 4.51` | 9/9 `PAR, 0` |
+| `monomer_3` (3 bands, 4-mer only) | `monomer_3_4mer_s12` (`s=12`) | `4mer` | 98.44% | 31.52% | **92.12%** | `0.0639 nM` | `4.95 / 4.70` | 9/9 `PAR, 0` |
+| `dimer_3_compact` (3 bands, `-1:AC / +1:BD`) | `dimer_3_compact_4mer_s20` (`s=20`) | `4mer` | 98.36% | 68.48% | **82.94%** | `0.1 nM` | `4.46 / 4.81` | 10/10 `PAR, 0` |
 
 ---
 
@@ -139,11 +152,12 @@ python3 scripts/scorecard_3d_graph.py --full-json results/graph_designs/and_5nod
 
 ---
 
-### 4. JAX solver cross-check, ADAM `c0` tuning, and 2D decision boundaries
+### 4. JAX solver cross-check, ADAM `c0` tuning, 2D boundaries, and Banana benchmark
 ```bash
 python3 scripts/check_eqconc_and_adam.py --full-json results/graph_designs/xor_4node/xor_4node_full.json --tune-adam --fix-reporter
-python3 scripts/design_2d_boundary.py --boundary cubic --cubic-yd --contour-fit --conc-scale 15.0 --kd-min-native 0.5 --restarts 40 --steps 3000 --top-fit 40 --seed 42
-python3 scripts/validate_and_fix_2d.py --mc-and-slippage --reports results/des_bounds_designs/cubic_yd_4mer_cfit_s15_kmin0.5/cubic_report.json
+python3 scripts/design_2d_boundary.py --boundary bandpass_2 --use-seed --contour-fit --conc-scale 15 --off-max-pkd 4.1 --restarts 48 --steps 2500 --top-fit 24 --workers 4 --seed 42
+python3 scripts/validate_and_fix_2d.py --mc-and-slippage --reports results/des_bounds_designs/angle_cfit_s15_seed/angle_report.json results/des_bounds_designs/bandpass_2_cfit_s15_seed/bandpass_2_report.json results/des_bounds_designs/full_circle_cfit_s15_seed/full_circle_report.json
+python3 scripts/design_banana.py --topology monomer_3 --conc-scale 8 --allow-5mer --restarts 40 --steps 2500 --top-fit 24 --workers 4
 ```
 
 ---
@@ -174,9 +188,11 @@ CC-any-graph/
 │   ├── scorecard_3d_graph.py        # 3D-EQTK consistency & Complete_3D scorecard
 │   ├── check_eqconc_and_adam.py     # EQTK vs JAX eq_conc verification & MC ADAM c0 tuning
 │   ├── design_2d_boundary.py        # De novo 2D boundary design (des_bounds integration)
-│   └── validate_and_fix_2d.py       # 2D boundary v3 replot, register check & MC stress test
+│   ├── validate_and_fix_2d.py       # 2D boundary v3 replot, register check & MC stress test
+│   └── design_banana.py             # De novo Banana classifier design & concentration refitting
 ├── results/graph_designs/           # Committed *_full.json and *.csv designs per circuit
-├── results/des_bounds_designs/      # Final 2D boundary designs (line, circle, quadratic, cubic_yd)
+├── results/des_bounds_designs/      # Final 2D boundary designs (line, circle, quadratic, cubic_yd, angle, bandpass_2, full_circle)
+├── results/banana_designs/          # Final Banana classifier designs (monomer_3, dimer_3_compact)
 ├── designs_top3_summary.csv         # Consolidated top-3 sequences & metrics across all 25 designs
 └── assets/                          # Diagnostic plots
 ```
