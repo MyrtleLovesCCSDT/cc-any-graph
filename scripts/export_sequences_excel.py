@@ -17,21 +17,19 @@ except ImportError as exc:
     raise SystemExit("openpyxl is required. Install with: pip install openpyxl") from exc
 
 
-# Canonical order from README (extra folders on disk are appended automatically)
 GRAPH_CIRCUIT_ORDER: List[str] = [
-    "yes_3node", "not_3node", "or_4node", "nor_4node", "nor_5node",
-    "and_5node", "and_6node", "nand_6node", "imply_5node", "nimply_4node",
-    "nimply_6node", "xor_4node", "xnor_4node", "xnor_5node", "or3_5node", "ortho2_6node",
+    "yes_3node", "not_3node", "not_4node", "or_4node", "nor_4node", "nor_5node",
+    "and_5node", "and_6node", "nand_6node", "imply_5node", "nimply_4node", "nimply_4node_sink",
+    "nimply_6node", "xor_4node", "xor_7node", "xnor_4node", "xnor_5node", "xnor_7node",
+    "or3_5node", "ortho2_6node",
     "analog_bandpass", "dome_3node", "analog_neg_x2", "threshold_decoy_4node",
     "custom_graph_xor_topo", "cycle_c4", "bipartite_k23", "cascade_5node", "barbell_6node",
 ]
 
-# Extra candidate IDs to always include even if rank > top_k
 EXTRA_PICKS: Dict[str, List[str]] = {
     "dome_3node": ["D08"],
 }
 
-# Early small-scale / superseded 2D runs skipped by default (use --all-des-bounds to include)
 LEGACY_DES_BOUNDS: Set[str] = {
     "circle_s1",
     "cubic_s5",
@@ -53,18 +51,26 @@ DES_BOUNDS_SHEET_NAMES: Dict[str, str] = {
     "cubic_yd_5mer_cfit_s15_kmin0.5": "2D_cubic_5mer",
     "angle_cfit_s15_seed": "2D_angle_cfit",
     "angle_2_cfit_s10_seed": "2D_angle2_cfit",
-    "bandpass_cfit_s10_seed": "2D_bandpass_cfit",
-    "bandpass_2_cfit_s10_seed": "2D_bandpass2_cfit",
+    "bandpass_cfit_s10_seed": "2D_bandpass_s10",
+    "bandpass_cfit_s15_seed": "2D_bandpass_s15",
+    "bandpass_2_cfit_s10_seed": "2D_bandpass2_s10",
+    "bandpass_2_cfit_s15_seed": "2D_bandpass2_s15",
     "full_circle_cfit_s15_seed": "2D_full_circle",
     "full_circle_2_cfit_s15_seed": "2D_full_circle2",
 }
 
 BANANA_SHEET_NAMES: Dict[str, str] = {
-    "dimer_3_compact_4mer_s15": "BN_dimer3_4mer_s15",
-    "dimer_4_compact_5mer_s10": "BN_dimer4_5mer_s10",
-    "monomer_3_5mer_s10": "BN_mono3_5mer_s10",
-    "monomer_3_5mer_s8": "BN_mono3_5mer_s8",
-    "monomer_4_5mer_s10": "BN_mono4_5mer_s10",
+    "dimer_3_compact_4mer_s15": "BN_dimer3_4m_s15",
+    "dimer_3_compact_4mer_s20": "BN_dimer3_4m_s20",
+    "dimer_3_compact_5mer_s12": "BN_dimer3_5m_s12",
+    "dimer_4_compact_5mer_s10": "BN_dimer4_5m_s10",
+    "monomer_3_4mer_s12": "BN_mono3_4m_s12",
+    "monomer_3_5mer_s10": "BN_mono3_5m_s10",
+    "monomer_3_5mer_s8": "BN_mono3_5m_s8",
+    "monomer_4_4mer_s12": "BN_mono4_4m_s12",
+    "monomer_4_5mer_s10": "BN_mono4_5m_s10",
+    "monomer_4_5mer_s6": "BN_mono4_5m_s6",
+    "monomer_4_5mer_s8": "BN_mono4_5m_s8",
 }
 
 
@@ -168,6 +174,18 @@ def load_fold_uncensored(path: Path) -> Dict[Tuple[str, str], float]:
     return out
 
 
+def c0_differs(c0_a: Any, c0_b: Any, tol: float = 1e-6) -> bool:
+    if not c0_a or not c0_b or len(c0_a) != len(c0_b):
+        return bool(c0_a) != bool(c0_b)
+    for row_a, row_b in zip(c0_a, c0_b):
+        if isinstance(row_a, (int, float)) and isinstance(row_b, (int, float)):
+            if abs(float(row_a) - float(row_b)) > tol:
+                return True
+        elif len(row_a) != len(row_b) or any(abs(float(x) - float(y)) > tol for x, y in zip(row_a, row_b)):
+            return True
+    return False
+
+
 def summarize_c0_range(
     c0_matrix: Any,
     node_idx: int,
@@ -217,30 +235,51 @@ def parse_graph_designs(
     if not gd_dir.exists():
         return []
 
-    available = {p.name: p for p in gd_dir.iterdir() if p.is_dir() and (p / f"{p.name}_full.json").exists()}
+    available: Dict[str, Path] = {}
+    for p in gd_dir.iterdir():
+        if p.is_dir() and ((p / f"{p.name}_adam_full.json").exists() or (p / f"{p.name}_full.json").exists()):
+            available[p.name] = p
+
     ordered_names = [n for n in GRAPH_CIRCUIT_ORDER if n in available]
     ordered_names += sorted(n for n in available if n not in ordered_names)
 
     systems: List[Dict[str, Any]] = []
     for name in ordered_names:
-        full_path = available[name] / f"{name}_full.json"
-        data = json.loads(full_path.read_text(encoding="utf-8"))
+        cdir = available[name]
+        adam_full_path = cdir / f"{name}_adam_full.json"
+        base_full_path = cdir / f"{name}_full.json"
+        has_adam_full = adam_full_path.exists()
+        data = json.loads((adam_full_path if has_adam_full else base_full_path).read_text(encoding="utf-8"))
+        base_by_id: Dict[str, dict] = {}
+        if has_adam_full and base_full_path.exists():
+            base_data = json.loads(base_full_path.read_text(encoding="utf-8"))
+            base_by_id = {d.get("design_id", ""): d for d in base_data.get("designs", [])}
+
         cfg = data.get("config", {})
         mode = cfg.get("mode", "unknown")
         designs = data.get("designs", [])
         if not designs:
             continue
 
-        adam_path = adam_dir / f"{name}_adam.json"
-        adam_data = json.loads(adam_path.read_text(encoding="utf-8")) if adam_path.exists() else None
+        # Legacy results/adam_tuning/*.json fallback ONLY if no *_adam_full.json AND before_Delta matches
+        adam_legacy = None
+        if not has_adam_full:
+            adam_path = adam_dir / f"{name}_adam.json"
+            if adam_path.exists():
+                cand_adam = json.loads(adam_path.read_text(encoding="utf-8"))
+                ref_d = next((d for d in designs if d.get("design_id") == cand_adam.get("design_id")), None)
+                if ref_d is not None:
+                    d_full = ref_d.get("metrics", {}).get("Delta")
+                    d_before = cand_adam.get("before", {}).get("Delta")
+                    if d_full is not None and d_before is not None and abs(float(d_full) - float(d_before)) < 1e-3:
+                        adam_legacy = cand_adam
 
-        # Select top_k + explicit extra picks + ADAM design_id if outside top_k
         selected_indices = list(range(min(top_k, len(designs))))
         seen_ids = {designs[i].get("design_id") for i in selected_indices}
 
         extra_ids = list(EXTRA_PICKS.get(name, []))
-        if adam_data and adam_data.get("design_id"):
-            extra_ids.append(adam_data["design_id"])
+        if adam_legacy and adam_legacy.get("design_id"):
+            extra_ids.append(adam_legacy["design_id"])
 
         for eid in extra_ids:
             if eid not in seen_ids:
@@ -265,37 +304,37 @@ def parse_graph_designs(
             metrics = dict(design.get("metrics", {}))
             edges_dict = design.get("edges", {})
 
-            use_adam = adam_data is not None and adam_data.get("design_id") == did
+            use_legacy_adam = adam_legacy is not None and adam_legacy.get("design_id") == did
             notes: List[str] = []
             if name == "dome_3node" and did == "D08":
                 notes.append("Low-homodimer pick")
 
-            # Use ADAM concentrations & updated metrics directly when available
-            if use_adam:
-                after_m = adam_data.get("after", {})
+            if use_legacy_adam:
+                after_m = adam_legacy.get("after", {})
                 delta_val = after_m.get("Delta", metrics.get("Delta"))
                 fold_val = after_m.get("Fold_uncensored", after_m.get("Fold", metrics.get("Fold")))
                 mc_pass_val = after_m.get("MC_Pass_rate", metrics.get("MC_Pass_rate"))
                 mc_p10_val = after_m.get("MC_Delta_p10", metrics.get("MC_Delta_p10"))
-                c0_active = adam_data.get("c0_uM_after", design.get("c0_uM", []))
-                active_node_idx = {n: i for i, n in enumerate(adam_data.get("node_names", nodes))}
+                c0_active = adam_legacy.get("c0_uM_after", design.get("c0_uM", []))
+                active_node_idx = {n: i for i, n in enumerate(adam_legacy.get("node_names", nodes))}
                 notes.append("ADAM c0")
             else:
                 delta_val = metrics.get("Delta")
-                fold_val = fold_uncensored.get((name, did))
-                if fold_val is None:
-                    min_on = metrics.get("min_ON")
-                    max_off = metrics.get("max_OFF")
-                    if min_on is not None and max_off is not None and max_off > 0:
-                        fold_val = float(min_on) / float(max_off)
-                    else:
-                        fold_val = metrics.get("Fold")
+                min_on = metrics.get("min_ON")
+                max_off = metrics.get("max_OFF")
+                if min_on is not None and max_off is not None and max_off > 0:
+                    fold_val = float(min_on) / float(max_off)
+                else:
+                    fold_val = fold_uncensored.get((name, did), metrics.get("Fold"))
                 mc_pass_val = metrics.get("MC_Pass_rate")
                 mc_p10_val = metrics.get("MC_Delta_p10")
                 c0_active = design.get("c0_uM", [])
                 active_node_idx = {n: i for i, n in enumerate(nodes)}
+                if has_adam_full:
+                    base_d = base_by_id.get(did)
+                    if base_d is None or c0_differs(c0_active, base_d.get("c0_uM", [])):
+                        notes.append("ADAM c0")
 
-            # Target partners per node + compact edge string
             node_partners: Dict[str, List[str]] = {n: [] for n in nodes}
             edge_summaries: List[str] = []
             for ename, einfo in edges_dict.items():
@@ -841,8 +880,8 @@ def write_system_sheet(wb: openpyxl.Workbook, sys: Dict[str, Any]) -> None:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Export top-K CC-any-graph sequences to Excel.")
     parser.add_argument("--results-dir", type=Path, default=Path("results"), help="Path to results directory.")
-    parser.add_argument("--out", type=Path, default=Path("results/Supplementary_Sequences.xlsx"), help="Output .xlsx path.")
-    parser.add_argument("--top-k", type=int, default=4, help="Number of top candidates per graph_designs circuit.")
+    parser.add_argument("--out", type=Path, default=Path("results/Supplementary_Data_1_Sequences.xlsx"), help="Output .xlsx path.")
+    parser.add_argument("--top-k", type=int, default=5, help="Number of top candidates per graph_designs circuit.")
     parser.add_argument("--all-des-bounds", action="store_true", help="Include legacy/ablation folders in des_bounds_designs.")
     args = parser.parse_args()
 
@@ -869,7 +908,7 @@ def main() -> None:
 
     args.out.parent.mkdir(parents=True, exist_ok=True)
     wb.save(args.out)
-    print(f"Saved {args.out}: {len(systems)} sheets, {total_peps} peptide rows ({unique_peps} unique sequences).")
+    print(f"Saved {args.out}: {len(systems)} system sheets, {total_peps} peptide rows ({unique_peps} unique sequences).")
 
 
 if __name__ == "__main__":

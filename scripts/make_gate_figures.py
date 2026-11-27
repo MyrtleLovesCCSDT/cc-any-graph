@@ -450,11 +450,12 @@ def build_figure2(
         Line2D([0], [0], color="#CBD5E1", ls=":", lw=0.75, label="[S0]"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor=COL_IN1, ms=4.0, label="I1"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor=COL_IN2, ms=4.0, label="I2"),
+        Line2D([0], [0], marker="o", color="w", markerfacecolor=COL_IN3, ms=4.0, label="I3"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor=COL_MED, markeredgecolor="#475569", ms=4.0, label="Mediator"),
         Line2D([0], [0], marker="o", color="w", markerfacecolor=COL_REP, markeredgecolor=COL_REP_EDGE, ms=4.2, label="Reporter S"),
     ]
     fig.legend(handles=leg_items, loc="center", bbox_to_anchor=(0.52, 0.030),
-               ncol=9, frameon=False, fontsize=4.6, handlelength=1.1, columnspacing=0.8)
+               ncol=10, frameon=False, fontsize=4.6, handlelength=1.1, columnspacing=0.8)
 
     out_prefix.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_prefix.with_suffix(".pdf"), transparent=True)

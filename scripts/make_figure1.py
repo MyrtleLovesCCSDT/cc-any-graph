@@ -229,7 +229,8 @@ def build_figure1(out_prefix: Path) -> None:
             if m == "Consensus":
                 x_vals = sub["Consensus_CV_pKd"].values if "Consensus_CV_pKd" in sub.columns else sub["Consensus_pKd"].values
             else:
-                x_vals = sub[m].values
+                cv_col = f"{m}_CV_pKd"
+                x_vals = sub[cv_col].values if cv_col in sub.columns else sub[m].values
             mat_r[mi, di] = float(stats.pearsonr(x_vals, sub[ycol].values)[0])
 
     best_single_by_ds = [int(np.argmax(mat_r[:-1, di])) for di in range(len(ds_labels))]
@@ -246,13 +247,6 @@ def build_figure1(out_prefix: Path) -> None:
                 edgecolor=COL_DARK, linewidth=lw,
                 label=(m.replace("_", " ") if di == 0 else None), zorder=2,
             )
-            if n_pts >= 10 and (m == "Consensus" or mi == best_single_by_ds[di]):
-                ci_lo, ci_hi = _fisher_ci95(r_val, n_pts)
-                ax_bench.errorbar(
-                    x_pos[di] + offs, r_val,
-                    yerr=[[max(0.0, r_val - ci_lo)], [max(0.0, ci_hi - r_val)]],
-                    fmt="none", ecolor=COL_DARK, elinewidth=0.60, capsize=1.2, capthick=0.50, zorder=4,
-                )
 
     ax_bench.axhline(0, color="#94A3B8", lw=0.55)
     ax_bench.set_xticks(x_pos)

@@ -8,7 +8,7 @@ import csv
 import json
 import sys
 from pathlib import Path
-from typing import Any, Dict, List, Optional, Sequence, Set, Tuple
+from typing import Any, Dict, List, Optional, Set, Tuple
 
 import numpy as np
 
@@ -32,11 +32,18 @@ from src.circuit_eq import (
     solve_general_equilibrium,
 )
 
+try:
+    from src.consensus import ConsensusModel, DEFAULT_CALIB_PATH
+except Exception:
+    ConsensusModel = None
+    DEFAULT_CALIB_PATH = ROOT / "configs" / "consensus_calibration.json"
+
 
 GRAPH_CIRCUIT_ORDER: List[str] = [
-    "yes_3node", "not_3node", "or_4node", "nor_4node", "nor_5node",
-    "and_5node", "and_6node", "nand_6node", "imply_5node", "nimply_4node",
-    "nimply_6node", "xor_4node", "xnor_4node", "xnor_5node", "or3_5node", "ortho2_6node",
+    "yes_3node", "not_3node", "not_4node", "or_4node", "nor_4node", "nor_5node",
+    "and_5node", "and_6node", "nand_6node", "imply_5node", "nimply_4node", "nimply_4node_sink",
+    "nimply_6node", "xor_4node", "xor_7node", "xnor_4node", "xnor_5node", "xnor_7node",
+    "or3_5node", "ortho2_6node",
     "analog_bandpass", "dome_3node", "analog_neg_x2", "threshold_decoy_4node",
     "custom_graph_xor_topo", "cycle_c4", "bipartite_k23", "cascade_5node", "barbell_6node",
 ]
@@ -66,18 +73,26 @@ DES_BOUNDS_SHEET_NAMES: Dict[str, str] = {
     "cubic_yd_5mer_cfit_s15_kmin0.5": "2D_cubic_5mer",
     "angle_cfit_s15_seed": "2D_angle_cfit",
     "angle_2_cfit_s10_seed": "2D_angle2_cfit",
-    "bandpass_cfit_s10_seed": "2D_bandpass_cfit",
-    "bandpass_2_cfit_s10_seed": "2D_bandpass2_cfit",
+    "bandpass_cfit_s10_seed": "2D_bandpass_s10",
+    "bandpass_cfit_s15_seed": "2D_bandpass_s15",
+    "bandpass_2_cfit_s10_seed": "2D_bandpass2_s10",
+    "bandpass_2_cfit_s15_seed": "2D_bandpass2_s15",
     "full_circle_cfit_s15_seed": "2D_full_circle",
     "full_circle_2_cfit_s15_seed": "2D_full_circle2",
 }
 
 BANANA_SHEET_NAMES: Dict[str, str] = {
-    "dimer_3_compact_4mer_s15": "BN_dimer3_4mer_s15",
-    "dimer_4_compact_5mer_s10": "BN_dimer4_5mer_s10",
-    "monomer_3_5mer_s10": "BN_mono3_5mer_s10",
-    "monomer_3_5mer_s8": "BN_mono3_5mer_s8",
-    "monomer_4_5mer_s10": "BN_mono4_5mer_s10",
+    "dimer_3_compact_4mer_s15": "BN_dimer3_4m_s15",
+    "dimer_3_compact_4mer_s20": "BN_dimer3_4m_s20",
+    "dimer_3_compact_5mer_s12": "BN_dimer3_5m_s12",
+    "dimer_4_compact_5mer_s10": "BN_dimer4_5m_s10",
+    "monomer_3_4mer_s12": "BN_mono3_4m_s12",
+    "monomer_3_5mer_s10": "BN_mono3_5m_s10",
+    "monomer_3_5mer_s8": "BN_mono3_5m_s8",
+    "monomer_4_4mer_s12": "BN_mono4_4m_s12",
+    "monomer_4_5mer_s10": "BN_mono4_5m_s10",
+    "monomer_4_5mer_s6": "BN_mono4_5m_s6",
+    "monomer_4_5mer_s8": "BN_mono4_5m_s8",
 }
 
 BANANA_BANDS: Dict[str, int] = {
@@ -98,9 +113,42 @@ BANANA_GEOMETRY = {
 }
 
 
-# ---------------------------------------------------------------------------
-# Pure-NumPy 2D boundary & equilibrium solvers (matches design_2d_boundary / design_banana)
-# ---------------------------------------------------------------------------
+class RegisterHelper:
+    """Cached wrapper around ConsensusModel for Orient / Shift / Slip_Margin across all pairs."""
+
+    def __init__(self, enabled: bool = True) -> None:
+        self.model = None
+        self.cache: Dict[Tuple[str, str], Tuple[str, Any, Optional[float], str]] = {}
+        if enabled and ConsensusModel is not None and Path(DEFAULT_CALIB_PATH).exists():
+            try:
+                self.model = ConsensusModel(Path(DEFAULT_CALIB_PATH))
+            except Exception as exc:
+                print(f"[warn] Could not load ConsensusModel ({exc}); non-target register info left blank.")
+
+    def get(self, pad_u: str, pad_v: str) -> Tuple[str, Any, Optional[float], str]:
+        if self.model is None or not pad_u or not pad_v:
+            return ("", "", None, "")
+        key = (pad_u, pad_v)
+        if key not in self.cache:
+            sc = self.model.predict_pair(pad_u, pad_v)
+            orient = sc.get("iCipa_best_orient", "")
+            shift = sc.get("iCipa_best_shift", "")
+            slip_m, slip_t = self.model.slippage_margin(pad_u, pad_v)
+            self.cache[key] = (orient, shift, float(slip_m), str(slip_t))
+        return self.cache[key]
+
+
+def c0_differs(c0_a: Any, c0_b: Any, tol: float = 1e-6) -> bool:
+    if not c0_a or not c0_b or len(c0_a) != len(c0_b):
+        return bool(c0_a) != bool(c0_b)
+    for row_a, row_b in zip(c0_a, c0_b):
+        if isinstance(row_a, (int, float)) and isinstance(row_b, (int, float)):
+            if abs(float(row_a) - float(row_b)) > tol:
+                return True
+        elif len(row_a) != len(row_b) or any(abs(float(x) - float(y)) > tol for x, y in zip(row_a, row_b)):
+            return True
+    return False
+
 
 def boundary_fn_2d(name: str, x: np.ndarray, y: np.ndarray, max_in: float) -> np.ndarray:
     b = name[:-2] if name.endswith("_2") else name
@@ -230,13 +278,21 @@ def readout_conc_uM(obs: Observable, eq_m: np.ndarray, c0_m: np.ndarray, n: int)
 # Collectors
 # ---------------------------------------------------------------------------
 
-def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], List[dict], List[dict], List[dict]]:
+def collect_graph_designs(
+    results_dir: Path,
+    top_k: int,
+    reg: RegisterHelper,
+) -> Tuple[List[dict], List[dict], List[dict], List[dict]]:
     gd_dir = results_dir / "graph_designs"
     adam_dir = results_dir / "adam_tuning"
     if not gd_dir.exists():
         return [], [], [], []
 
-    available = {p.name: p for p in gd_dir.iterdir() if p.is_dir() and (p / f"{p.name}_full.json").exists()}
+    available: Dict[str, Path] = {}
+    for p in gd_dir.iterdir():
+        if p.is_dir() and ((p / f"{p.name}_adam_full.json").exists() or (p / f"{p.name}_full.json").exists()):
+            available[p.name] = p
+
     ordered_names = [n for n in GRAPH_CIRCUIT_ORDER if n in available]
     ordered_names += sorted(n for n in available if n not in ordered_names)
 
@@ -246,21 +302,39 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
     curve_rows: List[dict] = []
 
     for name in ordered_names:
-        data = json.loads((available[name] / f"{name}_full.json").read_text(encoding="utf-8"))
+        cdir = available[name]
+        adam_full_path = cdir / f"{name}_adam_full.json"
+        base_full_path = cdir / f"{name}_full.json"
+        has_adam_full = adam_full_path.exists()
+        data = json.loads((adam_full_path if has_adam_full else base_full_path).read_text(encoding="utf-8"))
+        base_by_id: Dict[str, dict] = {}
+        if has_adam_full and base_full_path.exists():
+            base_data = json.loads(base_full_path.read_text(encoding="utf-8"))
+            base_by_id = {d.get("design_id", ""): d for d in base_data.get("designs", [])}
+
         cfg = data.get("config", {})
         mode = cfg.get("mode", "unknown")
         designs = data.get("designs", [])
         if not designs:
             continue
 
-        adam_path = adam_dir / f"{name}_adam.json"
-        adam_data = json.loads(adam_path.read_text(encoding="utf-8")) if adam_path.exists() else None
+        adam_legacy = None
+        if not has_adam_full:
+            adam_path = adam_dir / f"{name}_adam.json"
+            if adam_path.exists():
+                cand_adam = json.loads(adam_path.read_text(encoding="utf-8"))
+                ref_d = next((d for d in designs if d.get("design_id") == cand_adam.get("design_id")), None)
+                if ref_d is not None:
+                    d_full = ref_d.get("metrics", {}).get("Delta")
+                    d_before = cand_adam.get("before", {}).get("Delta")
+                    if d_full is not None and d_before is not None and abs(float(d_full) - float(d_before)) < 1e-3:
+                        adam_legacy = cand_adam
 
         selected_indices = list(range(min(top_k, len(designs))))
         seen_ids = {designs[i].get("design_id") for i in selected_indices}
         extra_ids = list(EXTRA_PICKS.get(name, []))
-        if adam_data and adam_data.get("design_id"):
-            extra_ids.append(adam_data["design_id"])
+        if adam_legacy and adam_legacy.get("design_id"):
+            extra_ids.append(adam_legacy["design_id"])
         for eid in extra_ids:
             if eid not in seen_ids:
                 for idx, d in enumerate(designs):
@@ -281,6 +355,7 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
             rank = idx + 1
             did = design.get("design_id", f"D{rank:02d}")
             seqs = design.get("seqs", {})
+            pads = design.get("pads", {})
             nodes = nodes_cfg if (nodes_cfg and set(nodes_cfg) == set(seqs.keys())) else list(seqs.keys())
             node_idx = {nd: i for i, nd in enumerate(nodes)}
             n = len(nodes)
@@ -289,7 +364,6 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
             kd_m_mat = 10.0 ** np.minimum(-pkd_mat, -2.0)
             edges_dict = design.get("edges", {})
 
-            # Map target edges in both directions for lookup
             target_lookup: Dict[Tuple[int, int], Tuple[str, dict]] = {}
             for ename, einfo in edges_dict.items():
                 uv = split_edge_nodes(ename, nodes)
@@ -304,7 +378,7 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
                     kd_nM_val = float(kd_nM_mat[i, j])
                     if i == j:
                         etype = "Homodimer"
-                        orient, shift, slip_m, slip_t = "", "", None, ""
+                        orient, shift, slip_m, slip_t = reg.get(pads.get(nodes[i], ""), pads.get(nodes[j], ""))
                     elif (i, j) in target_lookup:
                         etype = "Target"
                         _, einfo = target_lookup[(i, j)]
@@ -314,7 +388,7 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
                         slip_t = einfo.get("slip_type", "")
                     else:
                         etype = "Off-target"
-                        orient, shift, slip_m, slip_t = "", "", None, ""
+                        orient, shift, slip_m, slip_t = reg.get(pads.get(nodes[i], ""), pads.get(nodes[j], ""))
 
                     pairwise_rows.append({
                         "Category": mode,
@@ -345,16 +419,19 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
             if mode not in ("truth_table", "curve"):
                 continue
 
-            # Concentration matrix (prefer ADAM if tuned for this design_id)
-            use_adam = adam_data is not None and adam_data.get("design_id") == did
+            use_legacy_adam = adam_legacy is not None and adam_legacy.get("design_id") == did
             c0_uM = np.array(design["c0_uM"], dtype=float)
             notes_str = ""
-            if use_adam:
-                adam_names = adam_data.get("node_names", nodes)
+            if use_legacy_adam:
+                adam_names = adam_legacy.get("node_names", nodes)
                 adam_map = {nm: k for k, nm in enumerate(adam_names)}
-                c0_adam_raw = np.array(adam_data["c0_uM_after"], dtype=float)
+                c0_adam_raw = np.array(adam_legacy["c0_uM_after"], dtype=float)
                 c0_uM = np.column_stack([c0_adam_raw[:, adam_map[nm]] for nm in nodes])
                 notes_str = "ADAM c0"
+            elif has_adam_full:
+                base_d = base_by_id.get(did)
+                if base_d is None or c0_differs(design.get("c0_uM", []), base_d.get("c0_uM", [])):
+                    notes_str = "ADAM c0"
             if name == "dome_3node" and did == "D08":
                 notes_str = "Low-homodimer pick" if not notes_str else f"{notes_str}; Low-homodimer pick"
 
@@ -363,7 +440,6 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
             mb_err = mass_balance_rel_err_eqtk(eq_m, c0_m, n)
             pmap = pair_index_map(n)
 
-            # Precompute state strings
             state_free_strs: List[str] = []
             state_dimer_strs: List[str] = []
             state_input_strs: List[str] = []
@@ -393,6 +469,10 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
 
                 if mode == "truth_table":
                     ev = evaluate_truth_table(kd_m_mat, c0_m, obs, targets)
+                    if len(obs_list) == 1 and not use_legacy_adam:
+                        rep_d = design.get("metrics", {}).get("Delta")
+                        if rep_d is not None and abs(ev["Delta"] - float(rep_d)) > 1e-3:
+                            print(f"  [warn] {name} {did} Delta mismatch: eqtk={ev['Delta']:.4f} vs json={rep_d:.4f}")
                     vals = ev["values"]
                     for s_idx in range(c0_uM.shape[0]):
                         if input_nodes:
@@ -423,6 +503,9 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
                 else:
                     aff = bool(obs_cfg.get("affine_fit", False))
                     ev = evaluate_curve(kd_m_mat, c0_m, obs, targets, affine_fit=aff)
+                    rep_r2 = design.get("metrics", {}).get("R2")
+                    if rep_r2 is not None and abs(ev["R2"] - float(rep_r2)) > 1e-3:
+                        print(f"  [warn] {name} {did} R2 mismatch: eqtk={ev['R2']:.4f} vs json={rep_r2:.4f}")
                     x_col = node_idx[input_nodes[0]] if input_nodes else 0
                     for s_idx in range(c0_uM.shape[0]):
                         curve_rows.append({
@@ -453,12 +536,12 @@ def collect_graph_designs(results_dir: Path, top_k: int) -> Tuple[List[dict], Li
 def collect_2d_and_banana(
     results_dir: Path,
     all_des_bounds: bool,
+    reg: RegisterHelper,
 ) -> Tuple[List[dict], List[dict], List[dict]]:
     pairwise_rows: List[dict] = []
     matrix_blocks: List[dict] = []
     grid_jobs: List[dict] = []
 
-    # 1. des_bounds_designs
     db_dir = results_dir / "des_bounds_designs"
     if db_dir.exists():
         ordered_db = [k for k in DES_BOUNDS_SHEET_NAMES if (db_dir / k).is_dir()]
@@ -479,6 +562,7 @@ def collect_2d_and_banana(
                 continue
 
             nodes: List[str] = data.get("nodes", []) or list(data["seqs"].keys())
+            pads: Dict[str, str] = data.get("pads", {})
             n = len(nodes)
             node_idx = {nd: i for i, nd in enumerate(nodes)}
             pkd_mat = np.array(data["pkd_matrix"], dtype=float)
@@ -496,6 +580,9 @@ def collect_2d_and_banana(
             for i in range(n):
                 for j in range(i, n):
                     etype = "Homodimer" if i == j else ("Target" if (i, j) in target_set else "Off-target")
+                    orient, shift, slip_m, slip_t = reg.get(pads.get(nodes[i], ""), pads.get(nodes[j], ""))
+                    if etype == "Target" and not orient:
+                        orient = "PAR"
                     pairwise_rows.append({
                         "Category": "2d_boundary",
                         "System": folder_name,
@@ -506,10 +593,10 @@ def collect_2d_and_banana(
                         "Edge_Type": etype,
                         "pKd": round(float(pkd_mat[i, j]), 4),
                         "Kd_nM": round(float(kd_nM_mat[i, j]), 4),
-                        "Orient": "PAR" if etype == "Target" else "",
-                        "Shift": "",
-                        "Slip_Margin": None,
-                        "Slip_Type": "",
+                        "Orient": orient,
+                        "Shift": shift,
+                        "Slip_Margin": round(float(slip_m), 3) if slip_m is not None else None,
+                        "Slip_Type": slip_t,
                     })
 
             matrix_blocks.append({
@@ -522,7 +609,6 @@ def collect_2d_and_banana(
                 "kd_nM_mat": kd_nM_mat,
             })
 
-            # Solve exact 121x121 equilibrium grid
             s = float(data.get("conc_scale", 1.0))
             max_in = 200.0 * s
             thresh = float(data.get("threshold_nM", 50.0 * s))
@@ -569,7 +655,6 @@ def collect_2d_and_banana(
                 ],
             })
 
-    # 2. banana_designs
     bn_dir = results_dir / "banana_designs"
     if bn_dir.exists():
         for folder_path in sorted(p for p in bn_dir.iterdir() if p.is_dir()):
@@ -581,6 +666,7 @@ def collect_2d_and_banana(
                 continue
 
             nodes: List[str] = data.get("nodes", []) or list(data["seqs"].keys())
+            pads: Dict[str, str] = data.get("pads", {})
             n = len(nodes)
             node_idx = {nd: i for i, nd in enumerate(nodes)}
             pkd_mat = np.array(data["pkd_matrix"], dtype=float)
@@ -600,7 +686,7 @@ def collect_2d_and_banana(
                 for j in range(i, n):
                     if i == j:
                         etype = "Homodimer"
-                        orient, shift, slip_m, slip_t = "", "", None, ""
+                        orient, shift, slip_m, slip_t = reg.get(pads.get(nodes[i], ""), pads.get(nodes[j], ""))
                     elif (i, j) in target_lookup:
                         etype = "Target"
                         einfo = target_lookup[(i, j)]
@@ -610,7 +696,7 @@ def collect_2d_and_banana(
                         slip_t = einfo.get("slip_type", "")
                     else:
                         etype = "Off-target"
-                        orient, shift, slip_m, slip_t = "", "", None, ""
+                        orient, shift, slip_m, slip_t = reg.get(pads.get(nodes[i], ""), pads.get(nodes[j], ""))
 
                     pairwise_rows.append({
                         "Category": "banana",
@@ -638,7 +724,6 @@ def collect_2d_and_banana(
                 "kd_nM_mat": kd_nM_mat,
             })
 
-            # Solve exact 160x160 uniform_test grid in scaled nM
             s = float(data.get("conc_scale", 1.0))
             tots_scaled = data.get("fitted_total_scaled_nM") or {}
             if not tots_scaled and data.get("fitted_total_native_nM"):
@@ -754,17 +839,27 @@ def write_flat_sheet(wb: openpyxl.Workbook, title: str, tab_color: str, dict_row
             style_cell(ws.cell(row=r_idx, column=col_idx, value=val), FONT_BODY, fill, align)
 
     ws.auto_filter.ref = f"A1:{get_column_letter(len(headers))}{len(dict_rows) + 1}"
-    for col_idx in range(1, len(headers) + 1):
-        max_len = max(
-            (len(str(ws.cell(row=r, column=col_idx).value or "")) for r in range(1, min(len(dict_rows) + 2, 500))),
-            default=8,
-        )
-        ws.column_dimensions[get_column_letter(col_idx)].width = max(9, min(48, max_len + 3))
+    # Scan ALL rows + leave extra header width for AutoFilter dropdown arrow
+    for col_idx, h in enumerate(headers, start=1):
+        hdr_w = len(str(h)) + 6
+        data_w = max(
+            (len(str(ws.cell(row=r, column=col_idx).value)) for r in range(2, len(dict_rows) + 2) if ws.cell(row=r, column=col_idx).value is not None),
+            default=0,
+        ) + 3
+        ws.column_dimensions[get_column_letter(col_idx)].width = max(10, min(52, max(hdr_w, data_w)))
 
 
 def write_matrix_sheet(wb: openpyxl.Workbook, title: str, tab_color: str, blocks: List[dict]) -> None:
     ws = wb.create_sheet(title)
     ws.sheet_properties.tabColor = tab_color
+    if not blocks:
+        return
+
+    # Fixed horizontal position for Kd_nM across all blocks so columns never shift
+    max_n = max(len(blk["nodes"]) for blk in blocks)
+    col_pkd_start = 4
+    col_kd_start = col_pkd_start + max_n + 2
+
     row_cursor = 1
     for blk in blocks:
         nodes = blk["nodes"]
@@ -772,9 +867,6 @@ def write_matrix_sheet(wb: openpyxl.Workbook, title: str, tab_color: str, blocks
         pkd_mat = blk["pkd_mat"]
         kd_mat = blk["kd_nM_mat"]
 
-        # Header row for this block: System | Design_ID | Rank | pKd | nodes... | <blank> | Kd_nM | nodes...
-        col_pkd_start = 4
-        col_kd_start = col_pkd_start + n + 2
         style_cell(ws.cell(row=row_cursor, column=1, value=blk["system"]), FONT_HEADER, FILL_HEADER, "left")
         style_cell(ws.cell(row=row_cursor, column=2, value=blk["design_id"]), FONT_HEADER, FILL_HEADER, "center")
         style_cell(ws.cell(row=row_cursor, column=3, value=f"Rank {blk['rank']}"), FONT_HEADER, FILL_HEADER, "center")
@@ -796,11 +888,14 @@ def write_matrix_sheet(wb: openpyxl.Workbook, title: str, tab_color: str, blocks
         row_cursor += n + 2
 
     for col_idx in range(1, ws.max_column + 1):
+        if col_idx == col_pkd_start + max_n + 1:
+            ws.column_dimensions[get_column_letter(col_idx)].width = 4
+            continue
         max_len = max(
-            (len(str(ws.cell(row=r, column=col_idx).value or "")) for r in range(1, ws.max_row + 1)),
-            default=8,
+            (len(str(ws.cell(row=r, column=col_idx).value)) for r in range(1, ws.max_row + 1) if ws.cell(row=r, column=col_idx).value is not None),
+            default=6,
         )
-        ws.column_dimensions[get_column_letter(col_idx)].width = max(8, min(28, max_len + 3))
+        ws.column_dimensions[get_column_letter(col_idx)].width = max(9, min(32, max_len + 3))
 
 
 def write_2d_grids_workbook(
@@ -808,7 +903,6 @@ def write_2d_grids_workbook(
     grid_jobs: List[dict],
     csv_dir: Optional[Path] = None,
 ) -> None:
-    # Ensure unique <=31 char sheet names
     used = {"Grid_Summary"}
     for job in grid_jobs:
         base = job["sheet_name"].replace(":", "_").replace("/", "_")[:31]
@@ -823,7 +917,6 @@ def write_2d_grids_workbook(
 
     wb = openpyxl.Workbook(write_only=True)
 
-    # Summary verification tab
     ws_sum = wb.create_sheet("Grid_Summary")
     ws_sum.sheet_properties.tabColor = TAB_COLORS["master"]
     ws_sum.freeze_panes = "A2"
@@ -832,9 +925,9 @@ def write_2d_grids_workbook(
         "Threshold_nM", "Computed_Acc_pct", "Reported_Acc_pct", "Acc_Diff_pct", "Max_MB_RelErr",
     ]
     for i in range(1, len(sum_headers) + 1):
-        ws_sum.column_dimensions[get_column_letter(i)].width = 18
-    ws_sum.column_dimensions["B"].width = 30
-    ws_sum.column_dimensions["C"].width = 22
+        ws_sum.column_dimensions[get_column_letter(i)].width = 20
+    ws_sum.column_dimensions["B"].width = 32
+    ws_sum.column_dimensions["C"].width = 24
 
     hdr_cells = []
     for h in sum_headers:
@@ -865,14 +958,13 @@ def write_2d_grids_workbook(
     if csv_dir is not None:
         csv_dir.mkdir(parents=True, exist_ok=True)
 
-    # Individual 2D grid tabs
     for job in grid_jobs:
         ws = wb.create_sheet(job["sheet_name"])
         ws.sheet_properties.tabColor = TAB_COLORS.get(job["kind"], "7030A0")
         ws.freeze_panes = "A2"
         headers = job["headers"]
-        for i in range(1, len(headers) + 1):
-            ws.column_dimensions[get_column_letter(i)].width = 16
+        for i, h in enumerate(headers, start=1):
+            ws.column_dimensions[get_column_letter(i)].width = max(16, len(h) + 5)
 
         h_cells = []
         for h in headers:
@@ -926,15 +1018,16 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=5, help="Top-K designs per graph_designs system.")
     parser.add_argument("--all-des-bounds", action="store_true", help="Include legacy/ablation des_bounds folders.")
     parser.add_argument("--csv-grids", action="store_true", help="Also write 2D grids as CSVs under results/2d_grids_csv/.")
+    parser.add_argument("--no-register-fill", action="store_true", help="Skip ConsensusModel lookup for off-targets/homodimers.")
     args = parser.parse_args()
 
-    pw_1d, mat_1d, tt_rows, curve_rows = collect_graph_designs(args.results_dir, top_k=args.top_k)
-    pw_2d, mat_2d, grid_jobs = collect_2d_and_banana(args.results_dir, all_des_bounds=args.all_des_bounds)
+    reg = RegisterHelper(enabled=not args.no_register_fill)
+    pw_1d, mat_1d, tt_rows, curve_rows = collect_graph_designs(args.results_dir, top_k=args.top_k, reg=reg)
+    pw_2d, mat_2d, grid_jobs = collect_2d_and_banana(args.results_dir, all_des_bounds=args.all_des_bounds, reg=reg)
 
     all_pairwise = pw_1d + pw_2d
     all_matrices = mat_1d + mat_2d
 
-    # Workbook 2: Matrices & 1D equilibrium
     wb2 = openpyxl.Workbook()
     wb2.remove(wb2.active)
     write_flat_sheet(wb2, "Affinities_Pairwise", TAB_COLORS["master"], all_pairwise)
@@ -959,7 +1052,6 @@ def main() -> None:
         f"{len(tt_rows)} truth-table state rows, {len(curve_rows)} curve point rows."
     )
 
-    # Workbook 3: 2D & Banana equilibrium grids
     if grid_jobs:
         csv_dir = (args.results_dir / "2d_grids_csv") if args.csv_grids else None
         write_2d_grids_workbook(args.out_2d, grid_jobs, csv_dir=csv_dir)
